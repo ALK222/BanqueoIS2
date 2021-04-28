@@ -1,0 +1,7 @@
+{
+    "java.checkstyle.configuration": "${workspaceFolder}\\checkstyle.xml",
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "src/lib/json.jar"
+    ]
+}

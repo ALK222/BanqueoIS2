@@ -8,76 +8,81 @@ import prestamos.Prestamo;
 import tarjetas.Tarjeta;
 
 public class Cuenta {
- 
-	private String titularCuenta; 
-	private int numeroCuenta; 
-	private double saldo; 
-	private String firmaDigital; 
-	private JSONArray movimientos; 
-	private List<Tarjeta> listaTarjetas; 
-	private List<Prestamo> listaPrestamos;
-	
-	
-	
-	public Cuenta(String titularCuenta, int numeroCuenta, double saldo, String firmaDigital,List<Tarjeta> listaTarjetas, List<Prestamo> listaPrestamos) {
-		this.titularCuenta = titularCuenta;
-		this.numeroCuenta = numeroCuenta;
-		this.saldo = saldo;
-		this.firmaDigital = firmaDigital;
-		this.listaTarjetas = listaTarjetas; // lo mas probable es que el ArrayList se crea aqui y no se pasa como parametro 
- 		this.listaPrestamos = listaPrestamos;
- 		this.movimientos = new JSONArray();
+
+	private String _titularCuenta;
+	private int _numeroCuenta;
+	private double _saldo;
+	private String _firmaDigital;
+	private JSONArray _movimientos;
+	private List<Tarjeta> _listaTarjetas;
+	private List<Prestamo> _listaPrestamos;
+
+	public Cuenta(String titularCuenta, int numeroCuenta, double saldo, String firmaDigital,
+			List<Tarjeta> listaTarjetas, List<Prestamo> listaPrestamos) {
+		this._titularCuenta = titularCuenta;
+		this._numeroCuenta = numeroCuenta;
+		this._saldo = saldo;
+		this._firmaDigital = firmaDigital;
+		this._listaTarjetas = listaTarjetas; // lo mas probable es que el ArrayList se crea aqui y no se pasa como
+												// parametro
+		this._listaPrestamos = listaPrestamos;
+		this._movimientos = new JSONArray();
 	}
-	
-	
-	public String getTitular_cuenta() {
-		return titularCuenta;
+
+	public String getTitularCuenta() {
+		return _titularCuenta;
 	}
-	public void setTitular_cuenta(String titularCuenta) {
-		this.titularCuenta = titularCuenta;
+
+	public void setTitularCuenta(String titularCuenta) {
+		this._titularCuenta = titularCuenta;
 	}
-	public int getNumero_cuenta() {
-		return numeroCuenta;
+
+	public int getNumeroCuenta() {
+		return _numeroCuenta;
 	}
-	public void setNumero_cuenta(int numeroCuenta) {
-		this.numeroCuenta = numeroCuenta;
+
+	public void setNumeroCuenta(int numeroCuenta) {
+		this._numeroCuenta = numeroCuenta;
 	}
+
 	public double getSaldo() {
-		return saldo;
+		return _saldo;
 	}
+
 	public void setSaldo(double saldo) {
-		this.saldo = saldo;
+		this._saldo = saldo;
 	}
-	public String getFirma_digital() {
-		return firmaDigital;
+
+	public String getFirmaDigital() {
+		return _firmaDigital;
 	}
-	public void setFirma_digital(String firmaDigital) {
-		this.firmaDigital = firmaDigital;
+
+	public void setFirmaDigital(String firmaDigital) {
+		this._firmaDigital = firmaDigital;
 	}
+
 	public List<Tarjeta> getListaTarjetas() {
-		return listaTarjetas;
+		return _listaTarjetas;
 	}
+
 	public void setListaTarjetas(List<Tarjeta> listaTarjetas) {
 		this.listaTarjetas = listaTarjetas;
 	}
+
 	public List<Prestamo> getListaPrestamos() {
-		return listaPrestamos;
-	}
-	public void setListaPrestamos(List<Prestamo> listaPrestamos) {
-		this.listaPrestamos = listaPrestamos;
+		return _listaPrestamos;
 	}
 
+	public void setListaPrestamos(List<Prestamo> listaPrestamos) {
+		this._listaPrestamos = listaPrestamos;
+	}
 
 	public JSONArray getMovimientos() {
-		return movimientos;
+		return _movimientos;
 	}
 
-
 	public void setMovimientos(JSONArray movimientos) {
-		this.movimientos = movimientos;
-	} 
-	
-	
-	
-	
+		this._movimientos = movimientos;
+	}
+
 }
