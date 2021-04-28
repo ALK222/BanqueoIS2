@@ -58,7 +58,7 @@ public class Controller {
                 String titular = jo.getString("Num_Tarjeta");
             }
         } catch (Exception e) {
-            // TODO: handle exception
+            throw e;
         }
     }
 }
