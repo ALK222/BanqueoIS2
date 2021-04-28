@@ -4,63 +4,68 @@ import java.util.Date;
 
 public class Tarjeta {
 
-	private String titular; 
-	private int pin; 
-	private boolean estado; 
-	private int numTarjeta; 
-	private Date fechaCad; 
-	private Tipo tipoTarjeta;
-	
-	
-	
+	private String _titular;
+	private int _pin;
+	private boolean _estado;
+	private int _numTarjeta;
+	private Date _fechaCad;
+	private Tipo _tipoTarjeta;
+
 	public Tarjeta(String titular, int pin, boolean estado, int numTarjeta, Date fechaCad, Tipo tipoTarjeta) {
-		this.titular = titular;
-		this.pin = pin;
-		this.estado = estado;
-		this.numTarjeta = numTarjeta;
-		this.fechaCad = fechaCad;
-		this.tipoTarjeta = tipoTarjeta;
+		this._titular = titular;
+		this._pin = pin;
+		this._estado = estado;
+		this._numTarjeta = numTarjeta;
+		this._fechaCad = fechaCad;
+		this._tipoTarjeta = tipoTarjeta;
 	}
-	
-	
+
 	public String getTitular() {
-		return titular;
+		return _titular;
 	}
+
 	public void setTitular(String titular) {
-		this.titular = titular;
+		this._titular = titular;
 	}
+
 	public int getPin() {
-		return pin;
+		return _pin;
 	}
+
 	public void setPin(int pin) {
-		this.pin = pin;
+		this._pin = pin;
 	}
+
 	public boolean isEstado() {
-		return estado;
+		return _estado;
 	}
+
 	public void setEstado(boolean estado) {
-		this.estado = estado;
+		this._estado = estado;
 	}
+
 	public int getNum_tarjeta() {
-		return numTarjeta;
+		return _numTarjeta;
 	}
+
 	public void setNum_tarjeta(int numTarjeta) {
-		this.numTarjeta = numTarjeta;
+		this._numTarjeta = numTarjeta;
 	}
+
 	public Date getFechaCad() {
-		return fechaCad;
+		return _fechaCad;
 	}
+
 	public void setFechaCad(Date fechaCad) {
-		this.fechaCad = fechaCad;
+		this._fechaCad = fechaCad;
 	}
+
 	public Tipo getTipo_tarjeta() {
-		return tipoTarjeta;
+		return _tipoTarjeta;
 	}
+
 	public void setTipo_tarjeta(Tipo tipoTarjeta) {
-		this.tipoTarjeta = tipoTarjeta;
-	} 
-	
-	
-	
-	
+		this._tipoTarjeta = tipoTarjeta;
+	}
+
 }

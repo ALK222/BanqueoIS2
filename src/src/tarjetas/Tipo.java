@@ -1,7 +1,5 @@
 package tarjetas;
 
 public enum Tipo {
-  DEBITO,
-  CREDITO,
-  PREPAGO
+  DEBITO, CREDITO, PREPAGO
 }

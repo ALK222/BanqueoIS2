@@ -1,7 +1,5 @@
 package prestamos;
 
 public enum Estado {
-  SOLICITADO, 
-  ACEPTADO, 
-  DENEGADO
+  SOLICITADO, ACEPTADO, DENEGADO
 }

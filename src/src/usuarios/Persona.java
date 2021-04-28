@@ -2,48 +2,57 @@ package usuarios;
 
 public class Persona {
 
-	protected String dni;
-	protected String nombre; 
-	protected String domicilio; 
-	protected String email; 
-	protected int tlf;
-	
-	Persona(String dni, String nombre, String domicilio, int tlf){
-		this.dni = dni; 
-		this.nombre = nombre; 
-		this.domicilio = domicilio; 
-		this.tlf = tlf; 
+	protected String _dni;
+	protected String _nombre;
+	protected String _domicilio;
+	protected String _email;
+	protected int _tlf;
+
+	Persona(String dni, String nombre, String domicilio, int tlf) {
+		this._dni = dni;
+		this._nombre = nombre;
+		this._domicilio = domicilio;
+		this._tlf = tlf;
 	}
-	
+
 	public String getDni() {
-		return dni;
+		return _dni;
 	}
+
 	public void setDni(String dni) {
-		this.dni = dni;
+		this._dni = dni;
 	}
+
 	public String getNombre() {
-		return nombre;
+		return _nombre;
 	}
+
 	public void setNombre(String nombre) {
-		this.nombre = nombre;
+		this._nombre = nombre;
 	}
+
 	public String getDomicilio() {
-		return domicilio;
+		return _domicilio;
 	}
+
 	public void setDomicilio(String domicilio) {
-		this.domicilio = domicilio;
+		this._domicilio = domicilio;
 	}
+
 	public String getEmail() {
-		return email;
+		return _email;
 	}
+
 	public void setEmail(String email) {
-		this.email = email;
+		this._email = email;
 	}
+
 	public int getTlf() {
-		return tlf;
+		return _tlf;
 	}
+
 	public void setTlf(int tlf) {
-		this.tlf = tlf;
-	} 
-	
+		this._tlf = tlf;
+	}
+
 }
