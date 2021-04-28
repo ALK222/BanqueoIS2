@@ -24,7 +24,7 @@ public class FachadaDAOUsuarios implements IFachadaDAOUsuarios {
     }
 
     @Override
-    public Persona buscarUsuario(String dni) {
+    public Persona buscarUsuario(String dni) throws Exception {
         return daoUsu.buscarUsuario(dni);
     }
 

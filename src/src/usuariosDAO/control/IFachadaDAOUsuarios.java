@@ -9,7 +9,7 @@ public interface IFachadaDAOUsuarios {
 
     List<Persona> consultarListaUsuarios(String nombre);
 
-    Persona buscarUsuario(String dni);
+    Persona buscarUsuario(String dni) throws Exception;
 
     Persona modificarUsuario(Persona p);
 
