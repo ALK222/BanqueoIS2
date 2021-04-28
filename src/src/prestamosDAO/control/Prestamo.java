@@ -1,4 +1,4 @@
-package prestamos;
+package prestamosDAO.control;
 
 import java.util.Date;
 

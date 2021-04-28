@@ -1,9 +1,9 @@
-package usuarios;
+package usuariosDAO.control;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import cuenta.Cuenta;
+import cuentaDAO.control.Cuenta;
 
 public class Cliente extends Persona {
 

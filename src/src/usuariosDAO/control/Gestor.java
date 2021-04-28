@@ -1,4 +1,4 @@
-package usuarios;
+package usuariosDAO.control;
 
 public class Gestor extends Persona {
 

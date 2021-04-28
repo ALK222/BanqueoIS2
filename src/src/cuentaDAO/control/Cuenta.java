@@ -1,11 +1,11 @@
-package cuenta;
+package cuentaDAO.control;
 
 import java.util.List;
 
 import org.json.JSONArray;
 
-import prestamos.Prestamo;
-import tarjetas.Tarjeta;
+import prestamosDAO.control.Prestamo;
+import tarjetasDAO.control.Tarjeta;
 
 public class Cuenta {
 
@@ -19,7 +19,7 @@ public class Cuenta {
 
 	public Cuenta(String titularCuenta, int numeroCuenta, double saldo, String firmaDigital,
 			List<Tarjeta> listaTarjetas, List<Prestamo> listaPrestamos) {
-		this._titularCuenta = titularCuenta;
+		_titularCuenta = titularCuenta;
 		this._numeroCuenta = numeroCuenta;
 		this._saldo = saldo;
 		this._firmaDigital = firmaDigital;
@@ -66,7 +66,7 @@ public class Cuenta {
 	}
 
 	public void setListaTarjetas(List<Tarjeta> listaTarjetas) {
-		this.listaTarjetas = listaTarjetas;
+		this._listaTarjetas = listaTarjetas;
 	}
 
 	public List<Prestamo> getListaPrestamos() {
