@@ -1,1 +1,19 @@
-{}
+[
+    {
+        "DNI": "01234567A",
+        "Nombre": "",
+        "Domicilio": "Calle inventada 123",
+        "Email": "correofalso@gmail.com",
+        "Contraseña": "abc123",
+        "Telefono": "555-555-555",
+        "DNI_Gestor": "01234568A"
+    },
+    {
+        "DNI": "01234568A",
+        "Nombre": "",
+        "Domicilio": "Calle inventada 123",
+        "Email": "correofalso@gmail.com",
+        "Contraseña": "abc123",
+        "Telefono": "555-555-555"
+    }
+]

@@ -1,4 +1,4 @@
-package prestamosDAO.view;
+package tarjetasdao.view;
 
 public class MainWindow {
 

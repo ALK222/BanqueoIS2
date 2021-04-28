@@ -1,4 +1,4 @@
-package tarjetasDAO.control;
+package tarjetasdao.control;
 
 import java.util.Date;
 

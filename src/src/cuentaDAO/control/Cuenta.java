@@ -1,11 +1,11 @@
-package cuentaDAO.control;
+package cuentadao.control;
 
 import java.util.List;
 
 import org.json.JSONArray;
 
-import prestamosDAO.control.Prestamo;
-import tarjetasDAO.control.Tarjeta;
+import prestamosdao.control.Prestamo;
+import tarjetasdao.control.Tarjeta;
 
 public class Cuenta {
 

@@ -1,4 +1,4 @@
-package usuariosDAO.control;
+package usuariosdao.control;
 
 public class Persona {
 
@@ -7,12 +7,25 @@ public class Persona {
 	protected String _domicilio;
 	protected String _email;
 	protected int _tlf;
+	protected String _contrasena;
 
-	Persona(String dni, String nombre, String domicilio, int tlf) {
+	/**
+	 * Constructor de usuario con parámetros
+	 * 
+	 * @param dni        DNI del usuario
+	 * @param nombre     Nombre y apellidos del usuario
+	 * @param domicilio  Domicilio completo del usuario
+	 * @param tlf        Telefono del usuario
+	 * @param contrasena Contrasena del usuario
+	 * @param email      Email del usuario
+	 */
+	Persona(String dni, String nombre, String domicilio, int tlf, String contrasena, String email) {
 		this._dni = dni;
 		this._nombre = nombre;
 		this._domicilio = domicilio;
 		this._tlf = tlf;
+		_email = email;
+		_contrasena = contrasena;
 	}
 
 	public String getDni() {
@@ -53,6 +66,14 @@ public class Persona {
 
 	public void setTlf(int tlf) {
 		this._tlf = tlf;
+	}
+
+	public String getContrasena() {
+		return _contrasena;
+	}
+
+	public void setContrasena(String contrasena) {
+		_contrasena = contrasena;
 	}
 
 }
