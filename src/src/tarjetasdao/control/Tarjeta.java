@@ -7,9 +7,9 @@ public class Tarjeta {
 	private boolean _estado;
 	private int _numTarjeta;
 	private String _fechaCad;
-	private Tipo _tipoTarjeta;
+	private TipoTarjeta _tipoTarjeta;
 
-	public Tarjeta(String titular, int pin, boolean estado, int numTarjeta, String fechaCad, Tipo tipoTarjeta) {
+	public Tarjeta(String titular, int pin, boolean estado, int numTarjeta, String fechaCad, TipoTarjeta tipoTarjeta) {
 		this._titular = titular;
 		this._pin = pin;
 		this._estado = estado;
@@ -58,11 +58,11 @@ public class Tarjeta {
 		this._fechaCad = fechaCad;
 	}
 
-	public Tipo getTipo_tarjeta() {
+	public TipoTarjeta getTipo_tarjeta() {
 		return _tipoTarjeta;
 	}
 
-	public void setTipo_tarjeta(Tipo tipoTarjeta) {
+	public void setTipo_tarjeta(TipoTarjeta tipoTarjeta) {
 		this._tipoTarjeta = tipoTarjeta;
 	}
 

@@ -9,7 +9,7 @@ import org.json.JSONException;
 import cuentadao.control.Cuenta;
 import prestamosdao.control.Prestamo;
 import tarjetasdao.control.Tarjeta;
-import tarjetasdao.control.Tipo;
+import tarjetasdao.control.TipoTarjeta;
 import usuariosdao.control.Cliente;
 import usuariosdao.control.Gestor;
 import usuariosdao.control.Persona;
@@ -59,7 +59,7 @@ public class Controller {
                 String titular = ja.getJSONObject(i).getString("Titular");
                 int pin = ja.getJSONObject(i).getInt("PIN");
                 String fechaCad = ja.getJSONObject(i).getString("Fecha_CAD");
-                Tipo tipo = Tipo.parse(ja.getJSONObject(i).getString("Tipo"));
+                TipoTarjeta tipo = TipoTarjeta.parse(ja.getJSONObject(i).getString("Tipo"));
                 int numTarjeta = ja.getJSONObject(i).getInt("Num_Tarjeta");
                 boolean estado = ja.getJSONObject(i).getBoolean("Estado");
 
