@@ -1,40 +1,65 @@
 package prestamosdao.control;
 
-import java.util.Date;
+import cuentadao.control.Cuenta;
 
+/**
+ * Objeto prestamo
+ */
 public class Prestamo {
 
 	private double _cantidadSolicitada;
-	private Date _plazoDevolucion;
+	private int _numReferencia;
+	private String _plazoDevolucion;
 	private int _aval;
 	private String _profesion;
 	private boolean _firmaSeguroDefuncion;
-	private Estado _estadoPrestamo;
+	private EstadoPrestamo _estadoPrestamo;
+	private Cuenta _cuentaAsociada;
 
-	public Prestamo(double cantidadSolicitada, Date plazoDevolucion, int aval, String profesion,
-			boolean firmaSeguroDefuncion, Estado estadoPrestamo) {
-		this._cantidadSolicitada = cantidadSolicitada;
-		this._plazoDevolucion = plazoDevolucion;
-		this._aval = aval;
-		this._profesion = profesion;
-		this._firmaSeguroDefuncion = firmaSeguroDefuncion;
-		this._estadoPrestamo = estadoPrestamo;
+	/**
+	 * Constructor con argumentos para Prestamo
+	 * 
+	 * @param numReferencia
+	 * @param cantidadSolicitada
+	 * @param plazoDevolucion
+	 * @param aval
+	 * @param profesion
+	 * @param firmaSeguroDefuncion
+	 * @param estadoPrestamo
+	 */
+	public Prestamo(int numReferencia, double cantidadSolicitada, String plazoDevolucion, int aval, String profesion,
+			boolean firmaSeguroDefuncion, EstadoPrestamo estadoPrestamo) {
+		_numReferencia = numReferencia;
+		_cantidadSolicitada = cantidadSolicitada;
+		_plazoDevolucion = plazoDevolucion;
+		_aval = aval;
+		_profesion = profesion;
+		_firmaSeguroDefuncion = firmaSeguroDefuncion;
+		_estadoPrestamo = estadoPrestamo;
 	}
 
-	public double getCantidad_solicitada() {
+	public int getNumReferencia() {
+		return _numReferencia;
+	}
+
+	public void setNumReferencia(int numReferencia) {
+		_numReferencia = numReferencia;
+	}
+
+	public double getCantidadSolicitada() {
 		return _cantidadSolicitada;
 	}
 
-	public void setCantidad_solicitada(double cantidadSolicitada) {
-		this._cantidadSolicitada = cantidadSolicitada;
+	public void setCantidadSolicitada(double cantidadSolicitada) {
+		_cantidadSolicitada = cantidadSolicitada;
 	}
 
-	public Date getPlazo_devolucion() {
+	public String getPlazoDevolucion() {
 		return _plazoDevolucion;
 	}
 
-	public void setPlazo_devolucion(Date plazoDevolucion) {
-		this._plazoDevolucion = plazoDevolucion;
+	public void setPlazoDevolucion(String plazoDevolucion) {
+		_plazoDevolucion = plazoDevolucion;
 	}
 
 	public int getAval() {
@@ -42,7 +67,7 @@ public class Prestamo {
 	}
 
 	public void setAval(int aval) {
-		this._aval = aval;
+		_aval = aval;
 	}
 
 	public String getProfesion() {
@@ -50,7 +75,7 @@ public class Prestamo {
 	}
 
 	public void setProfesion(String profesion) {
-		this._profesion = profesion;
+		_profesion = profesion;
 	}
 
 	public boolean isFirma_seguro_defuncion() {
@@ -58,15 +83,19 @@ public class Prestamo {
 	}
 
 	public void setFirma_seguro_defuncion(boolean firmaSeguroDefuncion) {
-		this._firmaSeguroDefuncion = firmaSeguroDefuncion;
+		_firmaSeguroDefuncion = firmaSeguroDefuncion;
 	}
 
-	public Estado getEstado_prestamo() {
+	public EstadoPrestamo getEstado_prestamo() {
 		return _estadoPrestamo;
 	}
 
-	public void setEstado_prestamo(Estado estadoPrestamo) {
-		this._estadoPrestamo = estadoPrestamo;
+	public void setEstado_prestamo(EstadoPrestamo estadoPrestamo) {
+		_estadoPrestamo = estadoPrestamo;
+	}
+
+	public boolean esCuentaAsociada(Cuenta c) {
+		return _cuentaAsociada.equals(c);
 	}
 
 }
