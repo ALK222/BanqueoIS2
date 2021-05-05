@@ -6,22 +6,29 @@ public class SADAOCuentas implemets ISADAOCuentas {
     
     private List<Cuentas> _listaCuentas;
     
-    public boolean altaCuenta(Cuentas c){
+    SADAOUsuarios(){
+        _listaCuentas = new ArrayList<Persona>();
+    }
     
+    @Override
+    public boolean altaCuenta(Cuentas c){
+        return _listaCuentas.contains(p) ? false : _listaCuentas.add(p);
     }
 
+    @Override
     public boolean bajaCuenta(int num_cuenta){
-        return false;
+        return _listaPersonas.contains(p) ? true : _listaCuentas.add(p);
     }
 
-    public List<Cuentas> buscarListaCuentas(String titular_cuenta, String dni){
+    @Override
+    public buscarListaCuentas(String titular_cuenta, String dni) throws Exception{
     
         try {
             if (dni == null && titular_cuenta == null) {
                 throw new Exception("DNI nulo");
             }
-            for (Persona persona : _listaCuentas) {
-                if (**.getDni().equals(dni)) {
+            for (Cuenta cuenta : _listaCuentas) {
+                if (**.getDni().equals(dni) && **.getTitular_cuenta().equals(titular_cuenta) {
                     return cuenta;
                 }
             }
@@ -33,14 +40,20 @@ public class SADAOCuentas implemets ISADAOCuentas {
     
     }
 
-    public Cuentas consultarCuenta(int num_cuenta) throws Exception{
-    
+    @Override
+    public List<Persona> consultarCuenta(int num_cuenta){
+        return null;
     }
 
+    @Override
     public boolean modificarCuentas(Cuentas c){
-    
+        for (Cuentas cuenta : _listaCuentas) {
+            if (cuneta.compareTo(p) == 0) {
+                cuenta = c;
+            }
     }
 
+    @Override
     public JSONArray getMovimiento(int max_meses){
     
     }
