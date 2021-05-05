@@ -21,8 +21,8 @@ public class FachadaDAOTarjetas implements IFachadaDAOTarjetas {
 	}
 
 	@Override
-	public List<Tarjeta> consultarListaTarjetas(String titular_cuenta, String dni) {
-		return daoTarj.consultarListaTarjetas(titular_cuenta, dni);
+	public List<Tarjeta> consultarListaTarjetas(String dni) throws Exception {
+		return daoTarj.consultarListaTarjetas(dni);
 	}
 
 	@Override
@@ -31,7 +31,7 @@ public class FachadaDAOTarjetas implements IFachadaDAOTarjetas {
 	}
 
 	@Override
-	public Tarjeta modificarTarjeta(Tarjeta t) {
+	public boolean modificarTarjeta(Tarjeta t) {
 		return daoTarj.modificarTarjeta(t);
 	}
 

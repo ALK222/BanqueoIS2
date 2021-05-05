@@ -1,5 +1,7 @@
 package tarjetasdao.control;
 
+import usuariosdao.control.Persona;
+
 public class Tarjeta {
 
 	private String _titular;
@@ -64,6 +66,13 @@ public class Tarjeta {
 
 	public void setTipo_tarjeta(TipoTarjeta tipoTarjeta) {
 		this._tipoTarjeta = tipoTarjeta;
+	}
+	
+	public int compareTo(Tarjeta t) {
+		if (_numTarjeta == t._numTarjeta) {
+			return 0;
+		}
+		return -1;
 	}
 
 }

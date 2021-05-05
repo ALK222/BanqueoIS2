@@ -8,11 +8,11 @@ public interface ISADAOTarjetas {
 	
 	boolean bajaTarejeta(int num_tarjeta);
 	
-	List<Tarjeta> consultarListaTarjetas(String titular_cuenta, String dni);
+	List<Tarjeta> consultarListaTarjetas(String dni) throws Exception;
 	
 	Tarjeta buscarTarjeta(int num_tarjeta);
 	
-	Tarjeta modificarTarjeta(Tarjeta t);
+	boolean modificarTarjeta(Tarjeta t);
 	
 	boolean existeTarjeta(int num_tarjeta);
 }

@@ -1,6 +1,8 @@
 package tarjetasdao.control;
 
+import java.util.ArrayList;
 import java.util.List;
+
 
 public class SADAOTarjetas implements ISADAOTarjetas{
 	
@@ -23,8 +25,17 @@ public class SADAOTarjetas implements ISADAOTarjetas{
 	}
 
 	@Override
-	public List<Tarjeta> consultarListaTarjetas(String titular_cuenta, String dni) {
-		return null;
+	public List<Tarjeta> consultarListaTarjetas(String dni) throws Exception{
+		 List<Tarjeta> listaAux = new ArrayList<Tarjeta>();
+		 for (Tarjeta t : _listaTarjetas) {
+             if (t.getTitular().equals(dni)) {
+                 listaAux.add(t);
+             }
+         }
+		 if(listaAux.isEmpty()) {
+			 throw new Exception("No hay tarjetas asociadas a este usuario");
+		 }
+		 return listaAux;
 	}
 
 	@Override
@@ -38,8 +49,15 @@ public class SADAOTarjetas implements ISADAOTarjetas{
 	}
 
 	@Override
-	public Tarjeta modificarTarjeta(Tarjeta t) { //Posible bool
-		return null;
+	public boolean modificarTarjeta(Tarjeta t) { //Posible bool
+		 boolean conseguido = false;
+	        for (Tarjeta tarjeta : _listaTarjetas) {
+	            if (tarjeta.compareTo(t) == 0) {
+	                tarjeta = t;
+	                conseguido = true;
+	            }
+	        }
+	        return conseguido;
 	}
 
 	@Override
