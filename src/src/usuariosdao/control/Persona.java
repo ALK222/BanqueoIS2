@@ -4,7 +4,7 @@ package usuariosdao.control;
  * Objeto Persona, contiene los datos comunes a todos los tipos de usuarios del
  * programa
  */
-public class Persona {
+public class Persona implements Comparable<Persona> {
 
 	protected String _dni;
 	protected String _nombre;
@@ -78,6 +78,16 @@ public class Persona {
 
 	public void setContrasena(String contrasena) {
 		_contrasena = contrasena;
+	}
+
+	// METODOS
+
+	@Override
+	public int compareTo(Persona p) {
+		if (_dni.equals(p.getDni())) {
+			return 0;
+		}
+		return -1;
 	}
 
 }

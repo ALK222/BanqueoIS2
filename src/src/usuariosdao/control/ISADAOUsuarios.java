@@ -5,7 +5,7 @@ import java.util.List;
 public interface ISADAOUsuarios {
     boolean altaUsuario(Persona p);
 
-    boolean bajaUsuario(String dni);
+    boolean bajaUsuario(Persona p);
 
     List<Persona> consultarListaUsuarios(String nombre);
 

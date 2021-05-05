@@ -14,8 +14,8 @@ public class FachadaDAOUsuarios implements IFachadaDAOUsuarios {
     }
 
     @Override
-    public boolean bajaUsuario(String dni) {
-        return daoUsu.bajaUsuario(dni);
+    public boolean bajaUsuario(Persona p) {
+        return daoUsu.bajaUsuario(p);
     }
 
     @Override

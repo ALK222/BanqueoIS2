@@ -1,11 +1,15 @@
 package usuariosdao.control;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SADAOUsuarios implements ISADAOUsuarios {
 
     private List<Persona> _listaPersonas;
-    // IMPEMENTAR NUEVO EQUALS
+
+    SADAOUsuarios() {
+        _listaPersonas = new ArrayList<Persona>();
+    }
 
     @Override
     public boolean altaUsuario(Persona p) {
@@ -14,9 +18,8 @@ public class SADAOUsuarios implements ISADAOUsuarios {
     }
 
     @Override
-    public boolean bajaUsuario(String dni) { // Posible persona
-        // TODO: dni o persona
-        return false;// _listaPersonas.contains() ? true : _listaPersonas.add(p);
+    public boolean bajaUsuario(Persona p) {
+        return _listaPersonas.contains(p) ? true : _listaPersonas.remove(p);
     }
 
     @Override
@@ -45,16 +48,10 @@ public class SADAOUsuarios implements ISADAOUsuarios {
 
     @Override
     public Persona modificarUsuario(Persona p) { // posible bool
-        // OPTIMIZAR
-        Persona aux = null;
         for (Persona persona : _listaPersonas) {
-            if (persona.getDni().equals(p.getDni())) {
-                aux = persona;
-                _listaPersonas.add(p);
+            if (persona.compareTo(p) == 0) {
+                persona = p;
             }
-        }
-        if (aux != null) {
-            _listaPersonas.remove(aux);
         }
         return null;
     }
