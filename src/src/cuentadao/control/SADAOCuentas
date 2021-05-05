@@ -41,7 +41,7 @@ public class SADAOCuentas implemets ISADAOCuentas {
     }
 
     @Override
-    public List<Persona> consultarCuenta(int num_cuenta){
+    List<Persona> consultarCuenta(int num_cuenta){
         return null;
     }
 
