@@ -7,7 +7,7 @@ public interface ISADAOUsuarios {
 
     boolean bajaUsuario(Persona p);
 
-    List<Persona> consultarListaUsuarios(String nombre);
+    List<Persona> consultarListaUsuarios(String domicilio, String modo) throws Exception;
 
     Persona buscarUsuario(String dni) throws Exception;
 

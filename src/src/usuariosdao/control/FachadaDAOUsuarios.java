@@ -19,8 +19,8 @@ public class FachadaDAOUsuarios implements IFachadaDAOUsuarios {
     }
 
     @Override
-    public List<Persona> consultarListaUsuarios(String nombre) {
-        return daoUsu.consultarListaUsuarios(nombre);
+    public List<Persona> consultarListaUsuarios(String domicilio, String modo) throws Exception {
+        return daoUsu.consultarListaUsuarios(domicilio, modo);
     }
 
     @Override
