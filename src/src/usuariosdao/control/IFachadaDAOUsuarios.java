@@ -11,7 +11,7 @@ public interface IFachadaDAOUsuarios {
 
     Persona buscarUsuario(String dni) throws Exception;
 
-    Persona modificarUsuario(Persona p);
+    boolean modificarUsuario(Persona p);
 
     boolean iniciarSesion(String dni, String contrasena);
 

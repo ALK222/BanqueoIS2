@@ -29,7 +29,7 @@ public class FachadaDAOUsuarios implements IFachadaDAOUsuarios {
     }
 
     @Override
-    public Persona modificarUsuario(Persona p) {
+    public boolean modificarUsuario(Persona p) {
         return daoUsu.modificarUsuario(p);
     }
 

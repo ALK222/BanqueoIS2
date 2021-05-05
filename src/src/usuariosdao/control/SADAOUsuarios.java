@@ -77,13 +77,15 @@ public class SADAOUsuarios implements ISADAOUsuarios {
     }
 
     @Override
-    public Persona modificarUsuario(Persona p) { // posible bool
+    public boolean modificarUsuario(Persona p) {
+        boolean conseguido = false;
         for (Persona persona : _listaPersonas) {
             if (persona.compareTo(p) == 0) {
                 persona = p;
+                conseguido = true;
             }
         }
-        return null;
+        return conseguido;
     }
 
     @Override
