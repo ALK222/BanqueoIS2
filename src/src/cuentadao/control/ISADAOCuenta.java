@@ -7,9 +7,9 @@ public interface ISDAOCuentas {
 
     boolean bajaCuenta(int num_cuenta);
 
-    List<Cuentas> buscarListaCuentas(String titular_cuenta, String dni);
+    public buscarListaCuentas(String titular_cuenta, String dni) throws Exception;
 
-    Cuentas consultarCuenta(int num_cuenta) throws Exception;
+    List<Cuenta> consultarCuenta(int num_cuenta);
 
     boolean modificarCuentas(Cuentas c);
 

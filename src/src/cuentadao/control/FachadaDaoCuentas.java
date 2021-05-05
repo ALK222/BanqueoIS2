@@ -4,7 +4,7 @@ import java.util.List;
 
 public class FachadaDAOCuentas implemets IFachadaDAOCuentas {
 
-    private ISADAOCuen
+    private ISADAOCuentas daoCuen;
     
     @Override
     public boolean altaCuenta(Cuentas c){
