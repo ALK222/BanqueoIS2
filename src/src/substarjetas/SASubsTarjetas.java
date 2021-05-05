@@ -9,7 +9,7 @@ import usuariosdao.control.Persona;
 public class SASubsTarjetas implements ISASubsTarjetas{
     List<Tarjeta> _listaTarjetas; 
     List<Persona> _listaPersona; 
-   IFachadaDAOTarjetas tarjeta; 
+    IFachadaDAOTarjetas tarjeta; 
 
 
     /**

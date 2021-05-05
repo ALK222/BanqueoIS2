@@ -11,7 +11,7 @@ public interface IFachadaDAOCuentas {
 
     List<Cuenta> buscarListaCuentas(String titular_cuenta, String dni);
 
-    Cuenta consultarCuenta(int num_cuenta) throws Exception;
+    Cuenta consultarCuenta(int num_cuenta);
 
     boolean modificarCuentas(Cuenta c);
 
