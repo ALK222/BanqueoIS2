@@ -27,7 +27,7 @@ public class FachadaSubsUsuarios implements IFachadaSubsUsuarios {
     }
 
     @Override
-    public Persona modificarUsuario(Persona p) {
+    public Boolean modificarUsuario(Persona p) {
         return subsUsuarios.modificarUsuario(p);
     }
 

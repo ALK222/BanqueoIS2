@@ -40,8 +40,8 @@ public class SASubsUsuarios implements ISASubsUsuarios{
     }
 
     @Override
-    public Persona modificarUsuario(Persona p) { // posible bool
-        return null;
+    public Boolean modificarUsuario(Persona p) { // posible bool
+        return false;
     }
 
     @Override
