@@ -3,6 +3,9 @@ package usuariosdao.control;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Gestiona la informacion saliente sobre los usuarios
+ */
 public class SADAOUsuarios implements ISADAOUsuarios {
 
     private List<Persona> _listaPersonas;
@@ -53,7 +56,6 @@ public class SADAOUsuarios implements ISADAOUsuarios {
                 break;
             default:
                 throw new Exception("Modo no soportado");
-                break;
         }
         return listaAux;
     }

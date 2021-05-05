@@ -2,6 +2,9 @@ package usuariosdao.control;
 
 import java.util.List;
 
+/**
+ * Intermediario entre el SADAO de usuarios y la GUI
+ */
 public class FachadaDAOUsuarios implements IFachadaDAOUsuarios {
 
     private ISADAOUsuarios daoUsu;
