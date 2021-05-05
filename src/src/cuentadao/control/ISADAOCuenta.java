@@ -2,6 +2,8 @@ package cuentadao.control;
 
 import java.util.List;
 
+import org.json.JSONArray;
+
 public interface ISADAOCuenta {
     boolean altaCuenta(Cuenta c);
 

@@ -2,6 +2,8 @@ package cuentadao.control;
 
 import java.util.List;
 
+import org.json.JSONArray;
+
 import usuariosdao.control.Persona;
 
 public class SADAOCuentas implements ISADAOCuenta {
@@ -9,11 +11,18 @@ public class SADAOCuentas implements ISADAOCuenta {
     private List<Cuenta> _listaCuentas;
     
     public boolean altaCuenta(Cuenta c){
-            return false; 
+         return _listaCuentas.contains(c) ? false : _listaCuentas.add(c);
     }
 
     public boolean bajaCuenta(int num_cuenta){
-        return false;
+            
+            for(Cuenta c : _listaCuentas){
+                if(c.getNumeroCuenta() == num_cuenta){
+                    _listaCuentas.remove(c); 
+                    return true; 
+                }
+            }
+            return false; 
     }
 
     public List<Cuenta> buscarListaCuentas(String titular_cuenta, String dni){
@@ -32,6 +41,19 @@ public class SADAOCuentas implements ISADAOCuenta {
         }
 
         return null; */
+
+        try{
+            if(dni == null){
+                throw new Exception(); 
+            }
+
+
+
+
+
+        }catch(Exception e){
+            System.err.println("[ERROR] " + e.getMessage() + e.getStackTrace());
+        }
     
         return null; 
     }

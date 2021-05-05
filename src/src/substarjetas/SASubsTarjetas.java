@@ -2,10 +2,14 @@ package substarjetas;
 
 import java.util.List;
 
+import tarjetasdao.control.IFachadaDAOTarjetas;
 import tarjetasdao.control.Tarjeta;
+import usuariosdao.control.Persona;
 
 public class SASubsTarjetas implements ISASubsTarjetas{
     List<Tarjeta> _listaTarjetas; 
+    List<Persona> _listaPersona; 
+   IFachadaDAOTarjetas tarjeta; 
 
 
     /**
@@ -16,10 +20,11 @@ public class SASubsTarjetas implements ISASubsTarjetas{
      */
     @Override
     public boolean altaTarjeta(Tarjeta t) { // TODO : hay que cambiar el diagrama para que devuelva boolean 
-        if(t != null){
+       /** if(t != null){
             return _listaTarjetas.contains(t) ? false : _listaTarjetas.add(t) ; // excepcion
         }
-        return false; 
+        return false;  */
+        return tarjeta.altaTarjeta(t); 
     }
 
     /**
@@ -32,13 +37,15 @@ public class SASubsTarjetas implements ISASubsTarjetas{
     public boolean bajaTarjeta(int num_tarjeta) {
      // TODO : posible tarjeta en vez de num tarjeta sino
 
-        for(Tarjeta t : _listaTarjetas){
+        /**for(Tarjeta t : _listaTarjetas){
             if(t.getNum_tarjeta() == num_tarjeta){
                 _listaTarjetas.remove(t); 
                 return true; 
             }
         }
-        return false; 
+        return false;  */
+
+        return tarjeta.bajaTarejeta(num_tarjeta); 
     }
 
 
@@ -51,9 +58,9 @@ public class SASubsTarjetas implements ISASubsTarjetas{
      * 
      */
     @Override
-    public List<Tarjeta> consultarListaTarjetas(String titular_cuenta, String dni) { 
-        // TODO : mirar como el otro consulta
-        return null;
+    public List<Tarjeta> consultarListaTarjetas(String titular_cuenta, String dni) { // solo DNI 
+        // TODO : mirar como el otro consulta   
+        return tarjeta.consultarListaTarjetas(titular_cuenta, dni); 
     }
 
     /**
@@ -64,12 +71,13 @@ public class SASubsTarjetas implements ISASubsTarjetas{
      */
     @Override
     public Tarjeta buscaTarjeta(int num_tarjeta) {
-        for(Tarjeta t : _listaTarjetas){
+      /**  for(Tarjeta t : _listaTarjetas){
             if(t.getNum_tarjeta() == num_tarjeta){
                 return t; 
             }
         }
-        return null;
+        return null; */
+        return tarjeta.buscarTarjeta(num_tarjeta); 
     }
 
     /**
@@ -81,7 +89,7 @@ public class SASubsTarjetas implements ISASubsTarjetas{
      */
     @Override
     public boolean modificarTarjeta(Tarjeta t) {
-        Tarjeta aux = null; 
+      /**  Tarjeta aux = null; 
         try {
             if(t == null){
                 throw new Exception(); 
@@ -102,7 +110,9 @@ public class SASubsTarjetas implements ISASubsTarjetas{
         } catch (Exception e) {
            System.err.println("[ERROR] :" + e.getMessage() + e.getStackTrace());
         }
-        return false; 
+        return false;  */
+
+        return  tarjeta.modificarTarjeta(t) == null ? null : true; 
     }
     
 }
