@@ -1,38 +1,39 @@
-package cuentasdao.control;
+package cuentadao.control;
 
 import java.util.List;
 
-public class FachadaDAOCuentas implemets IFachadaDAOCuentas {
+public class FachadaDAOCuentas implements IFachadaDAOCuentas {
 
-    private ISADAOCuentas daoCuen;
-    
+    private ISADAOCuenta daoCuen;
+
     @Override
-    public boolean altaCuenta(Cuentas c){
+    public boolean altaCuenta(Cuenta c) {
         return daoCuen.altaCuenta(c);
     }
 
     @Override
-    public boolean bajaCuenta(int num_cuenta){
+    public boolean bajaCuenta(int num_cuenta) {
         return daoCuen.bajaCuenta(num_cuenta);
     }
 
     @Override
-    public List<Cuentas> buscarListaCuentas(String titular_cuenta, String dni){
+    public List<Cuenta> buscarListaCuentas(String titular_cuenta, String dni) {
         return daoCuen.buscarListaCuentas(titular_cuenta, dni);
     }
 
     @Override
-    public Cuentas consultarCuenta(int num_cuenta) throws Exception{
+    public Cuenta consultarCuenta(int num_cuenta) throws Exception {
         return daoCuen.consultarCuenta(num_cuenta);
     }
 
     @Override
-    public boolean modificarCuentas(Cuentas c){
+    public boolean modificarCuentas(Cuenta c) {
         return daoCuen.modificarCuentas(c);
     }
-    
+
     @Override
-    public JSONArray getMovimiento(int max_meses){
-        return daoCuen.getMovimiento(max_meses);
+    public JSONArray getMovimiento(int max_meses) {
+        // return daoCuen.getMovimiento(max_meses);
+        return null;
     }
 }

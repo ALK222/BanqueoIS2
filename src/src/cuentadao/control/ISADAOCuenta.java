@@ -1,17 +1,17 @@
-package cuentasdao.control;
+package cuentadao.control;
 
 import java.util.List;
 
-public interface ISDAOCuentas {
-    boolean altaCuenta(Cuentas c);
+public interface ISADAOCuenta {
+    boolean altaCuenta(Cuenta c);
 
     boolean bajaCuenta(int num_cuenta);
 
-    public buscarListaCuentas(String titular_cuenta, String dni) throws Exception;
+    List<Cuenta> buscarListaCuentas(String titular_cuenta, String dni);
 
-    List<Cuenta> consultarCuenta(int num_cuenta);
+    Cuenta consultarCuenta(int num_cuenta) throws Exception;
 
-    boolean modificarCuentas(Cuentas c);
+    boolean modificarCuentas(Cuenta c);
 
-    JSONArray getMovimiento(int max_meses)
+    JSONArray getMovimiento(int max_meses);
 }
