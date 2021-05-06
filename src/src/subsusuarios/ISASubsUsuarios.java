@@ -4,15 +4,16 @@ import java.util.List;
 import usuariosdao.control.Persona;
 
 public interface ISASubsUsuarios {
+    
     boolean altaUsuario(Persona p);
 
-    boolean bajaUsuario(String dni);
+    boolean bajaUsuario(Persona p);
 
-    List<Persona> consultarListaUsuarios(String nombre);
+    List<Persona> consultarListaUsuarios(String domicilio, String modo) throws Exception;
 
     Persona buscarUsuario(String dni) throws Exception;
 
-    Boolean modificarUsuario(Persona p);
+    boolean modificarUsuario(Persona p);
 
     boolean iniciarSesion(String dni, String contrasena);
 

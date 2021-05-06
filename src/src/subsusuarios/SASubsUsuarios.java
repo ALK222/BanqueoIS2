@@ -1,62 +1,48 @@
 package subsusuarios;
 
 import java.util.List;
+
+import usuariosdao.control.IFachadaDAOUsuarios;
 import usuariosdao.control.Persona;
 
 public class SASubsUsuarios implements ISASubsUsuarios{
-    List<Persona> _listaPersonas;
-    
+    IFachadaDAOUsuarios usuario;
     
     @Override
     public boolean altaUsuario(Persona p) {
-        return _listaPersonas.contains(p) ? false : _listaPersonas.add(p);
+        return usuario.altaUsuario(p);
 
     }
 
     @Override
-    public boolean bajaUsuario(String dni) { // Posible persona
-        for(Persona p: _listaPersonas){
-            if(p.getDni() == dni){
-                _listaPersonas.remove(p);
-                return true;
-            }
-        }
-        return false;
+    public boolean bajaUsuario(Persona p) { // Posible persona
+        
+        return usuario.bajaUsuario(p);
     }
 
     @Override
-    public List<Persona> consultarListaUsuarios(String nombre) {
-        return null;
+    public List<Persona> consultarListaUsuarios(String domicilio, String modo) throws Exception {
+        return usuario.consultarListaUsuarios(domicilio, modo);
     }
 
     @Override
     public Persona buscarUsuario(String dni) throws Exception {
-            for (Persona p : _listaPersonas){
-                if (p.getDni() == dni){
-                    return p;
-                }
-            }
-        return null;
+        return usuario.buscarUsuario(dni);
     }
 
     @Override
-    public Boolean modificarUsuario(Persona p) { // posible bool
-        return false;
+    public boolean modificarUsuario(Persona p) { // posible bool
+        return usuario.modificarUsuario(p);
     }
 
     @Override
     public boolean iniciarSesion(String dni, String contrasena) {
-        for (Persona p : _listaPersonas) {
-            if (p.getDni() == dni && p.getContrasena() == contrasena) {
-                return true;
-            }
-        }
-        return false;
+        return iniciarSesion(dni, contrasena);
     }
 
     @Override
     public boolean cerrarSesion() {
-        return true;
+        return usuario.cerrarSesion();
     }
 
 }
