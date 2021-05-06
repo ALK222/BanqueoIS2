@@ -10,8 +10,12 @@ public class SADAOUsuarios implements ISADAOUsuarios {
 
     private List<Persona> _listaPersonas;
 
-    SADAOUsuarios() {
+    public SADAOUsuarios() {
         _listaPersonas = new ArrayList<Persona>();
+    }
+
+    public SADAOUsuarios(List<Persona> listaPersonas) {
+        _listaPersonas = listaPersonas;
     }
 
     @Override

@@ -2,8 +2,6 @@ package tarjetasdao.control;
 
 import java.util.List;
 
-import usuariosdao.control.ISADAOUsuarios;
-
 public class FachadaDAOTarjetas implements IFachadaDAOTarjetas {
 
 	private ISADAOTarjetas daoTarj;

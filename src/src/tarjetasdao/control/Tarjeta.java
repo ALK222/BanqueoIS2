@@ -1,7 +1,5 @@
 package tarjetasdao.control;
 
-import usuariosdao.control.Persona;
-
 public class Tarjeta {
 
 	private String _titular;

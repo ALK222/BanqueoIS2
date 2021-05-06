@@ -1,6 +1,7 @@
 package subsusuarios;
 
 import java.util.List;
+
 import usuariosdao.control.Persona;
 
 public interface ISASubsUsuarios {

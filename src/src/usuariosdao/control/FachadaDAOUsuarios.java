@@ -9,7 +9,13 @@ public class FachadaDAOUsuarios implements IFachadaDAOUsuarios {
 
     private ISADAOUsuarios daoUsu;
 
-    // TODO: falta constructor
+    public FachadaDAOUsuarios() {
+        daoUsu = new SADAOUsuarios();
+    }
+
+    public FachadaDAOUsuarios(List<Persona> listaPersonas) {
+        daoUsu = new SADAOUsuarios(listaPersonas);
+    }
 
     @Override
     public boolean altaUsuario(Persona p) {

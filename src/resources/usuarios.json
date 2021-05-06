@@ -1,19 +1,19 @@
 [
     {
         "DNI": "01234567A",
-        "Nombre": "",
-        "Domicilio": "Calle inventada 123",
+        "Nombre": "Federico Garcia Lorca",
+        "Domicilio": "Calle inventada, 2 2;35006;Madrid",
         "Email": "correofalso@gmail.com",
         "Contraseña": "abc123",
-        "Telefono": "555-555-555",
+        "Telefono": "555555555",
         "DNI_Gestor": "01234568A"
     },
     {
         "DNI": "01234568A",
-        "Nombre": "",
-        "Domicilio": "Calle inventada 123",
+        "Nombre": "Antonio Machado Ruiz",
+        "Domicilio": "Calle inventada, 2 3;35006;Madrid",
         "Email": "correofalso@gmail.com",
         "Contraseña": "abc123",
-        "Telefono": "555-555-555"
+        "Telefono": "555555555"
     }
 ]

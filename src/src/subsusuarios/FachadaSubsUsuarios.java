@@ -1,10 +1,19 @@
 package subsusuarios;
 
 import java.util.List;
+
 import usuariosdao.control.Persona;
 
 public class FachadaSubsUsuarios implements IFachadaSubsUsuarios {
     ISASubsUsuarios subsUsuario;
+
+    public FachadaSubsUsuarios() {
+        subsUsuario = new SASubsUsuarios();
+    }
+
+    public FachadaSubsUsuarios(List<Persona> listaPersonas) {
+        subsUsuario = new SASubsUsuarios(listaPersonas);
+    }
 
     @Override
     public boolean altaUsuario(Persona p) {
@@ -14,7 +23,7 @@ public class FachadaSubsUsuarios implements IFachadaSubsUsuarios {
 
     @Override
     public boolean bajaUsuario(Persona p) { // Posible persona
-        
+
         return subsUsuario.bajaUsuario(p);
     }
 

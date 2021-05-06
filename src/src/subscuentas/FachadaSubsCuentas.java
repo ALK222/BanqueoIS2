@@ -2,7 +2,7 @@ package subscuentas;
 
 import java.util.List;
 
-import cuentasdao.control.Cuenta;
+import cuentadao.control.Cuenta;
 
 public class FachadaSubsCuentas implements IFachadaSubsCuentas{
     ISASubsCuentas subsCuentas; 

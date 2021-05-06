@@ -90,4 +90,16 @@ public class Persona implements Comparable<Persona> {
 		return -1;
 	}
 
+	@Override
+	public String toString() {
+		String str = "";
+		str += "DNI: " + _dni;
+		str += "\nNombre: " + _nombre;
+		str += "\nDomicilio: " + _domicilio;
+		str += "\nEmail: " + _email;
+		str += "\nContrasena: " + _contrasena;
+		str += "\nTelefono: " + _tlf;
+		return str;
+	}
+
 }
