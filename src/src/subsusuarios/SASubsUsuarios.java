@@ -46,7 +46,7 @@ public class SASubsUsuarios implements ISASubsUsuarios {
 
     @Override
     public boolean iniciarSesion(String dni, String contrasena) {
-        return iniciarSesion(dni, contrasena);
+        return usuario.iniciarSesion(dni, contrasena);
     }
 
     @Override

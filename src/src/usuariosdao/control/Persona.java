@@ -1,5 +1,7 @@
 package usuariosdao.control;
 
+import java.util.Objects;
+
 /**
  * Objeto Persona, contiene los datos comunes a todos los tipos de usuarios del
  * programa
@@ -100,6 +102,24 @@ public class Persona implements Comparable<Persona> {
 		str += "\nContrasena: " + _contrasena;
 		str += "\nTelefono: " + _tlf;
 		return str;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null) {
+			return false;
+		}
+		if (getClass() != o.getClass()) {
+			return false;
+		}
+		Persona p = (Persona) o;
+		return Objects.equals(_nombre, p.getNombre()) && Objects.equals(_contrasena, p.getContrasena())
+				&& Objects.equals(_dni, p.getDni()) && Objects.equals(_domicilio, p.getDomicilio())
+				&& Objects.equals(_email, p.getEmail()) && Objects.equals(_tlf, p.getTlf());
+
 	}
 
 }

@@ -26,26 +26,24 @@ public class SADAOUsuarios implements ISADAOUsuarios {
 
     @Override
     public boolean bajaUsuario(Persona p) {
-        return _listaPersonas.contains(p) ? true : _listaPersonas.remove(p);
+        return _listaPersonas.contains(p) ? _listaPersonas.remove(p) : false;
     }
 
     @Override
     public List<Persona> consultarListaUsuarios(String domicilio, String modo) throws Exception {
         // String de ejemplo: Calle noseque, 15 2A;45007;Toledo
-        String[] aux = domicilio.split(";");
-        String[] calle = aux[0].split(",");
         List<Persona> listaAux = new ArrayList<Persona>();
         switch (modo.toLowerCase()) {
             case "cp": // Codigo postal
                 for (Persona p : _listaPersonas) {
-                    if (p.getDomicilio().split(";")[1] == aux[1]) {
+                    if (p.getDomicilio().split(";")[1].equalsIgnoreCase(domicilio)) {
                         listaAux.add(p);
                     }
                 }
                 break;
             case "c": // Ciudad
                 for (Persona p : _listaPersonas) {
-                    if (p.getDomicilio().split(";")[2] == aux[2]) {
+                    if (p.getDomicilio().split(";")[2].equalsIgnoreCase(domicilio)) {
                         listaAux.add(p);
                     }
                 }
@@ -53,7 +51,7 @@ public class SADAOUsuarios implements ISADAOUsuarios {
             case "st": // Calle
                 for (Persona p : _listaPersonas) {
                     String callePersona = p.getDomicilio().split(";")[0].split(",")[0];
-                    if (callePersona == calle[0]) {
+                    if (callePersona.equalsIgnoreCase(domicilio)) {
                         listaAux.add(p);
                     }
                 }
