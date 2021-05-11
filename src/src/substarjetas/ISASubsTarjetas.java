@@ -9,7 +9,7 @@ public interface ISASubsTarjetas {
 
     boolean bajaTarjeta(int num_tarjeta);
 
-    List<Tarjeta> consultarListaTarjetas(String titular_cuenta, String dni); 
+    List<Tarjeta> consultarListaTarjetas(String dni) throws Exception; 
 
     Tarjeta buscaTarjeta(int num_tarjeta); 
 
