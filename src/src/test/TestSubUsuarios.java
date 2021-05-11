@@ -36,12 +36,26 @@ class TestSubUsuarios {
 
 	@BeforeEach
 	public void setup() throws FileNotFoundException {
+		File testFile = null;
+		InputStream in = null;
+		try {
+			testFile = new File("../resources/usuarios.json");
+			in = new FileInputStream(testFile);
+		} catch (FileNotFoundException e) {
+			try {
+				testFile = new File("resources\\usuarios.json");
+				in = new FileInputStream(testFile);
+			} catch (FileNotFoundException ex) {
+				throw ex;
+			}
+
+		}
 		_listaUsuarios = new ArrayList<Persona>();
 		System.out.println("Creando lista y subsistema");
-		File testFile = new File("src/resources/usuarios.json");
-		InputStream in = new FileInputStream(testFile);
+
 		loadUsuarios(in, _listaUsuarios);
 		_testUsuario = new FachadaSubsUsuarios(_listaUsuarios);
+
 	}
 
 	@AfterEach

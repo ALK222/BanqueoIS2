@@ -36,25 +36,22 @@ Esto se decidirá en algún momento, mi sugerencia es hacerlo por
 ### 4.1.1. Llaves en controles de lógica
 Utilizaremos las llaves en ```if```, ```else```, ```for```, ```do``` y ```while```, incluso cuando el cuerpo esté vacío o solo contenga una línea.
 
-### 4.1.2. Bloques no vacíos: estilo Allman
+### 4.1.2. Bloques no vacíos: estilo K & R
 
-Las llaves seguirán el [estilo Allman](https://en.wikipedia.org/wiki/Indentation_style#Allman_style) para todos los bloques no vacíos de código.
+Las llaves seguirán el [estilo Kernighan y Ritchie](https://blog.codinghorror.com/new-programming-jargon/) para todos los bloques no vacíos de código.
 
-- Salto de línea antes de la primera llave.
+- Sin salto de línea antes de la primera llave.
 - Salto de línea tras la primera llave.
 - Salto de línea antes de la última llave.
-- Salto de línea tras la última llave.
+- Salto de línea tras la última llave, solo si se termina el bloque o el método, constructor o clase.
 
 Ejemplo:
 ```java
 
 
-class MyClass
-{
-    metodo1()
-    {
-        while(condition())
-        {
+class MyClass {
+    metodo1() {
+        while(condition()) {
             metodo();
         }
     }
