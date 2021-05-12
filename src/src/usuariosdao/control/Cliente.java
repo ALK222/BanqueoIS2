@@ -24,11 +24,11 @@ public class Cliente extends Persona {
 		this._listaCuentas = new ArrayList<>(); // lo mas probable que asi si no con parametro
 	}
 
-	public String getGestor_dni() {
+	public String getGestorDni() {
 		return _gestorDni;
 	}
 
-	public void setGestor_dni(String gestorDni) {
+	public void setGestorDni(String gestorDni) {
 		this._gestorDni = gestorDni;
 	}
 

@@ -1,5 +1,6 @@
 package usuariosdao.control;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ public class FachadaDAOUsuarios implements IFachadaDAOUsuarios {
     }
 
     @Override
-    public boolean altaUsuario(Persona p) {
+    public boolean altaUsuario(Persona p) throws IOException {
         return daoUsu.altaUsuario(p);
     }
 

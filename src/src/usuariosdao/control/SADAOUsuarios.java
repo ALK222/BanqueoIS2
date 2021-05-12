@@ -1,5 +1,6 @@
 package usuariosdao.control;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,9 +20,12 @@ public class SADAOUsuarios implements ISADAOUsuarios {
     }
 
     @Override
-    public boolean altaUsuario(Persona p) {
-        return _listaPersonas.contains(p) ? false : _listaPersonas.add(p);
+    public boolean altaUsuario(Persona p) throws IOException {
+        List<Persona> listaPersonas = UsuariosJSON.leerListaUsuarios();
+        boolean ok = listaPersonas.contains(p) ? false : listaPersonas.add(p);
 
+        UsuariosJSON.guardarListaUsuarios(listaPersonas);
+        return ok;
     }
 
     @Override

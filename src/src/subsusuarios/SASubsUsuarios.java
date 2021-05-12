@@ -1,5 +1,6 @@
 package subsusuarios;
 
+import java.io.IOException;
 import java.util.List;
 
 import usuariosdao.control.FachadaDAOUsuarios;
@@ -18,7 +19,7 @@ public class SASubsUsuarios implements ISASubsUsuarios {
     }
 
     @Override
-    public boolean altaUsuario(Persona p) {
+    public boolean altaUsuario(Persona p) throws IOException {
         return usuario.altaUsuario(p);
 
     }

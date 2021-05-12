@@ -1,12 +1,14 @@
 package subsusuarios;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 import usuariosdao.control.Persona;
 
 public interface ISASubsUsuarios {
-    
-    boolean altaUsuario(Persona p);
+
+    boolean altaUsuario(Persona p) throws FileNotFoundException, IOException;
 
     boolean bajaUsuario(Persona p);
 

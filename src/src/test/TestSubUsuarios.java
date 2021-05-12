@@ -4,13 +4,10 @@ import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -36,36 +33,18 @@ class TestSubUsuarios {
 
 	@BeforeEach
 	public void setup() throws FileNotFoundException {
-		File testFile = null;
-		InputStream in = null;
-		try {
-			testFile = new File("../resources/usuarios.json");
-			in = new FileInputStream(testFile);
-		} catch (FileNotFoundException e) {
-			try {
-				testFile = new File("src/resources/usuarios.json"); 
-				in = new FileInputStream(testFile);
-			} catch (FileNotFoundException ex) {
-				throw ex;
-			}
-
-		}
-		_listaUsuarios = new ArrayList<Persona>();
 		System.out.println("Creando lista y subsistema");
-
-		loadUsuarios(in, _listaUsuarios);
-		_testUsuario = new FachadaSubsUsuarios(_listaUsuarios);
+		_testUsuario = new FachadaSubsUsuarios();
 
 	}
 
 	@AfterEach
 	public void clear() {
 		System.out.println("Limpiando lista");
-		_listaUsuarios.clear();
 	}
 
 	@Test
-	void testAlta() {
+	void testAlta() throws FileNotFoundException, IOException {
 		System.out.println("Test de las funciones de alta");
 		// ALTA DE USUARIO FUNCIONAL
 		Persona p = new Cliente("04976834S", "Luisa Carnes Caballero", "Calle inventada, 2 4;35006;Madrid", 555555555,
@@ -77,10 +56,11 @@ class TestSubUsuarios {
 		// ALTA DE UN USUARIO EXISTENTE
 		boolean pruebaAlta2 = _testUsuario.altaUsuario(p);
 		assertEquals(false, pruebaAlta2, "Alta que debería no ser valida igualmente mete al usuario");
+
 	}
 
 	@Test
-	void testModificacion() {
+	void testModificacion() throws FileNotFoundException {
 		System.out.println("Test de las funciones de modificación");
 		Persona p = new Cliente("04976834S", "Luisa Carnes Caballero", "Calle inventada, 2 4;35006;Madrid", 555555555,
 				"abcdabcd", "tremendoemail@gmail.com", "04966834S");
@@ -104,7 +84,7 @@ class TestSubUsuarios {
 	}
 
 	@Test
-	void testBaja() {
+	void testBaja() throws FileNotFoundException {
 		System.out.println("Test de las funciones de baja");
 		Persona p = new Cliente("04976834S", "Luisa Carnes Caballero", "Calle inventada, 2 4;35006;Madrid", 555555555,
 				"abcdabcd", "tremendoemail@gmail.com", "04966834S");

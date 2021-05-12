@@ -1,5 +1,7 @@
 package usuariosdao.control;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -11,8 +13,10 @@ public interface ISADAOUsuarios {
      * 
      * @param p Persona a la que dar de alta
      * @return Si el usuario se ha podido registrar
+     * @throws FileNotFoundException
+     * @throws IOException
      */
-    boolean altaUsuario(Persona p);
+    boolean altaUsuario(Persona p) throws FileNotFoundException, IOException;
 
     /**
      * Baja de un usuario de la base de datos

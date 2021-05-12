@@ -1,5 +1,6 @@
 package subsusuarios;
 
+import java.io.IOException;
 import java.util.List;
 
 import usuariosdao.control.Persona;
@@ -16,7 +17,7 @@ public class FachadaSubsUsuarios implements IFachadaSubsUsuarios {
     }
 
     @Override
-    public boolean altaUsuario(Persona p) {
+    public boolean altaUsuario(Persona p) throws IOException {
         return subsUsuario.altaUsuario(p);
 
     }
