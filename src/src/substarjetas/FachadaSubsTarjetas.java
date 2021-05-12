@@ -39,8 +39,8 @@ public class FachadaSubsTarjetas implements IFachadaSubsTarjetas{
      * 
      */
     @Override
-    public List<Tarjeta> consultarListaTarjetas(String titular_cuenta, String dni) {
-        return subsTarjetas.consultarListaTarjetas(titular_cuenta, dni);
+    public List<Tarjeta> consultarListaTarjetas(String dni) throws Exception {
+        return subsTarjetas.consultarListaTarjetas(dni);
     }
 
       /**

@@ -58,9 +58,9 @@ public class SASubsTarjetas implements ISASubsTarjetas{
      * 
      */
     @Override
-    public List<Tarjeta> consultarListaTarjetas(String titular_cuenta, String dni) { // solo DNI 
+    public List<Tarjeta> consultarListaTarjetas( String dni) throws Exception{ // solo DNI 
         // TODO : mirar como el otro consulta   
-        return tarjeta.consultarListaTarjetas(titular_cuenta, dni); 
+        return tarjeta.consultarListaTarjetas(dni); 
     }
 
     /**
@@ -112,7 +112,7 @@ public class SASubsTarjetas implements ISASubsTarjetas{
         }
         return false;  */
 
-        return  tarjeta.modificarTarjeta(t) == null ? null : true; 
+        return  tarjeta.modificarTarjeta(t) == true ? true : false; 
     }
     
 }

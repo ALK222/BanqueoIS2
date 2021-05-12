@@ -10,7 +10,7 @@ public class FachadaSubsCuentas implements IFachadaSubsCuentas{
 
 
     public boolean altaCuenta(Cuenta c) {
-        return subsTarjetas.altaCuenta(c);
+        //return subsTarjetas.altaCuenta(c);
     }
  
     public boolean bajaCuenta(int numeroCuenta) {

@@ -36,4 +36,10 @@ public class SASubsCuentas implements ISASubsCuentas {
 		return cuenta.modificarCuenta(t) == null ? null : true;
 	}
 
+	@Override
+	public Cuenta buscaCuenta(int numeroCuenta) {
+		return null;
+	}
+
+
 }
