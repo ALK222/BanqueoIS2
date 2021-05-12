@@ -13,7 +13,7 @@ public class FachadaDAOPrestamos implements IFachadaDAOPrestamos {
     private ISADAOPrestamos daoPrest;
 
     @Override
-    public boolean solicitaPrestamo(Cuenta c, Prestamo p) {
+    public boolean solicitarPrestamo(Cuenta c, Prestamo p) {
         return daoPrest.solicitaPrestamo(c, p);
     }
 
@@ -38,7 +38,7 @@ public class FachadaDAOPrestamos implements IFachadaDAOPrestamos {
     }
 
     @Override
-    public Prestamo buscaPrestamo(int numRef) {
+    public Prestamo buscarPrestamo(int numRef) {
         return daoPrest.buscaPrestamo(numRef);
     }
 

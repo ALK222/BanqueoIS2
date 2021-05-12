@@ -16,7 +16,7 @@ public interface IFachadaDAOPrestamos {
      * @param p prestamo solicitado
      * @return Si el cliente ha podido conseguir el prestamo o si no
      */
-    boolean solicitaPrestamo(Cuenta c, Prestamo p);
+    boolean solicitarPrestamo(Cuenta c, Prestamo p);
 
     /**
      * Cancela una solicitud de un prestamo en proceso.
@@ -56,6 +56,6 @@ public interface IFachadaDAOPrestamos {
      * @param numRef numero de referencia del prestamo a buscar
      * @return el prestamo en caso de que exista
      */
-    Prestamo buscaPrestamo(int numRef);
+    Prestamo buscarPrestamo(int numRef);
 
 }
