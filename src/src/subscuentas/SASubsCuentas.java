@@ -11,29 +11,36 @@ public class SASubsCuentas implements ISASubsCuentas {
 	List<Persona> _listaPersonas;
 	IFachadaDAOCuentas cuenta;
 
+	@Override
 	public boolean altaCuenta(Cuenta c) {
-		return tarjeta.altaCuenta(c);
+		return cuenta.altaCuenta(c);
 
 	}
 
+	@Override
 	public boolean bajaCuenta(int num_cuenta) {
 		return cuenta.bajaCuenta(num_cuenta);
 
 	}
 
+	@Override
 	public List<Cuenta> consultarListaCuentas(String titular_cuenta, String dni){// quitaremos el titular_cuenta
-		
-		return cuenta.consultarListaCuentas(titular_cuenta, String dni);
+		return cuenta.buscarListaCuentas(titular_cuenta, dni);
 	}
 
-	public Cuenta buscarCuenta(int num_cuenta) {
-
-		return cuenta.buscarCuenta(num_cuenta);
-	}
-
+	@Override
 	public boolean modificarCuenta(Cuenta c) {
 
-		return cuenta.modificarCuenta(t) == null ? null : true;
+		return cuenta.modificarCuentas(c) == true ? true : false;
 	}
+
+	
+	@Override
+	public Cuenta buscaCuenta(int numeroCuenta) {
+		return cuenta.consultarCuenta(numeroCuenta);
+	}
+
+	
+
 
 }

@@ -14,10 +14,12 @@ public class SADAOCuentas implements ISADAOCuenta {
     private List<Cuenta> _listaCuentas;
     private List<Persona> _listaUsuarios; 
     
+    @Override
     public boolean altaCuenta(Cuenta c){
          return _listaCuentas.contains(c) ? false : _listaCuentas.add(c);
     }
 
+    @Override
     public boolean bajaCuenta(int num_cuenta){
             
             for(Cuenta c : _listaCuentas){
@@ -29,6 +31,7 @@ public class SADAOCuentas implements ISADAOCuenta {
             return false; 
     }
 
+    @Override
     public List<Cuenta> buscarListaCuentas(String titular_cuenta, String dni){ 
     
         List<Cuenta> listaCuentasUsuario = new ArrayList<Cuenta>(); 
@@ -59,6 +62,8 @@ public class SADAOCuentas implements ISADAOCuenta {
         return null; 
     }
 
+
+    @Override
     public Cuenta consultarCuenta(int num_cuenta) {
         for(Cuenta c : _listaCuentas){
             if(c.getNumeroCuenta() == num_cuenta){
@@ -68,6 +73,7 @@ public class SADAOCuentas implements ISADAOCuenta {
         return null; 
     }
 
+    @Override
     public boolean modificarCuentas(Cuenta c){ 
         for(Cuenta cAux : _listaCuentas){
             if(cAux.getNumeroCuenta() == c.getNumeroCuenta()){
@@ -78,6 +84,7 @@ public class SADAOCuentas implements ISADAOCuenta {
         return false; 
     }
 
+    @Override
     public JSONArray getMovimiento(int max_meses){ // TODO : mirar como esta estructurado el JSONArray de movimientos, no tenemos ningun ejemplo 
            /** JSONObject aux = new JSONObject(); 
             JSONArray arrayMovs = new JSONArray(); 
