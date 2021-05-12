@@ -49,8 +49,8 @@ public class Cuenta {
 		return _saldo;
 	}
 
-	public void setSaldo(double saldo) {
-		this._saldo = saldo;
+	public void setSaldo(double saldo) { //aumenta el saldo actual con el double introducido o lo resta en caso de ser negativo
+		this._saldo = _saldo + saldo;
 	}
 
 	public String getFirmaDigital() {
