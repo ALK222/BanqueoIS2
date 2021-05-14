@@ -2,16 +2,16 @@ package subscuentas;
 
 import java.util.List;
 
-import cuentadao.control.Cuenta;
+import dominio.Cuenta;
 
-public class FachadaSubsCuentas implements IFachadaSubsCuentas{
-    ISASubsCuentas subsCuentas; 
+public class FachadaSubsCuentas implements IFachadaSubsCuentas {
+    ISASubsCuentas subsCuentas;
 
     @Override
     public boolean altaCuenta(Cuenta c) {
         return subsCuentas.altaCuenta(c);
     }
- 
+
     @Override
     public boolean bajaCuenta(int numeroCuenta) {
         return subsCuentas.bajaCuenta(numeroCuenta);
@@ -31,5 +31,5 @@ public class FachadaSubsCuentas implements IFachadaSubsCuentas{
     public boolean modificarCuenta(Cuenta c) {
         return subsCuentas.modificarCuenta(c);
     }
-    
+
 }

@@ -2,8 +2,8 @@ package subsprestamos;
 
 import java.util.List;
 
-import prestamosdao.control.Prestamo;
-import cuentadao.control.Cuenta;
+import dominio.Cuenta;
+import dominio.Prestamo;
 
 public class FachadaSubsPrestamos implements IFachadaSubsPrestamos {
     ISASubsPrestamos subsPrestamo;
@@ -12,9 +12,10 @@ public class FachadaSubsPrestamos implements IFachadaSubsPrestamos {
         subsPrestamo = new SASubsPrestamos();
     }
 
-    /*public FachadaSubsPrestamos(List<Prestamo> listaPrestamos) {
-        subsPrestamo = new SASubsPrestamos(listaPrestamos);
-    }*/
+    /*
+     * public FachadaSubsPrestamos(List<Prestamo> listaPrestamos) { subsPrestamo =
+     * new SASubsPrestamos(listaPrestamos); }
+     */
 
     @Override
     public boolean solicitarPrestamo(Cuenta c, Prestamo p) {
@@ -23,7 +24,7 @@ public class FachadaSubsPrestamos implements IFachadaSubsPrestamos {
     }
 
     @Override
-    public boolean cancelarSolicitud(int num_ref_pres) { 
+    public boolean cancelarSolicitud(int num_ref_pres) {
         return subsPrestamo.cancelarSolicitud(num_ref_pres);
     }
 

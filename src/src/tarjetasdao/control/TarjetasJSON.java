@@ -15,8 +15,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-public class TarjetasJSON {
+import dominio.Tarjeta;
+import dominio.TipoTarjeta;
 
+public class TarjetasJSON {
 
     public static List<Tarjeta> leerListaTarjetas() throws FileNotFoundException {
         File testFile = null;
@@ -46,9 +48,9 @@ public class TarjetasJSON {
                 boolean estado = ja.getJSONObject(i).getBoolean("Estado");
                 int numTarjeta = ja.getJSONObject(i).getInt("Numero");
                 String fechaCad = ja.getJSONObject(i).getString("Fecha");
-                String tipo = ja.getJSONObject(i).getString("Tipo"); 
-                
-                TipoTarjeta tipoTarjeta = TipoTarjeta.parse(tipo); 
+                String tipo = ja.getJSONObject(i).getString("Tipo");
+
+                TipoTarjeta tipoTarjeta = TipoTarjeta.parse(tipo);
 
                 listaTarjetas.add(new Tarjeta(titular, pin, estado, numTarjeta, fechaCad, tipoTarjeta));
 
@@ -58,8 +60,6 @@ public class TarjetasJSON {
         }
         return listaTarjetas;
     }
-    
-
 
     public static void guardarListaUsuarios(List<Tarjeta> listaTarjetas) throws IOException {
         File testFile = null;
@@ -85,7 +85,6 @@ public class TarjetasJSON {
             tJson.put("Fecha", t.getFechaCad());
             tJson.put("Tipo", t.getTipo_tarjeta());
 
-            
             ja.put(tJson);
 
         }
@@ -96,7 +95,6 @@ public class TarjetasJSON {
         in.close();
 
     }
-
 
     public static String readJsonFile(String filePath) {
         String jsonData = "";

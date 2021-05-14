@@ -2,17 +2,17 @@ package substarjetas;
 
 import java.util.List;
 
-import tarjetasdao.control.Tarjeta;
+import dominio.Tarjeta;
 
 public interface ISASubsTarjetas {
-    boolean altaTarjeta(Tarjeta t); 
+    boolean altaTarjeta(Tarjeta t);
 
     boolean bajaTarjeta(int num_tarjeta);
 
-    List<Tarjeta> consultarListaTarjetas(String dni) throws Exception; 
+    List<Tarjeta> consultarListaTarjetas(String dni) throws Exception;
 
-    Tarjeta buscaTarjeta(int num_tarjeta); 
+    Tarjeta buscaTarjeta(int num_tarjeta);
 
-    boolean modificarTarjeta(Tarjeta t); 
+    boolean modificarTarjeta(Tarjeta t);
 
 }

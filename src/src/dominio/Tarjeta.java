@@ -1,4 +1,4 @@
-package tarjetasdao.control;
+package dominio;
 
 public class Tarjeta {
 
@@ -65,7 +65,7 @@ public class Tarjeta {
 	public void setTipo_tarjeta(TipoTarjeta tipoTarjeta) {
 		this._tipoTarjeta = tipoTarjeta;
 	}
-	
+
 	public int compareTo(Tarjeta t) {
 		if (_numTarjeta == t._numTarjeta) {
 			return 0;

@@ -3,9 +3,9 @@ package subsusuarios;
 import java.io.IOException;
 import java.util.List;
 
+import dominio.Persona;
 import usuariosdao.control.FachadaDAOUsuarios;
 import usuariosdao.control.IFachadaDAOUsuarios;
-import usuariosdao.control.Persona;
 
 public class SASubsUsuarios implements ISASubsUsuarios {
     IFachadaDAOUsuarios usuario;

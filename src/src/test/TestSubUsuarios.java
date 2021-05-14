@@ -20,27 +20,34 @@ import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
+import dominio.Cliente;
+import dominio.Gestor;
+import dominio.Persona;
 import subsusuarios.FachadaSubsUsuarios;
 import subsusuarios.IFachadaSubsUsuarios;
-import usuariosdao.control.Cliente;
-import usuariosdao.control.Gestor;
-import usuariosdao.control.Persona;
+import usuariosdao.control.UsuariosJSON;
 
 @RunWith(JUnitPlatform.class)
 class TestSubUsuarios {
 	private List<Persona> _listaUsuarios;
 	private IFachadaSubsUsuarios _testUsuario;
 
+	private List<Persona> _listaOriginal;
+
 	@BeforeEach
 	public void setup() throws FileNotFoundException {
 		System.out.println("Creando lista y subsistema");
 		_testUsuario = new FachadaSubsUsuarios();
 
+		_listaOriginal = UsuariosJSON.leerListaUsuarios();
+
 	}
 
 	@AfterEach
-	public void clear() {
-		System.out.println("Limpiando lista");
+	public void clear() throws IOException {
+		System.out.println("Guardando lista original");
+
+		UsuariosJSON.guardarListaUsuarios(_listaOriginal);
 	}
 
 	@Test
@@ -60,7 +67,7 @@ class TestSubUsuarios {
 	}
 
 	@Test
-	void testModificacion() throws FileNotFoundException {
+	void testModificacion() throws IOException {
 		System.out.println("Test de las funciones de modificación");
 		Persona p = new Cliente("04976834S", "Luisa Carnes Caballero", "Calle inventada, 2 4;35006;Madrid", 555555555,
 				"abcdabcd", "tremendoemail@gmail.com", "04966834S");
@@ -84,7 +91,7 @@ class TestSubUsuarios {
 	}
 
 	@Test
-	void testBaja() throws FileNotFoundException {
+	void testBaja() throws IOException {
 		System.out.println("Test de las funciones de baja");
 		Persona p = new Cliente("04976834S", "Luisa Carnes Caballero", "Calle inventada, 2 4;35006;Madrid", 555555555,
 				"abcdabcd", "tremendoemail@gmail.com", "04966834S");

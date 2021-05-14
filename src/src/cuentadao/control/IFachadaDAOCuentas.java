@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.json.JSONArray;
 
+import dominio.Cuenta;
+
 public interface IFachadaDAOCuentas {
     boolean altaCuenta(Cuenta c);
 

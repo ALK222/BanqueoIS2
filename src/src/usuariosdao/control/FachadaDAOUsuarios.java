@@ -3,6 +3,8 @@ package usuariosdao.control;
 import java.io.IOException;
 import java.util.List;
 
+import dominio.Persona;
+
 /**
  * Intermediario entre el SADAO de usuarios y la GUI
  */

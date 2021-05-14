@@ -3,7 +3,9 @@ package prestamosdao.control;
 import java.util.ArrayList;
 import java.util.List;
 
-import cuentadao.control.Cuenta;
+import dominio.Cuenta;
+import dominio.EstadoPrestamo;
+import dominio.Prestamo;
 
 /**
  * Gestiona la informacion saliente sobre los prestamos

@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
+import dominio.Persona;
+
 /**
  * Interfaz del SADAO de usuarios
  */

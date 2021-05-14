@@ -1,11 +1,8 @@
-package cuentadao.control;
+package dominio;
 
 import java.util.List;
 
 import org.json.JSONArray;
-
-import prestamosdao.control.Prestamo;
-import tarjetasdao.control.Tarjeta;
 
 public class Cuenta {
 
@@ -49,7 +46,8 @@ public class Cuenta {
 		return _saldo;
 	}
 
-	public void setSaldo(double saldo) { //aumenta el saldo actual con el double introducido o lo resta en caso de ser negativo
+	public void setSaldo(double saldo) { // aumenta el saldo actual con el double introducido o lo resta en caso de ser
+											// negativo
 		this._saldo = _saldo + saldo;
 	}
 

@@ -1,4 +1,3 @@
-@@ -0,0 +1,233 @@
 package test;
 
 import static org.junit.Assert.fail;
@@ -24,11 +23,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
-import subsusuarios.FachadaSubsCuentas;
-import subsusuarios.IFachadaSubsCuentas;
-import usuariosdao.control.Cliente;
-import usuariosdao.control.Gestor;
-import usuariosdao.control.Persona;
+import dominio.Cliente;
+import dominio.Cuenta;
+import dominio.Gestor;
+import dominio.Persona;
+import subscuentas.FachadaSubsCuentas;
+import subscuentas.IFachadaSubsCuentas;
 
 @RunWith(JUnitPlatform.class)
 class TestSubCuentas {
@@ -55,8 +55,7 @@ class TestSubCuentas {
 	void testAlta() {
 		System.out.println("Test de las funciones de alta");
 		// ALTA DE CUENTA FUNCIONAL
-		Cuenta c = new Cliente("Jesus Abajo Magro", "0000222211113333", "2000", NULL,
-				NULL);
+		Cuenta c = new Cliente("Jesus Abajo Magro", "0000222211113333", "2000", NULL, NULL);
 
 		boolean pruebaAlta1 = _testCuenta.altaCuenta(c);
 		assertEquals(true, pruebaAlta1, "Alta que debería ser valida acabada con error");
@@ -69,8 +68,7 @@ class TestSubCuentas {
 	@Test
 	void testModificacion() {
 		System.out.println("Test de las funciones de modificación");
-		Cuenta c = new Cliente("Jesus Abajo Magro", "0000222211113333", "2000", NULL,
-				NULL);
+		Cuenta c = new Cliente("Jesus Abajo Magro", "0000222211113333", "2000", NULL, NULL);
 
 		boolean pruebaAlta1 = _testUCuenta.altaCuenta(p);
 		assertEquals(true, pruebaAlta1, "Alta que debería ser valida acabada con error");
@@ -81,8 +79,7 @@ class TestSubCuentas {
 		boolean pruebaMod1 = _testUsuario.modificarUsuario(p);
 		assertEquals(true, pruebaMod1, "Modificacion que debería ser valida provoca error");
 
-		Cuenta c2 = new Cliente("Alejandro Diaz Blazquez", "0000222211114444", "4000", NULL,
-				NULL);
+		Cuenta c2 = new Cliente("Alejandro Diaz Blazquez", "0000222211114444", "4000", NULL, NULL);
 
 		// MODIFICAR USUARIO CON ERROR
 		boolean pruebaMod2 = _testUsuario.modificarUsuario(p2);
@@ -93,8 +90,7 @@ class TestSubCuentas {
 	@Test
 	void testBaja() {
 		System.out.println("Test de las funciones de baja");
-		Cuenta c2 = new Cliente("Alejandro Diaz Blazquez", "0000222211114444", "4000", NULL,
-				NULL);
+		Cuenta c2 = new Cliente("Alejandro Diaz Blazquez", "0000222211114444", "4000", NULL, NULL);
 
 		boolean pruebaAlta1 = _testUsuario.altaUsuario(c2);
 		assertEquals(true, pruebaAlta1, "Alta que debería ser valida acabada con error");

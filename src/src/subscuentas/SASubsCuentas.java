@@ -2,9 +2,9 @@ package subscuentas;
 
 import java.util.List;
 
-import cuentadao.control.Cuenta;
 import cuentadao.control.IFachadaDAOCuentas;
-import usuariosdao.control.Persona;
+import dominio.Cuenta;
+import dominio.Persona;
 
 public class SASubsCuentas implements ISASubsCuentas {
 	List<Cuenta> _listaCuentas;
@@ -24,7 +24,7 @@ public class SASubsCuentas implements ISASubsCuentas {
 	}
 
 	@Override
-	public List<Cuenta> consultarListaCuentas(String titular_cuenta, String dni){// quitaremos el titular_cuenta
+	public List<Cuenta> consultarListaCuentas(String titular_cuenta, String dni) {// quitaremos el titular_cuenta
 		return cuenta.buscarListaCuentas(titular_cuenta, dni);
 	}
 
@@ -34,13 +34,9 @@ public class SASubsCuentas implements ISASubsCuentas {
 		return cuenta.modificarCuentas(c) == true ? true : false;
 	}
 
-	
 	@Override
 	public Cuenta buscaCuenta(int numeroCuenta) {
 		return cuenta.consultarCuenta(numeroCuenta);
 	}
-
-	
-
 
 }

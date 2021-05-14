@@ -1,4 +1,4 @@
-package tarjetasdao.control;
+package dominio;
 
 public enum TipoTarjeta {
 

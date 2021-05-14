@@ -2,12 +2,14 @@ package tarjetasdao.control;
 
 import java.util.List;
 
+import dominio.Tarjeta;
+
 public class FachadaDAOTarjetas implements IFachadaDAOTarjetas {
 
 	private ISADAOTarjetas daoTarj;
-	
+
 	// TODO: falta constructor
-	
+
 	@Override
 	public boolean altaTarjeta(Tarjeta t) {
 		return daoTarj.altaTarjeta(t);

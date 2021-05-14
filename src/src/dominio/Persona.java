@@ -1,4 +1,4 @@
-package usuariosdao.control;
+package dominio;
 
 import java.util.Objects;
 

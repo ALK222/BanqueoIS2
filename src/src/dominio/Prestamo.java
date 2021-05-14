@@ -1,6 +1,4 @@
-package prestamosdao.control;
-
-import cuentadao.control.Cuenta;
+package dominio;
 
 /**
  * Objeto prestamo

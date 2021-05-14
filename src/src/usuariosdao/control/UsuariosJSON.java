@@ -15,6 +15,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import dominio.Cliente;
+import dominio.Gestor;
+import dominio.Persona;
+
 public class UsuariosJSON {
 
     public static List<Persona> leerListaUsuarios() throws FileNotFoundException {

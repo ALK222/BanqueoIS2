@@ -6,11 +6,11 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import cuentadao.control.Cuenta;
-import prestamosdao.control.Prestamo;
-import tarjetasdao.control.Tarjeta;
-import tarjetasdao.control.TipoTarjeta;
-import usuariosdao.control.Persona;
+import dominio.Cuenta;
+import dominio.Persona;
+import dominio.Prestamo;
+import dominio.Tarjeta;
+import dominio.TipoTarjeta;
 
 public class Controller {
 
@@ -18,8 +18,6 @@ public class Controller {
     List<Tarjeta> _listaTarjetas;
     List<Prestamo> _listaPrestamos;
     List<Cuenta> _listaCuentas;
-
-    
 
     public void loadTarjetas(InputStream in) throws JSONException {
         try {

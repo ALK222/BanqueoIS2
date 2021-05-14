@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import dominio.Persona;
+
 /**
  * Gestiona la informacion saliente sobre los usuarios
  */

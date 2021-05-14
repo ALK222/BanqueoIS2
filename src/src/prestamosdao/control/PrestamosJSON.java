@@ -15,6 +15,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import dominio.EstadoPrestamo;
+import dominio.Prestamo;
+
 public class PrestamosJSON {
 
     public static List<Prestamo> leerListaPrestamos() throws FileNotFoundException {
@@ -47,19 +50,17 @@ public class PrestamosJSON {
                 String profesion = ja.getJSONObject(i).getString("Profesion");
                 boolean firma = ja.getJSONObject(i).getBoolean("Firma");
                 String estAux = ja.getJSONObject(i).getString("Estado");
-                EstadoPrestamo estado = EstadoPrestamo.parse(estAux); 
-                  
-                    /**TODO faltaria la cuenta asociada  */
-                listaPrestamos.add(new Prestamo(numReferencia,cantidad,plazo,aval,profesion,firma,estado)); 
-               
+                EstadoPrestamo estado = EstadoPrestamo.parse(estAux);
+
+                /** TODO faltaria la cuenta asociada */
+                listaPrestamos.add(new Prestamo(numReferencia, cantidad, plazo, aval, profesion, firma, estado));
+
             }
         } catch (Exception e) {
             throw e;
         }
         return listaPrestamos;
     }
-    
-
 
     public static void guardarListaUsuarios(List<Prestamo> listaPrestamos) throws IOException {
         File testFile = null;
@@ -85,7 +86,7 @@ public class PrestamosJSON {
             pJson.put("Profesion", p.getProfesion());
             pJson.put("Firma", p.isFirma_seguro_defuncion());
             pJson.put("Estado", p.getEstado_prestamo());
-           // la cuenta asociada no se pone ? TODO 
+            // la cuenta asociada no se pone ? TODO
 
             ja.put(pJson);
 
@@ -97,9 +98,6 @@ public class PrestamosJSON {
         in.close();
 
     }
-
-
-
 
     public static String readJsonFile(String filePath) {
         String jsonData = "";

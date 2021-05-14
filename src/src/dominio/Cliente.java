@@ -1,9 +1,7 @@
-package usuariosdao.control;
+package dominio;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import cuentadao.control.Cuenta;
 
 /**
  * Objeto Cliente, usuario sin permisos administrativos especiales.

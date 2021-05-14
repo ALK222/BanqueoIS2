@@ -1,6 +1,5 @@
 package cuentadao.control;
 
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,11 +15,13 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import dominio.Cuenta;
+
 public class CuentasJSON {
-    
-    public static List<Cuenta> leerListaCuentas() throws FileNotFoundException{
-        File testFile = null; 
-        InputStream in = null; 
+
+    public static List<Cuenta> leerListaCuentas() throws FileNotFoundException {
+        File testFile = null;
+        InputStream in = null;
 
         try {
             testFile = new File("../resources/cuentas.json");
@@ -42,24 +43,26 @@ public class CuentasJSON {
             JSONArray ja = jsonFile.getJSONArray("cuentas");
 
             for (int i = 0; i < ja.length(); i++) {
-                JSONArray movimientos = null; 
+                JSONArray movimientos = null;
 
                 String titularCuenta = ja.getJSONObject(i).getString("Titular");
                 int numeroCuenta = ja.getJSONObject(i).getInt("Numero");
                 double saldo = ja.getJSONObject(i).getDouble("Saldo");
                 String firmaDigital = ja.getJSONObject(i).getString("Firma");
-                if(ja.getJSONObject(i).has("Movimientos"))    movimientos = ja.getJSONObject(i).getJSONArray("Movimientos");
-               /**falta obtener las listas  */
-                // TODO 
+                if (ja.getJSONObject(i).has("Movimientos"))
+                    movimientos = ja.getJSONObject(i).getJSONArray("Movimientos");
+                /** falta obtener las listas */
+                // TODO
 
-                listaCuentas.add(new Cuenta(titularCuenta, numeroCuenta, saldo,firmaDigital,null, null)); // TODO : Comprobar movimientos
+                listaCuentas.add(new Cuenta(titularCuenta, numeroCuenta, saldo, firmaDigital, null, null)); // TODO :
+                                                                                                            // Comprobar
+                                                                                                            // movimientos
             }
         } catch (Exception e) {
             throw e;
         }
         return listaCuentas;
     }
-
 
     public static void guardarListaCuentas(List<Cuenta> listaCuentas) throws IOException {
         File testFile = null;

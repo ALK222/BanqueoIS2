@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
-import usuariosdao.control.Persona;
+import dominio.Persona;
 
 public interface IFachadaSubsUsuarios {
 

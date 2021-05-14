@@ -2,7 +2,7 @@ package subscuentas;
 
 import java.util.List;
 
-import cuentadao.control.Cuenta;
+import dominio.Cuenta;
 
 public interface ISASubsCuentas {
 

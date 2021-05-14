@@ -2,7 +2,8 @@ package prestamosdao.control;
 
 import java.util.List;
 
-import cuentadao.control.Cuenta;
+import dominio.Cuenta;
+import dominio.Prestamo;
 
 /**
  * Interfaz del SADAO de prestamos

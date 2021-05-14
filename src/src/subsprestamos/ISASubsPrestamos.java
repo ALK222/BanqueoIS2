@@ -2,11 +2,11 @@ package subsprestamos;
 
 import java.util.List;
 
-import prestamosdao.control.Prestamo;
-import cuentadao.control.Cuenta;
+import dominio.Cuenta;
+import dominio.Prestamo;
 
 public interface ISASubsPrestamos {
-    
+
     boolean solicitarPrestamo(Cuenta c, Prestamo p);
 
     boolean cancelarSolicitud(int num_ref_pres);

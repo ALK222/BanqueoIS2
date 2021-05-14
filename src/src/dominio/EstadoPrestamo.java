@@ -1,4 +1,4 @@
-package prestamosdao.control;
+package dominio;
 
 public enum EstadoPrestamo {
   SOLICITADO, ACEPTADO, DENEGADO;

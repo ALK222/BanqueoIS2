@@ -1,4 +1,4 @@
-package usuariosdao.control;
+package dominio;
 
 /**
  * Objeto Gestor, usuarios con permisos especiales de administracion.

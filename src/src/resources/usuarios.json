@@ -1,3 +1,21 @@
-{ "usuarios":
-[{"Nombre":"Federico Garcia Lorca","Email":"correofalso@gmail.com","Telefono":555555555,"Contrasena":"abc123","Domicilio":"Calle inventada, 2 2;35006;Madrid","DNI_Gestor":"01234568A","DNI":"01234567A"},{"Nombre":"Antonio Machado Ruiz","Email":"correofalso@gmail.com","Telefono":555555555,"Contrasena":"abc123","Domicilio":"Calle inventada, 2 3;35006;Madrid","DNI":"01234568A"},{"Nombre":"Luisa Carnes Caballero","Email":"04966834S","Telefono":555555555,"Contrasena":"tremendoemail@gmail.com","Domicilio":"Calle inventada, 2 4;35006;Madrid","DNI_Gestor":"abcdabcd","DNI":"04976834S"}]
+{
+    "usuarios": [
+        {
+            "Nombre": "Federico Garcia Lorca",
+            "Email": "correofalso@gmail.com",
+            "Telefono": 555555555,
+            "Contrasena": "abc123",
+            "Domicilio": "Calle inventada, 2 2;35006;Madrid",
+            "DNI_Gestor": "01234568A",
+            "DNI": "01234567A"
+        },
+        {
+            "Nombre": "Antonio Machado Ruiz",
+            "Email": "correofalso@gmail.com",
+            "Telefono": 555555555,
+            "Contrasena": "abc123",
+            "Domicilio": "Calle inventada, 2 3;35006;Madrid",
+            "DNI": "01234568A"
+        }
+    ]
 }
