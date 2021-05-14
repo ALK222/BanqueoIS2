@@ -3,25 +3,19 @@ package test;
 import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
+import java.util.Collections;
 import java.util.List;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.JSONTokener;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
+import common.exception.UserException;
 import dominio.Cliente;
-import dominio.Gestor;
 import dominio.Persona;
 import subsusuarios.FachadaSubsUsuarios;
 import subsusuarios.IFachadaSubsUsuarios;
@@ -39,8 +33,7 @@ class TestSubUsuarios {
 		System.out.println("Creando lista y subsistema");
 		_testUsuario = new FachadaSubsUsuarios();
 
-		_listaOriginal = UsuariosJSON.leerListaUsuarios();
-
+		_listaOriginal = Collections.unmodifiableList(UsuariosJSON.leerListaUsuarios());
 	}
 
 	@AfterEach
@@ -51,7 +44,7 @@ class TestSubUsuarios {
 	}
 
 	@Test
-	void testAlta() throws FileNotFoundException, IOException {
+	void testAlta() throws FileNotFoundException, IOException, UserException {
 		System.out.println("Test de las funciones de alta");
 		// ALTA DE USUARIO FUNCIONAL
 		Persona p = new Cliente("04976834S", "Luisa Carnes Caballero", "Calle inventada, 2 4;35006;Madrid", 555555555,
@@ -61,13 +54,19 @@ class TestSubUsuarios {
 		assertEquals(true, pruebaAlta1, "Alta que debería ser valida acabada con error");
 
 		// ALTA DE UN USUARIO EXISTENTE
-		boolean pruebaAlta2 = _testUsuario.altaUsuario(p);
+		boolean pruebaAlta2 = false;
+		try {
+			pruebaAlta2 = _testUsuario.altaUsuario(p);
+		} catch (UserException e) {
+			System.out.println(e.getMessage());
+		}
+
 		assertEquals(false, pruebaAlta2, "Alta que debería no ser valida igualmente mete al usuario");
 
 	}
 
 	@Test
-	void testModificacion() throws IOException {
+	void testModificacion() throws IOException, UserException {
 		System.out.println("Test de las funciones de modificación");
 		Persona p = new Cliente("04976834S", "Luisa Carnes Caballero", "Calle inventada, 2 4;35006;Madrid", 555555555,
 				"abcdabcd", "tremendoemail@gmail.com", "04966834S");
@@ -85,13 +84,18 @@ class TestSubUsuarios {
 				"abcdabcd", "tremendoemail@gmail.com", "04966834S");
 
 		// MODIFICAR USUARIO CON ERROR
-		boolean pruebaMod2 = _testUsuario.modificarUsuario(p2);
+		boolean pruebaMod2 = false;
+		try {
+			_testUsuario.modificarUsuario(p2);
+		} catch (UserException e) {
+			System.out.print(e.getMessage());
+		}
 		assertEquals(false, pruebaMod2, "Modificacion que no debería ser valida no acaba con error");
 
 	}
 
 	@Test
-	void testBaja() throws IOException {
+	void testBaja() throws IOException, UserException {
 		System.out.println("Test de las funciones de baja");
 		Persona p = new Cliente("04976834S", "Luisa Carnes Caballero", "Calle inventada, 2 4;35006;Madrid", 555555555,
 				"abcdabcd", "tremendoemail@gmail.com", "04966834S");
@@ -104,7 +108,12 @@ class TestSubUsuarios {
 		assertEquals(true, pruebaBaja1, "Baja que debería ser valida acabada con error");
 
 		// BAJA USUARIO CON ERROR
-		boolean pruebaBaja2 = _testUsuario.bajaUsuario(p);
+		boolean pruebaBaja2 = false;
+		try {
+			_testUsuario.bajaUsuario(p);
+		} catch (UserException e) {
+			System.out.println(e.getMessage());
+		}
 		assertEquals(false, pruebaBaja2, "Baja que no debería ser valida no provoca error");
 
 	}
@@ -115,21 +124,24 @@ class TestSubUsuarios {
 		// PRUEBA FILTRADO DE LISTA
 		try {
 			List<Persona> filtradoCiudad = _testUsuario.consultarListaUsuarios("Madrid", "c");
-			assertEquals(_listaUsuarios, filtradoCiudad, "Filtrado por ciudad no funciona correctamente");
+			assertEquals(UsuariosJSON.leerListaUsuarios(), filtradoCiudad,
+					"Filtrado por ciudad no funciona correctamente");
 		} catch (Exception e) {
 			fail(e.toString());
 		}
 
 		try {
 			List<Persona> filtradoCodigop = _testUsuario.consultarListaUsuarios("35006", "cp");
-			assertEquals(_listaUsuarios, filtradoCodigop, "Filtrado por codigo postal no funciona correctamente");
+			assertEquals(UsuariosJSON.leerListaUsuarios(), filtradoCodigop,
+					"Filtrado por codigo postal no funciona correctamente");
 		} catch (Exception e) {
 			fail(e.toString());
 		}
 
 		try {
 			List<Persona> filtradoCalle = _testUsuario.consultarListaUsuarios("Calle Inventada", "st");
-			assertEquals(_listaUsuarios, filtradoCalle, "Filtrado por calle no funciona correctamente");
+			assertEquals(UsuariosJSON.leerListaUsuarios(), filtradoCalle,
+					"Filtrado por calle no funciona correctamente");
 		} catch (Exception e) {
 			fail(e.toString());
 		}
@@ -137,9 +149,13 @@ class TestSubUsuarios {
 		// PRUEBA DE FILTRADO DE LISTA MAL
 
 		try {
-			List<Persona> filtradoCodigop = _testUsuario.consultarListaUsuarios("35006", "aaaa");
+			List<Persona> filtradoCodigop = null;
+			try {
+				filtradoCodigop = _testUsuario.consultarListaUsuarios("35006", "aaaa");
+			} catch (UserException e) {
+				System.out.println(e.getMessage());
+			}
 			assertEquals(_listaUsuarios, filtradoCodigop, "Filtrado por codigo postal no funciona correctamente");
-			fail("No debería dejar hacer la busqueda");
 		} catch (Exception e) {
 			assertEquals("Modo no soportado", e.getMessage(), "No se lanza la excepcion correcta");
 		}
@@ -170,7 +186,7 @@ class TestSubUsuarios {
 	}
 
 	@Test
-	void testInicioSesion() {
+	void testInicioSesion() throws UserException, IOException {
 		System.out.println("Test de las funciones de inicio de sesión");
 		// INICIAR SESION BIEN
 		boolean pruebaInicio1 = _testUsuario.iniciarSesion("01234567A", "abc123");
@@ -178,57 +194,13 @@ class TestSubUsuarios {
 
 		// INICIAR SESION MAL
 
-		boolean pruebaInicio2 = _testUsuario.iniciarSesion("01234567A", "AAAAAAAA");
+		boolean pruebaInicio2 = false;
+		try {
+			_testUsuario.iniciarSesion("01234567A", "AAAAAAAA");
+		} catch (UserException e) {
+			System.out.println(e.getMessage());
+		}
+
 		assertEquals(false, pruebaInicio2, "Un inicio de sesión no válido no da error");
-	}
-
-	public static void loadUsuarios(InputStream in, List<Persona> listaUsuarios) throws JSONException {
-		try {
-
-			JSONObject jsonFile = new JSONObject(new JSONTokener(in));
-			JSONArray ja = jsonFile.getJSONArray("usuarios");
-
-			for (int i = 0; i < ja.length(); i++) {
-
-				String nombre = ja.getJSONObject(i).getString("Nombre");
-				String dni = ja.getJSONObject(i).getString("DNI");
-				String domicilio = ja.getJSONObject(i).getString("Domicilio");
-				String email = ja.getJSONObject(i).getString("Email");
-				String contrasena = ja.getJSONObject(i).getString("Contrasena");
-				int telefono = ja.getJSONObject(i).getInt("Telefono");
-
-				if (ja.getJSONObject(i).has("DNI_Gestor")) { // Si tiene un dni de un gestor asociado, es un cliente
-					listaUsuarios.add(new Cliente(dni, nombre, domicilio, telefono,
-							ja.getJSONObject(i).getString("DNI_Gestor"), contrasena, email));
-				} else { // Si no, es un gestor
-					listaUsuarios.add(new Gestor(dni, nombre, domicilio, telefono, contrasena, email));
-				}
-			}
-		} catch (Exception e) {
-			throw e;
-		}
-	}
-
-	public static String readJsonFile(String filePath) {
-		String jsonData = "";
-		BufferedReader br = null;
-		try {
-			String line;
-			br = new BufferedReader(new FileReader(filePath));
-			while ((line = br.readLine()) != null) {
-				jsonData += line + "\n";
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (br != null) {
-					br.close();
-				}
-			} catch (IOException ex) {
-				ex.printStackTrace();
-			}
-		}
-		return jsonData;
 	}
 }

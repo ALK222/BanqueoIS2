@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import common.exception.UserException;
 import dominio.Persona;
 
 /**
@@ -11,14 +12,7 @@ import dominio.Persona;
  */
 public class SADAOUsuarios implements ISADAOUsuarios {
 
-    private List<Persona> _listaPersonas;
-
     public SADAOUsuarios() {
-        _listaPersonas = new ArrayList<Persona>();
-    }
-
-    public SADAOUsuarios(List<Persona> listaPersonas) {
-        _listaPersonas = listaPersonas;
     }
 
     @Override
@@ -31,31 +25,36 @@ public class SADAOUsuarios implements ISADAOUsuarios {
     }
 
     @Override
-    public boolean bajaUsuario(Persona p) {
-        return _listaPersonas.contains(p) ? _listaPersonas.remove(p) : false;
+    public boolean bajaUsuario(Persona p) throws IOException {
+        List<Persona> listaPersonas = UsuariosJSON.leerListaUsuarios();
+        boolean ok = listaPersonas.contains(p) ? listaPersonas.remove(p) : false;
+
+        UsuariosJSON.guardarListaUsuarios(listaPersonas);
+        return ok;
     }
 
     @Override
-    public List<Persona> consultarListaUsuarios(String domicilio, String modo) throws Exception {
+    public List<Persona> consultarListaUsuarios(String domicilio, String modo) throws UserException, IOException {
+        List<Persona> listaPersonas = UsuariosJSON.leerListaUsuarios();
         // String de ejemplo: Calle noseque, 15 2A;45007;Toledo
         List<Persona> listaAux = new ArrayList<Persona>();
         switch (modo.toLowerCase()) {
             case "cp": // Codigo postal
-                for (Persona p : _listaPersonas) {
+                for (Persona p : listaPersonas) {
                     if (p.getDomicilio().split(";")[1].equalsIgnoreCase(domicilio)) {
                         listaAux.add(p);
                     }
                 }
                 break;
             case "c": // Ciudad
-                for (Persona p : _listaPersonas) {
+                for (Persona p : listaPersonas) {
                     if (p.getDomicilio().split(";")[2].equalsIgnoreCase(domicilio)) {
                         listaAux.add(p);
                     }
                 }
                 break;
             case "st": // Calle
-                for (Persona p : _listaPersonas) {
+                for (Persona p : listaPersonas) {
                     String callePersona = p.getDomicilio().split(";")[0].split(",")[0];
                     if (callePersona.equalsIgnoreCase(domicilio)) {
                         listaAux.add(p);
@@ -63,48 +62,61 @@ public class SADAOUsuarios implements ISADAOUsuarios {
                 }
                 break;
             default:
-                throw new Exception("Modo no soportado");
+                throw new UserException("Modo no soportado");
         }
+
         return listaAux;
     }
 
     @Override
-    public Persona buscarUsuario(String dni) throws Exception {
+    public Persona buscarUsuario(String dni) throws UserException, IOException {
+        List<Persona> listaPersonas = UsuariosJSON.leerListaUsuarios();
         try {
             if (dni == null) {
-                throw new Exception("DNI nulo");
+                throw new UserException("DNI nulo");
             }
-            for (Persona persona : _listaPersonas) {
+            for (Persona persona : listaPersonas) {
                 if (persona.getDni().equals(dni)) {
                     return persona;
                 }
             }
-        } catch (Exception e) {
+        } catch (UserException e) {
             throw e;
         }
 
+        UsuariosJSON.guardarListaUsuarios(listaPersonas);
         return null;
     }
 
     @Override
-    public boolean modificarUsuario(Persona p) {
+    public boolean modificarUsuario(Persona p) throws IOException {
+
+        List<Persona> listaPersonas = UsuariosJSON.leerListaUsuarios();
+
         boolean conseguido = false;
-        for (Persona persona : _listaPersonas) {
+        for (Persona persona : listaPersonas) {
             if (persona.compareTo(p) == 0) {
                 persona = p;
                 conseguido = true;
             }
         }
+        UsuariosJSON.guardarListaUsuarios(listaPersonas);
         return conseguido;
     }
 
     @Override
-    public boolean iniciarSesion(String dni, String contrasena) {
-        for (Persona persona : _listaPersonas) {
+    public boolean iniciarSesion(String dni, String contrasena) throws IOException {
+
+        List<Persona> listaPersonas = UsuariosJSON.leerListaUsuarios();
+
+        for (Persona persona : listaPersonas) {
             if (persona.getDni().equals(dni) && persona.getContrasena().equals(contrasena)) {
                 return true;
             }
         }
+
+        UsuariosJSON.guardarListaUsuarios(listaPersonas);
+
         return false;
     }
 
@@ -117,12 +129,16 @@ public class SADAOUsuarios implements ISADAOUsuarios {
     }
 
     @Override
-    public boolean existeUsuario(String dni) {
-        for (Persona persona : _listaPersonas) {
+    public boolean existeUsuario(String dni) throws IOException {
+
+        List<Persona> listaPersonas = UsuariosJSON.leerListaUsuarios();
+
+        for (Persona persona : listaPersonas) {
             if (persona.getDni().equals(dni)) {
                 return true;
             }
         }
+
         return false;
     }
 

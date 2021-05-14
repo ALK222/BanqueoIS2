@@ -3,6 +3,7 @@ package subsusuarios;
 import java.io.IOException;
 import java.util.List;
 
+import common.exception.UserException;
 import dominio.Persona;
 import usuariosdao.control.FachadaDAOUsuarios;
 import usuariosdao.control.IFachadaDAOUsuarios;
@@ -14,62 +15,52 @@ public class SASubsUsuarios implements ISASubsUsuarios {
         usuario = new FachadaDAOUsuarios();
     }
 
-    public SASubsUsuarios(List<Persona> listaPersonas) {
-        usuario = new FachadaDAOUsuarios(listaPersonas);
-    }
-
     @Override
-    public boolean altaUsuario(Persona p) throws IOException {
-        if(usuario.existeUsuario(p.getDni()) {
-            System.out.println("Este usuario ya existe");
-            return false;
-        }
-        else{
+    public boolean altaUsuario(Persona p) throws IOException, UserException {
+        if (usuario.existeUsuario(p.getDni())) {
+            throw new UserException("Este usuario ya existe");
+        } else {
             return usuario.altaUsuario(p);
         }
     }
 
     @Override
-    public boolean bajaUsuario(Persona p) { // Posible persona
-        if(!usuario.existeUsuario(p.getDni()) {
-            System.out.println("Este usuario no existe");
-            return false;
-        }
-        else{
+    public boolean bajaUsuario(Persona p) throws UserException, IOException { // Posible persona
+        if (!usuario.existeUsuario(p.getDni())) {
+            throw new UserException("Este usuario no existe");
+        } else {
             return usuario.bajaUsuario(p);
         }
     }
 
     @Override
-    public List<Persona> consultarListaUsuarios(String domicilio, String modo) throws Exception {
+    public List<Persona> consultarListaUsuarios(String domicilio, String modo) throws UserException, IOException { // Preguntar
+                                                                                                                   // al
+        // profesor sobre
+        // como
+        // modificar esto
         return usuario.consultarListaUsuarios(domicilio, modo);
     }
 
     @Override
-    public Persona buscarUsuario(String dni) throws Exception {
+    public Persona buscarUsuario(String dni) throws UserException, IOException {
         return usuario.buscarUsuario(dni);
     }
 
     @Override
-    public boolean modificarUsuario(Persona p) { // posible bool
-        if (usuario.modificarUsuario(p)) {
-            System.out.println("Se ha modificado el perfil corredctamente");
-            return true;
+    public boolean modificarUsuario(Persona p) throws UserException, IOException { // posible bool
+        if (!usuario.modificarUsuario(p)) {
+            throw new UserException("Modificacion fallida");
         }
-        else {
-            System.out.println("No se ha podido modificar el perfil");
-            return false;
-        }
+        return true;
     }
 
     @Override
-    public boolean iniciarSesion(String dni, String contrasena) {
+    public boolean iniciarSesion(String dni, String contrasena) throws UserException, IOException {
         if (usuario.iniciarSesion(dni, contrasena)) {
             return true;
-        }
-        else {
-            System.out.println("No se ha iniciado sesion");
-            return false;
+        } else {
+            throw new UserException("Usuario o contraseña erroneos");
         }
     }
 

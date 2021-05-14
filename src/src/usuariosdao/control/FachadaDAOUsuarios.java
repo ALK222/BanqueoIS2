@@ -3,6 +3,7 @@ package usuariosdao.control;
 import java.io.IOException;
 import java.util.List;
 
+import common.exception.UserException;
 import dominio.Persona;
 
 /**
@@ -16,37 +17,33 @@ public class FachadaDAOUsuarios implements IFachadaDAOUsuarios {
         daoUsu = new SADAOUsuarios();
     }
 
-    public FachadaDAOUsuarios(List<Persona> listaPersonas) {
-        daoUsu = new SADAOUsuarios(listaPersonas);
-    }
-
     @Override
     public boolean altaUsuario(Persona p) throws IOException {
         return daoUsu.altaUsuario(p);
     }
 
     @Override
-    public boolean bajaUsuario(Persona p) {
+    public boolean bajaUsuario(Persona p) throws IOException {
         return daoUsu.bajaUsuario(p);
     }
 
     @Override
-    public List<Persona> consultarListaUsuarios(String domicilio, String modo) throws Exception {
+    public List<Persona> consultarListaUsuarios(String domicilio, String modo) throws UserException, IOException {
         return daoUsu.consultarListaUsuarios(domicilio, modo);
     }
 
     @Override
-    public Persona buscarUsuario(String dni) throws Exception {
+    public Persona buscarUsuario(String dni) throws UserException, IOException {
         return daoUsu.buscarUsuario(dni);
     }
 
     @Override
-    public boolean modificarUsuario(Persona p) {
+    public boolean modificarUsuario(Persona p) throws IOException {
         return daoUsu.modificarUsuario(p);
     }
 
     @Override
-    public boolean iniciarSesion(String dni, String contrasena) {
+    public boolean iniciarSesion(String dni, String contrasena) throws IOException {
         return daoUsu.iniciarSesion(dni, contrasena);
     }
 
@@ -56,7 +53,7 @@ public class FachadaDAOUsuarios implements IFachadaDAOUsuarios {
     }
 
     @Override
-    public boolean existeUsuario(String dni) {
+    public boolean existeUsuario(String dni) throws IOException {
         return daoUsu.existeUsuario(dni);
     }
 
