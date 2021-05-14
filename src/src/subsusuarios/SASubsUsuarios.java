@@ -20,14 +20,24 @@ public class SASubsUsuarios implements ISASubsUsuarios {
 
     @Override
     public boolean altaUsuario(Persona p) throws IOException {
-        return usuario.altaUsuario(p);
-
+        if(usuario.existeUsuario(p.getDni()) {
+            System.out.println("Este usuario ya existe");
+            return false;
+        }
+        else{
+            return usuario.altaUsuario(p);
+        }
     }
 
     @Override
     public boolean bajaUsuario(Persona p) { // Posible persona
-
-        return usuario.bajaUsuario(p);
+        if(!usuario.existeUsuario(p.getDni()) {
+            System.out.println("Este usuario no existe");
+            return false;
+        }
+        else{
+            return usuario.bajaUsuario(p);
+        }
     }
 
     @Override
@@ -42,12 +52,25 @@ public class SASubsUsuarios implements ISASubsUsuarios {
 
     @Override
     public boolean modificarUsuario(Persona p) { // posible bool
-        return usuario.modificarUsuario(p);
+        if (usuario.modificarUsuario(p)) {
+            System.out.println("Se ha modificado el perfil corredctamente");
+            return true;
+        }
+        else {
+            System.out.println("No se ha podido modificar el perfil");
+            return false;
+        }
     }
 
     @Override
     public boolean iniciarSesion(String dni, String contrasena) {
-        return usuario.iniciarSesion(dni, contrasena);
+        if (usuario.iniciarSesion(dni, contrasena)) {
+            return true;
+        }
+        else {
+            System.out.println("No se ha iniciado sesion");
+            return false;
+        }
     }
 
     @Override
