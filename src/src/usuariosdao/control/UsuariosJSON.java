@@ -25,11 +25,11 @@ public class UsuariosJSON {
         File testFile = null;
         InputStream in = null;
         try {
-            testFile = new File("../resources/usuarios.json");
+            testFile = new File("src/resources/usuarios.json");
             in = new FileInputStream(testFile);
         } catch (FileNotFoundException e) {
             try {
-                testFile = new File("src/resources/usuarios.json");
+                testFile = new File("resources/usuarios.json");
                 in = new FileInputStream(testFile);
             } catch (FileNotFoundException ex) {
                 throw ex;
@@ -68,11 +68,11 @@ public class UsuariosJSON {
         File testFile = null;
         FileWriter in = null;
         try {
-            testFile = new File("../resources/usuarios.json");
+            testFile = new File("src/resources/usuarios.json");
             in = new FileWriter(testFile);
         } catch (FileNotFoundException e) {
             try {
-                testFile = new File("src/resources/usuarios.json");
+                testFile = new File("resources/usuarios.json");
                 in = new FileWriter(testFile);
             } catch (FileNotFoundException ex) {
                 throw ex;
