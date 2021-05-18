@@ -16,8 +16,10 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import dominio.Cuenta;
+import dominio.EstadoPrestamo;
 import dominio.Prestamo;
 import dominio.Tarjeta;
+import dominio.TipoTarjeta;
 
 public class CuentasJSON {
 
@@ -53,16 +55,29 @@ public class CuentasJSON {
                 int numeroCuenta = ja.getJSONObject(i).getInt("Numero");
                 double saldo = ja.getJSONObject(i).getDouble("Saldo");
                 String firmaDigital = ja.getJSONObject(i).getString("Firma");
-                if (ja.getJSONObject(i).has("Movimientos"))
+                if (ja.getJSONObject(i).has("Movimientos")) {
                     movimientos = ja.getJSONObject(i).getJSONArray("Movimientos");
-                if (ja.getJSONObject(i).has("Prestamos"))
-                    movimientos = ja.getJSONObject(i).getJSONArray("Prestamos");
-                if (ja.getJSONObject(i).has("Tarjetas"))
-                    movimientos = ja.getJSONObject(i).getJSONArray("Tarjetas");
+                }
+                if (ja.getJSONObject(i).has("Prestamos")) {
+                    for (Object o : ja.getJSONObject(i).getJSONArray("Prestamos")) {
+                        JSONObject jo = (JSONObject) o;
+                        listaPrestamos.add(new Prestamo(jo.getInt("Num_Referencia"),
+                                jo.getDouble("Cantidad_Solicitada"), jo.getString("Plazo_Devolucion"),
+                                jo.getInt("Aval"), jo.getString("Profesion"), jo.getBoolean("Firma_Seguro_Defuncion"),
+                                EstadoPrestamo.parse(jo.getString("Estado_Prestamo"))));
+                    }
+                }
+                if (ja.getJSONObject(i).has("Tarjetas")) {
+                    for (Object o : ja.getJSONObject(i).getJSONArray("Tarjetas")) {
+                        JSONObject jo = (JSONObject) o;
+                        listaTarjetas.add(new Tarjeta(jo.getString("Titular"), jo.getInt("PIN"),
+                                jo.getBoolean("Estado"), jo.getInt("Num_Tarjeta"), jo.getString("Fecha_CAD"),
+                                TipoTarjeta.parse(jo.getString("Tipo"))));
+                    }
+                }
 
-                listaCuentas.add(new Cuenta(titularCuenta, numeroCuenta, saldo, firmaDigital, null, null)); // TODO :
-                                                                                                            // Comprobar
-                                                                                                            // movimientos
+                listaCuentas.add(new Cuenta(titularCuenta, numeroCuenta, saldo, firmaDigital, listaTarjetas,
+                        listaPrestamos, movimientos));
             }
         } catch (Exception e) {
             throw e;
@@ -92,8 +107,8 @@ public class CuentasJSON {
             cJson.put("Saldo", c.getSaldo());
             cJson.put("Firma", c.getFirmaDigital());
             cJson.put("Movimientos", c.getMovimientos());
-            cJson.put("Lista tarjetas", c.getListaTarjetas()); // la clave puede ser modificada, TODO
-            cJson.put("Lista prestamos", c.getListaPrestamos();
+            cJson.put("Tarjetas", c.getListaTarjetas()); // la clave puede ser modificada, TODO
+            cJson.put("Prestamos", c.getListaPrestamos());
 
             ja.put(cJson);
 

@@ -17,14 +17,14 @@
 				],
 				"Prestamos": [
 					{
-						"Cantidad_Solicitada": "1000",
-						"Num_Referencia": "13245768",
+						"Cantidad_Solicitada": 1000,
+						"Num_Referencia": 13245768,
 						"Plazo_Devolucion": "06/19",
-						"Aval": "100",
+						"Aval": 100,
 						"Profesion": "Escritor",
 						"Firma_Seguro_Defuncion": "True",
 						"Estado_Prestamo": "ACEPTADO",
-						"Cuenta_Asociada": "0000111122223333"
+						"Cuenta_Asociada": "0000111122223333f"
 					}
 				],
 				"movimientos": [
