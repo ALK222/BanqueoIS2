@@ -19,10 +19,10 @@ public class SADAOCuentas implements ISADAOCuenta {
     }
 
     @Override
-    public boolean bajaCuenta(int num_cuenta) {
+    public boolean bajaCuenta(Cuenta c) {
 
-        for (Cuenta c : _listaCuentas) {
-            if (c.getNumeroCuenta() == num_cuenta) {
+        for (Cuenta cuenta : _listaCuentas) {
+            if (cuenta.equals(c)) {
                 _listaCuentas.remove(c);
                 return true;
             }

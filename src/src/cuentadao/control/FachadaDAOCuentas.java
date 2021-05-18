@@ -16,8 +16,8 @@ public class FachadaDAOCuentas implements IFachadaDAOCuentas {
     }
 
     @Override
-    public boolean bajaCuenta(int num_cuenta) {
-        return daoCuen.bajaCuenta(num_cuenta);
+    public boolean bajaCuenta(Cuenta c) {
+        return daoCuen.bajaCuenta(c);
     }
 
     @Override

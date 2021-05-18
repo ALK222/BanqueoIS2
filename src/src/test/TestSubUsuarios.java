@@ -23,7 +23,6 @@ import usuariosdao.control.UsuariosJSON;
 
 @RunWith(JUnitPlatform.class)
 class TestSubUsuarios {
-	private List<Persona> _listaUsuarios;
 	private IFachadaSubsUsuarios _testUsuario;
 
 	private List<Persona> _listaOriginal;
@@ -155,7 +154,7 @@ class TestSubUsuarios {
 			} catch (UserException e) {
 				System.out.println(e.getMessage());
 			}
-			assertEquals(_listaUsuarios, filtradoCodigop, "Filtrado por codigo postal no funciona correctamente");
+			assertEquals(null, filtradoCodigop, "Filtrado por codigo postal no funciona correctamente");
 		} catch (Exception e) {
 			assertEquals("Modo no soportado", e.getMessage(), "No se lanza la excepcion correcta");
 		}

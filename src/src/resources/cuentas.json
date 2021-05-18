@@ -1,59 +1,68 @@
 	{
-    "cuentas": [
-        {
-            "Titular": "Federico Garcia Lorca",	
-            "Numero_Cuenta": "0000111122223333",
-            "Saldo": "10000",
-            "Firma_Digital": "Firma0123",
-            "Tarjetas": [	
+		"cuentas": [
 			{
-        			"Titular": "Federico Garcia Lorca",
-        			"PIN": "1234",
-        			"Estado": "true",
-        			"Fecha_CAD": "03/25",
-        			"Tipo": "DEBITO",
-        			"Num_Tarjeta": "1235123412341234"
-    			}	
-			],
-            "Prestamos": [	
+				"Titular": "Federico Garcia Lorca",
+				"Numero_Cuenta": "0000111122223333",
+				"Saldo": "10000",
+				"Firma_Digital": "Firma0123",
+				"Tarjetas": [
+					{
+						"Titular": "Federico Garcia Lorca",
+						"PIN": "1234",
+						"Estado": "true",
+						"Fecha_CAD": "03/25",
+						"Tipo": "DEBITO",
+						"Num_Tarjeta": "1235123412341234"
+					}
+				],
+				"Prestamos": [
+					{
+						"Cantidad_Solicitada": "1000",
+						"Num_Referencia": "13245768",
+						"Plazo_Devolucion": "06/19",
+						"Aval": "100",
+						"Profesion": "Escritor",
+						"Firma_Seguro_Defuncion": "True",
+						"Estado_Prestamo": "ACEPTADO",
+						"Cuenta_Asociada": "0000111122223333"
+					}
+				],
+				"movimientos": [
+					{
+						"Cuenta_Destino": "0000111122224444",
+						"Concepto": "Transferencia trabajo",
+						"Cantidad": "300",
+						"Fecha": "20-10-2019"
+					}
+				]
+			},
 			{
-        			"Cantidad_Solicitada": "1000",
-        			"Num_Referencia": "13245768",
-        			"Plazo_Devolucion": "06/19",
-        			"Aval": "100",
-        			"Profesion": "Escritor",
-        			"Firma_Seguro_Defuncion": "True"
-        			"Estado_Prestamo": "ACEPTADO",
-        			"Cuenta_Asociada": "0000111122223333"
-    			}	
-			],
-        },
-	    "Titular": "Antonio Machado Ruiz",
-            "Numero_Cuenta": "0000111122224444",
-            "Saldo": "25000",
-            "Firma_Digital": "Firma0124",
-            "Tarjetas": [	
-			{
-        			"Titular": "Antonio Machado Ruiz",
-        			"PIN": "4321",
-        			"Estado": "true",
-        			"Fecha_CAD": "05/22",
-        			"Tipo": "CREDITO",
-        			"Num_Tarjeta": "1235123412347584"
-    			}	
-			],
-            "Prestamos": [	
-			{
-        			"Cantidad_Solicitada": "2000",
-        			"Num_Referencia": "13245709",
-        			"Plazo_Devolucion": "30/07",
-        			"Aval": "300",
-        			"Profesion": "Constructor",
-        			"Firma_Seguro_Defuncion": "True"
-        			"Estado_Prestamo": "SOLICITADO",
-        			"Cuenta_Asociada": "0000111122224444"
-    			}	
-			],
-        }
-    ]
-}
+				"Titular": "Antonio Machado Ruiz",
+				"Numero_Cuenta": "0000111122224444",
+				"Saldo": "25000",
+				"Firma_Digital": "Firma0124",
+				"Tarjetas": [
+					{
+						"Titular": "Antonio Machado Ruiz",
+						"PIN": "4321",
+						"Estado": "true",
+						"Fecha_CAD": "05/22",
+						"Tipo": "CREDITO",
+						"Num_Tarjeta": "1235123412347584"
+					}
+				],
+				"Prestamos": [
+					{
+						"Cantidad_Solicitada": "2000",
+						"Num_Referencia": "13245709",
+						"Plazo_Devolucion": "30/07",
+						"Aval": "300",
+						"Profesion": "Constructor",
+						"Firma_Seguro_Defuncion": "True",
+						"Estado_Prestamo": "SOLICITADO",
+						"Cuenta_Asociada": "0000111122224444"
+					}
+				]
+			}
+		]
+	}

@@ -1,29 +1,29 @@
 package dominio;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.json.JSONArray;
 
 public class Cuenta {
 
 	private String _titularCuenta;
-	private int _numeroCuenta;
+	private double _numeroCuenta;
 	private double _saldo;
 	private String _firmaDigital;
 	private JSONArray _movimientos;
 	private List<Tarjeta> _listaTarjetas;
 	private List<Prestamo> _listaPrestamos;
 
-	public Cuenta(String titularCuenta, int numeroCuenta, double saldo, String firmaDigital,
-			List<Tarjeta> listaTarjetas, List<Prestamo> listaPrestamos) {
+	public Cuenta(String titularCuenta, double numeroCuenta, double saldo, String firmaDigital,
+			List<Tarjeta> listaTarjetas, List<Prestamo> listaPrestamos, JSONArray movimientos) {
 		_titularCuenta = titularCuenta;
-		this._numeroCuenta = numeroCuenta;
-		this._saldo = saldo;
-		this._firmaDigital = firmaDigital;
-		this._listaTarjetas = listaTarjetas; // lo mas probable es que el ArrayList se crea aqui y no se pasa como
-												// parametro
-		this._listaPrestamos = listaPrestamos;
-		this._movimientos = new JSONArray();
+		_numeroCuenta = numeroCuenta;
+		_saldo = saldo;
+		_firmaDigital = firmaDigital;
+		_listaTarjetas = listaTarjetas;
+		_listaPrestamos = listaPrestamos;
+		_movimientos = movimientos;
 	}
 
 	public String getTitularCuenta() {
@@ -34,11 +34,11 @@ public class Cuenta {
 		this._titularCuenta = titularCuenta;
 	}
 
-	public int getNumeroCuenta() {
+	public double getNumeroCuenta() {
 		return _numeroCuenta;
 	}
 
-	public void setNumeroCuenta(int numeroCuenta) {
+	public void setNumeroCuenta(double numeroCuenta) {
 		this._numeroCuenta = numeroCuenta;
 	}
 
@@ -81,6 +81,25 @@ public class Cuenta {
 
 	public void setMovimientos(JSONArray movimientos) {
 		this._movimientos = movimientos;
+	}
+
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null) {
+			return false;
+		}
+		if (getClass() != o.getClass()) {
+			return false;
+		}
+		Cuenta c = (Cuenta) o;
+		return Objects.equals(_numeroCuenta, c.getNumeroCuenta()) && Objects.equals(_firmaDigital, c.getFirmaDigital())
+				&& Objects.equals(_listaPrestamos, c.getFirmaDigital())
+				&& Objects.equals(_listaTarjetas, c.getListaTarjetas())
+				&& Objects.equals(_movimientos, c.getMovimientos()) && Objects.equals(_saldo, c.getSaldo())
+				&& Objects.equals(_titularCuenta, c.getTitularCuenta());
+
 	}
 
 }

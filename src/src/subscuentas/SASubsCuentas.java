@@ -18,8 +18,8 @@ public class SASubsCuentas implements ISASubsCuentas {
 	}
 
 	@Override
-	public boolean bajaCuenta(int num_cuenta) {
-		return cuenta.bajaCuenta(num_cuenta);
+	public boolean bajaCuenta(Cuenta c) {
+		return cuenta.bajaCuenta(c);
 
 	}
 

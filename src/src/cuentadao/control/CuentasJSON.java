@@ -16,6 +16,8 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import dominio.Cuenta;
+import dominio.Prestamo;
+import dominio.Tarjeta;
 
 public class CuentasJSON {
 
@@ -43,7 +45,9 @@ public class CuentasJSON {
             JSONArray ja = jsonFile.getJSONArray("cuentas");
 
             for (int i = 0; i < ja.length(); i++) {
-                JSONArray movimientos = null;
+                JSONArray movimientos = new JSONArray();
+                List<Prestamo> listaPrestamos = new ArrayList<Prestamo>();
+                List<Tarjeta> listaTarjetas = new ArrayList<Tarjeta>();
 
                 String titularCuenta = ja.getJSONObject(i).getString("Titular");
                 int numeroCuenta = ja.getJSONObject(i).getInt("Numero");
@@ -51,8 +55,10 @@ public class CuentasJSON {
                 String firmaDigital = ja.getJSONObject(i).getString("Firma");
                 if (ja.getJSONObject(i).has("Movimientos"))
                     movimientos = ja.getJSONObject(i).getJSONArray("Movimientos");
-                /** falta obtener las listas */
-                // TODO
+                if (ja.getJSONObject(i).has("Prestamos"))
+                    movimientos = ja.getJSONObject(i).getJSONArray("Prestamos");
+                if (ja.getJSONObject(i).has("Tarjetas"))
+                    movimientos = ja.getJSONObject(i).getJSONArray("Tarjetas");
 
                 listaCuentas.add(new Cuenta(titularCuenta, numeroCuenta, saldo, firmaDigital, null, null)); // TODO :
                                                                                                             // Comprobar

@@ -13,8 +13,8 @@ public class FachadaSubsCuentas implements IFachadaSubsCuentas {
     }
 
     @Override
-    public boolean bajaCuenta(int numeroCuenta) {
-        return subsCuentas.bajaCuenta(numeroCuenta);
+    public boolean bajaCuenta(Cuenta c) {
+        return subsCuentas.bajaCuenta(c);
     }
 
     @Override
