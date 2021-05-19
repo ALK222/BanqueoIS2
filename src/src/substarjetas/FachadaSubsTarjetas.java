@@ -21,20 +21,20 @@ public class FachadaSubsTarjetas implements IFachadaSubsTarjetas {
     /**
      * Da de baja una tarjeta
      * 
-     * @param num_tarjeta se utiliza para buscar la tarjeta que se tiene que dar de
+     * @param numTarjeta se utiliza para buscar la tarjeta que se tiene que dar de
      *                    baja
      * 
      */
     @Override
-    public boolean bajaTarjeta(int num_tarjeta) {
-        return subsTarjetas.bajaTarjeta(num_tarjeta);
+    public boolean bajaTarjeta(int numTarjeta) {
+        return subsTarjetas.bajaTarjeta(numTarjeta);
     }
 
     /**
      * Consulta la lista de tarjetas
      * 
      * 
-     * @param titular_cuenta se utiliza para consultar las tarjetas de un titular
+     * @param titularCuenta se utiliza para consultar las tarjetas de un titular
      * @param dni            clave primaria, se utiliza para consultar las tarjetas
      *                       de un titular
      * 
@@ -47,13 +47,13 @@ public class FachadaSubsTarjetas implements IFachadaSubsTarjetas {
     /**
      * Busca una tarjeta dentro de la lista
      * 
-     * @param num_tarjeta numero de la tarjeta, que se utiliza como identificador en
+     * @param numTarjeta numero de la tarjeta, que se utiliza como identificador en
      *                    la busqueda
      * 
      */
     @Override
-    public Tarjeta buscaTarjeta(int num_tarjeta) {
-        return subsTarjetas.buscaTarjeta(num_tarjeta);
+    public Tarjeta buscaTarjeta(int numTarjeta) {
+        return subsTarjetas.buscaTarjeta(numTarjeta);
     }
 
     /**

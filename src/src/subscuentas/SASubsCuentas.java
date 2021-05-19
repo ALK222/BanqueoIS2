@@ -24,7 +24,7 @@ public class SASubsCuentas implements ISASubsCuentas {
 	}
 
 	@Override
-	public List<Cuenta> consultarListaCuentas(String titular_cuenta, String dni) {// quitaremos el titular_cuenta
+	public List<Cuenta> consultarListaCuentas(String titularCuenta, String dni) {// quitaremos el titular_cuenta
 		return cuenta.buscarListaCuentas(titular_cuenta, dni);
 	}
 

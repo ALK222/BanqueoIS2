@@ -18,8 +18,8 @@ public class FachadaSubsCuentas implements IFachadaSubsCuentas {
     }
 
     @Override
-    public List<Cuenta> consultarListaCuentas(String titular_cuenta, String dni) {
-        return subsCuentas.consultarListaCuentas(titular_cuenta, dni);
+    public List<Cuenta> consultarListaCuentas(String titularCuenta, String dni) {
+        return subsCuentas.consultarListaCuentas(titularCuenta, dni);
     }
 
     @Override

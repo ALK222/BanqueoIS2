@@ -13,11 +13,11 @@ public interface IFachadaSubsTarjetas {
      */
     boolean altaTarjeta(Tarjeta t);
 
-    boolean bajaTarjeta(int num_tarjeta);
+    boolean bajaTarjeta(int numTarjeta);
 
     List<Tarjeta> consultarListaTarjetas(String dni) throws Exception;
 
-    Tarjeta buscaTarjeta(int num_tarjeta);
+    Tarjeta buscaTarjeta(int numTarjeta);
 
     boolean modificarTarjeta(Tarjeta t);
 

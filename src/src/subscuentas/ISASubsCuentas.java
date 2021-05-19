@@ -10,7 +10,7 @@ public interface ISASubsCuentas {
 
     boolean bajaCuenta(Cuenta c);
 
-    List<Cuenta> consultarListaCuentas(String titular_cuenta, String dni);
+    List<Cuenta> consultarListaCuentas(String titularCuenta, String dni);
 
     Cuenta buscaCuenta(int numeroCuenta);
 

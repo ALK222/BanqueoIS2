@@ -10,11 +10,11 @@ public interface ISASubsPrestamos {
 
     boolean solicitarPrestamo(Cuenta c, Prestamo p) throws IOException;
 
-    boolean cancelarSolicitud(int num_ref_pres)  throws IOException;
+    boolean cancelarSolicitud(int numRef)  throws IOException;
 
     List<Prestamo> consultarListaPrestamos(Cuenta c) throws Exception;
 
-    Prestamo buscarPrestamo(int num_ref_pres) throws Exception;
+    Prestamo buscarPrestamo(int numRef) throws Exception;
 
     boolean modificarPrestamo(Prestamo p)  throws IOException;
 

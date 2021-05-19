@@ -24,8 +24,8 @@ public class FachadaSubsPrestamos implements IFachadaSubsPrestamos {
     }
 
     @Override
-    public boolean cancelarSolicitud(int num_ref_pres) throws IOException {
-        return subsPrestamo.cancelarSolicitud(num_ref_pres);
+    public boolean cancelarSolicitud(int numRef) throws IOException {
+        return subsPrestamo.cancelarSolicitud(numRef);
     }
 
     @Override
@@ -34,8 +34,8 @@ public class FachadaSubsPrestamos implements IFachadaSubsPrestamos {
     }
 
     @Override
-    public Prestamo buscarPrestamo(int num_ref_pres) throws Exception {
-        return subsPrestamo.buscarPrestamo(num_ref_pres);
+    public Prestamo buscarPrestamo(int numRef) throws Exception {
+        return subsPrestamo.buscarPrestamo(numRef);
     }
 
     @Override

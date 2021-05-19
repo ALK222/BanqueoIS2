@@ -29,27 +29,27 @@ public class SASubsTarjetas implements ISASubsTarjetas {
     /**
      * Da de baja una tarjeta
      * 
-     * @param num_tarjeta se utiliza para buscar la tarjeta que se tiene que dar de
+     * @param numTarjeta se utiliza para buscar la tarjeta que se tiene que dar de
      *                    baja
      * 
      */
     @Override
-    public boolean bajaTarjeta(int num_tarjeta) {
+    public boolean bajaTarjeta(int numTarjeta) {
         // TODO : posible tarjeta en vez de num tarjeta sino
 
         /**
-         * for(Tarjeta t : _listaTarjetas){ if(t.getNum_tarjeta() == num_tarjeta){
+         * for(Tarjeta t : _listaTarjetas){ if(t.getNum_tarjeta() == numTarjeta){
          * _listaTarjetas.remove(t); return true; } } return false;
          */
 
-        return tarjeta.bajaTarejeta(num_tarjeta);
+        return tarjeta.bajaTarejeta(numTarjeta);
     }
 
     /**
      * Consulta la lista de tarjetas
      * 
      * 
-     * @param titular_cuenta se utiliza para consultar las tarjetas de un titular
+     * @param titularCuenta se utiliza para consultar las tarjetas de un titular
      * @param dni            clave primaria, se utiliza para consultar las tarjetas
      *                       de un titular
      * 
@@ -63,17 +63,17 @@ public class SASubsTarjetas implements ISASubsTarjetas {
     /**
      * Busca una tarjeta dentro de la lista
      * 
-     * @param num_tarjeta numero de la tarjeta, que se utiliza como identificador en
+     * @param numTarjeta numero de la tarjeta, que se utiliza como identificador en
      *                    la busqueda
      * 
      */
     @Override
-    public Tarjeta buscaTarjeta(int num_tarjeta) {
+    public Tarjeta buscaTarjeta(int numTarjeta) {
         /**
-         * for(Tarjeta t : _listaTarjetas){ if(t.getNum_tarjeta() == num_tarjeta){
+         * for(Tarjeta t : _listaTarjetas){ if(t.getNum_tarjeta() == numTarjeta){
          * return t; } } return null;
          */
-        return tarjeta.buscarTarjeta(num_tarjeta);
+        return tarjeta.buscarTarjeta(numTarjeta);
     }
 
     /**

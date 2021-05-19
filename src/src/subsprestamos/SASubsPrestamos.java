@@ -27,8 +27,8 @@ public class SASubsPrestamos implements ISASubsPrestamos {
     }
 
     @Override
-    public boolean cancelarSolicitud(int num_ref_pres) throws IOException {
-        return prestamo.cancelarSolicitud(num_ref_pres);
+    public boolean cancelarSolicitud(int numRef) throws IOException {
+        return prestamo.cancelarSolicitud(numRef);
     }
 
     @Override
@@ -37,8 +37,8 @@ public class SASubsPrestamos implements ISASubsPrestamos {
     }
 
     @Override
-    public Prestamo buscarPrestamo(int num_ref_pres) throws Exception {
-        return prestamo.buscarPrestamo(num_ref_pres);
+    public Prestamo buscarPrestamo(int numRef) throws Exception {
+        return prestamo.buscarPrestamo(numRef);
     }
 
     @Override
