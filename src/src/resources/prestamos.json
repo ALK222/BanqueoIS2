@@ -1,1 +1,24 @@
-[]
+{
+    "Prestamos": [
+        {
+            "Cantidad_Solicitada": 1000,
+            "Num_Referencia": 13245768,
+            "Plazo_Devolucion": "06/19",
+            "Aval": 100,
+            "Profesion": "Escritor",
+            "Firma_Seguro_Defuncion": "True",
+            "Estado_Prestamo": "ACEPTADO",
+            "Cuenta_Asociada": "0000111122223333f"
+        },
+        {
+            "Cantidad_Solicitada": "2000",
+            "Num_Referencia": "13245709",
+            "Plazo_Devolucion": "30/07",
+            "Aval": "300",
+            "Profesion": "Constructor",
+            "Firma_Seguro_Defuncion": "True",
+            "Estado_Prestamo": "SOLICITADO",
+            "Cuenta_Asociada": "0000111122224444"
+        }
+    ]
+}

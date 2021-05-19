@@ -26,7 +26,7 @@ public class Prestamo {
 	 * @param estadoPrestamo
 	 */
 	public Prestamo(int numReferencia, double cantidadSolicitada, String plazoDevolucion, int aval, String profesion,
-			boolean firmaSeguroDefuncion, EstadoPrestamo estadoPrestamo) {
+			boolean firmaSeguroDefuncion, EstadoPrestamo estadoPrestamo, Cuenta cuentaAsociada) {
 		_numReferencia = numReferencia;
 		_cantidadSolicitada = cantidadSolicitada;
 		_plazoDevolucion = plazoDevolucion;
@@ -34,6 +34,11 @@ public class Prestamo {
 		_profesion = profesion;
 		_firmaSeguroDefuncion = firmaSeguroDefuncion;
 		_estadoPrestamo = estadoPrestamo;
+		_cuentaAsociada = cuentaAsociada;
+	}
+
+	public Cuenta getCuentaAsociada() {
+		return _cuentaAsociada;
 	}
 
 	public int getNumReferencia() {
@@ -76,19 +81,19 @@ public class Prestamo {
 		_profesion = profesion;
 	}
 
-	public boolean isFirma_seguro_defuncion() {
+	public boolean isFirmaSeguroDefuncion() {
 		return _firmaSeguroDefuncion;
 	}
 
-	public void setFirma_seguro_defuncion(boolean firmaSeguroDefuncion) {
+	public void setFirmaSeguroDefuncion(boolean firmaSeguroDefuncion) {
 		_firmaSeguroDefuncion = firmaSeguroDefuncion;
 	}
 
-	public EstadoPrestamo getEstado_prestamo() {
+	public EstadoPrestamo getEstadoPrestamo() {
 		return _estadoPrestamo;
 	}
 
-	public void setEstado_prestamo(EstadoPrestamo estadoPrestamo) {
+	public void setEstadoPrestamo(EstadoPrestamo estadoPrestamo) {
 		_estadoPrestamo = estadoPrestamo;
 	}
 
