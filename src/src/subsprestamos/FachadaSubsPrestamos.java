@@ -18,13 +18,13 @@ public class FachadaSubsPrestamos implements IFachadaSubsPrestamos {
      */
 
     @Override
-    public boolean solicitarPrestamo(Cuenta c, Prestamo p) {
+    public boolean solicitarPrestamo(Cuenta c, Prestamo p) throws IOException {
         return subsPrestamo.solicitarPrestamo(c, p);
 
     }
 
     @Override
-    public boolean cancelarSolicitud(int num_ref_pres) {
+    public boolean cancelarSolicitud(int num_ref_pres) throws IOException {
         return subsPrestamo.cancelarSolicitud(num_ref_pres);
     }
 
@@ -39,7 +39,7 @@ public class FachadaSubsPrestamos implements IFachadaSubsPrestamos {
     }
 
     @Override
-    public boolean modificarPrestamo(Prestamo p) { // posible bool
+    public boolean modificarPrestamo(Prestamo p) throws IOException { // posible bool
         return subsPrestamo.modificarPrestamo(p);
     }
 
