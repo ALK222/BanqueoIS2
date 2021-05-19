@@ -1,5 +1,6 @@
 package subsprestamos;
 
+import java.io.IOException;
 import java.util.List;
 
 import dominio.Cuenta;
@@ -18,28 +19,28 @@ public class FachadaSubsPrestamos implements IFachadaSubsPrestamos {
      */
 
     @Override
-    public boolean solicitarPrestamo(Cuenta c, Prestamo p) {
+    public boolean solicitarPrestamo(Cuenta c, Prestamo p) throws IOException {
         return subsPrestamo.solicitarPrestamo(c, p);
 
     }
 
     @Override
-    public boolean cancelarSolicitud(int num_ref_pres) {
-        return subsPrestamo.cancelarSolicitud(num_ref_pres);
+    public boolean cancelarSolicitud(int numRef) throws IOException {
+        return subsPrestamo.cancelarSolicitud(numRef);
     }
 
     @Override
-    public List<Prestamo> consultarListaPrestamos(Cuenta c) throws Exception {
-        return subsPrestamo.consultarListaPrestamos(c);
+    public List<Prestamo> consultarListaPrestamos(Cuenta c, List<Prestamo> listaPrestamos) throws Exception {
+        return subsPrestamo.consultarListaPrestamos(c,listaPrestamos);
     }
 
     @Override
-    public Prestamo buscarPrestamo(int num_ref_pres) throws Exception {
-        return subsPrestamo.buscarPrestamo(num_ref_pres);
+    public Prestamo buscarPrestamo(int numRef) throws Exception {
+        return subsPrestamo.buscarPrestamo(numRef);
     }
 
     @Override
-    public boolean modificarPrestamo(Prestamo p) { // posible bool
+    public boolean modificarPrestamo(Prestamo p) throws IOException { // posible bool
         return subsPrestamo.modificarPrestamo(p);
     }
 

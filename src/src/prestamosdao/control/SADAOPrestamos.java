@@ -1,5 +1,7 @@
 package prestamosdao.control;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,70 +16,79 @@ public class SADAOPrestamos implements ISADAOPrestamos {
 
     // ATRIBUTOS
 
-    private List<Prestamo> _listaPrestamos;
-
-    private static final int MAX_PRESTAMOS = 9; // MAXIMO TEMPORAL
+    public static final int MAX_PRESTAMOS = 9; // MAXIMO TEMPORAL
 
     // METODOS
 
     @Override
-    public boolean solicitaPrestamo(Cuenta c, Prestamo p) {
-        int prestamosActuales = consultarListaPrestamos(c).size();
+    public boolean solicitaPrestamo(Cuenta c, Prestamo p) throws IOException {
+        List<Prestamo> listaPrestamos = PrestamoJSON.leerListaPrestamos();
+        int prestamosActuales = consultarListaPrestamos(c, listaPrestamos).size();
 
         if (prestamosActuales <= MAX_PRESTAMOS) {
+            listaPrestamos.add(p);
+            PrestamoJSON.guardarListaPrestamos(listaPrestamos);
             return true;
         }
-
+        // Si no modificamos, no volvemos a guardar
         return false;
     }
 
     @Override
-    public boolean cancelarSolicitud(int numReferencia) {
+    public boolean cancelarSolicitud(int numReferencia) throws IOException {
+        List<Prestamo> listaPrestamos = PrestamoJSON.leerListaPrestamos();
         Prestamo aux = null;
-        for (Prestamo p : _listaPrestamos) {
+        for (Prestamo p : listaPrestamos) {
             if (p.getNumReferencia() == numReferencia) {
-                if (p.getEstado_prestamo() == EstadoPrestamo.SOLICITADO) {
+                if (p.getEstadoPrestamo() == EstadoPrestamo.SOLICITADO) {
                     aux = p;
                 }
             }
         }
 
         if (aux != null) {
-            _listaPrestamos.remove(aux);
+            listaPrestamos.remove(aux);
+            PrestamoJSON.guardarListaPrestamos(listaPrestamos);
             return true;
         }
+        // Si no modificamos, no volvemos a guardar
         return false;
     }
 
     @Override
-    public boolean modificarPrestamo(Prestamo p) {
+    public boolean modificarPrestamo(Prestamo p) throws IOException {
+        List<Prestamo> listaPrestamos = PrestamoJSON.leerListaPrestamos();
         Prestamo aux = null;
-        for (Prestamo pr : _listaPrestamos) {
+        for (Prestamo pr : listaPrestamos) {
             if (pr.getNumReferencia() == pr.getNumReferencia()) {
                 aux = pr;
             }
         }
 
         if (aux != null) {
-            _listaPrestamos.remove(aux);
-            _listaPrestamos.add(p);
+            listaPrestamos.remove(aux);
+            listaPrestamos.add(p);
+            PrestamoJSON.guardarListaPrestamos(listaPrestamos);
             return true;
         }
+        // Si no modificamos, no volvemos a guardar
         return false;
     }
 
     @Override
-    public boolean existePrestamo(int numReferencia) {
-        for (Prestamo prestamo : _listaPrestamos) {
+    public boolean existePrestamo(int numReferencia) throws FileNotFoundException {
+        List<Prestamo> listaPrestamos = PrestamoJSON.leerListaPrestamos();
+        for (Prestamo prestamo : listaPrestamos) {
             if (prestamo.getNumReferencia() == numReferencia) {
                 return true;
             }
         }
+        // No guardamos en ningun momento porque no modificamos
         return false;
     }
 
     @Override
-    public List<Prestamo> consultarListaPrestamos(Cuenta c) {
+    public List<Prestamo> consultarListaPrestamos(Cuenta c, List<Prestamo> listaPrestamos) {
         List<Prestamo> aux = new ArrayList<Prestamo>();
         for (Prestamo prestamo : aux) {
             if (prestamo.esCuentaAsociada(c)) {
@@ -88,8 +99,9 @@ public class SADAOPrestamos implements ISADAOPrestamos {
     }
 
     @Override
-    public Prestamo buscaPrestamo(int numReferencia) {
-        for (Prestamo prestamo : _listaPrestamos) {
+    public Prestamo buscaPrestamo(int numReferencia) throws FileNotFoundException {
+        List<Prestamo> listaPrestamos = PrestamoJSON.leerListaPrestamos();
+        for (Prestamo prestamo : listaPrestamos) {
             if (prestamo.getNumReferencia() == numReferencia) {
                 return prestamo;
             }

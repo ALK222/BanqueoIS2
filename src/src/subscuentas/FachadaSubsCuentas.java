@@ -7,6 +7,10 @@ import dominio.Cuenta;
 public class FachadaSubsCuentas implements IFachadaSubsCuentas {
     ISASubsCuentas subsCuentas;
 
+    public FachadaSubsCuentas() {
+        subsCuentas = new SASubsCuentas();
+    }
+
     @Override
     public boolean altaCuenta(Cuenta c) {
         return subsCuentas.altaCuenta(c);
@@ -18,8 +22,8 @@ public class FachadaSubsCuentas implements IFachadaSubsCuentas {
     }
 
     @Override
-    public List<Cuenta> consultarListaCuentas(String titular_cuenta, String dni) {
-        return subsCuentas.consultarListaCuentas(titular_cuenta, dni);
+    public List<Cuenta> consultarListaCuentas(String titularCuenta, String dni) {
+        return subsCuentas.consultarListaCuentas(titularCuenta, dni);
     }
 
     @Override

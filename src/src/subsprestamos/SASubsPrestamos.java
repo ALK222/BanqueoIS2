@@ -1,5 +1,6 @@
 package subsprestamos;
 
+import java.io.IOException;
 import java.util.List;
 
 import dominio.Cuenta;
@@ -20,28 +21,28 @@ public class SASubsPrestamos implements ISASubsPrestamos {
      */
 
     @Override
-    public boolean solicitarPrestamo(Cuenta c, Prestamo p) {
+    public boolean solicitarPrestamo(Cuenta c, Prestamo p) throws IOException {
         return prestamo.solicitarPrestamo(c, p);
 
     }
 
     @Override
-    public boolean cancelarSolicitud(int num_ref_pres) {
-        return prestamo.cancelarSolicitud(num_ref_pres);
+    public boolean cancelarSolicitud(int numRef) throws IOException {
+        return prestamo.cancelarSolicitud(numRef);
     }
 
     @Override
-    public List<Prestamo> consultarListaPrestamos(Cuenta c) throws Exception {
-        return prestamo.consultarListaPrestamos(c);
+    public List<Prestamo> consultarListaPrestamos(Cuenta c, List<Prestamo> listaPrestamos) throws Exception {
+        return prestamo.consultarListaPrestamos(c, listaPrestamos);
     }
 
     @Override
-    public Prestamo buscarPrestamo(int num_ref_pres) throws Exception {
-        return prestamo.buscarPrestamo(num_ref_pres);
+    public Prestamo buscarPrestamo(int numRef) throws Exception {
+        return prestamo.buscarPrestamo(numRef);
     }
 
     @Override
-    public boolean modificarPrestamo(Prestamo p) { // posible bool
+    public boolean modificarPrestamo(Prestamo p) throws IOException { // posible bool
         return prestamo.modificarPrestamo(p);
     }
 

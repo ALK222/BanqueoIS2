@@ -15,20 +15,22 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import dominio.Cuenta;
 import dominio.EstadoPrestamo;
 import dominio.Prestamo;
+import subscuentas.FachadaSubsCuentas;
+import subscuentas.IFachadaSubsCuentas;
 
-public class PrestamosJSON {
-
+public class PrestamoJSON {
     public static List<Prestamo> leerListaPrestamos() throws FileNotFoundException {
         File testFile = null;
         InputStream in = null;
         try {
-            testFile = new File("../resources/prestamos.json");
+            testFile = new File("src/resources/prestamos.json");
             in = new FileInputStream(testFile);
         } catch (FileNotFoundException e) {
             try {
-                testFile = new File("src/resources/prestamos.json");
+                testFile = new File("resources/prestamos.json");
                 in = new FileInputStream(testFile);
             } catch (FileNotFoundException ex) {
                 throw ex;
@@ -39,22 +41,22 @@ public class PrestamosJSON {
         try {
 
             JSONObject jsonFile = new JSONObject(new JSONTokener(in));
-            JSONArray ja = jsonFile.getJSONArray("cuentas");
+            JSONArray ja = jsonFile.getJSONArray("Prestamos");
 
             for (int i = 0; i < ja.length(); i++) {
-
-                double cantidad = ja.getJSONObject(i).getDouble("Cantidad");
-                int numReferencia = ja.getJSONObject(i).getInt("Numero referencia");
-                String plazo = ja.getJSONObject(i).getString("Plazo");
-                int aval = ja.getJSONObject(i).getInt("Aval");
-                String profesion = ja.getJSONObject(i).getString("Profesion");
-                boolean firma = ja.getJSONObject(i).getBoolean("Firma");
-                String estAux = ja.getJSONObject(i).getString("Estado");
-                EstadoPrestamo estado = EstadoPrestamo.parse(estAux);
-
-                /** TODO faltaria la cuenta asociada */
-                listaPrestamos.add(new Prestamo(numReferencia, cantidad, plazo, aval, profesion, firma, estado));
-
+                JSONObject currentJSONObject = ja.getJSONObject(i);
+                double cantidad = currentJSONObject.getDouble("Cantidad_Solicitada");
+                int numReferencia = currentJSONObject.getInt("Num_Referencia");
+                String plazoDevolucion = currentJSONObject.getString("Plazo_Devolucion");
+                int aval = currentJSONObject.getInt("Aval");
+                String profesion = currentJSONObject.getString("Profesion");
+                boolean firmaSeguroDefuncion = currentJSONObject.getBoolean("Firma_Seguro_Defuncion");
+                String estado = currentJSONObject.getString("Estado_Prestamo");
+                int cuentaAsociada = currentJSONObject.getInt("Cuenta_Asociada");
+                IFachadaSubsCuentas cuenta_aux = new FachadaSubsCuentas();
+                Cuenta c = cuenta_aux.buscaCuenta(cuentaAsociada);
+                listaPrestamos.add(new Prestamo(numReferencia, cantidad, plazoDevolucion, aval, profesion,
+                        firmaSeguroDefuncion, EstadoPrestamo.parse(estado), c));
             }
         } catch (Exception e) {
             throw e;
@@ -62,15 +64,15 @@ public class PrestamosJSON {
         return listaPrestamos;
     }
 
-    public static void guardarListaUsuarios(List<Prestamo> listaPrestamos) throws IOException {
+    public static void guardarListaPrestamos(List<Prestamo> listaPrestamos) throws IOException {
         File testFile = null;
         FileWriter in = null;
         try {
-            testFile = new File("../resources/prestamos.json");
+            testFile = new File("src/resources/prestamos.json");
             in = new FileWriter(testFile);
         } catch (FileNotFoundException e) {
             try {
-                testFile = new File("src/resources/prestamos.json");
+                testFile = new File("resources/prestamos.json");
                 in = new FileWriter(testFile);
             } catch (FileNotFoundException ex) {
                 throw ex;
@@ -79,20 +81,20 @@ public class PrestamosJSON {
         JSONArray ja = new JSONArray();
         for (Prestamo p : listaPrestamos) {
             JSONObject pJson = new JSONObject();
-            pJson.put("Cantidad", p.getCantidadSolicitada());
-            pJson.put("Numero referencia", p.getNumReferencia());
-            pJson.put("Plazo", p.getPlazoDevolucion());
+            pJson.put("Cantidad_Solicitada", p.getCantidadSolicitada());
+            pJson.put("Num_Referencia", p.getNumReferencia());
+            pJson.put("Plazo_Devolucion", p.getPlazoDevolucion());
             pJson.put("Aval", p.getAval());
             pJson.put("Profesion", p.getProfesion());
-            pJson.put("Firma", p.isFirma_seguro_defuncion());
-            pJson.put("Estado", p.getEstado_prestamo());
-            // la cuenta asociada no se pone ? TODO
+            pJson.put("Firma_Seguro_Defuncion", p.isFirmaSeguroDefuncion());
+            pJson.put("Estado_Prestamo", p.getEstadoPrestamo().toString());
+            pJson.put("Cuenta_Asociada", p.getCuentaAsociada().getNumeroCuenta());
 
             ja.put(pJson);
 
         }
 
-        in.write("{ \"prestamos\":\n");
+        in.write("{ \"Prestamos\":\n");
         in.write(ja.toString());
         in.write("\n}");
         in.close();
