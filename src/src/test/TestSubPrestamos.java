@@ -66,4 +66,29 @@ public class TestSubPrestamos {
         assertEquals(false, pruebaSolicitud, "Solicitud que debería no ser valida acabada bien");
 
     }
+
+    @Test
+    void testCancelacion() throws IOException {
+        // Cancelar prestamo solicidato
+        Cuenta cuentaAux = new Cuenta("Alejandro Barrachina", 111111111f, 20000f, "AAAA", new ArrayList<Tarjeta>(),
+                new ArrayList<Prestamo>(), new JSONArray());
+
+        Prestamo p = new Prestamo(111111, 200f, "9/2020", 100, "Informatico", true, EstadoPrestamo.SOLICITADO,
+                cuentaAux);
+
+        boolean pruebaSolicitud = _testPrestamos.solicitarPrestamo(cuentaAux, p);
+        assertEquals(true, pruebaSolicitud, "Solicitud que debería ser valida acabada con error");
+
+        boolean pruebaCancelacion = _testPrestamos.cancelarSolicitud(p.getNumReferencia());
+        assertEquals(true, pruebaCancelacion, "Cancelacion que debería ser valida acabada con error");
+
+        p.setEstadoPrestamo(EstadoPrestamo.ACEPTADO);
+        boolean pruebaCancelacion2 = _testPrestamos.cancelarSolicitud(p.getNumReferencia());
+        assertEquals(false, pruebaCancelacion2, "Cancelacion que debería no ser valida acabada bien");
+
+        p = null;
+        boolean pruebaCancelacion3 = _testPrestamos.cancelarSolicitud(p.getNumReferencia());
+        assertEquals(false, pruebaCancelacion3, "Cancelacion que debería no ser valida acabada bien");
+    }
+
 }

@@ -10,6 +10,10 @@ public class FachadaDAOCuentas implements IFachadaDAOCuentas {
 
     private ISADAOCuenta daoCuen;
 
+    public FachadaDAOCuentas() {
+        daoCuen = new SADAOCuentas();
+    }
+
     @Override
     public boolean altaCuenta(Cuenta c) {
         return daoCuen.altaCuenta(c);
