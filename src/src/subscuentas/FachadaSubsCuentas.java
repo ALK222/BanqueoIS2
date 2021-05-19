@@ -7,6 +7,10 @@ import dominio.Cuenta;
 public class FachadaSubsCuentas implements IFachadaSubsCuentas {
     ISASubsCuentas subsCuentas;
 
+    public FachadaSubsCuentas() {
+        subsCuentas = new SASubsCuentas();
+    }
+
     @Override
     public boolean altaCuenta(Cuenta c) {
         return subsCuentas.altaCuenta(c);

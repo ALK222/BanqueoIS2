@@ -2,6 +2,7 @@ package subscuentas;
 
 import java.util.List;
 
+import cuentadao.control.FachadaDAOCuentas;
 import cuentadao.control.IFachadaDAOCuentas;
 import dominio.Cuenta;
 import dominio.Persona;
@@ -10,6 +11,10 @@ public class SASubsCuentas implements ISASubsCuentas {
 	List<Cuenta> _listaCuentas;
 	List<Persona> _listaPersonas;
 	IFachadaDAOCuentas cuenta;
+
+	public SASubsCuentas() {
+		cuenta = new FachadaDAOCuentas();
+	}
 
 	@Override
 	public boolean altaCuenta(Cuenta c) {
@@ -25,7 +30,7 @@ public class SASubsCuentas implements ISASubsCuentas {
 
 	@Override
 	public List<Cuenta> consultarListaCuentas(String titularCuenta, String dni) {// quitaremos el titular_cuenta
-		return cuenta.buscarListaCuentas(titular_cuenta, dni);
+		return cuenta.buscarListaCuentas(titularCuenta, dni);
 	}
 
 	@Override
