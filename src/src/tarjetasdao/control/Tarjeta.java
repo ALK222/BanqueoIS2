@@ -1,4 +1,4 @@
-package dominio;
+package tarjetasdao.control;
 
 public class Tarjeta {
 
@@ -10,7 +10,7 @@ public class Tarjeta {
 	private TipoTarjeta _tipoTarjeta;
 	private String _dni; 
 
-	public Tarjeta(String titular, int pin, boolean estado, int numTarjeta, String fechaCad, TipoTarjeta tipoTarjeta,String dni) {
+	public Tarjeta(String titular, int pin, boolean estado, int numTarjeta, String fechaCad, TipoTarjeta tipoTarjeta, String dni) {
 		this._titular = titular;
 		this._pin = pin;
 		this._estado = estado;
@@ -26,14 +26,6 @@ public class Tarjeta {
 
 	public void setTitular(String titular) {
 		this._titular = titular;
-	}
-
-	public String get_dni() {
-		return _dni;
-	}
-
-	public void set_dni(String _dni) {
-		this._dni = _dni;
 	}
 
 	public int getPin() {
@@ -72,10 +64,18 @@ public class Tarjeta {
 		return _tipoTarjeta;
 	}
 
+	public String get_dni() {
+		return _dni;
+	}
+
+	public void set_dni(String _dni) {
+		this._dni = _dni;
+	}
+
 	public void setTipo_tarjeta(TipoTarjeta tipoTarjeta) {
 		this._tipoTarjeta = tipoTarjeta;
 	}
-
+	
 	public int compareTo(Tarjeta t) {
 		if (_numTarjeta == t._numTarjeta) {
 			return 0;

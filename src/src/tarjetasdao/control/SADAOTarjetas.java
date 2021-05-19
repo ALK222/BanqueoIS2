@@ -1,5 +1,6 @@
 package tarjetasdao.control;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,29 +8,35 @@ import dominio.Tarjeta;
 
 public class SADAOTarjetas implements ISADAOTarjetas {
 
-	private List<Tarjeta> _listaTarjetas;
 
 	@Override
-	public boolean altaTarjeta(Tarjeta t) { // Se ha cambiado de Tarjeta a boolean
-		return _listaTarjetas.contains(t) ? false : _listaTarjetas.add(t);
+	public boolean altaTarjeta(Tarjeta t) throws IOException{ // Se ha cambiado de Tarjeta a boolean
+		List<Tarjeta> listaTarjetas = TarjetasJSON.leerListaTarjetas(); 
+		boolean ok = listaTarjetas.contains(t) ? false : listaTarjetas.add(t);
+		TarjetasJSON.guardarListaUsuarios(listaTarjetas);
+		return ok; 
 	}
 
 	@Override
-	public boolean bajaTarejeta(int num_tarjeta) {
-		for (Tarjeta t : _listaTarjetas) {
-			if (t.getNum_tarjeta() == num_tarjeta) {
-				_listaTarjetas.remove(t);
-				return true;
-			}
+	public boolean bajaTarjeta(int num_tarjeta) throws IOException{
+		Tarjeta t = null; 
+		List<Tarjeta> listaTarjetas = TarjetasJSON.leerListaTarjetas(); 
+		int i = 0; 
+		while(t == null && i < listaTarjetas.size()){
+			if(num_tarjeta == listaTarjetas.get(i).getNum_tarjeta()) t = listaTarjetas.get(i); 
+			++i; 
 		}
-		return false;
+       boolean ok = t != null ? listaTarjetas.remove(t) : false;  
+	   TarjetasJSON.guardarListaUsuarios(listaTarjetas);
+        return ok;
 	}
 
 	@Override
 	public List<Tarjeta> consultarListaTarjetas(String dni) throws Exception {
+		List<Tarjeta> listaTarjetas = TarjetasJSON.leerListaTarjetas(); 
 		List<Tarjeta> listaAux = new ArrayList<Tarjeta>();
-		for (Tarjeta t : _listaTarjetas) {
-			if (t.getTitular().equals(dni)) {
+		for (Tarjeta t : listaTarjetas) {
+			if (t.get_dni().equals(dni)) {
 				listaAux.add(t);
 			}
 		}
@@ -40,30 +47,37 @@ public class SADAOTarjetas implements ISADAOTarjetas {
 	}
 
 	@Override
-	public Tarjeta buscarTarjeta(int num_tarjeta) {
-		for (Tarjeta t : _listaTarjetas) {
-			if (t.getNum_tarjeta() == num_tarjeta) {
-				return t;
+	public Tarjeta buscarTarjeta(int num_tarjeta) throws IOException {
+		List<Tarjeta> listaTarjetas = TarjetasJSON.leerListaTarjetas(); 
+		try{
+			for(Tarjeta t : listaTarjetas){
+				if(t.getNum_tarjeta() == num_tarjeta) return t; 
 			}
+		}catch(Exception e){
+			throw e; 
 		}
-		return null;
+		TarjetasJSON.guardarListaUsuarios(listaTarjetas);
+		return null; 
 	}
 
 	@Override
-	public boolean modificarTarjeta(Tarjeta t) { // Posible bool
+	public boolean modificarTarjeta(Tarjeta t) throws IOException{ // Posible bool
+		List<Tarjeta> listaTarjetas = TarjetasJSON.leerListaTarjetas(); 
 		boolean conseguido = false;
-		for (Tarjeta tarjeta : _listaTarjetas) {
+		for (Tarjeta tarjeta : listaTarjetas) {
 			if (tarjeta.compareTo(t) == 0) {
 				tarjeta = t;
 				conseguido = true;
 			}
 		}
+		TarjetasJSON.guardarListaUsuarios(listaTarjetas);
 		return conseguido;
 	}
 
 	@Override
-	public boolean existeTarjeta(int num_tarjeta) {
-		for (Tarjeta t : _listaTarjetas) {
+	public boolean existeTarjeta(int num_tarjeta) throws IOException {
+		List<Tarjeta> listaTarjetas = TarjetasJSON.leerListaTarjetas(); 
+		for (Tarjeta t : listaTarjetas) {
 			if (t.getNum_tarjeta() == num_tarjeta) {
 				return true;
 			}
