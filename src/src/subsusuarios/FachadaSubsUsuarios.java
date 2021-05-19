@@ -14,39 +14,39 @@ public class FachadaSubsUsuarios implements IFachadaSubsUsuarios {
     }
 
     @Override
-    public boolean altaUsuario(Persona p) throws IOException, UserException {
+    public int altaUsuario(Persona p) throws IOException, UserException {
         return subsUsuario.altaUsuario(p);
 
     }
 
     @Override
-    public boolean bajaUsuario(Persona p) throws UserException, IOException {
+    public int bajaUsuario(Persona p) throws UserException, IOException {
 
         return subsUsuario.bajaUsuario(p);
     }
 
     @Override
-    public List<Persona> consultarListaUsuarios(String domicilio, String modo) throws UserException, IOException {
+    public int consultarListaUsuarios(String domicilio, String modo) throws IOException {
         return subsUsuario.consultarListaUsuarios(domicilio, modo);
     }
 
     @Override
-    public Persona buscarUsuario(String dni) throws UserException, IOException {
+    public int buscarUsuario(String dni) throws IOException {
         return subsUsuario.buscarUsuario(dni);
     }
 
     @Override
-    public boolean modificarUsuario(Persona p) throws UserException, IOException { // posible bool
+    public int modificarUsuario(Persona p) throws IOException { // posible bool
         return subsUsuario.modificarUsuario(p);
     }
 
     @Override
-    public boolean iniciarSesion(String dni, String contrasena) throws UserException, IOException {
+    public int iniciarSesion(String dni, String contrasena) throws IOException {
         return subsUsuario.iniciarSesion(dni, contrasena);
     }
 
     @Override
-    public boolean cerrarSesion() {
+    public int cerrarSesion() {
         return subsUsuario.cerrarSesion();
     }
 

@@ -16,7 +16,7 @@ public interface ISASubsUsuarios {
      * @throws IOException
      * @throws UserException
      */
-    boolean altaUsuario(Persona p) throws IOException, UserException;
+    int altaUsuario(Persona p) throws IOException;
 
     /**
      * Baja de un usuario de la base de datos
@@ -26,7 +26,7 @@ public interface ISASubsUsuarios {
      * @throws IOException
      * @throws UserException
      */
-    boolean bajaUsuario(Persona p) throws UserException, IOException;
+    int bajaUsuario(Persona p) throws IOException;
 
     /**
      * Consulta la lista de usuarios para obtener solo los que cumplan los
@@ -38,7 +38,7 @@ public interface ISASubsUsuarios {
      * @throws UserException Si el modo no es valido
      * @throws IOException
      */
-    List<Persona> consultarListaUsuarios(String domicilio, String modo) throws UserException, IOException;
+    int consultarListaUsuarios(String domicilio, String modo) throws IOException;
 
     /**
      * Busca un usuario en la base de datos
@@ -48,7 +48,7 @@ public interface ISASubsUsuarios {
      * @throws UserException Si el DNI no es valido
      * @throws IOException
      */
-    Persona buscarUsuario(String dni) throws UserException, IOException;
+    int buscarUsuario(String dni) throws UserException, IOException;
 
     /**
      * Modifica un usuario en la base de datos
@@ -58,7 +58,7 @@ public interface ISASubsUsuarios {
      * @throws IOException
      * @throws UserException
      */
-    boolean modificarUsuario(Persona p) throws UserException, IOException;
+    int modificarUsuario(Persona p) throws UserException, IOException;
 
     /**
      * Determina si un usuario existe o no
@@ -68,12 +68,12 @@ public interface ISASubsUsuarios {
      * @throws IOException
      * @throws UserException
      */
-    boolean iniciarSesion(String dni, String contrasena) throws UserException, IOException;
+    int iniciarSesion(String dni, String contrasena) throws UserException, IOException;
 
     /**
      * Cierra la sesión del usuario actual
      * 
      * @return Si el usuario ha podido cerrar sesión
      */
-    boolean cerrarSesion();
+    int cerrarSesion();
 }
