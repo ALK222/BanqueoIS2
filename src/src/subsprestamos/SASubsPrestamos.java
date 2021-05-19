@@ -32,8 +32,8 @@ public class SASubsPrestamos implements ISASubsPrestamos {
     }
 
     @Override
-    public List<Prestamo> consultarListaPrestamos(Cuenta c) throws Exception {
-        return prestamo.consultarListaPrestamos(c);
+    public List<Prestamo> consultarListaPrestamos(Cuenta c, List<Prestamo> listaPrestamos) throws Exception {
+        return prestamo.consultarListaPrestamos(c, listaPrestamos);
     }
 
     @Override

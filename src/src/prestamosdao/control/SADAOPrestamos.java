@@ -16,7 +16,7 @@ public class SADAOPrestamos implements ISADAOPrestamos {
 
     // ATRIBUTOS
 
-    private static final int MAX_PRESTAMOS = 9; // MAXIMO TEMPORAL
+    public static final int MAX_PRESTAMOS = 9; // MAXIMO TEMPORAL
 
     // METODOS
 

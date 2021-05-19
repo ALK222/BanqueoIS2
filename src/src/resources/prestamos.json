@@ -8,7 +8,7 @@
             "Profesion": "Escritor",
             "Firma_Seguro_Defuncion": "True",
             "Estado_Prestamo": "ACEPTADO",
-            "Cuenta_Asociada": "0000111122223333f"
+            "Cuenta_Asociada": "223333"
         },
         {
             "Cantidad_Solicitada": "2000",
@@ -18,7 +18,7 @@
             "Profesion": "Constructor",
             "Firma_Seguro_Defuncion": "True",
             "Estado_Prestamo": "SOLICITADO",
-            "Cuenta_Asociada": "0000111122224444"
+            "Cuenta_Asociada": "12224444"
         }
     ]
 }

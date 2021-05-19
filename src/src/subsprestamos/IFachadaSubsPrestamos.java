@@ -1,5 +1,6 @@
 package subsprestamos;
 
+import java.io.IOException;
 import java.util.List;
 
 import dominio.Cuenta;
@@ -11,7 +12,7 @@ public interface IFachadaSubsPrestamos {
 
     boolean cancelarSolicitud(int numRef) throws IOException;
 
-    List<Prestamo> consultarListaPrestamos(Cuenta c) throws Exception;
+    List<Prestamo> consultarListaPrestamos(Cuenta c, List<Prestamo> listaPrestamos) throws Exception;
 
     Prestamo buscarPrestamo(int numRef) throws Exception;
 

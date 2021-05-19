@@ -1,5 +1,6 @@
 package subsprestamos;
 
+import java.io.IOException;
 import java.util.List;
 
 import dominio.Cuenta;
@@ -29,8 +30,8 @@ public class FachadaSubsPrestamos implements IFachadaSubsPrestamos {
     }
 
     @Override
-    public List<Prestamo> consultarListaPrestamos(Cuenta c) throws Exception {
-        return subsPrestamo.consultarListaPrestamos(c);
+    public List<Prestamo> consultarListaPrestamos(Cuenta c, List<Prestamo> listaPrestamos) throws Exception {
+        return subsPrestamo.consultarListaPrestamos(c,listaPrestamos);
     }
 
     @Override
