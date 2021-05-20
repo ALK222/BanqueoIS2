@@ -1,9 +1,7 @@
 package subsusuarios;
 
 import java.io.IOException;
-import java.util.List;
 
-import common.exception.UserException;
 import dominio.Persona;
 import usuariosdao.control.FachadaDAOUsuarios;
 import usuariosdao.control.IFachadaDAOUsuarios;
