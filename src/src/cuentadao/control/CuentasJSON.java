@@ -47,9 +47,9 @@ public class CuentasJSON {
 
                 String titularCuenta = ja.getJSONObject(i).getString("Titular");
                 String dni = ja.getJSONObject(i).getString("DNI");
-                int numeroCuenta = ja.getJSONObject(i).getInt("Numero");
+                int numeroCuenta = ja.getJSONObject(i).getInt("Numero_Cuenta");
                 double saldo = ja.getJSONObject(i).getDouble("Saldo");
-                String firmaDigital = ja.getJSONObject(i).getString("Firma");
+                String firmaDigital = ja.getJSONObject(i).getString("Firma_Digital");
                 if (ja.getJSONObject(i).has("Movimientos")) {
                     movimientos = ja.getJSONObject(i).getJSONArray("Movimientos");
                 }
@@ -79,10 +79,11 @@ public class CuentasJSON {
         JSONArray ja = new JSONArray();
         for (Cuenta c : listaCuentas) {
             JSONObject cJson = new JSONObject();
-            cJson.put("Titular", c.getTitularCuenta());
-            cJson.put("Numero", c.getNumeroCuenta());
+            cJson.put("Titular", c.getTitularCuenta().getFirst());
+            cJson.put("DNI", c.getTitularCuenta().getSecond());
+            cJson.put("Numero_Cuenta", c.getNumeroCuenta());
             cJson.put("Saldo", c.getSaldo());
-            cJson.put("Firma", c.getFirmaDigital());
+            cJson.put("Firma_Digital", c.getFirmaDigital());
             cJson.put("Movimientos", c.getMovimientos());
 
             ja.put(cJson);

@@ -43,17 +43,16 @@ class TestSubCuentas {
 	@Test
 	void testAlta() {
 		System.out.println("Test de las funciones de alta");
-		double numeroCuenta = 0000222211113333f;
+		int numeroCuenta = 111222333;
 		// ALTA DE CUENTA FUNCIONAL
-		Cuenta c = new Cuenta("Jesus Abajo Magro", numeroCuenta, 2000, "AA", new ArrayList<Tarjeta>(),
-				new ArrayList<Prestamo>(), new JSONArray());
+		Cuenta c = new Cuenta("Jesus Abajo Magro", "12345678B", numeroCuenta, 2000, "AA", new JSONArray());
 
-		boolean pruebaAlta1 = _testCuenta.altaCuenta(c);
-		assertEquals(true, pruebaAlta1, "Alta que debería ser valida acabada con error");
+		int pruebaAlta1 = _testCuenta.altaCuenta(c);
+		assertEquals(0, pruebaAlta1, "Alta que debería ser valida acabada con error");
 
 		// ALTA DE UN CUENTA EXISTENTE
-		boolean pruebaAlta2 = _testCuenta.altaCuenta(c);
-		assertEquals(false, pruebaAlta2, "Alta que debería no ser valida igualmente mete al usuario");
+		int pruebaAlta2 = _testCuenta.altaCuenta(c);
+		assertEquals(1, pruebaAlta2, "Alta que debería no ser valida igualmente mete al usuario");
 	}
 
 	@Test
