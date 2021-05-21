@@ -1,6 +1,5 @@
 package dominio;
 
-import java.util.List;
 import java.util.Objects;
 
 import org.json.JSONArray;
@@ -12,17 +11,12 @@ public class Cuenta {
 	private double _saldo;
 	private String _firmaDigital;
 	private JSONArray _movimientos;
-	private List<Tarjeta> _listaTarjetas;
-	private List<Prestamo> _listaPrestamos;
 
-	public Cuenta(String titularCuenta, double numeroCuenta, double saldo, String firmaDigital,
-			List<Tarjeta> listaTarjetas, List<Prestamo> listaPrestamos, JSONArray movimientos) {
+	public Cuenta(String titularCuenta, double numeroCuenta, double saldo, String firmaDigital, JSONArray movimientos) {
 		_titularCuenta = titularCuenta;
 		_numeroCuenta = numeroCuenta;
 		_saldo = saldo;
 		_firmaDigital = firmaDigital;
-		_listaTarjetas = listaTarjetas;
-		_listaPrestamos = listaPrestamos;
 		_movimientos = movimientos;
 	}
 
@@ -59,28 +53,12 @@ public class Cuenta {
 		this._firmaDigital = firmaDigital;
 	}
 
-	public List<Tarjeta> getListaTarjetas() {
-		return _listaTarjetas;
-	}
-
-	public void setListaTarjetas(List<Tarjeta> listaTarjetas) {
-		this._listaTarjetas = listaTarjetas;
-	}
-
-	public List<Prestamo> getListaPrestamos() {
-		return _listaPrestamos;
-	}
-
-	public void setListaPrestamos(List<Prestamo> listaPrestamos) {
-		this._listaPrestamos = listaPrestamos;
-	}
-
 	public JSONArray getMovimientos() {
 		return _movimientos;
 	}
 
 	public void setMovimientos(JSONArray movimientos) {
-		this._movimientos = movimientos;
+		_movimientos = movimientos;
 	}
 
 	public boolean equals(Object o) {
@@ -95,10 +73,7 @@ public class Cuenta {
 		}
 		Cuenta c = (Cuenta) o;
 		return Objects.equals(_numeroCuenta, c.getNumeroCuenta()) && Objects.equals(_firmaDigital, c.getFirmaDigital())
-				&& Objects.equals(_listaPrestamos, c.getFirmaDigital())
-				&& Objects.equals(_listaTarjetas, c.getListaTarjetas())
-				&& Objects.equals(_movimientos, c.getMovimientos()) && Objects.equals(_saldo, c.getSaldo())
-				&& Objects.equals(_titularCuenta, c.getTitularCuenta());
+				&& Objects.equals(_saldo, c.getSaldo()) && Objects.equals(_titularCuenta, c.getTitularCuenta());
 
 	}
 
