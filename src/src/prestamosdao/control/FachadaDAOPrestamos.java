@@ -15,6 +15,10 @@ public class FachadaDAOPrestamos implements IFachadaDAOPrestamos {
     // ATRIBUTOS
     private ISADAOPrestamos daoPrest;
 
+    public FachadaDAOPrestamos() {
+        daoPrest = new SADAOPrestamos();
+    }
+
     @Override
     public boolean solicitarPrestamo(Cuenta c, Prestamo p) throws FileNotFoundException, IOException {
         return daoPrest.solicitaPrestamo(c, p);

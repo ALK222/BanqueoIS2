@@ -24,11 +24,11 @@ public class CuentasJSON {
         InputStream in = null;
 
         try {
-            testFile = new File("src/resources/cuentas.json");
+            testFile = new File(System.getProperty("user.dir") + "/src/resources/cuentas.json");
             in = new FileInputStream(testFile);
         } catch (FileNotFoundException e) {
             try {
-                testFile = new File("resources/cuentas.json");
+                testFile = new File("./resources/cuentas.json");
                 in = new FileInputStream(testFile);
             } catch (FileNotFoundException ex) {
                 throw ex;
@@ -66,11 +66,11 @@ public class CuentasJSON {
         File testFile = null;
         FileWriter in = null;
         try {
-            testFile = new File("../resources/cuentas.json");
+            testFile = new File(System.getProperty("user.dir") + "/src/resources/cuentas.json");
             in = new FileWriter(testFile);
         } catch (FileNotFoundException e) {
             try {
-                testFile = new File("src/resources/cuentas.json");
+                testFile = new File("./resources/cuentas.json");
                 in = new FileWriter(testFile);
             } catch (FileNotFoundException ex) {
                 throw ex;

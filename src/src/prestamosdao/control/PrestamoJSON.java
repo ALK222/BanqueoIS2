@@ -26,11 +26,11 @@ public class PrestamoJSON {
         File testFile = null;
         InputStream in = null;
         try {
-            testFile = new File("src/resources/prestamos.json");
+            testFile = new File(System.getProperty("user.dir") + "/src/resources/prestamos.json");
             in = new FileInputStream(testFile);
         } catch (FileNotFoundException e) {
             try {
-                testFile = new File("resources/prestamos.json");
+                testFile = new File("./prestamos.json");
                 in = new FileInputStream(testFile);
             } catch (FileNotFoundException ex) {
                 throw ex;
@@ -54,7 +54,7 @@ public class PrestamoJSON {
                 String estado = currentJSONObject.getString("Estado_Prestamo");
                 int cuentaAsociada = currentJSONObject.getInt("Cuenta_Asociada");
                 IFachadaSubsCuentas cuenta_aux = new FachadaSubsCuentas();
-                Cuenta c = cuenta_aux.buscaCuenta(cuentaAsociada);
+                Cuenta c = cuenta_aux.buscaCuenta(cuentaAsociada).getFirst();
                 listaPrestamos.add(new Prestamo(numReferencia, cantidad, plazoDevolucion, aval, profesion,
                         firmaSeguroDefuncion, EstadoPrestamo.parse(estado), c));
             }
