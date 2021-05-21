@@ -47,8 +47,7 @@ public class TestSubPrestamos {
 
     @Test
     void testSolicitudPrestamo() throws IOException {
-        Cuenta cuentaAux = new Cuenta("Alejandro Barrachina", 111111111f, 20000f, "AAAA", new ArrayList<Tarjeta>(),
-                new ArrayList<Prestamo>(), new JSONArray());
+        Cuenta cuentaAux = new Cuenta("Alejandro Barrachina", 111111111f, 20000f, "AAAA", new JSONArray());
 
         for (int i = 0; i < SADAOPrestamos.MAX_PRESTAMOS; ++i) {
             int numRef = 2000000;

@@ -12,9 +12,6 @@ import dominio.Persona;
 
 public class SADAOCuentas implements ISADAOCuenta {
 
-    private List<Cuenta> _listaCuentas;
-    private List<Persona> _listaUsuarios;
-
     @Override
     public boolean altaCuenta(Cuenta c) {
         return _listaCuentas.contains(c) ? false : _listaCuentas.add(c);

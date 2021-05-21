@@ -3,6 +3,7 @@ package subsprestamos;
 import java.io.IOException;
 import java.util.List;
 
+import common.misc.Pair;
 import dominio.Cuenta;
 import dominio.Prestamo;
 
@@ -13,34 +14,30 @@ public class FachadaSubsPrestamos implements IFachadaSubsPrestamos {
         subsPrestamo = new SASubsPrestamos();
     }
 
-    /*
-     * public FachadaSubsPrestamos(List<Prestamo> listaPrestamos) { subsPrestamo =
-     * new SASubsPrestamos(listaPrestamos); }
-     */
-
     @Override
-    public boolean solicitarPrestamo(Cuenta c, Prestamo p) throws IOException {
+    public int solicitarPrestamo(Cuenta c, Prestamo p) throws IOException {
         return subsPrestamo.solicitarPrestamo(c, p);
 
     }
 
     @Override
-    public boolean cancelarSolicitud(int numRef) throws IOException {
+    public int cancelarSolicitud(int numRef) throws IOException {
         return subsPrestamo.cancelarSolicitud(numRef);
     }
 
     @Override
-    public List<Prestamo> consultarListaPrestamos(Cuenta c, List<Prestamo> listaPrestamos) throws Exception {
-        return subsPrestamo.consultarListaPrestamos(c,listaPrestamos);
+    public Pair<List<Prestamo>, Integer> consultarListaPrestamos(Cuenta c, List<Prestamo> listaPrestamos)
+            throws Exception {
+        return subsPrestamo.consultarListaPrestamos(c, listaPrestamos);
     }
 
     @Override
-    public Prestamo buscarPrestamo(int numRef) throws Exception {
+    public Pair<Prestamo, Integer> buscarPrestamo(int numRef) throws Exception {
         return subsPrestamo.buscarPrestamo(numRef);
     }
 
     @Override
-    public boolean modificarPrestamo(Prestamo p) throws IOException { // posible bool
+    public int modificarPrestamo(Prestamo p) throws IOException {
         return subsPrestamo.modificarPrestamo(p);
     }
 

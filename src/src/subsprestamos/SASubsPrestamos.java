@@ -1,8 +1,10 @@
 package subsprestamos;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
+import common.misc.Pair;
 import dominio.Cuenta;
 import dominio.Prestamo;
 import prestamosdao.control.FachadaDAOPrestamos;
@@ -15,35 +17,62 @@ public class SASubsPrestamos implements ISASubsPrestamos {
         prestamo = new FachadaDAOPrestamos();
     }
 
-    /*
-     * public SASubsPrestamos(List<Prestamo> listaPrestamos) { prestamo = new
-     * FachadaDAOPrestamos(listaPrestamos); }
-     */
-
     @Override
-    public boolean solicitarPrestamo(Cuenta c, Prestamo p) throws IOException {
-        return prestamo.solicitarPrestamo(c, p);
+    public int solicitarPrestamo(Cuenta c, Prestamo p) {
+        try {
+            if (prestamo.solicitarPrestamo(c, p)) {
+                return 0;
+            } else {
+                return 1;
+            }
+        } catch (IOException e) {
+            return 10;
+        }
 
     }
 
     @Override
-    public boolean cancelarSolicitud(int numRef) throws IOException {
-        return prestamo.cancelarSolicitud(numRef);
+    public int cancelarSolicitud(int numRef) {
+        try {
+            if (prestamo.cancelarSolicitud(numRef)) {
+                return 0;
+            } else {
+                return 1;
+            }
+        } catch (IOException e) {
+            return 10;
+        }
     }
 
     @Override
-    public List<Prestamo> consultarListaPrestamos(Cuenta c, List<Prestamo> listaPrestamos) throws Exception {
-        return prestamo.consultarListaPrestamos(c, listaPrestamos);
+    public Pair<List<Prestamo>, Integer> consultarListaPrestamos(Cuenta c, List<Prestamo> listaPrestamos) {
+        List<Prestamo> listaPrestamosBuscados = prestamo.consultarListaPrestamos(c, listaPrestamos);
+        if (listaPrestamosBuscados != null) {
+            return new Pair<List<Prestamo>, Integer>(listaPrestamosBuscados, 0);
+        }
+        return new Pair<List<Prestamo>, Integer>(null, 1);
     }
 
     @Override
-    public Prestamo buscarPrestamo(int numRef) throws Exception {
-        return prestamo.buscarPrestamo(numRef);
+    public Pair<Prestamo, Integer> buscarPrestamo(int numRef) {
+        try {
+            Prestamo prestamoBuscado = prestamo.buscarPrestamo(numRef);
+            if (prestamoBuscado == null) {
+                return new Pair<>(null, 1);
+            }
+            return new Pair<>(prestamoBuscado, 0);
+        } catch (FileNotFoundException e) {
+            return new Pair<>(null, 10);
+        }
     }
 
     @Override
-    public boolean modificarPrestamo(Prestamo p) throws IOException { // posible bool
-        return prestamo.modificarPrestamo(p);
+    public int modificarPrestamo(Prestamo p) { // posible bool
+        try {
+            return prestamo.modificarPrestamo(p) ? 0 : 1;
+        } catch (IOException e) {
+            return 10;
+        }
     }
 
 }

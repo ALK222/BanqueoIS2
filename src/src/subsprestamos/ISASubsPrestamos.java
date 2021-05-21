@@ -1,21 +1,21 @@
 package subsprestamos;
 
-import java.io.IOException;
 import java.util.List;
 
+import common.misc.Pair;
 import dominio.Cuenta;
 import dominio.Prestamo;
 
 public interface ISASubsPrestamos {
 
-    boolean solicitarPrestamo(Cuenta c, Prestamo p) throws IOException;
+    int solicitarPrestamo(Cuenta c, Prestamo p);
 
-    boolean cancelarSolicitud(int numRef) throws IOException;
+    int cancelarSolicitud(int numRef);
 
-    List<Prestamo> consultarListaPrestamos(Cuenta c, List<Prestamo> listaPrestamos) throws Exception;
+    Pair<List<Prestamo>, Integer> consultarListaPrestamos(Cuenta c, List<Prestamo> listaPrestamos);
 
-    Prestamo buscarPrestamo(int numRef) throws Exception;
+    Pair<Prestamo, Integer> buscarPrestamo(int numRef);
 
-    boolean modificarPrestamo(Prestamo p) throws IOException;
+    int modificarPrestamo(Prestamo p);
 
 }

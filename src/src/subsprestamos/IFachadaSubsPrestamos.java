@@ -3,19 +3,20 @@ package subsprestamos;
 import java.io.IOException;
 import java.util.List;
 
+import common.misc.Pair;
 import dominio.Cuenta;
 import dominio.Prestamo;
 
 public interface IFachadaSubsPrestamos {
 
-    boolean solicitarPrestamo(Cuenta c, Prestamo p) throws IOException;
+    int solicitarPrestamo(Cuenta c, Prestamo p) throws IOException;
 
-    boolean cancelarSolicitud(int numRef) throws IOException;
+    int cancelarSolicitud(int numRef) throws IOException;
 
-    List<Prestamo> consultarListaPrestamos(Cuenta c, List<Prestamo> listaPrestamos) throws Exception;
+    Pair<List<Prestamo>, Integer> consultarListaPrestamos(Cuenta c, List<Prestamo> listaPrestamos) throws Exception;
 
-    Prestamo buscarPrestamo(int numRef) throws Exception;
+    Pair<Prestamo, Integer> buscarPrestamo(int numRef) throws Exception;
 
-    boolean modificarPrestamo(Prestamo p) throws IOException;
+    int modificarPrestamo(Prestamo p) throws IOException;
 
 }
