@@ -24,7 +24,7 @@ public class TarjetasJSON {
         File testFile = null;
         InputStream in = null;
         try {
-            testFile = new File("../resources/tarjetas.json");
+            testFile = new File("resources/tarjetas.json");
             in = new FileInputStream(testFile);
         } catch (FileNotFoundException e) {
             try {
@@ -49,11 +49,11 @@ public class TarjetasJSON {
                 int numTarjeta = ja.getJSONObject(i).getInt("Numero");
                 String fechaCad = ja.getJSONObject(i).getString("Fecha");
                 String tipo = ja.getJSONObject(i).getString("Tipo");
-                String dni = ja.getJSONObject(i).getString("Dni"); 
+                String dni = ja.getJSONObject(i).getString("Dni");
 
                 TipoTarjeta tipoTarjeta = TipoTarjeta.parse(tipo);
 
-                listaTarjetas.add(new Tarjeta(titular, pin, estado, numTarjeta, fechaCad, tipoTarjeta,dni));
+                listaTarjetas.add(new Tarjeta(titular, pin, estado, numTarjeta, fechaCad, tipoTarjeta, dni));
 
             }
         } catch (Exception e) {

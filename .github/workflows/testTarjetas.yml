@@ -18,7 +18,7 @@ jobs:
         run: javac -sourcepath ./src -cp "./lib/*" ./src/test/TestSubTarjetas.java # Path to the main file and source folder
         working-directory: ${{env.working-directory}}
 
-      - name: execute test Usuarios
+      - name: execute test Tarjetas
         if: ${{ success() }} # Only starts if the previous steps worked
         run: java -cp "../lib/*;./*;." org.junit.runner.JUnitCore test.TestSubTarjetas # Path to the .class of main, arguments for the game and the input file
         working-directory: ./src/src
