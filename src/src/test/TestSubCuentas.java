@@ -58,24 +58,22 @@ class TestSubCuentas {
 	@Test
 	void testModificacion() {
 		System.out.println("Test de las funciones de modificación");
-		Cuenta c = new Cuenta("Jesus Abajo Magro", 0000222211113333f, 2000, "AA", new ArrayList<Tarjeta>(),
-				new ArrayList<Prestamo>(), new JSONArray());
+		Cuenta c = new Cuenta("Jesus Abajo Magro", "12345678B", 111222333, 2000, "AA", new JSONArray());
 
-		boolean pruebaAlta1 = _testCuenta.altaCuenta(c);
-		assertEquals(true, pruebaAlta1, "Alta que debería ser valida acabada con error");
+		int pruebaAlta1 = _testCuenta.altaCuenta(c);
+		assertEquals(0, pruebaAlta1, "Alta que debería ser valida acabada con error");
 
 		c.setSaldo(120);
 
 		// MODIFICAR USUARIO FUNCIONAL
-		boolean pruebaMod1 = _testCuenta.modificarCuenta(c);
-		assertEquals(true, pruebaMod1, "Modificacion que debería ser valida provoca error");
+		int pruebaMod1 = _testCuenta.modificarCuenta(c);
+		assertEquals(0, pruebaMod1, "Modificacion que debería ser valida provoca error");
 
-		Cuenta c2 = new Cuenta("Alejandro Diaz Blazquez", 0000222211114444f, 4000, "AA", new ArrayList<Tarjeta>(),
-				new ArrayList<Prestamo>(), new JSONArray());
+		Cuenta c2 = new Cuenta("Alejandro Diaz Blazquez", "12345678C", 111224444, 4000, "AA", new JSONArray());
 
 		// MODIFICAR USUARIO CON ERROR
-		boolean pruebaMod2 = _testCuenta.modificarCuenta(c2);
-		assertEquals(false, pruebaMod2, "Modificacion que no debería ser valida no acaba con error");
+		int pruebaMod2 = _testCuenta.modificarCuenta(c2);
+		assertEquals(1, pruebaMod2, "Modificacion que no debería ser valida no acaba con error");
 
 	}
 
