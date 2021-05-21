@@ -40,8 +40,7 @@ public class FachadaDAOCuentas implements IFachadaDAOCuentas {
     }
 
     @Override
-    public JSONArray getMovimiento(int max_meses) {
-        // return daoCuen.getMovimiento(max_meses);
-        return null;
+    public JSONArray getMovimiento(int maxMeses, Cuenta c) {
+        return daoCuen.getMovimiento(maxMeses, c);
     }
 }

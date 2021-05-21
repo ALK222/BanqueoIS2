@@ -1,9 +1,11 @@
 package cuentadao.control;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import dominio.Cuenta;
 import dominio.Persona;
@@ -83,15 +85,25 @@ public class SADAOCuentas implements ISADAOCuenta {
     }
 
     @Override
-    public JSONArray getMovimiento(int max_meses) { // TODO : mirar como esta estructurado el JSONArray de movimientos,
-                                                    // no tenemos ningun ejemplo
-        /**
-         * JSONObject aux = new JSONObject(); JSONArray arrayMovs = new JSONArray();
-         * for(Cuenta c : _listaCuentas){
-         * 
-         * }
-         */
+    public JSONArray getMovimiento(int maxMeses, Cuenta c) {
+        JSONArray movimientosEnMeses = new JSONArray();
+        for (Object object : c.getMovimientos()) {
+            JSONObject jo = (JSONObject) object;
+            int mesesPasados = Integer.parseInt(jo.getString("fecha").split("-")[1])
+                    * Integer.parseInt(jo.getString("fecha").split("-")[2]);
 
-        return null;
+            if (restaMes(mesesPasados, maxMeses)) {
+                movimientosEnMeses.put(jo);
+            }
+        }
+        return movimientosEnMeses;
+    }
+
+    private boolean restaMes(int mes, int maxMeses) {
+        int currentDate = Calendar.getInstance().get(Calendar.MONTH) * Calendar.getInstance().get(Calendar.YEAR);
+        if (Math.abs(currentDate - mes) < maxMeses) {
+            return true;
+        }
+        return false;
     }
 }

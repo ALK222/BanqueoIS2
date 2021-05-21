@@ -17,5 +17,5 @@ public interface ISADAOCuenta {
 
     boolean modificarCuentas(Cuenta c);
 
-    JSONArray getMovimiento(int max_meses);
+    JSONArray getMovimiento(int maxMeses, Cuenta c);
 }
