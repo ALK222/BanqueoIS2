@@ -46,6 +46,7 @@ public class CuentasJSON {
                 JSONArray movimientos = new JSONArray();
 
                 String titularCuenta = ja.getJSONObject(i).getString("Titular");
+                String dni = ja.getJSONObject(i).getString("DNI");
                 int numeroCuenta = ja.getJSONObject(i).getInt("Numero");
                 double saldo = ja.getJSONObject(i).getDouble("Saldo");
                 String firmaDigital = ja.getJSONObject(i).getString("Firma");
@@ -53,7 +54,7 @@ public class CuentasJSON {
                     movimientos = ja.getJSONObject(i).getJSONArray("Movimientos");
                 }
 
-                listaCuentas.add(new Cuenta(titularCuenta, numeroCuenta, saldo, firmaDigital, movimientos));
+                listaCuentas.add(new Cuenta(titularCuenta, dni, numeroCuenta, saldo, firmaDigital, movimientos));
             }
         } catch (Exception e) {
             throw e;

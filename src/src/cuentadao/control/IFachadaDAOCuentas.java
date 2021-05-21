@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.json.JSONArray;
 
+import common.exception.UserException;
 import dominio.Cuenta;
 
 public interface IFachadaDAOCuentas {
@@ -12,7 +13,7 @@ public interface IFachadaDAOCuentas {
 
     boolean bajaCuenta(Cuenta c) throws IOException;
 
-    List<Cuenta> buscarListaCuentas(String titular_cuenta, String dni) throws IOException;
+    List<Cuenta> buscarListaCuentas(String titular_cuenta, String dni) throws IOException, UserException;
 
     Cuenta consultarCuenta(int num_cuenta) throws IOException;
 

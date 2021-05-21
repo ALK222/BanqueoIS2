@@ -2,6 +2,7 @@
 		"cuentas": [
 			{
 				"Titular": "Federico Garcia Lorca",
+				"DNI": "01234567A",
 				"Numero_Cuenta": "0000111122223333",
 				"Saldo": "10000",
 				"Firma_Digital": "Firma0123",
@@ -16,6 +17,7 @@
 			},
 			{
 				"Titular": "Antonio Machado Ruiz",
+				"DNI": "01234568A",
 				"Numero_Cuenta": "0000111122224444",
 				"Saldo": "25000",
 				"Firma_Digital": "Firma0124",

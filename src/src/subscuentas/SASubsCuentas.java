@@ -3,6 +3,7 @@ package subscuentas;
 import java.io.IOException;
 import java.util.List;
 
+import common.exception.UserException;
 import common.misc.Pair;
 import cuentadao.control.FachadaDAOCuentas;
 import cuentadao.control.IFachadaDAOCuentas;
@@ -20,77 +21,80 @@ public class SASubsCuentas implements ISASubsCuentas {
 
 	@Override
 	public int altaCuenta(Cuenta c) {
-		try{
-			if(cuenta.consultarCuenta(c.getNumeroCuenta()) != null){
-				return 1; 
+		try {
+			if (cuenta.consultarCuenta(c.getNumeroCuenta()) != null) {
+				return 1;
 			} else {
-				cuenta.altaCuenta(c); 
-				return 0; 
+				cuenta.altaCuenta(c);
+				return 0;
 			}
-			
-		}catch(IOException e ){
-			return 10; 
+
+		} catch (IOException e) {
+			return 10;
 		}
 	}
 
 	@Override
 	public int bajaCuenta(Cuenta c) {
-		try{
-			if(cuenta.consultarCuenta(c.getNumeroCuenta()) == null){
-				return 1; 
+		try {
+			if (cuenta.consultarCuenta(c.getNumeroCuenta()) == null) {
+				return 1;
 			} else {
 				cuenta.bajaCuenta(c);
-				return 0; 
+				return 0;
 			}
-			
-		}catch(IOException e ){
-			return 10; 
+
+		} catch (IOException e) {
+			return 10;
 		}
 
 	}
 
 	@Override
-	public Pair<List<Cuenta>,Integer> consultarListaCuentas(String titularCuenta, String dni) {// quitaremos el titular_cuenta
+	public Pair<List<Cuenta>, Integer> consultarListaCuentas(String titularCuenta, String dni) {// quitaremos el
+																								// titular_cuenta
 		try {
-            List<Cuenta> listaAux = cuenta.buscarListaCuentas(titularCuenta, dni);
-            if (listaAux == null) {
-                return new Pair<List<Cuenta>, Integer>(null, 1);
-            } else {
-                return new Pair<List<Cuenta>, Integer>(listaAux, 0);
-            }
+			List<Cuenta> listaAux = cuenta.buscarListaCuentas(titularCuenta, dni);
+			if (listaAux == null) {
+				return new Pair<List<Cuenta>, Integer>(null, 1);
+			} else {
+				return new Pair<List<Cuenta>, Integer>(listaAux, 0);
+			}
 
-        } catch (IOException e) {
-            return new Pair<List<Cuenta>, Integer>(null, 10);
+		} catch (IOException e) {
+			return new Pair<List<Cuenta>, Integer>(null, 10);
+		} catch (UserException e) {
+			return new Pair<List<Cuenta>, Integer>(null, 2);
 		}
 	}
 
 	@Override
 	public int modificarCuenta(Cuenta c) {
 
-		try{
-			if(!cuenta.modificarCuentas(c)){
-				return 1; 
+		try {
+			if (!cuenta.modificarCuentas(c)) {
+				return 1;
 			} else {
-				return 0; 
+				return 0;
 			}
-			
-		}catch(IOException e ){
-			return 10; 
+
+		} catch (IOException e) {
+			return 10;
 		}
 	}
 
 	@Override
 	public int buscaCuenta(int numeroCuenta) {
-		try{
-			if(cuenta.consultarCuenta(numeroCuenta) == null){
-				return 1; 
+		try {
+			if (cuenta.consultarCuenta(numeroCuenta) == null) {
+				return 1;
 			} else {
-				cuenta.consultarCuenta(numeroCuenta); 
-				return 0; 
+				cuenta.consultarCuenta(numeroCuenta);
+				return 0;
 			}
-			
-		} catch(IOException e ){
-			return 10; 
+
+		} catch (IOException e) {
+			return 10;
 		}
 	}
 

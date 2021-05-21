@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.json.JSONArray;
 
+import common.exception.UserException;
 import dominio.Cuenta;
 
 public class FachadaDAOCuentas implements IFachadaDAOCuentas {
@@ -26,7 +27,7 @@ public class FachadaDAOCuentas implements IFachadaDAOCuentas {
     }
 
     @Override
-    public List<Cuenta> buscarListaCuentas(String titular_cuenta, String dni) throws IOException{
+    public List<Cuenta> buscarListaCuentas(String titular_cuenta, String dni) throws IOException, UserException {
         return daoCuen.buscarListaCuentas(titular_cuenta, dni);
     }
 
@@ -36,7 +37,7 @@ public class FachadaDAOCuentas implements IFachadaDAOCuentas {
     }
 
     @Override
-    public boolean modificarCuentas(Cuenta c) throws IOException{
+    public boolean modificarCuentas(Cuenta c) throws IOException {
         return daoCuen.modificarCuentas(c);
     }
 

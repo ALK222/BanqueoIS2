@@ -4,27 +4,30 @@ import java.util.Objects;
 
 import org.json.JSONArray;
 
+import common.misc.Pair;
+
 public class Cuenta {
 
-	private String _titularCuenta;
+	private Pair<String, String> _titularCuenta;
 	private int _numeroCuenta;
 	private double _saldo;
 	private String _firmaDigital;
 	private JSONArray _movimientos;
 
-	public Cuenta(String titularCuenta, int numeroCuenta, double saldo, String firmaDigital, JSONArray movimientos) {
-		_titularCuenta = titularCuenta;
+	public Cuenta(String titularCuenta, String dni, int numeroCuenta, double saldo, String firmaDigital,
+			JSONArray movimientos) {
+		_titularCuenta = new Pair<String, String>(titularCuenta, dni);
 		_numeroCuenta = numeroCuenta;
 		_saldo = saldo;
 		_firmaDigital = firmaDigital;
 		_movimientos = movimientos;
 	}
 
-	public String getTitularCuenta() {
+	public Pair<String, String> getTitularCuenta() {
 		return _titularCuenta;
 	}
 
-	public void setTitularCuenta(String titularCuenta) {
+	public void setTitularCuenta(Pair<String, String> titularCuenta) {
 		this._titularCuenta = titularCuenta;
 	}
 
