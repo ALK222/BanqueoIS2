@@ -1,7 +1,10 @@
 package subsusuarios;
 
 import java.io.IOException;
+import java.util.List;
 
+import common.exception.UserException;
+import common.misc.Pair;
 import dominio.Persona;
 import usuariosdao.control.FachadaDAOUsuarios;
 import usuariosdao.control.IFachadaDAOUsuarios;
@@ -14,7 +17,7 @@ public class SASubsUsuarios implements ISASubsUsuarios {
     }
 
     @Override
-    public int altaUsuario(Persona p) throws IOException {
+    public int altaUsuario(Persona p) {
         try {
             if (usuario.existeUsuario(p.getDni())) {
                 return 1;
@@ -25,78 +28,80 @@ public class SASubsUsuarios implements ISASubsUsuarios {
         } catch (IOException e) {
             return 10;
         }
-        
+
     }
 
     @Override
-    public int bajaUsuario(Persona p) throws IOException { // Posible persona
-        try{
+    public int bajaUsuario(Persona p) {
+        try {
             if (!usuario.existeUsuario(p.getDni())) {
-                 return 1;
-             } else {
+                return 1;
+            } else {
                 usuario.bajaUsuario(p);
                 return 0;
-        }
-        }catch(IOException e){
+            }
+        } catch (IOException e) {
             return 10;
         }
     }
 
     @Override
-    public int consultarListaUsuarios(String domicilio, String modo) throws IOException { // Preguntar
-                                                                                                                   // al
-        // profesor sobre
-        // como
-        // modificar esto
-        try{
-            if(usuario.consultarListaUsuarios(domicilio, modo).equals(null)){
-                return 1;
-            } else{
-                return 0;
+    public Pair<List<Persona>, Integer> consultarListaUsuarios(String domicilio, String modo) {
+        try {
+            List<Persona> listaFiltrada = usuario.consultarListaUsuarios(domicilio, modo);
+            if (listaFiltrada == null) {
+                return new Pair<List<Persona>, Integer>(null, 1);
+            } else {
+                return new Pair<List<Persona>, Integer>(listaFiltrada, 0);
             }
 
-        }catch (IOException e){
-            return 10;
+        } catch (IOException e) {
+            return new Pair<List<Persona>, Integer>(null, 10);
+        } catch (UserException e) {
+            return new Pair<List<Persona>, Integer>(null, 2);
         }
     }
 
     @Override
-    public int buscarUsuario(String dni) throws IOException {
-        try{
-            if(usuario.buscarUsuario(dni).equals(null)){
+    public int buscarUsuario(String dni) {
+        try {
+            if (usuario.buscarUsuario(dni).equals(null)) {
                 return 1;
-            }else {
+            } else {
                 usuario.buscarUsuario(dni);
                 return 0;
-        }
-        }catch(IOException e){
+            }
+        } catch (IOException e) {
             return 10;
+        } catch (UserException e) {
+            return 2;
         }
     }
 
     @Override
-    public int modificarUsuario(Persona p) throws IOException { // posible bool
-        try{
+    public int modificarUsuario(Persona p) {
+        try {
             if (!usuario.modificarUsuario(p)) {
                 return 1;
             } else {
                 return 0;
             }
-        }catch(IOException e){
+        } catch (IOException e) {
             return 10;
         }
     }
 
     @Override
-    public int iniciarSesion(String dni, String contrasena) throws IOException {
+    public Pair<Integer, Boolean> iniciarSesion(String dni, String contrasena) {
         try {
-            if (usuario.iniciarSesion(dni, contrasena)) {
-                return 0;
+            Pair<Boolean, Boolean> inicioSesion = usuario.iniciarSesion(dni, contrasena);
+            if (inicioSesion.getFirst()) {
+                return new Pair<Integer, Boolean>(0, inicioSesion.getSecond());
             } else {
-                return 1;
+                return new Pair<Integer, Boolean>(1, false);
             }
         } catch (IOException e) {
-            return 10;        
+            return new Pair<Integer, Boolean>(10, false);
         }
     }
 

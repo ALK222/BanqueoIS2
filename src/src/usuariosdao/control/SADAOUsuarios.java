@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import common.exception.UserException;
+import common.misc.Pair;
+import dominio.Gestor;
 import dominio.Persona;
 
 /**
@@ -105,19 +107,17 @@ public class SADAOUsuarios implements ISADAOUsuarios {
     }
 
     @Override
-    public boolean iniciarSesion(String dni, String contrasena) throws IOException {
+    public Pair<Boolean, Boolean> iniciarSesion(String dni, String contrasena) throws IOException {
 
         List<Persona> listaPersonas = UsuariosJSON.leerListaUsuarios();
 
         for (Persona persona : listaPersonas) {
             if (persona.getDni().equals(dni) && persona.getContrasena().equals(contrasena)) {
-                return true;
+                return new Pair<Boolean, Boolean>(true, persona.getClass() == Gestor.class);
             }
         }
 
-        UsuariosJSON.guardarListaUsuarios(listaPersonas);
-
-        return false;
+        return new Pair<Boolean, Boolean>(false, false);
     }
 
     @Override

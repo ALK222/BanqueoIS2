@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import common.exception.UserException;
+import common.misc.Pair;
 import dominio.Persona;
 
 /**
@@ -43,7 +44,7 @@ public class FachadaDAOUsuarios implements IFachadaDAOUsuarios {
     }
 
     @Override
-    public boolean iniciarSesion(String dni, String contrasena) throws IOException {
+    public Pair<Boolean, Boolean> iniciarSesion(String dni, String contrasena) throws IOException {
         return daoUsu.iniciarSesion(dni, contrasena);
     }
 

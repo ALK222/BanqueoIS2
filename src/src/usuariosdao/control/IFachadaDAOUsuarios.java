@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import common.exception.UserException;
+import common.misc.Pair;
 import dominio.Persona;
 
 /**
@@ -67,7 +68,7 @@ public interface IFachadaDAOUsuarios {
      * @return Si se ha podido iniciar sesión o no
      * @throws IOException
      */
-    boolean iniciarSesion(String dni, String contrasena) throws IOException;
+    Pair<Boolean, Boolean> iniciarSesion(String dni, String contrasena) throws IOException;
 
     /**
      * Cierra la sesión del usuario actual

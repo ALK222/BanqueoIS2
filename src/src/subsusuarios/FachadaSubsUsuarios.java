@@ -1,9 +1,8 @@
 package subsusuarios;
 
-import java.io.IOException;
 import java.util.List;
 
-import common.exception.UserException;
+import common.misc.Pair;
 import dominio.Persona;
 
 public class FachadaSubsUsuarios implements IFachadaSubsUsuarios {
@@ -14,34 +13,32 @@ public class FachadaSubsUsuarios implements IFachadaSubsUsuarios {
     }
 
     @Override
-    public int altaUsuario(Persona p) throws IOException, UserException {
+    public int altaUsuario(Persona p) {
         return subsUsuario.altaUsuario(p);
-
     }
 
     @Override
-    public int bajaUsuario(Persona p) throws UserException, IOException {
-
+    public int bajaUsuario(Persona p) {
         return subsUsuario.bajaUsuario(p);
     }
 
     @Override
-    public int consultarListaUsuarios(String domicilio, String modo) throws IOException {
+    public Pair<List<Persona>, Integer> consultarListaUsuarios(String domicilio, String modo) {
         return subsUsuario.consultarListaUsuarios(domicilio, modo);
     }
 
     @Override
-    public int buscarUsuario(String dni) throws IOException {
+    public int buscarUsuario(String dni) {
         return subsUsuario.buscarUsuario(dni);
     }
 
     @Override
-    public int modificarUsuario(Persona p) throws IOException { // posible bool
+    public int modificarUsuario(Persona p) {
         return subsUsuario.modificarUsuario(p);
     }
 
     @Override
-    public int iniciarSesion(String dni, String contrasena) throws IOException {
+    public Pair<Integer, Boolean> iniciarSesion(String dni, String contrasena) {
         return subsUsuario.iniciarSesion(dni, contrasena);
     }
 

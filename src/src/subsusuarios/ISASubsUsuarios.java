@@ -1,9 +1,8 @@
 package subsusuarios;
 
-import java.io.IOException;
 import java.util.List;
 
-import common.exception.UserException;
+import common.misc.Pair;
 import dominio.Persona;
 
 public interface ISASubsUsuarios {
@@ -13,20 +12,16 @@ public interface ISASubsUsuarios {
      * 
      * @param p Persona a la que dar de alta
      * @return Si el usuario se ha podido registrar
-     * @throws IOException
-     * @throws UserException
      */
-    int altaUsuario(Persona p) throws IOException;
+    int altaUsuario(Persona p);
 
     /**
      * Baja de un usuario de la base de datos
      * 
      * @param p Persona a la que dar de baja
      * @return Si la persona ha podido ser dada de baja
-     * @throws IOException
-     * @throws UserException
      */
-    int bajaUsuario(Persona p) throws IOException;
+    int bajaUsuario(Persona p);
 
     /**
      * Consulta la lista de usuarios para obtener solo los que cumplan los
@@ -34,41 +29,34 @@ public interface ISASubsUsuarios {
      * 
      * @param domicilio Domicilio completo del usuario
      * @param modo      Modo de discriminacion
-     * @return Una lista de usuaios discriminada por localización
-     * @throws UserException Si el modo no es valido
-     * @throws IOException
+     * @return Una lista de usuaios discriminada por localización y un codigo de
+     *         finalizacion
      */
-    int consultarListaUsuarios(String domicilio, String modo) throws IOException;
+    Pair<List<Persona>, Integer> consultarListaUsuarios(String domicilio, String modo);
 
     /**
      * Busca un usuario en la base de datos
      * 
      * @param dni DNI del usuario
      * @return La persona si se ha encontrado, null si no
-     * @throws UserException Si el DNI no es valido
-     * @throws IOException
      */
-    int buscarUsuario(String dni) throws UserException, IOException;
+    int buscarUsuario(String dni);
 
     /**
      * Modifica un usuario en la base de datos
      * 
      * @param p Persona ya modificada
      * @return Si se ha podido modificar o no
-     * @throws IOException
-     * @throws UserException
      */
-    int modificarUsuario(Persona p) throws UserException, IOException;
+    int modificarUsuario(Persona p);
 
     /**
      * Determina si un usuario existe o no
      * 
      * @param dni DNI del usaurio
      * @return Si existe o no
-     * @throws IOException
-     * @throws UserException
      */
-    int iniciarSesion(String dni, String contrasena) throws UserException, IOException;
+    Pair<Integer, Boolean> iniciarSesion(String dni, String contrasena);
 
     /**
      * Cierra la sesión del usuario actual
