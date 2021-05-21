@@ -1,5 +1,6 @@
 package cuentadao.control;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -15,32 +16,32 @@ public class FachadaDAOCuentas implements IFachadaDAOCuentas {
     }
 
     @Override
-    public boolean altaCuenta(Cuenta c) {
+    public boolean altaCuenta(Cuenta c) throws IOException {
         return daoCuen.altaCuenta(c);
     }
 
     @Override
-    public boolean bajaCuenta(Cuenta c) {
+    public boolean bajaCuenta(Cuenta c) throws IOException {
         return daoCuen.bajaCuenta(c);
     }
 
     @Override
-    public List<Cuenta> buscarListaCuentas(String titular_cuenta, String dni) {
+    public List<Cuenta> buscarListaCuentas(String titular_cuenta, String dni) throws IOException{
         return daoCuen.buscarListaCuentas(titular_cuenta, dni);
     }
 
     @Override
-    public Cuenta consultarCuenta(int num_cuenta) {
+    public Cuenta consultarCuenta(int num_cuenta) throws IOException {
         return daoCuen.consultarCuenta(num_cuenta);
     }
 
     @Override
-    public boolean modificarCuentas(Cuenta c) {
+    public boolean modificarCuentas(Cuenta c) throws IOException{
         return daoCuen.modificarCuentas(c);
     }
 
     @Override
-    public JSONArray getMovimiento(int maxMeses, Cuenta c) {
+    public JSONArray getMovimiento(int maxMeses, Cuenta c) throws IOException {
         return daoCuen.getMovimiento(maxMeses, c);
     }
 }

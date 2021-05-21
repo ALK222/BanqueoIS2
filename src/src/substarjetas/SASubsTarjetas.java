@@ -1,15 +1,23 @@
 package substarjetas;
 
+import java.io.IOException;
 import java.util.List;
 
+import common.misc.Pair;
 import dominio.Persona;
 import dominio.Tarjeta;
+import tarjetasdao.control.FachadaDAOTarjetas;
 import tarjetasdao.control.IFachadaDAOTarjetas;
 
 public class SASubsTarjetas implements ISASubsTarjetas {
     List<Tarjeta> _listaTarjetas;
     List<Persona> _listaPersona;
     IFachadaDAOTarjetas tarjeta;
+
+
+    public SASubsTarjetas(){
+        tarjeta = new FachadaDAOTarjetas();
+    }
 
     /**
      * Da de alta una tarjeta, creando una y añadiendola a la lista
@@ -18,12 +26,26 @@ public class SASubsTarjetas implements ISASubsTarjetas {
      * 
      */
     @Override
-    public boolean altaTarjeta(Tarjeta t) { // TODO : hay que cambiar el diagrama para que devuelva boolean
+    public int altaTarjeta(Tarjeta t) { // TODO : hay que cambiar el diagrama para que devuelva boolean
         /**
          * if(t != null){ return _listaTarjetas.contains(t) ? false :
          * _listaTarjetas.add(t) ; // excepcion } return false;
          */
-        return tarjeta.altaTarjeta(t);
+        
+            try {
+                if(tarjeta.existeTarjeta(t.getNum_tarjeta())) {
+                    return 1; 
+                } else {
+                    tarjeta.altaTarjeta(t); 
+                    return 0; 
+                }
+                
+
+            }catch(IOException e ){
+                return 10; 
+            }
+
+       
     }
 
     /**
@@ -34,7 +56,7 @@ public class SASubsTarjetas implements ISASubsTarjetas {
      * 
      */
     @Override
-    public boolean bajaTarjeta(int numTarjeta) {
+    public int bajaTarjeta(int numTarjeta) {
         // TODO : posible tarjeta en vez de num tarjeta sino
 
         /**
@@ -42,7 +64,19 @@ public class SASubsTarjetas implements ISASubsTarjetas {
          * _listaTarjetas.remove(t); return true; } } return false;
          */
 
-        return tarjeta.bajaTarejeta(numTarjeta);
+        try{
+                if(!tarjeta.existeTarjeta(numTarjeta)){
+                    return 1; 
+                } else {
+                    tarjeta.bajaTarjeta(numTarjeta);
+                    return 0; 
+                }
+
+        }catch(IOException e ){
+            return 10; 
+
+        }
+        
     }
 
     /**
@@ -55,9 +89,19 @@ public class SASubsTarjetas implements ISASubsTarjetas {
      * 
      */
     @Override
-    public List<Tarjeta> consultarListaTarjetas(String dni) throws Exception { // solo DNI
+    public Pair<List<Tarjeta>,Integer> consultarListaTarjetas(String dni) throws Exception { // solo DNI
         // TODO : mirar como el otro consulta
-        return tarjeta.consultarListaTarjetas(dni);
+        try{
+            List<Tarjeta> listaAux = tarjeta.consultarListaTarjetas(dni); 
+            if(listaAux == null){
+                return new Pair<List<Tarjeta>,Integer>(null,1); 
+            } else {
+                return new Pair<List<Tarjeta>,Integer>(listaAux,0);
+            }
+        }catch(IOException e){
+            return new Pair<List<Tarjeta>,Integer>(null,10); 
+        }
+        
     }
 
     /**
@@ -68,12 +112,22 @@ public class SASubsTarjetas implements ISASubsTarjetas {
      * 
      */
     @Override
-    public Tarjeta buscaTarjeta(int numTarjeta) {
+    public int buscaTarjeta(int numTarjeta) {
         /**
          * for(Tarjeta t : _listaTarjetas){ if(t.getNum_tarjeta() == numTarjeta){
          * return t; } } return null;
          */
-        return tarjeta.buscarTarjeta(numTarjeta);
+        try{
+           if(tarjeta.buscarTarjeta(numTarjeta) == null){
+               return 1; 
+           } else {
+               tarjeta.buscarTarjeta(numTarjeta); 
+               return 0; 
+           }
+        }catch(IOException e ){
+            return 10; 
+        }
+       
     }
 
     /**
@@ -84,7 +138,7 @@ public class SASubsTarjetas implements ISASubsTarjetas {
      * 
      */
     @Override
-    public boolean modificarTarjeta(Tarjeta t) {
+    public int modificarTarjeta(Tarjeta t) {
         /**
          * Tarjeta aux = null; try { if(t == null){ throw new Exception(); } else {
          * for(Tarjeta tAux : _listaTarjetas){ if(tAux.getNum_tarjeta() ==
@@ -97,7 +151,17 @@ public class SASubsTarjetas implements ISASubsTarjetas {
          * e.getStackTrace()); } return false;
          */
 
-        return tarjeta.modificarTarjeta(t) == true ? true : false;
+        try{
+            if(!tarjeta.modificarTarjeta(t)){
+                return 1; 
+            } else {
+                return 0; 
+            }
+        }catch(IOException e ){
+            return 10; 
+        }
+        
+       
     }
 
 }

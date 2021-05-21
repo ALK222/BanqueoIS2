@@ -49,10 +49,11 @@ public class TarjetasJSON {
                 int numTarjeta = ja.getJSONObject(i).getInt("Numero");
                 String fechaCad = ja.getJSONObject(i).getString("Fecha");
                 String tipo = ja.getJSONObject(i).getString("Tipo");
+                String dni = ja.getJSONObject(i).getString("Dni"); 
 
                 TipoTarjeta tipoTarjeta = TipoTarjeta.parse(tipo);
 
-                listaTarjetas.add(new Tarjeta(titular, pin, estado, numTarjeta, fechaCad, tipoTarjeta));
+                listaTarjetas.add(new Tarjeta(titular, pin, estado, numTarjeta, fechaCad, tipoTarjeta,dni));
 
             }
         } catch (Exception e) {
@@ -84,6 +85,7 @@ public class TarjetasJSON {
             tJson.put("Numero", t.getNum_tarjeta());
             tJson.put("Fecha", t.getFechaCad());
             tJson.put("Tipo", t.getTipo_tarjeta());
+            tJson.put("Dni", t.get_dni());
 
             ja.put(tJson);
 

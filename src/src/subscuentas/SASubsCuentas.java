@@ -1,7 +1,9 @@
 package subscuentas;
 
+import java.io.IOException;
 import java.util.List;
 
+import common.misc.Pair;
 import cuentadao.control.FachadaDAOCuentas;
 import cuentadao.control.IFachadaDAOCuentas;
 import dominio.Cuenta;
@@ -17,31 +19,79 @@ public class SASubsCuentas implements ISASubsCuentas {
 	}
 
 	@Override
-	public boolean altaCuenta(Cuenta c) {
-		return cuenta.altaCuenta(c);
+	public int altaCuenta(Cuenta c) {
+		try{
+			if(cuenta.consultarCuenta(c.getNumeroCuenta()) != null){
+				return 1; 
+			} else {
+				cuenta.altaCuenta(c); 
+				return 0; 
+			}
+			
+		}catch(IOException e ){
+			return 10; 
+		}
+	}
+
+	@Override
+	public int bajaCuenta(Cuenta c) {
+		try{
+			if(cuenta.consultarCuenta(c.getNumeroCuenta()) == null){
+				return 1; 
+			} else {
+				cuenta.bajaCuenta(c);
+				return 0; 
+			}
+			
+		}catch(IOException e ){
+			return 10; 
+		}
 
 	}
 
 	@Override
-	public boolean bajaCuenta(Cuenta c) {
-		return cuenta.bajaCuenta(c);
+	public Pair<List<Cuenta>,Integer> consultarListaCuentas(String titularCuenta, String dni) {// quitaremos el titular_cuenta
+		try {
+            List<Cuenta> listaAux = cuenta.buscarListaCuentas(titularCuenta, dni);
+            if (listaAux == null) {
+                return new Pair<List<Cuenta>, Integer>(null, 1);
+            } else {
+                return new Pair<List<Cuenta>, Integer>(listaAux, 0);
+            }
 
+        } catch (IOException e) {
+            return new Pair<List<Cuenta>, Integer>(null, 10);
+		}
 	}
 
 	@Override
-	public List<Cuenta> consultarListaCuentas(String titularCuenta, String dni) {// quitaremos el titular_cuenta
-		return cuenta.buscarListaCuentas(titularCuenta, dni);
+	public int modificarCuenta(Cuenta c) {
+
+		try{
+			if(!cuenta.modificarCuentas(c)){
+				return 1; 
+			} else {
+				return 0; 
+			}
+			
+		}catch(IOException e ){
+			return 10; 
+		}
 	}
 
 	@Override
-	public boolean modificarCuenta(Cuenta c) {
-
-		return cuenta.modificarCuentas(c) == true ? true : false;
-	}
-
-	@Override
-	public Cuenta buscaCuenta(int numeroCuenta) {
-		return cuenta.consultarCuenta(numeroCuenta);
+	public int buscaCuenta(int numeroCuenta) {
+		try{
+			if(cuenta.consultarCuenta(numeroCuenta) == null){
+				return 1; 
+			} else {
+				cuenta.consultarCuenta(numeroCuenta); 
+				return 0; 
+			}
+			
+		} catch(IOException e ){
+			return 10; 
+		}
 	}
 
 }

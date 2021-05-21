@@ -2,6 +2,7 @@ package substarjetas;
 
 import java.util.List;
 
+import common.misc.Pair;
 import dominio.Tarjeta;
 
 public class FachadaSubsTarjetas implements IFachadaSubsTarjetas {
@@ -14,7 +15,7 @@ public class FachadaSubsTarjetas implements IFachadaSubsTarjetas {
      * 
      */
     @Override
-    public boolean altaTarjeta(Tarjeta t) {
+    public int altaTarjeta(Tarjeta t) {
         return subsTarjetas.altaTarjeta(t);
     }
 
@@ -26,7 +27,7 @@ public class FachadaSubsTarjetas implements IFachadaSubsTarjetas {
      * 
      */
     @Override
-    public boolean bajaTarjeta(int numTarjeta) {
+    public int bajaTarjeta(int numTarjeta) {
         return subsTarjetas.bajaTarjeta(numTarjeta);
     }
 
@@ -40,7 +41,7 @@ public class FachadaSubsTarjetas implements IFachadaSubsTarjetas {
      * 
      */
     @Override
-    public List<Tarjeta> consultarListaTarjetas(String dni) throws Exception {
+    public Pair<List<Tarjeta>,Integer> consultarListaTarjetas(String dni) throws Exception {
         return subsTarjetas.consultarListaTarjetas(dni);
     }
 
@@ -52,7 +53,7 @@ public class FachadaSubsTarjetas implements IFachadaSubsTarjetas {
      * 
      */
     @Override
-    public Tarjeta buscaTarjeta(int numTarjeta) {
+    public int buscaTarjeta(int numTarjeta) {
         return subsTarjetas.buscaTarjeta(numTarjeta);
     }
 
@@ -64,7 +65,7 @@ public class FachadaSubsTarjetas implements IFachadaSubsTarjetas {
      * 
      */
     @Override
-    public boolean modificarTarjeta(Tarjeta t) {
+    public int modificarTarjeta(Tarjeta t) {
         return subsTarjetas.modificarTarjeta(t);
     }
 

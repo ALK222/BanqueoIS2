@@ -7,12 +7,12 @@ import org.json.JSONArray;
 public class Cuenta {
 
 	private String _titularCuenta;
-	private double _numeroCuenta;
+	private int _numeroCuenta;
 	private double _saldo;
 	private String _firmaDigital;
 	private JSONArray _movimientos;
 
-	public Cuenta(String titularCuenta, double numeroCuenta, double saldo, String firmaDigital, JSONArray movimientos) {
+	public Cuenta(String titularCuenta, int numeroCuenta, double saldo, String firmaDigital, JSONArray movimientos) {
 		_titularCuenta = titularCuenta;
 		_numeroCuenta = numeroCuenta;
 		_saldo = saldo;
@@ -28,11 +28,11 @@ public class Cuenta {
 		this._titularCuenta = titularCuenta;
 	}
 
-	public double getNumeroCuenta() {
+	public int getNumeroCuenta() {
 		return _numeroCuenta;
 	}
 
-	public void setNumeroCuenta(double numeroCuenta) {
+	public void setNumeroCuenta(int numeroCuenta) {
 		this._numeroCuenta = numeroCuenta;
 	}
 

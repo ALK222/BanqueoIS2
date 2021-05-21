@@ -2,6 +2,7 @@ package subscuentas;
 
 import java.util.List;
 
+import common.misc.Pair;
 import dominio.Cuenta;
 
 public class FachadaSubsCuentas implements IFachadaSubsCuentas {
@@ -12,27 +13,27 @@ public class FachadaSubsCuentas implements IFachadaSubsCuentas {
     }
 
     @Override
-    public boolean altaCuenta(Cuenta c) {
+    public int altaCuenta(Cuenta c) {
         return subsCuentas.altaCuenta(c);
     }
 
     @Override
-    public boolean bajaCuenta(Cuenta c) {
+    public int bajaCuenta(Cuenta c) {
         return subsCuentas.bajaCuenta(c);
     }
 
     @Override
-    public List<Cuenta> consultarListaCuentas(String titularCuenta, String dni) {
+    public  Pair<List<Cuenta>,Integer> consultarListaCuentas(String titularCuenta, String dni) {
         return subsCuentas.consultarListaCuentas(titularCuenta, dni);
     }
 
     @Override
-    public Cuenta buscaCuenta(int numeroCuenta) {
+    public int buscaCuenta(int numeroCuenta) {
         return subsCuentas.buscaCuenta(numeroCuenta);
     }
 
     @Override
-    public boolean modificarCuenta(Cuenta c) {
+    public int modificarCuenta(Cuenta c) {
         return subsCuentas.modificarCuenta(c);
     }
 
