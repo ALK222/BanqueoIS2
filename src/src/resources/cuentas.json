@@ -1,34 +1,3 @@
-{
-    "cuentas": [
-        {
-            "Firma_Digital": "Firma0123",
-            "Movimientos": [
-                {
-                    "Fecha": "20-10-2019",
-                    "Cantidad": "300",
-                    "Cuenta_Destino": "221111444",
-                    "Concepto": "Transferencia trabajo"
-                }
-            ],
-            "Titular": "Federico Garcia Lorca",
-            "Saldo": 10000,
-            "Numero_Cuenta": 221111333,
-            "DNI": "01234567A"
-        },
-        {
-            "Firma_Digital": "Firma0124",
-            "Movimientos": [
-                {
-                    "Fecha": "20-10-2019",
-                    "Cantidad": "300",
-                    "Cuenta_Destino": "221111333",
-                    "Concepto": "Transferencia trabajo"
-                }
-            ],
-            "Titular": "Antonio Machado Ruiz",
-            "Saldo": 25000,
-            "Numero_Cuenta": 221111444,
-            "DNI": "01234568A"
-        }
-    ]
+{ "cuentas":
+[{"Firma_Digital":"Firma0123","Movimientos":[{"Fecha":"20-10-2019","Cantidad":"300","Cuenta_Destino":"221111444","Concepto":"Transferencia trabajo"}],"Titular":"Federico Garcia Lorca","Saldo":10000,"Numero_Cuenta":221111333,"DNI":"01234567A"},{"Firma_Digital":"Firma0124","Movimientos":[{"Fecha":"20-10-2019","Cantidad":"300","Cuenta_Destino":"221111333","Concepto":"Transferencia trabajo"}],"Titular":"Antonio Machado Ruiz","Saldo":25000,"Numero_Cuenta":221111444,"DNI":"01234568A"}]
 }

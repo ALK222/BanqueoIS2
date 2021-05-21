@@ -92,43 +92,32 @@ class TestSubCuentas {
 
 	}
 
-	// @Test
-	// void testBuscar() {
-	// System.out.println("Test de las funciones de busqueda");
-	// // BUSCAR USUARIO BIEN
-	// Persona p1 = null;
-	// Persona expectedPersona = new Cliente("01234567A", "Federico Garcia Lorca",
-	// "Calle inventada, 2 2;35006;Madrid",
-	// 555555555, "01234568A", "abc123", "correofalso@gmail.com");
-	// try {
-	// p1 = _testUsuario.buscarUsuario("01234567A");
-	// } catch (Exception e) {
-	// fail("La funcion buscarUsuario falla");
-	// }
-	// assertEquals(expectedPersona, p1, "No se realizó bien la busqueda");
+	@Test
+	void testBuscar() {
+		System.out.println("Test de las funciones de busqueda");
 
-	// // BUSCAR USUARIO MAL
-	// Persona p2 = null;
-	// try {
-	// p2 = _testUsuario.buscarUsuario(null);
-	// fail("BuscarUsuario no lanza excepciones bien");
-	// } catch (Exception e) {
-	// assertEquals(null, p2, "No se hizo bien el buscarUsuarios fallido");
-	// }
-	// }
+		// BUSQUEDA BIEN
+		int pruebaBusqueda = _testCuenta.buscaCuenta(221111444).getSecond();
+		assertEquals(0, pruebaBusqueda, "Busqueda que debería funcionar no funciona");
 
-	// @Test
-	// void testInicioSesion() {
-	// System.out.println("Test de las funciones de inicio de sesión");
-	// // INICIAR SESION BIEN
-	// boolean pruebaInicio1 = _testUsuario.iniciarSesion("01234567A", "abc123");
-	// assertEquals(true, pruebaInicio1, "Un inicio de sesión válido da error");
+		// BUSQUEDA MAL
+		int pruebaBusqueda1 = _testCuenta.buscaCuenta(321111444).getSecond();
+		assertEquals(1, pruebaBusqueda1, "Busqueda que debería funcionar no funciona");
 
-	// // INICIAR SESION MAL
+	}
 
-	// boolean pruebaInicio2 = _testUsuario.iniciarSesion("01234567A", "AAAAAAAA");
-	// assertEquals(false, pruebaInicio2, "Un inicio de sesión no válido no da
-	// error");
-	// }
+	@Test
+	void testConsultarCuentas() {
+		System.out.println("Test de las funciones de consulta");
+
+		// BUSQUEDA BIEN
+		int pruebaConsulta = _testCuenta.consultarListaCuentas("Federico Garcia Lorca", "01234567A").getSecond();
+		assertEquals(0, pruebaConsulta, "Busqueda que debería funcionar no funciona");
+
+		// BUSQUEDA MAL
+		int pruebaConsulta1 = _testCuenta.consultarListaCuentas("Federico Garcia Lorca", "555555A").getSecond();
+		assertEquals(2, pruebaConsulta1, "Busqueda que debería funcionar no funciona");
+
+	}
 
 }

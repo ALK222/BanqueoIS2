@@ -19,7 +19,7 @@ public interface ISASubsCuentas {
      * Da de baja una cuenta
      * 
      * @param c cuenta a dar de baja
-     *                    
+     * 
      * 
      */
     int bajaCuenta(Cuenta c);
@@ -29,22 +29,22 @@ public interface ISASubsCuentas {
      * 
      * 
      * @param titularCuenta se utiliza para consultar las cuentas de un titular
-     * @param dni            clave primaria, se utiliza para consultar las cuentas
-     *                       de un titular
+     * @param dni           clave primaria, se utiliza para consultar las cuentas de
+     *                      un titular
      * 
      */
-    Pair<List<Cuenta>,Integer> consultarListaCuentas(String titularCuenta, String dni);
+    Pair<List<Cuenta>, Integer> consultarListaCuentas(String titularCuenta, String dni);
 
     /**
      * Busca una cuenta dentro de la lista
      * 
      * @param numeroCuenta numero de la cuenta, que se utiliza como identificador en
-     *                    la busqueda
+     *                     la busqueda
      * 
      */
-    int buscaCuenta(int numeroCuenta);
+    Pair<Cuenta, Integer> buscaCuenta(int numeroCuenta);
 
-     /**
+    /**
      * Modifica los datos de una cuenta
      * 
      * @param c la cuenta

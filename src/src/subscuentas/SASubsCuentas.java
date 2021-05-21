@@ -83,17 +83,18 @@ public class SASubsCuentas implements ISASubsCuentas {
 	}
 
 	@Override
-	public int buscaCuenta(int numeroCuenta) {
+	public Pair<Cuenta, Integer> buscaCuenta(int numeroCuenta) {
 		try {
-			if (cuenta.consultarCuenta(numeroCuenta) == null) {
-				return 1;
+			Cuenta cuentaBuscada = cuenta.consultarCuenta(numeroCuenta);
+			if (cuentaBuscada == null) {
+				return new Pair<Cuenta, Integer>(null, 1);
 			} else {
 				cuenta.consultarCuenta(numeroCuenta);
-				return 0;
+				return new Pair<Cuenta, Integer>(cuentaBuscada, 0);
 			}
 
 		} catch (IOException e) {
-			return 10;
+			return new Pair<Cuenta, Integer>(null, 10);
 		}
 	}
 

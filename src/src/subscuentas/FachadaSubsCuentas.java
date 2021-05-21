@@ -23,12 +23,12 @@ public class FachadaSubsCuentas implements IFachadaSubsCuentas {
     }
 
     @Override
-    public  Pair<List<Cuenta>,Integer> consultarListaCuentas(String titularCuenta, String dni) {
+    public Pair<List<Cuenta>, Integer> consultarListaCuentas(String titularCuenta, String dni) {
         return subsCuentas.consultarListaCuentas(titularCuenta, dni);
     }
 
     @Override
-    public int buscaCuenta(int numeroCuenta) {
+    public Pair<Cuenta, Integer> buscaCuenta(int numeroCuenta) {
         return subsCuentas.buscaCuenta(numeroCuenta);
     }
 

@@ -47,10 +47,12 @@ public class SADAOCuentas implements ISADAOCuenta {
             }
 
         }
-
+        if (usuario == null) {
+            throw new UserException("Usuario no encontrado");
+        }
         for (Cuenta c : listaCuentas) {
             if (c.getTitularCuenta().getFirst().equals(usuario.getNombre())
-                    && c.getTitularCuenta().getFirst().equals(usuario.getContrasena())) {
+                    && c.getTitularCuenta().getSecond().equals(usuario.getDni())) {
                 listaAux.add(c);
             }
         }
