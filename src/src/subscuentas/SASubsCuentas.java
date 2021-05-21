@@ -40,8 +40,7 @@ public class SASubsCuentas implements ISASubsCuentas {
 			if (cuenta.consultarCuenta(c.getNumeroCuenta()) == null) {
 				return 1;
 			} else {
-				cuenta.bajaCuenta(c);
-				return 0;
+				return cuenta.bajaCuenta(c) ? 0 : 1;
 			}
 
 		} catch (IOException e) {

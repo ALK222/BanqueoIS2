@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -17,8 +16,6 @@ import org.junit.runner.RunWith;
 
 import cuentadao.control.CuentasJSON;
 import dominio.Cuenta;
-import dominio.Prestamo;
-import dominio.Tarjeta;
 import subscuentas.FachadaSubsCuentas;
 import subscuentas.IFachadaSubsCuentas;
 
@@ -80,19 +77,18 @@ class TestSubCuentas {
 	@Test
 	void testBaja() {
 		System.out.println("Test de las funciones de baja");
-		Cuenta c2 = new Cuenta("Alejandro Diaz Blazquez", 0000222211114444f, 4000, "AA", new ArrayList<Tarjeta>(),
-				new ArrayList<Prestamo>(), new JSONArray());
+		Cuenta c2 = new Cuenta("Jesus Abajo Magro", "12345678B", 111222333, 2000, "AA", new JSONArray());
 
-		boolean pruebaAlta1 = _testCuenta.altaCuenta(c2);
-		assertEquals(true, pruebaAlta1, "Alta que debería ser valida acabada con error");
+		int pruebaAlta1 = _testCuenta.altaCuenta(c2);
+		assertEquals(0, pruebaAlta1, "Alta que debería ser valida acabada con error");
 
 		// BAJA USUARIO FUNCIONAL
-		boolean pruebaBaja1 = _testCuenta.bajaCuenta(c2);
-		assertEquals(true, pruebaBaja1, "Baja que debería ser valida acabada con error");
+		int pruebaBaja1 = _testCuenta.bajaCuenta(c2);
+		assertEquals(0, pruebaBaja1, "Baja que debería ser valida acabada con error");
 
 		// BAJA USUARIO CON ERROR
-		boolean pruebaBaja2 = _testCuenta.bajaCuenta(c2);
-		assertEquals(false, pruebaBaja2, "Baja que no debería ser valida no provoca error");
+		int pruebaBaja2 = _testCuenta.bajaCuenta(c2);
+		assertEquals(1, pruebaBaja2, "Baja que no debería ser valida no provoca error");
 
 	}
 
