@@ -27,7 +27,7 @@ public class PrestamoJSON {
             in = new FileInputStream(testFile);
         } catch (FileNotFoundException e) {
             try {
-                testFile = new File("./prestamos.json");
+                testFile = new File("./resources/prestamos.json");
                 in = new FileInputStream(testFile);
             } catch (FileNotFoundException ex) {
                 throw ex;
