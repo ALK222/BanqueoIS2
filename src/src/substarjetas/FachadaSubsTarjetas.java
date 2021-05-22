@@ -45,7 +45,7 @@ public class FachadaSubsTarjetas implements IFachadaSubsTarjetas {
      * 
      */
     @Override
-    public Pair<List<Tarjeta>, Integer> consultarListaTarjetas(String dni) throws Exception {
+    public Pair<List<Tarjeta>, Integer> consultarListaTarjetas(String dni) {
         return subsTarjetas.consultarListaTarjetas(dni);
     }
 
@@ -57,7 +57,7 @@ public class FachadaSubsTarjetas implements IFachadaSubsTarjetas {
      * 
      */
     @Override
-    public int buscaTarjeta(int numTarjeta) {
+    public Pair<Integer, Tarjeta> buscaTarjeta(int numTarjeta) {
         return subsTarjetas.buscaTarjeta(numTarjeta);
     }
 

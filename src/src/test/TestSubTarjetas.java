@@ -1,6 +1,5 @@
 package test;
 
-import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.BufferedReader;
@@ -108,28 +107,12 @@ class TestSubTarjetas {
     void testFiltrado() {
         System.out.println("Test de las funciones de filtrado");
         // PRUEBA DE FILTRADO DE LISTA
-        try {
-            List<Tarjeta> filtradoNombre = _testTarjeta.consultarListaTarjetas("Luisa Carnes Caballero", "nombre");
-            assertEquals(_listaTarjetas, filtradoNombre, "Filtrado por nombre no funciona correctamente");
-        } catch (Exception e) {
-            fail(e.toString());
-        }
-        try {
-            List<Tarjeta> filtradoNumero = _testTarjeta.consultarListaTarjetas("0000000000000001", "num");
-            assertEquals(_listaTarjetas, filtradoNumero, "Filtrado por numero no funciona correctamente");
-        } catch (Exception e) {
-            fail(e.toString());
-        }
+        int filtradoNombre = _testTarjeta.consultarListaTarjetas("01234567A").getSecond();
+        assertEquals(0, filtradoNombre, "Filtrado por nombre no funciona correctamente");
 
-        // PRUEBA DE FILTRADO DE LISTA MAL
-        try {
-            List<Tarjeta> filtradoCaducidad = _testTarjeta.consultarListaTarjetas("12/25", "brrrrr");
-            assertEquals(_listaTarjetas, filtradoCaducidad,
-                    "Filtrado por fecha de caducidad no funciona correctamente");
-            fail("No deberia dejar hacer la busqueda");
-        } catch (Exception e) {
-            assertEquals("Modo no soportado", e.getMessage(), "No se lanza la excepcion correcta");
-        }
+        int filtradoNumero = _testTarjeta.consultarListaTarjetas("0").getSecond();
+        assertEquals(2, filtradoNumero, "Filtrado por numero no funciona correctamente");
+
     }
 
     @Test
@@ -137,24 +120,14 @@ class TestSubTarjetas {
         System.out.println("Test de las funciones de busqueda");
 
         // BUSCAR TARJETA BIEN
-        Tarjeta t1 = null;
-        Tarjeta expectedTarjeta = new Tarjeta("Federico Garcia Lorca", 0000, false, 0000000000001234, "11/21",
-                TipoTarjeta.CREDITO);
-        try {
-            t1 = _testTarjeta.buscaTarjeta(0000000000001234);
-        } catch (Exception e) {
-            fail("La funcion buscar falla");
-        }
-        assertEquals(expectedTarjeta, t1, "No se realizo bien la busqueda");
+        int t1 = _testTarjeta.buscaTarjeta(1235123).getFirst();
+
+        assertEquals(0, t1, "No se realizo bien la busqueda");
 
         // BUSCAR TARJETA MAL
-        Tarjeta t2 = null;
-        try {
-            t2 = _testTarjeta.buscaTarjeta(null);
-            fail("BuscarTarjeta no lanza excepciones bien");
-        } catch (Exception e) {
-            assertEquals(null, p2, "No se hizo bien el buscarTarjetas fallido");
-        }
+        int t2 = _testTarjeta.buscaTarjeta(0).getFirst();
+        assertEquals(1, t2, "No se hizo bien el buscarTarjetas fallido");
+
     }
 
     public static void loadTarjetas(InputStream in, List<Tarjeta> listaTarjetas) throws JSException {

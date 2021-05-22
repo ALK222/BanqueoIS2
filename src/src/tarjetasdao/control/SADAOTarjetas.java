@@ -1,9 +1,11 @@
 package tarjetasdao.control;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import common.exception.UserException;
 import dominio.Tarjeta;
 
 public class SADAOTarjetas implements ISADAOTarjetas {
@@ -32,7 +34,7 @@ public class SADAOTarjetas implements ISADAOTarjetas {
 	}
 
 	@Override
-	public List<Tarjeta> consultarListaTarjetas(String dni) throws Exception {
+	public List<Tarjeta> consultarListaTarjetas(String dni) throws UserException, FileNotFoundException {
 		List<Tarjeta> listaTarjetas = TarjetasJSON.leerListaTarjetas();
 		List<Tarjeta> listaAux = new ArrayList<Tarjeta>();
 		for (Tarjeta t : listaTarjetas) {
@@ -41,7 +43,7 @@ public class SADAOTarjetas implements ISADAOTarjetas {
 			}
 		}
 		if (listaAux.isEmpty()) {
-			throw new Exception("No hay tarjetas asociadas a este usuario");
+			throw new UserException("No hay tarjetas asociadas a este usuario");
 		}
 		return listaAux;
 	}

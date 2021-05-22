@@ -22,25 +22,24 @@ public interface ISASubsTarjetas {
      */
     int bajaTarjeta(int numTarjeta);
 
-     /**
-     * Consulta la lista de tarjetas para obtener solo las que sean de un 
+    /**
+     * Consulta la lista de tarjetas para obtener solo las que sean de un
      * determinado usuario
      * 
      * 
-     * @param dni DNI del usuario 
+     * @param dni DNI del usuario
      * @return Una lista de tarjetas asociadas a un usuario
      */
-    Pair<List<Tarjeta>,Integer> consultarListaTarjetas(String dni) throws Exception;
+    Pair<List<Tarjeta>, Integer> consultarListaTarjetas(String dni);
 
-     /**
+    /**
      * Busca una tarjeta en la base de datos
      * 
      * @param numTarjeta Numero de la tarjeta que se busca
      * @return La tarjeta si se ha encontrado, null si no
      */
-    int buscaTarjeta(int numTarjeta);
+    Pair<Integer, Tarjeta> buscaTarjeta(int numTarjeta);
 
-    
     /**
      * Modifica una tarjeta en la base de datos
      * 
