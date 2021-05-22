@@ -66,11 +66,11 @@ public class TarjetasJSON {
         File testFile = null;
         FileWriter in = null;
         try {
-            testFile = new File("../resources/tarjetas.json");
+            testFile = new File(System.getProperty("user.dir") + "/src/resources/tarjetas.json");
             in = new FileWriter(testFile);
         } catch (FileNotFoundException e) {
             try {
-                testFile = new File("src/resources/tarjetas.json");
+                testFile = new File("./resources/tarjetas.json");
                 in = new FileWriter(testFile);
             } catch (FileNotFoundException ex) {
                 throw ex;
