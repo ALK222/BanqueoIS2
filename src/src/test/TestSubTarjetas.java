@@ -64,22 +64,24 @@ class TestSubTarjetas {
     @Test
     void testModificacion() {
         System.out.println("Test de las funciones de modificacion");
-        Tarjeta t = new Tarjeta("Luisa Carnes Caballero", 1234, true, 0000000000000001, "12/25", TipoTarjeta.DEBITO);
+        Tarjeta t = new Tarjeta("Luisa Carnes Caballero", 1234, true, 0000000000000001, "12/25", TipoTarjeta.DEBITO,
+                "12345677A");
 
-        boolean pruebaAlta1 = _testTarjeta.altaTarjeta(t);
-        assertEquals(true, pruebaAlta1, "Alta que deberia ser valida acabada con error");
+        int pruebaAlta1 = _testTarjeta.altaTarjeta(t);
+        assertEquals(0, pruebaAlta1, "Alta que deberia ser valida acabada con error");
 
         t.setPin(0000);
 
         // MODIFICAR USUARIO FUNCIONAL
-        boolean pruebaMod1 = _testTarjeta.modificarTarjeta(t);
-        assertEquals(true, pruebaMod1, "Modificacion que deberia ser valida provoca error");
+        int pruebaMod1 = _testTarjeta.modificarTarjeta(t);
+        assertEquals(0, pruebaMod1, "Modificacion que deberia ser valida provoca error");
 
-        Tarjeta t2 = new Tarjeta("Tomas Turbao Hernandez", 1234, true, 0000000000000001, "12/25", TipoTarjeta.DEBITO);
+        Tarjeta t2 = new Tarjeta("Tomas Hernandez Hernandez", 1235, true, 0000000000000003, "12/25", TipoTarjeta.DEBITO,
+                "12345677A");
 
         // MODIFICAR TARJETA CON ERROR
-        boolean pruebaMod2 = _testTarjeta.modificarTarjeta(t2);
-        assertEquals(false, pruebaMod2, "Modificacion que no deberia ser valida no acaba con error");
+        int pruebaMod2 = _testTarjeta.modificarTarjeta(t2);
+        assertEquals(1, pruebaMod2, "Modificacion que no deberia ser valida no acaba con error");
 
     }
 
