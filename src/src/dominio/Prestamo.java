@@ -12,7 +12,7 @@ public class Prestamo {
 	private String _profesion;
 	private boolean _firmaSeguroDefuncion;
 	private EstadoPrestamo _estadoPrestamo;
-	private Cuenta _cuentaAsociada;
+	private int _cuentaAsociada;
 
 	/**
 	 * Constructor con argumentos para Prestamo
@@ -26,7 +26,7 @@ public class Prestamo {
 	 * @param estadoPrestamo
 	 */
 	public Prestamo(int numReferencia, double cantidadSolicitada, String plazoDevolucion, int aval, String profesion,
-			boolean firmaSeguroDefuncion, EstadoPrestamo estadoPrestamo, Cuenta cuentaAsociada) {
+			boolean firmaSeguroDefuncion, EstadoPrestamo estadoPrestamo, int cuentaAsociada) {
 		_numReferencia = numReferencia;
 		_cantidadSolicitada = cantidadSolicitada;
 		_plazoDevolucion = plazoDevolucion;
@@ -37,7 +37,7 @@ public class Prestamo {
 		_cuentaAsociada = cuentaAsociada;
 	}
 
-	public Cuenta getCuentaAsociada() {
+	public int getCuentaAsociada() {
 		return _cuentaAsociada;
 	}
 
@@ -98,7 +98,7 @@ public class Prestamo {
 	}
 
 	public boolean esCuentaAsociada(Cuenta c) {
-		return _cuentaAsociada.equals(c);
+		return _cuentaAsociada == c.getNumeroCuenta();
 	}
 
 }

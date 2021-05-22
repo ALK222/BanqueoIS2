@@ -15,11 +15,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import dominio.Cuenta;
 import dominio.EstadoPrestamo;
 import dominio.Prestamo;
-import subscuentas.FachadaSubsCuentas;
-import subscuentas.IFachadaSubsCuentas;
 
 public class PrestamoJSON {
     public static List<Prestamo> leerListaPrestamos() throws FileNotFoundException {
@@ -52,9 +49,7 @@ public class PrestamoJSON {
                 String profesion = currentJSONObject.getString("Profesion");
                 boolean firmaSeguroDefuncion = currentJSONObject.getBoolean("Firma_Seguro_Defuncion");
                 String estado = currentJSONObject.getString("Estado_Prestamo");
-                int cuentaAsociada = currentJSONObject.getInt("Cuenta_Asociada");
-                IFachadaSubsCuentas cuenta_aux = new FachadaSubsCuentas();
-                Cuenta c = cuenta_aux.buscaCuenta(cuentaAsociada).getFirst();
+                int c = currentJSONObject.getInt("Cuenta_Asociada");
                 listaPrestamos.add(new Prestamo(numReferencia, cantidad, plazoDevolucion, aval, profesion,
                         firmaSeguroDefuncion, EstadoPrestamo.parse(estado), c));
             }
@@ -88,7 +83,7 @@ public class PrestamoJSON {
             pJson.put("Profesion", p.getProfesion());
             pJson.put("Firma_Seguro_Defuncion", p.isFirmaSeguroDefuncion());
             pJson.put("Estado_Prestamo", p.getEstadoPrestamo().toString());
-            pJson.put("Cuenta_Asociada", p.getCuentaAsociada().getNumeroCuenta());
+            pJson.put("Cuenta_Asociada", p.getCuentaAsociada());
 
             ja.put(pJson);
 

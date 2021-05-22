@@ -45,19 +45,20 @@ public class TestSubPrestamos {
 
     @Test
     void testSolicitudPrestamo() throws IOException {
-        Cuenta cuentaAux = new Cuenta("Alejandro Barrachina", "111111A", 1111111, 2000, "AAAA", new JSONArray());
 
+        int numRef = 2000000;
         for (int i = 0; i < SADAOPrestamos.MAX_PRESTAMOS; ++i) {
-            int numRef = 2000000;
+            Cuenta cuentaAux = new Cuenta("Alejandro Barrachina", "111111A", 1111111, 2000, "AAAA", new JSONArray());
             Prestamo p = new Prestamo(numRef, 200f, "9/2020", 100, "Informatico", true, EstadoPrestamo.SOLICITADO,
-                    cuentaAux);
+                    cuentaAux.getNumeroCuenta());
             numRef++;
             int pruebaSolicitud = _testPrestamos.solicitarPrestamo(cuentaAux, p);
 
             assertEquals(0, pruebaSolicitud, "Solicitud que debería ser valida acabada con error");
         }
+        Cuenta cuentaAux = new Cuenta("Alejandro Barrachina", "111111A", 1111111, 2000, "AAAA", new JSONArray());
         Prestamo p = new Prestamo(100000, 200f, "9/2020", 100, "Informatico", true, EstadoPrestamo.SOLICITADO,
-                cuentaAux);
+                cuentaAux.getNumeroCuenta());
         int pruebaSolicitud = _testPrestamos.solicitarPrestamo(cuentaAux, p);
 
         assertEquals(1, pruebaSolicitud, "Solicitud que debería no ser valida acabada bien");
@@ -81,8 +82,7 @@ public class TestSubPrestamos {
         int pruebaCancelacion2 = _testPrestamos.cancelarSolicitud(p.getNumReferencia());
         assertEquals(1, pruebaCancelacion2, "Cancelacion que debería no ser valida acabada bien");
 
-        p = null;
-        int pruebaCancelacion3 = _testPrestamos.cancelarSolicitud(p.getNumReferencia());
+        int pruebaCancelacion3 = _testPrestamos.cancelarSolicitud(0);
         assertEquals(2, pruebaCancelacion3, "Cancelacion que debería no ser valida acabada bien");
     }
 

@@ -2,23 +2,23 @@
     "Prestamos": [
         {
             "Cantidad_Solicitada": 1000,
-            "Num_Referencia": 13245768,
-            "Plazo_Devolucion": "06/19",
-            "Aval": 100,
-            "Profesion": "Escritor",
-            "Firma_Seguro_Defuncion": "True",
+            "Firma_Seguro_Defuncion": true,
+            "Cuenta_Asociada": 223333,
             "Estado_Prestamo": "ACEPTADO",
-            "Cuenta_Asociada": "223333"
+            "Plazo_Devolucion": "06/19",
+            "Num_Referencia": 13245768,
+            "Profesion": "Escritor",
+            "Aval": 100
         },
         {
-            "Cantidad_Solicitada": "2000",
-            "Num_Referencia": "13245709",
-            "Plazo_Devolucion": "30/07",
-            "Aval": "300",
-            "Profesion": "Constructor",
-            "Firma_Seguro_Defuncion": "True",
+            "Cantidad_Solicitada": 2000,
+            "Firma_Seguro_Defuncion": true,
+            "Cuenta_Asociada": 12224444,
             "Estado_Prestamo": "SOLICITADO",
-            "Cuenta_Asociada": "12224444"
+            "Plazo_Devolucion": "30/07",
+            "Num_Referencia": 13245709,
+            "Profesion": "Constructor",
+            "Aval": 300
         }
     ]
 }

@@ -25,7 +25,7 @@ public class SADAOPrestamos implements ISADAOPrestamos {
         List<Prestamo> listaPrestamos = PrestamoJSON.leerListaPrestamos();
         int prestamosActuales = consultarListaPrestamos(c, listaPrestamos).size();
 
-        if (prestamosActuales <= MAX_PRESTAMOS) {
+        if (prestamosActuales < MAX_PRESTAMOS) {
             listaPrestamos.add(p);
             PrestamoJSON.guardarListaPrestamos(listaPrestamos);
             return true;
@@ -90,7 +90,7 @@ public class SADAOPrestamos implements ISADAOPrestamos {
     @Override
     public List<Prestamo> consultarListaPrestamos(Cuenta c, List<Prestamo> listaPrestamos) {
         List<Prestamo> aux = new ArrayList<Prestamo>();
-        for (Prestamo prestamo : aux) {
+        for (Prestamo prestamo : listaPrestamos) {
             if (prestamo.esCuentaAsociada(c)) {
                 aux.add(prestamo);
             }
