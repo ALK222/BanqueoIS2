@@ -1,6 +1,5 @@
 package subsprestamos;
 
-import java.io.IOException;
 import java.util.List;
 
 import common.misc.Pair;
@@ -15,29 +14,28 @@ public class FachadaSubsPrestamos implements IFachadaSubsPrestamos {
     }
 
     @Override
-    public int solicitarPrestamo(Cuenta c, Prestamo p) throws IOException {
+    public int solicitarPrestamo(Cuenta c, Prestamo p) {
         return subsPrestamo.solicitarPrestamo(c, p);
 
     }
 
     @Override
-    public int cancelarSolicitud(int numRef) throws IOException {
+    public int cancelarSolicitud(int numRef) {
         return subsPrestamo.cancelarSolicitud(numRef);
     }
 
     @Override
-    public Pair<List<Prestamo>, Integer> consultarListaPrestamos(Cuenta c, List<Prestamo> listaPrestamos)
-            throws Exception {
+    public Pair<List<Prestamo>, Integer> consultarListaPrestamos(Cuenta c, List<Prestamo> listaPrestamos) {
         return subsPrestamo.consultarListaPrestamos(c, listaPrestamos);
     }
 
     @Override
-    public Pair<Prestamo, Integer> buscarPrestamo(int numRef) throws Exception {
+    public Pair<Prestamo, Integer> buscarPrestamo(int numRef) {
         return subsPrestamo.buscarPrestamo(numRef);
     }
 
     @Override
-    public int modificarPrestamo(Prestamo p) throws IOException {
+    public int modificarPrestamo(Prestamo p) {
         return subsPrestamo.modificarPrestamo(p);
     }
 

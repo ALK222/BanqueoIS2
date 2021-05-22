@@ -1,6 +1,5 @@
 package subsprestamos;
 
-import java.io.IOException;
 import java.util.List;
 
 import common.misc.Pair;
@@ -9,14 +8,14 @@ import dominio.Prestamo;
 
 public interface IFachadaSubsPrestamos {
 
-    int solicitarPrestamo(Cuenta c, Prestamo p) throws IOException;
+    int solicitarPrestamo(Cuenta c, Prestamo p);
 
-    int cancelarSolicitud(int numRef) throws IOException;
+    int cancelarSolicitud(int numRef);
 
-    Pair<List<Prestamo>, Integer> consultarListaPrestamos(Cuenta c, List<Prestamo> listaPrestamos) throws Exception;
+    Pair<List<Prestamo>, Integer> consultarListaPrestamos(Cuenta c, List<Prestamo> listaPrestamos);
 
-    Pair<Prestamo, Integer> buscarPrestamo(int numRef) throws Exception;
+    Pair<Prestamo, Integer> buscarPrestamo(int numRef);
 
-    int modificarPrestamo(Prestamo p) throws IOException;
+    int modificarPrestamo(Prestamo p);
 
 }

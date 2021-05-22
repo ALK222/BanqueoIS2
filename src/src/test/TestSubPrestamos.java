@@ -44,7 +44,7 @@ public class TestSubPrestamos {
     }
 
     @Test
-    void testSolicitudPrestamo() throws IOException {
+    void testSolicitudPrestamo() {
 
         int numRef = 2000000;
         for (int i = 0; i < SADAOPrestamos.MAX_PRESTAMOS; ++i) {
@@ -66,7 +66,7 @@ public class TestSubPrestamos {
     }
 
     @Test
-    void testCancelacion() throws IOException {
+    void testCancelacion() {
         // Cancelar prestamo solicidato
         Cuenta cuentaAux = new Cuenta("Alejandro Barrachina", "111111A", 1111111, 2000, "AAAA", new JSONArray());
         Prestamo p = new Prestamo(111111, 200f, "9/2020", 100, "Informatico", true, EstadoPrestamo.SOLICITADO,
@@ -87,7 +87,7 @@ public class TestSubPrestamos {
     }
 
     @Test
-    void testModificacion() throws IOException {
+    void testModificacion() {
         Cuenta cuentaAux = new Cuenta("Alejandro Barrachina", "111111A", 1111111, 2000, "AAAA", new JSONArray());
         Prestamo p = new Prestamo(100000, 200f, "9/2020", 100, "Informatico", true, EstadoPrestamo.SOLICITADO,
                 cuentaAux.getNumeroCuenta());
@@ -107,6 +107,19 @@ public class TestSubPrestamos {
         int pruebaModificacion1 = _testPrestamos.modificarPrestamo(p2);
 
         assertEquals(1, pruebaModificacion1, "Solicitud que debería no ser valida acabada bien");
+    }
+
+    @Test
+    void testBusquedaPrestamo() {
+        int numRef = 13245768;
+
+        int pruebaBusqueda = _testPrestamos.buscarPrestamo(numRef).getSecond();
+        assertEquals(0, pruebaBusqueda, "Busqueda que debería devolver un prestamo no lo devuelve");
+
+        numRef = 0000000;
+        int pruebaBusqueda1 = _testPrestamos.buscarPrestamo(numRef).getSecond();
+        assertEquals(1, pruebaBusqueda1, "Busqueda que no debería devolver un prestamo lo intenta devolver");
+
     }
 
 }
