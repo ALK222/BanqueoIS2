@@ -2,17 +2,11 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Collections;
 import java.util.List;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.json.JSONTokener;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,7 +15,6 @@ import org.junit.runner.RunWith;
 
 import dominio.Tarjeta;
 import dominio.TipoTarjeta;
-import netscape.javascript.JSException;
 import substarjetas.FachadaSubsTarjetas;
 import substarjetas.IFachadaSubsTarjetas;
 import tarjetasdao.control.TarjetasJSON;
@@ -129,49 +122,4 @@ class TestSubTarjetas {
         assertEquals(1, t2, "No se hizo bien el buscarTarjetas fallido");
 
     }
-
-    public static void loadTarjetas(InputStream in, List<Tarjeta> listaTarjetas) throws JSException {
-        try {
-
-            JSONObject jsonFile = new JSONObject(new JSONTokener(in));
-            JSONArray ja = jsonFile.getJSONArray("usuarios");
-
-            for (int i = 0; i < ja.length(); i++) {
-
-                String titular = ja.getJSONObject(i).getString("Titular");
-                int pin = ja.getJSONObject(i).getInt("PIN");
-                boolean estado = ja.getJSONObject(i).getboolean("Estado");
-                String fechaCad = ja.getJSONObject(i).getString("Fecha_CAD");
-                TipoTarjeta tipoTarjeta = ja.getJSONObject(i).getTipoTarjeta("Tipo");
-                int numTarjeta = ja.getJSONObject(i).getInt("Num_Tarjeta");
-
-            }
-        } catch (Exception e) {
-            throw e;
-        }
-    }
-
-    public static String readJsonFile(String filePath) {
-        String jsonData = "";
-        BufferedReader br = null;
-        try {
-            String line;
-            br = new BufferedReader(new FileReader(filePath));
-            while ((line = br.readLine()) != null) {
-                jsonData += line + "\n";
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (br != null) {
-                    br.close();
-                }
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-        return jsonData;
-    }
-
 }
