@@ -89,18 +89,19 @@ class TestSubTarjetas {
 
     void testBaja() {
         System.out.println("Test de las funciones de baja");
-        Tarjeta t = new Tarjeta("Luisa Carnes Caballero", 1234, true, 0000000000000001, "12/25", TipoTarjeta.DEBITO);
+        Tarjeta t = new Tarjeta("Luisa Carnes Caballero", 1234, true, 0000000000000001, "12/25", TipoTarjeta.DEBITO,
+                "1234567A");
 
-        boolean pruebaAlta1 = _testTarjeta.altaTarjeta(t);
-        assertEquals(true, pruebaAlta1, "Ata que deberia ser valida acaba con error");
+        int pruebaAlta1 = _testTarjeta.altaTarjeta(t);
+        assertEquals(0, pruebaAlta1, "Ata que deberia ser valida acaba con error");
 
         // BAJA DE USUARIO FUNCIONAL
-        boolean pruebaBaja1 = _testTarjeta.bajaTarjeta(t.getNum_tarjeta());
-        assertEquals(true, pruebaBaja1, "Baja que debaria ser valida acabada con error");
+        int pruebaBaja1 = _testTarjeta.bajaTarjeta(t.getNum_tarjeta());
+        assertEquals(0, pruebaBaja1, "Baja que debaria ser valida acabada con error");
 
         // BAJA DE USUARIO CON ERROR
-        boolean pruebaBaja2 = _testTarjeta.bajaTarjeta(t.getNum_tarjeta());
-        assertEquals(false, pruebaBaja2, "Baja que no deberia ser valida no provoca error");
+        int pruebaBaja2 = _testTarjeta.bajaTarjeta(t.getNum_tarjeta());
+        assertEquals(1, pruebaBaja2, "Baja que no deberia ser valida no provoca error");
     }
 
     @Test
