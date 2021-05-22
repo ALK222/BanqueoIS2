@@ -44,12 +44,12 @@ public class TarjetasJSON {
             for (int i = 0; i < ja.length(); i++) {
 
                 String titular = ja.getJSONObject(i).getString("Titular");
-                int pin = ja.getJSONObject(i).getInt("Pin");
+                int pin = ja.getJSONObject(i).getInt("PIN");
                 boolean estado = ja.getJSONObject(i).getBoolean("Estado");
-                int numTarjeta = ja.getJSONObject(i).getInt("Numero");
-                String fechaCad = ja.getJSONObject(i).getString("Fecha");
+                int numTarjeta = ja.getJSONObject(i).getInt("Num_Tarjeta");
+                String fechaCad = ja.getJSONObject(i).getString("Fecha_CAD");
                 String tipo = ja.getJSONObject(i).getString("Tipo");
-                String dni = ja.getJSONObject(i).getString("Dni");
+                String dni = ja.getJSONObject(i).getString("DNI");
 
                 TipoTarjeta tipoTarjeta = TipoTarjeta.parse(tipo);
 
@@ -80,12 +80,12 @@ public class TarjetasJSON {
         for (Tarjeta t : listaTarjetas) {
             JSONObject tJson = new JSONObject();
             tJson.put("Titular", t.getTitular());
-            tJson.put("Pin", t.getPin());
+            tJson.put("PIN", t.getPin());
             tJson.put("Estado", t.isEstado());
-            tJson.put("Numero", t.getNum_tarjeta());
-            tJson.put("Fecha", t.getFechaCad());
+            tJson.put("Num_Tarjeta", t.getNum_tarjeta());
+            tJson.put("Fecha_CAD", t.getFechaCad());
             tJson.put("Tipo", t.getTipo_tarjeta());
-            tJson.put("Dni", t.get_dni());
+            tJson.put("DNI", t.get_dni());
 
             ja.put(tJson);
 

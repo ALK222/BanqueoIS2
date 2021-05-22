@@ -27,7 +27,6 @@ class TestSubCuentas {
 	@BeforeEach
 	public void setup() throws FileNotFoundException {
 		System.out.println("Creando lista y subsistema");
-		System.out.println("Working Directory = " + System.getProperty("user.dir"));
 		_testCuenta = new FachadaSubsCuentas();
 		_listaOriginal = Collections.unmodifiableList(CuentasJSON.leerListaCuentas());
 	}

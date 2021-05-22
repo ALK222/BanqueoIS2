@@ -8,6 +8,10 @@ import dominio.Tarjeta;
 public class FachadaSubsTarjetas implements IFachadaSubsTarjetas {
     ISASubsTarjetas subsTarjetas;
 
+    public FachadaSubsTarjetas() {
+        subsTarjetas = new SASubsTarjetas();
+    }
+
     /**
      * Da de alta una tarjeta, creando una y añadiendola a la lista
      * 
@@ -23,7 +27,7 @@ public class FachadaSubsTarjetas implements IFachadaSubsTarjetas {
      * Da de baja una tarjeta
      * 
      * @param numTarjeta se utiliza para buscar la tarjeta que se tiene que dar de
-     *                    baja
+     *                   baja
      * 
      */
     @Override
@@ -36,12 +40,12 @@ public class FachadaSubsTarjetas implements IFachadaSubsTarjetas {
      * 
      * 
      * @param titularCuenta se utiliza para consultar las tarjetas de un titular
-     * @param dni            clave primaria, se utiliza para consultar las tarjetas
-     *                       de un titular
+     * @param dni           clave primaria, se utiliza para consultar las tarjetas
+     *                      de un titular
      * 
      */
     @Override
-    public Pair<List<Tarjeta>,Integer> consultarListaTarjetas(String dni) throws Exception {
+    public Pair<List<Tarjeta>, Integer> consultarListaTarjetas(String dni) throws Exception {
         return subsTarjetas.consultarListaTarjetas(dni);
     }
 
@@ -49,7 +53,7 @@ public class FachadaSubsTarjetas implements IFachadaSubsTarjetas {
      * Busca una tarjeta dentro de la lista
      * 
      * @param numTarjeta numero de la tarjeta, que se utiliza como identificador en
-     *                    la busqueda
+     *                   la busqueda
      * 
      */
     @Override

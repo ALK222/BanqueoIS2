@@ -1,18 +1,3 @@
-[
-    {
-        "Titular": "",
-        "PIN": "1234",
-        "Estado": "true",
-        "Fecha_CAD": "03/25",
-        "Tipo": "DEBITO",
-        "Num_Tarjeta": "1235123412341234"
-    },
-    {
-        "Titular": "",
-        "PIN": "1234",
-        "Estado": "true",
-        "Fecha_CAD": "03/25",
-        "Tipo": "CREDITO",
-        "Num_Tarjeta": "1234123412341234"
-    }
-]
+{ "tarjetas":
+[{"Tipo":"DEBITO","PIN":1234,"Fecha_CAD":"03/25","Titular":"Federico Garcia Lorca","DNI":"01234567A","Estado":true,"Num_Tarjeta":1235123},{"Tipo":"CREDITO","PIN":1234,"Fecha_CAD":"03/25","Titular":"Antonio Machado Ruiz","DNI":"01234568A","Estado":true,"Num_Tarjeta":1234124}]
+}
