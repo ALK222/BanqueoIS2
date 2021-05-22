@@ -60,7 +60,7 @@ public class SADAOPrestamos implements ISADAOPrestamos {
         List<Prestamo> listaPrestamos = PrestamoJSON.leerListaPrestamos();
         Prestamo aux = null;
         for (Prestamo pr : listaPrestamos) {
-            if (pr.getNumReferencia() == pr.getNumReferencia()) {
+            if (p.getNumReferencia() == pr.getNumReferencia()) {
                 aux = pr;
             }
         }
