@@ -12,7 +12,6 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
 import common.exception.GUIException;
@@ -22,7 +21,7 @@ import dominio.Persona;
 import subsusuarios.model.FachadaSubsUsuarios;
 import subsusuarios.model.IFachadaSubsUsuarios;
 
-public class UserWindow extends JPanel {
+public class UserWindow extends JFrame {
 
     private boolean _permisosGestor;
     private Persona _user;
@@ -32,9 +31,14 @@ public class UserWindow extends JPanel {
     public static String TIPOFILTRADO = "";
     public static String DOMICILIO = "";
 
-    public UserWindow(boolean permisosGestor) {
+    public UserWindow(boolean permisosGestor, Persona persona) {
         _permisosGestor = permisosGestor;
+        _user = persona;
         initGUI();
+    }
+
+    private void quit() {
+        this.dispose();
     }
 
     private void initGUI() {
