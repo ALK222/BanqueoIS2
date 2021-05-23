@@ -18,11 +18,11 @@ import common.exception.GUIException;
 import common.exception.UserException;
 import dominio.Cliente;
 import dominio.Gestor;
+import dominio.Persona;
 import subsusuarios.FachadaSubsUsuarios;
 import subsusuarios.IFachadaSubsUsuarios;
 
-public class AltaGUI extends JPanel {
-
+public class ModGUI extends JPanel {
     protected JTextField nombre;
     protected JTextField dniLabel;
     protected JLabel nombreLabel;
@@ -47,8 +47,25 @@ public class AltaGUI extends JPanel {
     protected JButton altaButton;
     protected JButton cancelButton;
 
-    public AltaGUI() {
+    public ModGUI(Persona p) {
         initGUI();
+        if (p.getClass() == Cliente.class) {
+            Cliente c = (Cliente) p;
+            dniGestorLabel.setText(c.getGestorDni());
+        } else {
+            gestorCheck.setSelected(true);
+        }
+        dniLabel.setText(p.getDni());
+        nombre.setText(p.getNombre());
+        telefonoLabel.setText(String.valueOf(p.getTlf()));
+        calleLabel.setText(p.getDomicilio().split(";")[0].split(",")[0]);
+        portalPisoLabel.setText(p.getDomicilio().split(";")[0].split(",")[1]);
+        codigoPostalLabel.setText(p.getDomicilio().split(";")[1]);
+        poblacionLabel.setText(p.getDomicilio().split(";")[2]);
+        contrasenaLabel.setText(p.getContrasena());
+        emailLabel.setText(p.getEmail());
+
+        dniLabel.setEnabled(false);
     }
 
     public void initGUI() {
@@ -89,13 +106,13 @@ public class AltaGUI extends JPanel {
                     IFachadaSubsUsuarios subsUsuarios = new FachadaSubsUsuarios();
                     int resultado = 1;
                     if (gestorCheck.isSelected()) {
-                        resultado = subsUsuarios.altaUsuario(new Gestor(dniLabel.getText(), nombre.getText(),
+                        resultado = subsUsuarios.modificarUsuario(new Gestor(dniLabel.getText(), nombre.getText(),
                                 calleLabel.getText() + "," + portalPisoLabel.getText() + ";"
                                         + codigoPostalLabel.getText() + ";" + poblacionLabel.getText(),
                                 Integer.parseInt(telefonoLabel.getText()),
                                 String.valueOf(contrasenaLabel.getPassword()), emailLabel.getText()));
                     } else {
-                        resultado = subsUsuarios.altaUsuario(new Cliente(dniLabel.getText(), nombre.getText(),
+                        resultado = subsUsuarios.modificarUsuario(new Cliente(dniLabel.getText(), nombre.getText(),
                                 calleLabel.getText() + "," + portalPisoLabel.getText() + ";"
                                         + codigoPostalLabel.getText() + ";" + poblacionLabel.getText(),
                                 Integer.parseInt(telefonoLabel.getText()),
@@ -104,11 +121,11 @@ public class AltaGUI extends JPanel {
                     }
                     switch (resultado) {
                         case 0:
-                            JOptionPane.showMessageDialog(null, "Usuario añadido correctamente");
+                            JOptionPane.showMessageDialog(null, "Usuario modificado correctamente");
                             quit();
                             break;
                         case 1:
-                            throw new UserException("Fallo al añadir el usuario. Compruebe que no exista ya");
+                            throw new UserException("Fallo al modificar el usuario. Compruebe que no exista ya");
                         case 10:
                             throw new GUIException(
                                     "Fallo al encontrar el archivo de usuarios. Contacte con el soporte.");

@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch UserListPanel",
+            "request": "launch",
+            "mainClass": "subsusuarios.view.UserListPanel",
+            "projectName": "Bankeo"
+        },
+        {
+            "type": "java",
             "name": "Launch Main",
             "request": "launch",
             "mainClass": "common.Main",

@@ -6,16 +6,25 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.FileNotFoundException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
+
+import dominio.Persona;
+import subsusuarios.FachadaSubsUsuarios;
+import subsusuarios.IFachadaSubsUsuarios;
 
 public class UserWindow extends JFrame {
 
     private boolean _permisosGestor;
+    private Persona _user;
     private static Dimension tamanoBoton = new Dimension(200, 50);
+
+    public static String DNI = "";
 
     public UserWindow(boolean permisosGestor) {
         super("Usuario");
@@ -126,12 +135,72 @@ public class UserWindow extends JFrame {
         modificacionButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // ModGUI alta = new ModGUI();
+
+                if (_permisosGestor) {
+                    JFrame frame1 = new JFrame("Lista Usuarios");
+                    frame1.addWindowListener(new WindowListener() {
+
+                        @Override
+                        public void windowOpened(WindowEvent e) {
+
+                        }
+
+                        @Override
+                        public void windowClosing(WindowEvent e) {
+                        }
+
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                            JFrame frame = new JFrame("Modicifacion Usuario");
+                            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                            IFachadaSubsUsuarios subsUsuarios = new FachadaSubsUsuarios();
+                            Persona aux = subsUsuarios.buscarUsuario(DNI).getFirst();
+                            frame.getContentPane().add(new ModGUI(aux));
+
+                            frame.pack();
+                            frame.setVisible(true);
+                        }
+
+                        @Override
+                        public void windowIconified(WindowEvent e) {
+                        }
+
+                        @Override
+                        public void windowDeiconified(WindowEvent e) {
+                        }
+
+                        @Override
+                        public void windowActivated(WindowEvent e) {
+                        }
+
+                        @Override
+                        public void windowDeactivated(WindowEvent e) {
+                        }
+
+                    });
+                    try {
+                        frame1.getContentPane().add(new UserListPanel());
+                        frame1.pack();
+                        frame1.setVisible(true);
+                    } catch (FileNotFoundException e1) {
+                        JOptionPane.showMessageDialog(null,
+                                "No se pudo abrir el archivo de usuarios. Contacte con el soporte.");
+                    }
+                } else {
+                    JFrame frame = new JFrame("Modicifacion Usuario");
+                    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    frame.getContentPane().add(new ModGUI(_user));
+
+                    frame.pack();
+                    frame.setVisible(true);
+                }
+
             }
         });
         modificacionButton.setEnabled(true);
         modificacionButton.setPreferredSize(tamanoBoton);
         aux.add(modificacionButton, BorderLayout.NORTH);
+
     }
 
     private void createListaButton(JToolBar aux) {
