@@ -5,6 +5,9 @@ import java.util.List;
 import common.misc.Pair;
 import dominio.Tarjeta;
 
+/**
+ * Interfaz del sistema de aplicaciones
+ */
 public interface ISASubsTarjetas {
     /**
      * Alta de una tarjeta en la base de datos

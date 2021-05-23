@@ -6,6 +6,9 @@ import java.util.List;
 import common.exception.UserException;
 import dominio.Tarjeta;
 
+/**
+ * Intermediario entre el SATarjetas y la gui
+ */
 public class FachadaDAOTarjetas implements IFachadaDAOTarjetas {
 
 	private ISADAOTarjetas daoTarj;

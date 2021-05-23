@@ -8,6 +8,9 @@ import java.util.List;
 import common.exception.UserException;
 import dominio.Tarjeta;
 
+/**
+ * Gestiona la informacion saliente sobre las Tarjetas
+ */
 public class SADAOTarjetas implements ISADAOTarjetas {
 
 	@Override

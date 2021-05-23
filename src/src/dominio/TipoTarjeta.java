@@ -1,5 +1,8 @@
 package dominio;
 
+/**
+ * Objeto TipoTarjeta, da informacion sobre el tipo de tarjeta bancaria
+ */
 public enum TipoTarjeta {
 
   DEBITO, CREDITO, PREPAGO;

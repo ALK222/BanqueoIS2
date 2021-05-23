@@ -1,5 +1,8 @@
 package common.exception;
 
+/**
+ * Excepciones que saltan en la GUI
+ */
 public class GUIException extends Exception {
     /**
      * Void constructor

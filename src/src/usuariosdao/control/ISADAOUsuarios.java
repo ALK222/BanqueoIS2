@@ -9,7 +9,7 @@ import common.misc.Pair;
 import dominio.Persona;
 
 /**
- * Interfaz del SADAO de usuarios
+ * Interfaz del DAO de usuarios
  */
 public interface ISADAOUsuarios {
     /**

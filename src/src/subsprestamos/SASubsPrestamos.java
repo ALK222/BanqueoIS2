@@ -10,6 +10,9 @@ import dominio.Prestamo;
 import prestamosdao.control.FachadaDAOPrestamos;
 import prestamosdao.control.IFachadaDAOPrestamos;
 
+/**
+ * Interprete del DAOPrestamos
+ */
 public class SASubsPrestamos implements ISASubsPrestamos {
     IFachadaDAOPrestamos prestamo;
 

@@ -18,7 +18,16 @@ import org.json.JSONTokener;
 import dominio.EstadoPrestamo;
 import dominio.Prestamo;
 
+/**
+ * Intermediario entre el DAOPrestamos y la "base de datos"
+ */
 public class PrestamoJSON {
+    /**
+     * Lectura del fichero que hace de base de datos
+     * 
+     * @return Una lista con todas las cuentas guardadas
+     * @throws FileNotFoundException Si no consigue encontrar el fichero
+     */
     public static List<Prestamo> leerListaPrestamos() throws FileNotFoundException {
         File testFile = null;
         InputStream in = null;
@@ -59,6 +68,12 @@ public class PrestamoJSON {
         return listaPrestamos;
     }
 
+    /**
+     * Guardado de la lista actualizada en el fichero
+     * 
+     * @param listaCuentas Listado de cuentas con las ultimas modificaciones
+     * @throws IOException Si no encuentra el archivo o no puede escribir en el
+     */
     public static void guardarListaPrestamos(List<Prestamo> listaPrestamos) throws IOException {
         File testFile = null;
         FileWriter in = null;

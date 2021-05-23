@@ -1,5 +1,8 @@
 package dominio;
 
+/**
+ * Objeto tarjeta
+ */
 public class Tarjeta {
 
 	private String _titular;
@@ -8,16 +11,28 @@ public class Tarjeta {
 	private int _numTarjeta;
 	private String _fechaCad;
 	private TipoTarjeta _tipoTarjeta;
-	private String _dni; 
+	private String _dni;
 
-	public Tarjeta(String titular, int pin, boolean estado, int numTarjeta, String fechaCad, TipoTarjeta tipoTarjeta,String dni) {
+	/**
+	 * Constructor parametrizado de tarjeta
+	 * 
+	 * @param titular
+	 * @param pin
+	 * @param estado
+	 * @param numTarjeta
+	 * @param fechaCad
+	 * @param tipoTarjeta
+	 * @param dni
+	 */
+	public Tarjeta(String titular, int pin, boolean estado, int numTarjeta, String fechaCad, TipoTarjeta tipoTarjeta,
+			String dni) {
 		this._titular = titular;
 		this._pin = pin;
 		this._estado = estado;
 		this._numTarjeta = numTarjeta;
 		this._fechaCad = fechaCad;
 		this._tipoTarjeta = tipoTarjeta;
-		this._dni = dni; 
+		this._dni = dni;
 	}
 
 	public String getTitular() {

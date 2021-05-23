@@ -8,7 +8,7 @@ import common.misc.Pair;
 import dominio.Persona;
 
 /**
- * Intermediario entre el SADAO de usuarios y la GUI
+ * Intermediario entre el DAO de usuarios y el servicio de aplicaciones
  */
 public class FachadaDAOUsuarios implements IFachadaDAOUsuarios {
 

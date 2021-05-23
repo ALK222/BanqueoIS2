@@ -16,7 +16,7 @@ public interface IFachadaDAOUsuarios {
      * 
      * @param p Persona a la que dar de alta
      * @return Si el usuario se ha podido registrar
-     * @throws IOException
+     * @throws IOException Si el archivo no se pudo encontrar o reescribir
      */
     boolean altaUsuario(Persona p) throws IOException;
 
@@ -25,7 +25,7 @@ public interface IFachadaDAOUsuarios {
      * 
      * @param p Persona a la que dar de baja
      * @return Si la persona ha podido ser dada de baja
-     * @throws IOException
+     * @throws IOException Si el archivo no se pudo encontrar o reescribir
      */
     boolean bajaUsuario(Persona p) throws IOException;
 
@@ -37,7 +37,7 @@ public interface IFachadaDAOUsuarios {
      * @param modo      Modo de discriminacion
      * @return Una lista de usuaios discriminada por localización
      * @throws UserException Si el modo no es valido
-     * @throws IOException
+     * @throws IOException   Si el archivo no se pudo encontrar o reescribir
      */
     List<Persona> consultarListaUsuarios(String domicilio, String modo) throws UserException, IOException;
 
@@ -47,7 +47,7 @@ public interface IFachadaDAOUsuarios {
      * @param dni DNI del usuario
      * @return La persona si se ha encontrado, null si no
      * @throws UserException Si el DNI no es valido
-     * @throws IOException
+     * @throws IOException   Si el archivo no se pudo encontrar o reescribir
      */
     Persona buscarUsuario(String dni) throws UserException, IOException;
 
@@ -56,7 +56,7 @@ public interface IFachadaDAOUsuarios {
      * 
      * @param p Persona ya modificada
      * @return Si se ha podido modificar o no
-     * @throws IOException
+     * @throws IOException Si el archivo no se pudo encontrar o reescribir
      */
     boolean modificarUsuario(Persona p) throws IOException;
 
@@ -66,7 +66,7 @@ public interface IFachadaDAOUsuarios {
      * @param dni        DNI del usuario
      * @param contrasena Contrasena del usuario
      * @return Si se ha podido iniciar sesión o no
-     * @throws IOException
+     * @throws IOException Si el archivo no se pudo encontrar o reescribir
      */
     Pair<Boolean, Boolean> iniciarSesion(String dni, String contrasena) throws IOException;
 
@@ -82,7 +82,7 @@ public interface IFachadaDAOUsuarios {
      * 
      * @param dni DNI del usaurio
      * @return Si existe o no
-     * @throws IOException
+     * @throws IOException Si el archivo no se pudo encontrar o reescribir
      */
     boolean existeUsuario(String dni) throws IOException;
 }

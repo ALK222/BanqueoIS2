@@ -149,23 +149,25 @@ public class UserWindow extends JFrame {
                         try {
                             if (decision == 0) {
                                 resultado = subsUsuarios.bajaUsuario(aux);
-                            }
-                            switch (resultado) {
-                                case 0:
-                                    JOptionPane.showMessageDialog(null, "Usuario eliminado correctamente");
-                                    quit();
-                                    break;
-                                case 1:
-                                    throw new UserException("Fallo al eliminar el usuario. Compruebe que no exista ya");
-                                case 10:
-                                    throw new GUIException(
-                                            "Fallo al encontrar el archivo de usuarios. Contacte con el soporte.");
-                                default:
-                                    throw new GUIException("Error inesperado. Contacte con el soporte");
+                                switch (resultado) {
+                                    case 0:
+                                        JOptionPane.showMessageDialog(null, "Usuario eliminado correctamente");
+                                        quit();
+                                        break;
+                                    case 1:
+                                        throw new UserException(
+                                                "Fallo al eliminar el usuario. Compruebe que no exista ya");
+                                    case 10:
+                                        throw new GUIException(
+                                                "Fallo al encontrar el archivo de usuarios. Contacte con el soporte.");
+                                    default:
+                                        throw new GUIException("Error inesperado. Contacte con el soporte");
+                                }
                             }
                         } catch (Exception e1) {
                             JOptionPane.showMessageDialog(null, e1.getMessage());
                         }
+
                     }
 
                     @Override
@@ -194,6 +196,7 @@ public class UserWindow extends JFrame {
                             "No se pudo abrir el archivo de usuarios. Contacte con el soporte.");
                 }
             }
+
         });
         bajaButton.setEnabled(_permisosGestor);
         bajaButton.setPreferredSize(tamanoBoton);
@@ -377,5 +380,9 @@ public class UserWindow extends JFrame {
         listaButton.setEnabled(_permisosGestor);
         listaButton.setPreferredSize(tamanoBoton);
         aux.add(listaButton, BorderLayout.SOUTH);
+    }
+
+    public static void main(String[] args) {
+        new UserWindow(true);
     }
 }

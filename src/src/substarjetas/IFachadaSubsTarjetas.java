@@ -7,6 +7,9 @@ import common.exception.UserException;
 import common.misc.Pair;
 import dominio.Tarjeta;
 
+/**
+ * Interfaz de la fachada de SAPrestamos
+ */
 public interface IFachadaSubsTarjetas {
   /**
    * Da de alta una tarjeta, creando una y añadiendola a la lista

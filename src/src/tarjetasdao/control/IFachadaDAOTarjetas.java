@@ -6,6 +6,9 @@ import java.util.List;
 import common.exception.UserException;
 import dominio.Tarjeta;
 
+/**
+ * Interfaz de la fachada de FachadaDAOTarjetas
+ */
 public interface IFachadaDAOTarjetas {
      /**
       * Alta de una tarjeta en la base de datos

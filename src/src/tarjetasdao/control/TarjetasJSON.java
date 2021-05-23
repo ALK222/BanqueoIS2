@@ -18,8 +18,17 @@ import org.json.JSONTokener;
 import dominio.Tarjeta;
 import dominio.TipoTarjeta;
 
+/**
+ * Intermediario entre el DAOTarjetas y la "base de datos"
+ */
 public class TarjetasJSON {
 
+    /**
+     * Lectura del fichero que hace de base de datos
+     * 
+     * @return Una lista con todas las cuentas guardadas
+     * @throws FileNotFoundException Si no consigue encontrar el fichero
+     */
     public static List<Tarjeta> leerListaTarjetas() throws FileNotFoundException {
         File testFile = null;
         InputStream in = null;
@@ -62,6 +71,12 @@ public class TarjetasJSON {
         return listaTarjetas;
     }
 
+    /**
+     * Guardado de la lista actualizada en el fichero
+     * 
+     * @param listaCuentas Listado de cuentas con las ultimas modificaciones
+     * @throws IOException Si no encuentra el archivo o no puede escribir en el
+     */
     public static void guardarListaUsuarios(List<Tarjeta> listaTarjetas) throws IOException {
         File testFile = null;
         FileWriter in = null;
