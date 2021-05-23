@@ -93,7 +93,11 @@ public class UserWindow extends JFrame {
         altaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // AltaGUI alta = new AltaGUI();
+                JFrame frame = new JFrame("Alta Usuario");
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.getContentPane().add(new AltaGUI());
+                frame.pack();
+                frame.setVisible(true);
             }
         });
         altaButton.setEnabled(_permisosGestor);
