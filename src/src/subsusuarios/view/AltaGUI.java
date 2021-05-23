@@ -6,11 +6,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 import common.exception.GUIException;
 import common.exception.UserException;
@@ -76,7 +78,6 @@ public class AltaGUI extends JPanel {
 
         // Set button actions
         altaButton.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -94,6 +95,7 @@ public class AltaGUI extends JPanel {
                         switch (resultado) {
                             case 0:
                                 JOptionPane.showMessageDialog(null, "Usuario añadido correctamente");
+                                quit();
                                 break;
                             case 1:
                                 throw new UserException("Fallo al añadir el usuario. Compruebe que no exista ya");
@@ -107,6 +109,15 @@ public class AltaGUI extends JPanel {
                 } catch (Exception e1) {
                     JOptionPane.showMessageDialog(null, e1.getMessage());
                 }
+            }
+
+        });
+
+        cancelButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                quit();
             }
 
         });
@@ -177,5 +188,10 @@ public class AltaGUI extends JPanel {
         dniGestor.setBounds(155, 310, 100, 25);
         altaButton.setBounds(705, 505, 100, 35);
         cancelButton.setBounds(815, 505, 100, 35);
+    }
+
+    private void quit() {
+        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        frame.dispose();
     }
 }
