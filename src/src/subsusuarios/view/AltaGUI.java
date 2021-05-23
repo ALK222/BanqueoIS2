@@ -18,8 +18,8 @@ import common.exception.GUIException;
 import common.exception.UserException;
 import dominio.Cliente;
 import dominio.Gestor;
-import subsusuarios.FachadaSubsUsuarios;
-import subsusuarios.IFachadaSubsUsuarios;
+import subsusuarios.model.FachadaSubsUsuarios;
+import subsusuarios.model.IFachadaSubsUsuarios;
 
 public class AltaGUI extends JPanel {
 

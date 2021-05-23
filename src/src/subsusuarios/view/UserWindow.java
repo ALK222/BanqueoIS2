@@ -15,8 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
 import dominio.Persona;
-import subsusuarios.FachadaSubsUsuarios;
-import subsusuarios.IFachadaSubsUsuarios;
+import subsusuarios.model.FachadaSubsUsuarios;
+import subsusuarios.model.IFachadaSubsUsuarios;
 
 public class UserWindow extends JFrame {
 

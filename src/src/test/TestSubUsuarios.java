@@ -17,8 +17,8 @@ import common.exception.UserException;
 import common.misc.Pair;
 import dominio.Cliente;
 import dominio.Persona;
-import subsusuarios.FachadaSubsUsuarios;
-import subsusuarios.IFachadaSubsUsuarios;
+import subsusuarios.model.FachadaSubsUsuarios;
+import subsusuarios.model.IFachadaSubsUsuarios;
 import usuariosdao.control.UsuariosJSON;
 
 @RunWith(JUnitPlatform.class)

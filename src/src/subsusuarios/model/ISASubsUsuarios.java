@@ -1,4 +1,4 @@
-package subsusuarios;
+package subsusuarios.model;
 
 import java.util.List;
 

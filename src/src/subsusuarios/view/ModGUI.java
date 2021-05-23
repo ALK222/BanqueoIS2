@@ -19,8 +19,8 @@ import common.exception.UserException;
 import dominio.Cliente;
 import dominio.Gestor;
 import dominio.Persona;
-import subsusuarios.FachadaSubsUsuarios;
-import subsusuarios.IFachadaSubsUsuarios;
+import subsusuarios.model.FachadaSubsUsuarios;
+import subsusuarios.model.IFachadaSubsUsuarios;
 
 public class ModGUI extends JPanel {
     protected JTextField nombre;
