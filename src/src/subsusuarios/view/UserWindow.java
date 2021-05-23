@@ -1,6 +1,7 @@
 package subsusuarios.view;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -9,10 +10,12 @@ import java.awt.event.WindowListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JToolBar;
 
 public class UserWindow extends JFrame {
 
     private boolean _permisosGestor;
+    private static Dimension tamanoBoton = new Dimension(200, 50);
 
     public UserWindow(boolean permisosGestor) {
         super("Usuario");
@@ -21,15 +24,25 @@ public class UserWindow extends JFrame {
     }
 
     private void initGUI() {
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
         this.setContentPane(mainPanel);
 
         // Buttons
+        JToolBar botonesAltaBaja = new JToolBar();
+        botonesAltaBaja.setLayout(new BorderLayout());
+        botonesAltaBaja.setFloatable(false);
+        createAltaButton(botonesAltaBaja);
+        createBajaButton(botonesAltaBaja);
+        this.add(botonesAltaBaja, BorderLayout.EAST);
 
-        createAltaButton();
+        JToolBar botonesListaModificar = new JToolBar();
+        botonesListaModificar.setLayout(new BorderLayout());
+        botonesListaModificar.setFloatable(false);
+        createModificarButton(botonesListaModificar);
+        createListaButton(botonesListaModificar);
+        this.add(botonesListaModificar, BorderLayout.WEST);
 
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.pack();
@@ -74,7 +87,7 @@ public class UserWindow extends JFrame {
         this.dispose();
     }
 
-    private void createAltaButton() {
+    private void createAltaButton(JToolBar aux) {
         JButton altaButton = new JButton("Alta usuario");
         altaButton.setToolTipText("Alta de usuario, solo disponible para gestores");
         altaButton.addActionListener(new ActionListener() {
@@ -84,14 +97,49 @@ public class UserWindow extends JFrame {
             }
         });
         altaButton.setEnabled(_permisosGestor);
-        this.add(altaButton);
+        altaButton.setPreferredSize(tamanoBoton);
+        aux.add(altaButton, BorderLayout.NORTH);
     }
 
-    private void createBajaButton() {
-        // TODO
+    private void createBajaButton(JToolBar aux) {
+        JButton bajaButton = new JButton("Baja usuario");
+        bajaButton.setToolTipText("Baja de usuario, solo disponible para gestores");
+        bajaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // BajaGUI baja = new BajaGUI();
+            }
+        });
+        bajaButton.setEnabled(_permisosGestor);
+        bajaButton.setPreferredSize(tamanoBoton);
+        aux.add(bajaButton, BorderLayout.SOUTH);
     }
 
-    private void modificarButton() {
-        // TODO
+    private void createModificarButton(JToolBar aux) {
+        JButton modificacionButton = new JButton("Modificación usuario");
+        modificacionButton.setToolTipText("Modificación de usuario, solo disponible para gestores");
+        modificacionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // ModGUI alta = new ModGUI();
+            }
+        });
+        modificacionButton.setEnabled(true);
+        modificacionButton.setPreferredSize(tamanoBoton);
+        aux.add(modificacionButton, BorderLayout.NORTH);
+    }
+
+    private void createListaButton(JToolBar aux) {
+        JButton listaButton = new JButton("Lista de usuarios");
+        listaButton.setToolTipText("Lista de usuarios, solo disponible para gestores");
+        listaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // ListaGUI lista = new ListaGUI
+            }
+        });
+        listaButton.setEnabled(_permisosGestor);
+        listaButton.setPreferredSize(tamanoBoton);
+        aux.add(listaButton, BorderLayout.SOUTH);
     }
 }
