@@ -1,5 +1,6 @@
 package common;
 
+import common.view.MainWindow;
 import dominio.Persona;
 
 /**
@@ -16,6 +17,14 @@ public class Controller {
         _isAdmin = false;
     }
 
+    public Persona getCurrentUser() {
+        return _currentUser;
+    }
+
+    public boolean isAdmin() {
+        return _isAdmin;
+    }
+
     public void setUser(Persona first) {
         _currentUser = first;
     }
@@ -25,7 +34,7 @@ public class Controller {
     }
 
     public void initGUI() {
-
+        new MainWindow(this);
     }
 
 }

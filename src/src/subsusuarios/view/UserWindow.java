@@ -22,7 +22,7 @@ import dominio.Persona;
 import subsusuarios.model.FachadaSubsUsuarios;
 import subsusuarios.model.IFachadaSubsUsuarios;
 
-public class UserWindow extends JFrame {
+public class UserWindow extends JPanel {
 
     private boolean _permisosGestor;
     private Persona _user;
@@ -33,16 +33,11 @@ public class UserWindow extends JFrame {
     public static String DOMICILIO = "";
 
     public UserWindow(boolean permisosGestor) {
-        super("Usuario");
         _permisosGestor = permisosGestor;
         initGUI();
     }
 
     private void initGUI() {
-
-        JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new BorderLayout());
-        this.setContentPane(mainPanel);
 
         // Buttons
         JToolBar botonesAltaBaja = new JToolBar();
@@ -59,47 +54,7 @@ public class UserWindow extends JFrame {
         createListaButton(botonesListaModificar);
         this.add(botonesListaModificar, BorderLayout.WEST);
 
-        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        this.pack();
         this.setVisible(true);
-        this.setResizable(true);
-        this.addWindowListener(new WindowListener() {
-
-            @Override
-            public void windowOpened(WindowEvent e) {
-            }
-
-            @Override
-            public void windowIconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeiconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeactivated(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-                quit();
-
-            }
-
-            @Override
-            public void windowClosed(WindowEvent e) {
-
-            }
-
-            @Override
-            public void windowActivated(WindowEvent e) {
-            }
-        });
-    }
-
-    private void quit() {
-        this.dispose();
     }
 
     private void createAltaButton(JToolBar aux) {
@@ -383,6 +338,6 @@ public class UserWindow extends JFrame {
     }
 
     public static void main(String[] args) {
-        new UserWindow(true);
+        new UserWindow(true, null);
     }
 }
