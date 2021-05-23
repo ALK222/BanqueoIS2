@@ -63,18 +63,19 @@ public class SASubsUsuarios implements ISASubsUsuarios {
     }
 
     @Override
-    public int buscarUsuario(String dni) {
+    public Pair<Persona, Integer> buscarUsuario(String dni) {
         try {
-            if (usuario.buscarUsuario(dni).equals(null)) {
-                return 1;
+            Persona personaBusacada = usuario.buscarUsuario(dni);
+            if (personaBusacada == null) {
+                return new Pair<Persona, Integer>(null, 1);
             } else {
-                usuario.buscarUsuario(dni);
-                return 0;
+
+                return new Pair<Persona, Integer>(personaBusacada, 0);
             }
         } catch (IOException e) {
-            return 10;
+            return new Pair<Persona, Integer>(null, 10);
         } catch (UserException e) {
-            return 2;
+            return new Pair<Persona, Integer>(null, 2);
         }
     }
 

@@ -39,7 +39,7 @@ public interface IFachadaSubsUsuarios {
      * @param dni DNI del usuario
      * @return La persona si se ha encontrado, null si no
      */
-    int buscarUsuario(String dni);
+    Pair<Persona, Integer> buscarUsuario(String dni);
 
     /**
      * Modifica un usuario en la base de datos

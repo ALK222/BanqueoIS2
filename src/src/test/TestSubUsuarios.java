@@ -125,11 +125,11 @@ class TestSubUsuarios {
 	void testBuscar() {
 		System.out.println("Test de las funciones de busqueda");
 		// BUSCAR USUARIO BIEN
-		int p1 = _testUsuario.buscarUsuario("01234567A");
+		int p1 = _testUsuario.buscarUsuario("01234567A").getSecond();
 		assertEquals(0, p1, "No se realizó bien la busqueda");
 
 		// BUSCAR USUARIO MAL
-		int p2 = _testUsuario.buscarUsuario(null);
+		int p2 = _testUsuario.buscarUsuario(null).getSecond();
 		assertEquals(2, p2, "No se hizo bien el buscarUsuarios fallido");
 
 	}

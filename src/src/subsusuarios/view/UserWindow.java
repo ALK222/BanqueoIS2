@@ -86,4 +86,12 @@ public class UserWindow extends JFrame {
         altaButton.setEnabled(_permisosGestor);
         this.add(altaButton);
     }
+
+    private void createBajaButton() {
+        // TODO
+    }
+
+    private void modificarButton() {
+        // TODO
+    }
 }

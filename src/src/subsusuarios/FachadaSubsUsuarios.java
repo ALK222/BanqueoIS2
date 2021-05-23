@@ -28,7 +28,7 @@ public class FachadaSubsUsuarios implements IFachadaSubsUsuarios {
     }
 
     @Override
-    public int buscarUsuario(String dni) {
+    public Pair<Persona, Integer> buscarUsuario(String dni) {
         return subsUsuario.buscarUsuario(dni);
     }
 
