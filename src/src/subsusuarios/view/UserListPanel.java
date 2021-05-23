@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -22,20 +23,26 @@ import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
 import common.exception.GUIException;
+import dominio.Persona;
 
 public class UserListPanel extends JPanel {
     private JButton modButton;
     private JButton cancelButton;
+    JPanel tablaUsuarios;
 
     private JLabel dniAModificar;
     private JTextField dniLabel;
 
-    public UserListPanel() throws FileNotFoundException {
+    public UserListPanel(List<Persona> listaFiltrada) throws FileNotFoundException {
 
         // construct components
         modButton = new JButton("ACEPTAR");
         cancelButton = new JButton("CANCELAR");
-        JPanel tablaUsuarios = createViewPanel(new JTable(new UserTableModel()), "Lista de usuarios");
+        if (listaFiltrada == null) {
+            tablaUsuarios = createViewPanel(new JTable(new UserTableModel()), "Lista de usuarios");
+        } else {
+            tablaUsuarios = createViewPanel(new JTable(new UserTableModel(listaFiltrada)), "Lista de usuarios");
+        }
         dniAModificar = new JLabel("DNI");
         dniLabel = new JTextField(5);
         // adjust size and set layout
@@ -101,7 +108,7 @@ public class UserListPanel extends JPanel {
     public static void main(String[] args) throws FileNotFoundException {
         JFrame frame = new JFrame("MyPanel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add(new UserListPanel());
+        frame.getContentPane().add(new UserListPanel(null));
         frame.pack();
         frame.setVisible(true);
     }

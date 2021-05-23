@@ -17,6 +17,10 @@ public class UserTableModel extends AbstractTableModel {
         _personas = UsuariosJSON.leerListaUsuarios();
     }
 
+    public UserTableModel(List<Persona> listaFiltrada) {
+        _personas = listaFiltrada;
+    }
+
     @Override
     public int getColumnCount() {
         return labels.length;
