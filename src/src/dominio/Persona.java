@@ -25,7 +25,7 @@ public class Persona implements Comparable<Persona> {
 	 * @param contrasena
 	 * @param email
 	 */
-	Persona(String dni, String nombre, String domicilio, int tlf, String contrasena, String email) {
+	public Persona(String dni, String nombre, String domicilio, int tlf, String contrasena, String email) {
 		this._dni = dni;
 		this._nombre = nombre;
 		this._domicilio = domicilio;

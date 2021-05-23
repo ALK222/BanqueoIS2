@@ -33,16 +33,20 @@ public class CuentasJSON {
         InputStream in = null;
 
         try {
-            testFile = new File(System.getProperty("user.dir") + "/src/resources/cuentas.json");
+            testFile = new File(System.getProperty("user.dir") + "/resources/Cuentas.json");
             in = new FileInputStream(testFile);
         } catch (FileNotFoundException e) {
             try {
-                testFile = new File("./resources/cuentas.json");
+                testFile = new File(System.getProperty("user.dir") + "/src/src/resources/Cuentas.json");
                 in = new FileInputStream(testFile);
             } catch (FileNotFoundException ex) {
-                throw ex;
+                try {
+                    testFile = new File("./resources/Cuentas.json");
+                    in = new FileInputStream(testFile);
+                } catch (FileNotFoundException ex1) {
+                    throw ex1;
+                }
             }
-
         }
 
         List<Cuenta> listaCuentas = new ArrayList<Cuenta>();
@@ -81,14 +85,19 @@ public class CuentasJSON {
         File testFile = null;
         FileWriter in = null;
         try {
-            testFile = new File(System.getProperty("user.dir") + "/src/resources/cuentas.json");
+            testFile = new File(System.getProperty("user.dir") + "/resources/Cuentas.json");
             in = new FileWriter(testFile);
         } catch (FileNotFoundException e) {
             try {
-                testFile = new File("./resources/cuentas.json");
+                testFile = new File(System.getProperty("user.dir") + "/src/src/resources/Cuentas.json");
                 in = new FileWriter(testFile);
             } catch (FileNotFoundException ex) {
-                throw ex;
+                try {
+                    testFile = new File("./resources/Cuentas.json");
+                    in = new FileWriter(testFile);
+                } catch (FileNotFoundException ex1) {
+                    throw ex1;
+                }
             }
         }
         JSONArray ja = new JSONArray();

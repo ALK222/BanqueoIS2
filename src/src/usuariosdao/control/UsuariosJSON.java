@@ -39,7 +39,6 @@ public class UsuariosJSON {
                     throw ex1;
                 }
             }
-
         }
         List<Persona> listaUsuarios = new ArrayList<Persona>();
         try {

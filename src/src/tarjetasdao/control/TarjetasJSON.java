@@ -33,16 +33,20 @@ public class TarjetasJSON {
         File testFile = null;
         InputStream in = null;
         try {
-            testFile = new File(System.getProperty("user.dir") + "/src/resources/tarjetas.json");
+            testFile = new File(System.getProperty("user.dir") + "/resources/Tarjetas.json");
             in = new FileInputStream(testFile);
         } catch (FileNotFoundException e) {
             try {
-                testFile = new File("./resources/tarjetas.json");
+                testFile = new File(System.getProperty("user.dir") + "/src/src/resources/Tarjetas.json");
                 in = new FileInputStream(testFile);
             } catch (FileNotFoundException ex) {
-                throw ex;
+                try {
+                    testFile = new File("./resources/Tarjetas.json");
+                    in = new FileInputStream(testFile);
+                } catch (FileNotFoundException ex1) {
+                    throw ex1;
+                }
             }
-
         }
         List<Tarjeta> listaTarjetas = new ArrayList<Tarjeta>();
         try {
@@ -77,18 +81,23 @@ public class TarjetasJSON {
      * @param listaCuentas Listado de cuentas con las ultimas modificaciones
      * @throws IOException Si no encuentra el archivo o no puede escribir en el
      */
-    public static void guardarListaUsuarios(List<Tarjeta> listaTarjetas) throws IOException {
+    public static void guardarListaTarjetas(List<Tarjeta> listaTarjetas) throws IOException {
         File testFile = null;
         FileWriter in = null;
         try {
-            testFile = new File(System.getProperty("user.dir") + "/src/resources/tarjetas.json");
+            testFile = new File(System.getProperty("user.dir") + "/resources/Tarjetas.json");
             in = new FileWriter(testFile);
         } catch (FileNotFoundException e) {
             try {
-                testFile = new File("./resources/tarjetas.json");
+                testFile = new File(System.getProperty("user.dir") + "/src/src/resources/Tarjetas.json");
                 in = new FileWriter(testFile);
             } catch (FileNotFoundException ex) {
-                throw ex;
+                try {
+                    testFile = new File("./resources/Tarjetas.json");
+                    in = new FileWriter(testFile);
+                } catch (FileNotFoundException ex1) {
+                    throw ex1;
+                }
             }
         }
         JSONArray ja = new JSONArray();
