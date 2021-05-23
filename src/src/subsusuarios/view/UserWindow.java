@@ -14,6 +14,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
+import common.exception.GUIException;
+import common.exception.UserException;
 import dominio.Persona;
 import subsusuarios.model.FachadaSubsUsuarios;
 import subsusuarios.model.IFachadaSubsUsuarios;
@@ -121,7 +123,72 @@ public class UserWindow extends JFrame {
         bajaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // BajaGUI baja = new BajaGUI();
+                JFrame frame1 = new JFrame("Lista Usuarios");
+                frame1.addWindowListener(new WindowListener() {
+
+                    @Override
+                    public void windowOpened(WindowEvent e) {
+
+                    }
+
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                    }
+
+                    @Override
+                    public void windowClosed(WindowEvent e) {
+                        IFachadaSubsUsuarios subsUsuarios = new FachadaSubsUsuarios();
+                        Persona aux = subsUsuarios.buscarUsuario(DNI).getFirst();
+                        int decision = JOptionPane.showConfirmDialog(null, "¿Dar de baja al usuario " + DNI + "?",
+                                "Baja usuario", JOptionPane.YES_NO_CANCEL_OPTION);
+                        int resultado = 1;
+                        try {
+                            if (decision == 0) {
+                                resultado = subsUsuarios.bajaUsuario(aux);
+                            }
+                            switch (resultado) {
+                                case 0:
+                                    JOptionPane.showMessageDialog(null, "Usuario eliminado correctamente");
+                                    quit();
+                                    break;
+                                case 1:
+                                    throw new UserException("Fallo al eliminar el usuario. Compruebe que no exista ya");
+                                case 10:
+                                    throw new GUIException(
+                                            "Fallo al encontrar el archivo de usuarios. Contacte con el soporte.");
+                                default:
+                                    throw new GUIException("Error inesperado. Contacte con el soporte");
+                            }
+                        } catch (Exception e1) {
+                            JOptionPane.showMessageDialog(null, e1.getMessage());
+                        }
+                    }
+
+                    @Override
+                    public void windowIconified(WindowEvent e) {
+                    }
+
+                    @Override
+                    public void windowDeiconified(WindowEvent e) {
+                    }
+
+                    @Override
+                    public void windowActivated(WindowEvent e) {
+                    }
+
+                    @Override
+                    public void windowDeactivated(WindowEvent e) {
+                    }
+
+                });
+                try {
+                    frame1.getContentPane().add(new UserListPanel());
+                    frame1.pack();
+                    frame1.setVisible(true);
+                } catch (FileNotFoundException e1) {
+                    JOptionPane.showMessageDialog(null,
+                            "No se pudo abrir el archivo de usuarios. Contacte con el soporte.");
+                }
             }
         });
         bajaButton.setEnabled(_permisosGestor);
