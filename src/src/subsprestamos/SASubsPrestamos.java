@@ -47,6 +47,19 @@ public class SASubsPrestamos implements ISASubsPrestamos {
         }
     }
 
+    @Overrride
+    int aceptarSolicitud(int numRef) {
+        try {
+            if (prestamo.aceptarSolicitud(numRef)) {
+                return 0;
+            } else {
+                return 1;
+            }
+        } catch (IOException e) {
+            return 10;
+        }
+    }
+
     @Override
     public Pair<List<Prestamo>, Integer> consultarListaPrestamos(Cuenta c, List<Prestamo> listaPrestamos) {
         List<Prestamo> listaPrestamosBuscados = prestamo.consultarListaPrestamos(c, listaPrestamos);

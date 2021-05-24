@@ -38,18 +38,34 @@ public class SADAOPrestamos implements ISADAOPrestamos {
     public boolean cancelarSolicitud(int numReferencia) throws IOException {
         List<Prestamo> listaPrestamos = PrestamoJSON.leerListaPrestamos();
         Prestamo aux = null;
-        for (Prestamo p : listaPrestamos) {
-            if (p.getNumReferencia() == numReferencia) {
-                if (p.getEstadoPrestamo() == EstadoPrestamo.SOLICITADO) {
-                    aux = p;
-                }
+        int i = 0;
+        boolean encontrado = false;
+        while (i != 0 && !encontrado) {
+            if (listaPrestamos.get(i).getNumReferencia() == numReferencia) {
+                listaPrestamos.get(i).setEstadoPrestamo(EstadoPrestamo.DENEGADO);
+                encontrado = true;
             }
         }
-
-        if (aux != null) {
-            listaPrestamos.remove(aux);
+        if (encontrado) {
             PrestamoJSON.guardarListaPrestamos(listaPrestamos);
-            return true;
+        }
+        // Si no modificamos, no volvemos a guardar
+        return false;
+    }
+
+    public boolean aceptarSolicitud(int numReferencia) throws IOException {
+        List<Prestamo> listaPrestamos = PrestamoJSON.leerListaPrestamos();
+        Prestamo aux = null;
+        int i = 0;
+        boolean encontrado = false;
+        while (i != 0 && !encontrado) {
+            if (listaPrestamos.get(i).getNumReferencia() == numReferencia) {
+                listaPrestamos.get(i).setEstadoPrestamo(EstadoPrestamo.ACEPTADO);
+                encontrado = true;
+            }
+        }
+        if (encontrado) {
+            PrestamoJSON.guardarListaPrestamos(listaPrestamos);
         }
         // Si no modificamos, no volvemos a guardar
         return false;

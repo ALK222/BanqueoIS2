@@ -31,6 +31,15 @@ public interface ISASubsPrestamos {
     int cancelarSolicitud(int numRef);
 
     /**
+     * Aceptar una solicitud de prestamo
+     * 
+     * @param numRef Numero de referencia del Prestamo
+     * @return 0 si todo fue bien, 1 si no se pudo solicitar, 2 si hubo una
+     *         UserException y 10 si hubo una IOException
+     */
+    int aceptarSolicitud(int numRef);
+
+    /**
      * Consulta una lista de prestamos
      * 
      * @param c              Cuenta asociada al prestamo

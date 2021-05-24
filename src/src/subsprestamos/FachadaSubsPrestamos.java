@@ -28,6 +28,11 @@ public class FachadaSubsPrestamos implements IFachadaSubsPrestamos {
     }
 
     @Override
+    public int aceptarSolicitud(int numRef) {
+        return subsPrestamo.aceptarSolicitud(numRef);
+    }
+
+    @Override
     public Pair<List<Prestamo>, Integer> consultarListaPrestamos(Cuenta c, List<Prestamo> listaPrestamos) {
         return subsPrestamo.consultarListaPrestamos(c, listaPrestamos);
     }

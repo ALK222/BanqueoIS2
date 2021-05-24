@@ -34,6 +34,16 @@ public interface IFachadaDAOPrestamos {
     boolean cancelarSolicitud(int numRef) throws FileNotFoundException, IOException;
 
     /**
+     * Acepta una solicitud de un prestamo en proceso.
+     * 
+     * @param numRef numero de referencia del prestamo a cancelar
+     * @return Si el prestamo se ha podido aceptar
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    boolean aceptarSolicitud(int numRef) throws FileNotFoundException, IOException;
+
+    /**
      * Modifica un prestamo existente.
      * 
      * @param p prestamo ya modificado

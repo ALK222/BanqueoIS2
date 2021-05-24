@@ -29,6 +29,10 @@ public class FachadaDAOPrestamos implements IFachadaDAOPrestamos {
         return daoPrest.cancelarSolicitud(numRef);
     }
 
+    public boolean aceptarSolicitud(int numReferencia) throws FileNotFoundException, IOException {
+        return daoPrest.aceptarSolicitud(numReferencia);
+    }
+
     @Override
     public boolean modificarPrestamo(Prestamo p) throws IOException {
         return daoPrest.modificarPrestamo(p);
