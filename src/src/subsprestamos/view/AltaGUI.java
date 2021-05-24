@@ -24,8 +24,10 @@ import subsusuarios.model.FachadaSubsUsuarios;
 import subsusuarios.model.IFachadaSubsUsuarios;
 
 public class AltaGUI extends JPanel {
-
-    protected JLabel cantidadLabel;
+	
+	private static final long serialVersionUID = 1L;
+	
+	protected JLabel cantidadLabel;
     protected JTextField cantidad;
     protected JLabel plazo_debLabel;
     protected JTextField plazo_deb;
@@ -128,54 +130,37 @@ public class AltaGUI extends JPanel {
         setLayout(null);
 
         // add components
-        add(nombre);
-        add(dniLabel);
-        add(nombreLabel);
-        add(dni);
-        add(contrasena);
-        add(contrasenaLabel);
-        add(email);
-        add(emailLabel);
-        add(telefono);
-        add(telefonoLabel);
-        add(calle);
-        add(calleLabel);
-        add(portalPisoLabel);
-        add(portalPiso);
-        add(codigoPostalLabel);
-        add(codigoPostal);
-        add(poblacionLabel);
-        add(poblacion);
-        add(gestorCheck);
-        add(dniGestorLabel);
-        add(dniGestor);
+        add(cantidadLabel);
+        add(cantidad);
+        add(plazo_debLabel);
+        add(plazo_deb);
+        add(avalLabel);
+        add(aval);
+        add(profesionLabel);
+        add(profesion);
+        add(firma_seguro_funcionLabel);
+        add(firma_seguro_funcion);
+        add(estadoLabel);
+        add(estado);
         add(altaButton);
         add(cancelButton);
 
         // set component bounds (only needed by Absolute Positioning)
-        nombre.setBounds(30, 35, 870, 35);
-        dniLabel.setBounds(30, 95, 200, 35);
-        nombreLabel.setBounds(30, 10, 100, 25);
-        dni.setBounds(30, 70, 100, 25);
-        contrasena.setBounds(270, 70, 100, 25);
-        contrasenaLabel.setBounds(270, 95, 300, 35);
-        email.setBounds(30, 130, 100, 25);
-        emailLabel.setBounds(30, 155, 400, 35);
-        telefono.setBounds(30, 190, 100, 25);
-        telefonoLabel.setBounds(30, 215, 200, 35);
-        calle.setBounds(30, 250, 50, 25);
-        calleLabel.setBounds(30, 275, 350, 35);
-        portalPisoLabel.setBounds(400, 275, 100, 35);
-        portalPiso.setBounds(400, 250, 100, 25);
-        codigoPostalLabel.setBounds(518, 275, 100, 35);
-        codigoPostal.setBounds(518, 250, 100, 25);
-        poblacionLabel.setBounds(639, 275, 162, 35);
-        poblacion.setBounds(638, 250, 100, 25);
-        gestorCheck.setBounds(30, 335, 100, 35);
-        dniGestorLabel.setBounds(155, 336, 100, 35);
-        dniGestor.setBounds(155, 310, 100, 25);
+        cantidadLabel.setBounds(30, 10, 100, 25);
+        cantidad.setBounds(30, 35, 870, 35);
+        avalLabel.setBounds(30, 70, 100, 25);
+        aval.setBounds(30, 95, 200, 35);
+        firma_seguro_funcionLabel.setBounds(30, 130, 100, 25);
+        firma_seguro_funcion.setBounds(30, 155, 400, 35);
+        plazo_debLabel.setBounds(30, 190, 100, 25);
+        plazo_deb.setBounds(30, 215, 200, 35);
+        estadoLabel.setBounds(30, 250, 50, 25);
+        estado.setBounds(30, 275, 350, 35);
+        profesionLabel.setBounds(400, 250, 100, 25);
+        profesion.setBounds(400, 275, 100, 35);
         altaButton.setBounds(705, 505, 100, 35);
         cancelButton.setBounds(815, 505, 100, 35);
+        
     }
 
     private void quit() {
