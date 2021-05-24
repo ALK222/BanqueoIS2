@@ -13,8 +13,16 @@ import javax.swing.JFrame;
 
 import common.view.InicioSesionGUI;
 
+/**
+ * Lanzador principal del programa con todos los checks necesarios
+ */
 public class Main {
 
+    /**
+     * Comprueba si existe el fichero de Prestamos y si no lo crea
+     * 
+     * @throws IOException si no puede crearse el archivo
+     */
     public static void checkPrestamoFile() throws IOException {
         File testFile;
         InputStream in;
@@ -42,6 +50,11 @@ public class Main {
         }
     }
 
+    /**
+     * Comprueba si existe el fichero de cuentas y si no lo crea
+     * 
+     * @throws IOException si no puede crearse el archivo
+     */
     public static void checkCuentaFile() throws IOException {
         File testFile;
         InputStream in;
@@ -69,6 +82,11 @@ public class Main {
         }
     }
 
+    /**
+     * Comprueba si existe el fichero de tarjetas y si no lo crea
+     * 
+     * @throws IOException si no puede crearse el archivo
+     */
     public static void checkTarjetaFile() throws IOException {
         File testFile;
         InputStream in;
@@ -96,6 +114,11 @@ public class Main {
         }
     }
 
+    /**
+     * Comprueba si existe el fichero de usuarios y si no lo crea
+     * 
+     * @throws IOException si no puede crearse el archivo
+     */
     public static void checkUsuarioFile() throws IOException {
         File testFile;
         InputStream in;
@@ -128,6 +151,11 @@ public class Main {
         }
     }
 
+    /**
+     * Checks if al database files are present
+     * 
+     * @throws IOException si no se pudo encontrar o crear la base de datos
+     */
     public static void checkfiles() throws IOException {
         checkCuentaFile();
         checkPrestamoFile();
@@ -135,6 +163,11 @@ public class Main {
         checkUsuarioFile();
     }
 
+    /**
+     * Lanzador del programa
+     * 
+     * @param args argumentos de la linea de comandos
+     */
     public static void main(String[] args) {
         try {
             checkfiles();

@@ -2,6 +2,9 @@ package common.misc;
 
 import java.util.Objects;
 
+/**
+ * Tuplas en java
+ */
 public class Pair<T1, T2> {
     private T1 _first;
     private T2 _second;

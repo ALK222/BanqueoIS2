@@ -24,7 +24,6 @@ import javax.swing.border.TitledBorder;
 
 import common.exception.GUIException;
 import dominio.Tarjeta;
-import subsusuarios.view.UserListPanel;
 
 public class TarjListPanel extends JPanel {
 	
@@ -112,7 +111,7 @@ public class TarjListPanel extends JPanel {
     public static void main(String[] args) throws FileNotFoundException {
         JFrame frame = new JFrame("MyPanel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add(new UserListPanel(null));
+        frame.getContentPane().add(new TarjListPanel(null));
         frame.pack();
         frame.setVisible(true);
     }

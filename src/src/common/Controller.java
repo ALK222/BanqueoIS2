@@ -18,6 +18,9 @@ public class Controller {
 
     private boolean _isAdmin;
 
+    /**
+     * Constructor basico del controller
+     */
     public Controller() {
         _currentUser = new Persona(null, null, null, 0, null, null);
         _isAdmin = false;
@@ -43,6 +46,9 @@ public class Controller {
         new MainWindow(this);
     }
 
+    /**
+     * Pasos a seguir tras cerrar sesion
+     */
     public void sesionCerrada() {
         _currentUser = new Persona(null, null, null, 0, null, null);
         _isAdmin = false;

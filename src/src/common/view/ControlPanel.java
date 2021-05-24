@@ -19,15 +19,26 @@ import subsusuarios.model.FachadaSubsUsuarios;
 import subsusuarios.model.IFachadaSubsUsuarios;
 import subsusuarios.view.UserWindow;
 
+/**
+ * Botones del programa principal
+ */
 public class ControlPanel extends JPanel {
 
     private Controller _controller;
 
+    /**
+     * Constructor del panel de botones
+     * 
+     * @param c controller del programa principal
+     */
     public ControlPanel(Controller c) {
         _controller = c;
         initGUI();
     }
 
+    /**
+     * Constructor de la apariencia del panel
+     */
     private void initGUI() {
         JToolBar toolBar = new JToolBar();
         setLayout(new BorderLayout());
@@ -46,9 +57,9 @@ public class ControlPanel extends JPanel {
     }
 
     /**
-     * Creates a button with the User GUI
+     * crea el botón que lanza la gui de usuarios
      * 
-     * @param aux toolbar to add the button
+     * @param aux barra a la que añadir el botón
      */
     private void createUserButton(JToolBar aux) {
         JButton userButton = new JButton();
@@ -67,9 +78,9 @@ public class ControlPanel extends JPanel {
     }
 
     /**
-     * Creates a button with the Cuenta GUI
+     * crea el botón que lanza la gui de cuentas
      * 
-     * @param aux toolbar to add the button
+     * @param aux barra a la que añadir el botón
      */
     private void createCuentaButton(JToolBar aux) {
         JButton userButton = new JButton();
@@ -88,9 +99,9 @@ public class ControlPanel extends JPanel {
     }
 
     /**
-     * Creates a button with the Tarjeta GUI
+     * crea el botón que lanza la gui de tarjetas
      * 
-     * @param aux toolbar to add the button
+     * @param aux barra a la que añadir el botón
      */
     private void createTarjetaButton(JToolBar aux) {
         JButton userButton = new JButton();
@@ -101,7 +112,7 @@ public class ControlPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // new Insertar gui tarjeta
-            	new TarjWindow(_controller.isAdmin());
+                new TarjWindow(_controller.isAdmin());
             }
 
         });
@@ -110,9 +121,9 @@ public class ControlPanel extends JPanel {
     }
 
     /**
-     * Creates a button with the Prestamo GUI
+     * crea el botón que lanza la gui de prestamos
      * 
-     * @param aux toolbar to add the button
+     * @param aux barra a la que añadir el botón
      */
     private void createPrestamoButton(JToolBar aux) {
         JButton userButton = new JButton();
@@ -131,9 +142,9 @@ public class ControlPanel extends JPanel {
     }
 
     /**
-     * Creates a button to end the current sesion
+     * crea el botón que cierra la sesion actual
      * 
-     * @param aux toolbar to add the button
+     * @param aux barra a la que añadir el botón
      */
     private void createCerrarSesionButton(JToolBar aux) {
         JButton userButton = new JButton();
@@ -157,7 +168,7 @@ public class ControlPanel extends JPanel {
         userButton.setMnemonic(KeyEvent.VK_CONTROL + KeyEvent.VK_P);
         aux.add(userButton);
     }
-    
+
     private void quit() {
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         frame.dispose();

@@ -10,10 +10,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * Panel de imagen
+ */
 public class ImagePanel extends JPanel {
 
     private BufferedImage image;
 
+    /**
+     * Constructor del panel
+     */
     public ImagePanel() {
         File testFile;
         InputStream in;

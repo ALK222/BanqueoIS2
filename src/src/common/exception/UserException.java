@@ -1,7 +1,7 @@
 package common.exception;
 
 /**
- * Exceptions for User subsystem
+ * Excepciones para el sub usuarios
  */
 public class UserException extends Exception {
 

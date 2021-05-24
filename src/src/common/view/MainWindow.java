@@ -1,17 +1,23 @@
 package common.view;
 
 import java.awt.BorderLayout;
-import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import common.Controller;
 
+/**
+ * Ventana principal del programa
+ */
 public class MainWindow extends JFrame {
     private Controller _controller;
-    private BufferedImage _image;
 
+    /**
+     * Constructor de la ventana principal del programa
+     * 
+     * @param c controller del programa
+     */
     public MainWindow(Controller c) {
 
         JPanel mainPanel = new JPanel();

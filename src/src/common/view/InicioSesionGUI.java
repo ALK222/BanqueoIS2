@@ -21,6 +21,9 @@ import common.misc.Pair;
 import subsusuarios.model.FachadaSubsUsuarios;
 import subsusuarios.model.IFachadaSubsUsuarios;
 
+/**
+ * Ventana de inicio de sesion
+ */
 public class InicioSesionGUI extends JPanel {
     private JTextField dniValue;
     private JLabel dniLabel;
@@ -28,6 +31,11 @@ public class InicioSesionGUI extends JPanel {
     private JPasswordField contrasenaValue;
     private JButton accesoButton;
 
+    /**
+     * Constructor con el controller para poder meterle los valores necesarios
+     * 
+     * @param c controller del programa principal
+     */
     public InicioSesionGUI(Controller c) {
         // construct components
         dniValue = new JTextField(5);
@@ -87,11 +95,19 @@ public class InicioSesionGUI extends JPanel {
 
     }
 
+    /**
+     * Cierre de la ventana
+     */
     public void quit() {
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         frame.dispose();
     }
 
+    /**
+     * Lanzador de prueba para la ventana
+     * 
+     * @param args
+     */
     public static void main(String[] args) {
         JFrame frame = new JFrame("MyPanel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

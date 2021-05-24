@@ -1,7 +1,8 @@
 package common.exception;
 
-
-
+/**
+ * Excepciones para el subs cuentas
+ */
 public class CuentaException extends Exception {
 
     /**
@@ -10,7 +11,6 @@ public class CuentaException extends Exception {
     public CuentaException() {
     }
 
-       
     /**
      * Constructor with a message
      * 
@@ -19,7 +19,7 @@ public class CuentaException extends Exception {
     public CuentaException(String message) {
         super(message);
     }
-    
+
     /**
      * Constructor with a cause for the exception
      * 
@@ -50,7 +50,5 @@ public class CuentaException extends Exception {
     public CuentaException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
-    
-    
-    
+
 }
