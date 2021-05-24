@@ -87,6 +87,27 @@ public class TestSubPrestamos {
     }
 
     @Test
+    void testAceptar() {
+        // Cancelar prestamo solicidato
+        Cuenta cuentaAux = new Cuenta("Alejandro Barrachina", "111111A", 1111111, 2000, "AAAA", new JSONArray());
+        Prestamo p = new Prestamo(111111, 200f, "9/2020", 100, "Informatico", true, EstadoPrestamo.SOLICITADO,
+                cuentaAux.getNumeroCuenta());
+
+        int pruebaSolicitud = _testPrestamos.solicitarPrestamo(cuentaAux, p);
+        assertEquals(0, pruebaSolicitud, "Solicitud que debería ser valida acabada con error");
+
+        int pruebaCancelacion = _testPrestamos.aceptarSolicitud(p.getNumReferencia());
+        assertEquals(0, pruebaCancelacion, "Cancelacion que debería ser valida acabada con error");
+
+        p.setEstadoPrestamo(EstadoPrestamo.DENEGADO);
+        int pruebaCancelacion2 = _testPrestamos.aceptarSolicitud(p.getNumReferencia());
+        assertEquals(1, pruebaCancelacion2, "Cancelacion que debería no ser valida acabada bien");
+
+        int pruebaCancelacion3 = _testPrestamos.aceptarSolicitud(0);
+        assertEquals(1, pruebaCancelacion3, "Cancelacion que debería no ser valida acabada bien");
+    }
+
+    @Test
     void testModificacion() {
         Cuenta cuentaAux = new Cuenta("Alejandro Barrachina", "111111A", 1111111, 2000, "AAAA", new JSONArray());
         Prestamo p = new Prestamo(100000, 200f, "9/2020", 100, "Informatico", true, EstadoPrestamo.SOLICITADO,

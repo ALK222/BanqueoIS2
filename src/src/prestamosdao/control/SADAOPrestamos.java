@@ -39,34 +39,42 @@ public class SADAOPrestamos implements ISADAOPrestamos {
         List<Prestamo> listaPrestamos = PrestamoJSON.leerListaPrestamos();
         int i = 0;
         boolean encontrado = false;
-        while (i != 0 && !encontrado) {
-            if (listaPrestamos.get(i).getNumReferencia() == numReferencia) {
+        while (i != listaPrestamos.size() && !encontrado) {
+            if (listaPrestamos.get(i).getNumReferencia() == numReferencia
+                    && listaPrestamos.get(i).getEstadoPrestamo().equals(EstadoPrestamo.SOLICITADO)) {
                 listaPrestamos.get(i).setEstadoPrestamo(EstadoPrestamo.DENEGADO);
                 encontrado = true;
+            }
+            if (!encontrado) {
+                i++;
             }
         }
         if (encontrado) {
             PrestamoJSON.guardarListaPrestamos(listaPrestamos);
         }
         // Si no modificamos, no volvemos a guardar
-        return false;
+        return encontrado;
     }
 
     public boolean aceptarSolicitud(int numReferencia) throws IOException {
         List<Prestamo> listaPrestamos = PrestamoJSON.leerListaPrestamos();
         int i = 0;
         boolean encontrado = false;
-        while (i != 0 && !encontrado) {
-            if (listaPrestamos.get(i).getNumReferencia() == numReferencia) {
+        while (i != listaPrestamos.size() && !encontrado) {
+            if (listaPrestamos.get(i).getNumReferencia() == numReferencia
+                    && listaPrestamos.get(i).getEstadoPrestamo().equals(EstadoPrestamo.SOLICITADO)) {
                 listaPrestamos.get(i).setEstadoPrestamo(EstadoPrestamo.ACEPTADO);
                 encontrado = true;
+            }
+            if (!encontrado) {
+                i++;
             }
         }
         if (encontrado) {
             PrestamoJSON.guardarListaPrestamos(listaPrestamos);
         }
         // Si no modificamos, no volvemos a guardar
-        return false;
+        return encontrado;
     }
 
     @Override
