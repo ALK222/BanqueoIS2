@@ -1,12 +1,13 @@
 package common.view;
 
-import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class ImagePanel extends JPanel {
@@ -18,32 +19,26 @@ public class ImagePanel extends JPanel {
         InputStream in;
         try {
             testFile = new File(System.getProperty("user.dir") + "/resources/banqueo.png");
-            in = new FileInputStream(testFile);
-        } catch (FileNotFoundException e) {
+            image = ImageIO.read(testFile);
+        } catch (IOException e) {
             try {
                 testFile = new File(System.getProperty("user.dir") + "/src/src/resources/banqueo.png");
-                in = new FileInputStream(testFile);
-            } catch (FileNotFoundException ex) {
+                image = ImageIO.read(testFile);
+            } catch (IOException ex) {
                 try {
                     testFile = new File("./resources/banqueo.png");
-                    in = new FileInputStream(testFile);
-                } catch (FileNotFoundException ex1) {
+                    image = ImageIO.read(testFile);
+                } catch (IOException ex1) {
                     testFile = new File(System.getProperty("user.dir") + "src/resources/banqueo.png");
                     try {
-                        in = new FileInputStream(testFile);
-                    } catch (FileNotFoundException e1) {
-                        // TODO Auto-generated catch block
+                        image = ImageIO.read(testFile);
+                    } catch (IOException e1) {
                         e1.printStackTrace();
                     }
                 }
             }
         }
+        JLabel picLabel = new JLabel(new ImageIcon(image));
+        add(picLabel);
     }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.drawImage(image, 0, 0, this);
-    }
-
 }

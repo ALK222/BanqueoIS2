@@ -19,7 +19,7 @@ public class MainWindow extends JFrame {
         _controller = c;
         this.setContentPane(mainPanel);
         mainPanel.add(new ControlPanel(_controller), BorderLayout.PAGE_START);
-        mainPanel.add(new ImagePanel());
+        mainPanel.add(new ImagePanel(), BorderLayout.PAGE_END);
 
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.pack();
