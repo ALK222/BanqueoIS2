@@ -26,7 +26,7 @@ public class FiltrarGUI extends JPanel {
 
     public FiltrarGUI() {
         // construct preComponents
-        String[] modeSelectorItems = {"Tipo", "Fecha"};
+        String[] modeSelectorItems = { "Tipo", "Fecha" };
 
         // construct components
         modeSelector = new JComboBox<String>(modeSelectorItems);

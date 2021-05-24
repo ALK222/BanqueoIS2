@@ -433,7 +433,7 @@ public class TarjWindow extends JFrame {
                     }
 
                 });
-                //frame.getContentPane().add(new FiltrarGUI());
+                // frame.getContentPane().add(new FiltrarGUI());
                 frame.getContentPane().add(new FiltrarGUI());
                 frame.pack();
                 frame.setVisible(true);

@@ -1,3 +1,22 @@
-{ "tarjetas":
-[{"Tipo":"PREPAGO","PIN":2222,"Fecha_CAD":"12/25","Titular":"Antonio Machado Ruiz","DNI":"01234568A","Estado":false,"Num_Tarjeta":1234124},{"Tipo":"PREPAGO","PIN":5555,"Fecha_CAD":"12/25","Titular":"Federico Garcia Lorca","DNI":"01234567A","Estado":true,"Num_Tarjeta":1235123}]
+{
+    "tarjetas": [
+        {
+            "Tipo": "PREPAGO",
+            "PIN": 2222,
+            "Fecha_CAD": "12/25",
+            "Titular": "Antonio Machado Ruiz",
+            "DNI": "01234568A",
+            "Estado": false,
+            "Num_Tarjeta": 1234124
+        },
+        {
+            "Tipo": "PREPAGO",
+            "PIN": 5555,
+            "Fecha_CAD": "12/25",
+            "Titular": "Federico Garcia Lorca",
+            "DNI": "01234567A",
+            "Estado": true,
+            "Num_Tarjeta": 1235123
+        }
+    ]
 }
