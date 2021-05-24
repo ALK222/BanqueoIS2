@@ -96,12 +96,17 @@ public class SADAOUsuarios implements ISADAOUsuarios {
         List<Persona> listaPersonas = UsuariosJSON.leerListaUsuarios();
 
         boolean conseguido = false;
-        for (Persona persona : listaPersonas) {
-            if (persona.compareTo(p) == 0) {
-                persona = p;
+        int i = 0;
+        while (i < listaPersonas.size() && !conseguido) {
+            if (listaPersonas.get(i).compareTo(p) == 0) {
                 conseguido = true;
             }
+            if (!conseguido) {
+                i++;
+            }
         }
+        listaPersonas.remove(i);
+        listaPersonas.add(p);
         UsuariosJSON.guardarListaUsuarios(listaPersonas);
         return conseguido;
     }
