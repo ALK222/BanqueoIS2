@@ -1,21 +1,21 @@
 {
     "usuarios": [
         {
-            "Nombre": "Federico Garcia Lorca",
-            "Email": "correofalso@gmail.com",
-            "Telefono": 555555555,
-            "Contrasena": "abc123",
-            "Domicilio": "Calle noinventada, 2 2;35006;Madrid",
-            "DNI_Gestor": "01234568A",
-            "DNI": "01234567A"
-        },
-        {
             "Nombre": "Antonio Machado Ruiz",
             "Email": "correofalso@gmail.com",
             "Telefono": 555555555,
             "Contrasena": "abc123",
             "Domicilio": "Calle inventada, 2 3;35006;Madrid",
             "DNI": "01234568A"
+        },
+        {
+            "Nombre": "Federico Garcia Lorca",
+            "Email": "correofalso@gmail.com",
+            "Telefono": 111111,
+            "Contrasena": "abc123",
+            "Domicilio": "Calle noinventada, 2 2;35006;Madrid",
+            "DNI_Gestor": "01234568A",
+            "DNI": "01234567A"
         }
     ]
 }

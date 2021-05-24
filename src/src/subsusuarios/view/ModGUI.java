@@ -115,13 +115,13 @@ public class ModGUI extends JPanel {
                         resultado = subsUsuarios.modificarUsuario(new Cliente(dniLabel.getText(), nombre.getText(),
                                 calleLabel.getText() + "," + portalPisoLabel.getText() + ";"
                                         + codigoPostalLabel.getText() + ";" + poblacionLabel.getText(),
-                                Integer.parseInt(telefonoLabel.getText()),
-                                String.valueOf(contrasenaLabel.getPassword()), emailLabel.getText(),
-                                dniGestorLabel.getText()));
+                                Integer.parseInt(telefonoLabel.getText()), dniGestorLabel.getText(),
+                                String.valueOf(contrasenaLabel.getPassword()), emailLabel.getText()));
                     }
                     switch (resultado) {
                         case 0:
-                            JOptionPane.showMessageDialog(null, "Usuario modificado correctamente");
+                            JOptionPane.showMessageDialog(null,
+                                    "Usuario modificado correctamente. Si se ha modificado a si mismo tendrá que reiniciar para aplicar los cambios");
                             quit();
                             break;
                         case 1:
