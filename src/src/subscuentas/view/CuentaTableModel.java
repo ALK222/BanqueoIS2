@@ -10,9 +10,9 @@ import dominio.Cuenta;
 
 public class CuentaTableModel extends AbstractTableModel {
     private static final long serialVersionUID = 1L;
-    private String _columnas[] = {"DNI", "Titular","Saldo", "Firma digital", "Numero de cuenta"};
-    private  List<Cuenta>_listaCuentas;
-    
+    private String _columnas[] = { "DNI", "Titular", "Saldo", "Firma digital", "Numero de cuenta" };
+    private List<Cuenta> _listaCuentas;
+
     public CuentaTableModel() throws FileNotFoundException {
         _listaCuentas = CuentasJSON.leerListaCuentas();
     }
@@ -20,11 +20,6 @@ public class CuentaTableModel extends AbstractTableModel {
     public CuentaTableModel(List<Cuenta> listaFiltrada) {
         _listaCuentas = listaFiltrada;
     }
-
-    public CuentaTableModel(List<Cuenta> listaFiltrada) {
-        _listaCuentas = listaFiltrada;
-    }
-
 
     @Override
     public String getColumnName(int c) {
