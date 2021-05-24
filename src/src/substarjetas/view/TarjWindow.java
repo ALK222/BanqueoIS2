@@ -18,15 +18,17 @@ import javax.swing.JToolBar;
 import common.exception.GUIException;
 import common.exception.UserException;
 import common.misc.Pair;
+import dominio.Persona;
 import dominio.Tarjeta;
 import substarjetas.FachadaSubsTarjetas;
 import substarjetas.IFachadaSubsTarjetas;
 
 public class TarjWindow extends JFrame {
-	
-	private static final long serialVersionUID = 1L;
-	
-	private boolean _permisosGestor;
+
+    private static final long serialVersionUID = 1L;
+
+    private boolean _permisosGestor;
+    private Persona _user;
     private Tarjeta _tarj;
     private static Dimension tamanoBoton = new Dimension(200, 50);
 
@@ -34,9 +36,10 @@ public class TarjWindow extends JFrame {
     public static String TIPOFILTRADO = "";
     public static String NUMTARJETA = "";
 
-    public TarjWindow(boolean permisosGestor) {
+    public TarjWindow(boolean permisosGestor, Persona p) {
         super("Tarjeta");
         _permisosGestor = permisosGestor;
+        _user = p;
         initGUI();
     }
 
@@ -145,28 +148,30 @@ public class TarjWindow extends JFrame {
                     public void windowClosed(WindowEvent e) {
                         IFachadaSubsTarjetas subsTarjetas = new FachadaSubsTarjetas();
                         Pair<Integer, Tarjeta> aux = subsTarjetas.buscaTarjeta(Integer.parseInt(NUMTARJETA));
-                        int decision = JOptionPane.showConfirmDialog(null, "¿Dar de baja al tarjeta " + NUMTARJETA + "?",
-                                "Baja usuario", JOptionPane.YES_NO_CANCEL_OPTION);
+                        int decision = JOptionPane.showConfirmDialog(null,
+                                "¿Dar de baja al tarjeta " + NUMTARJETA + "?", "Baja usuario",
+                                JOptionPane.YES_NO_CANCEL_OPTION);
                         int resultado = 1;
                         try {
                             if (decision == 0) {
                                 resultado = subsTarjetas.bajaTarjeta(aux.getSecond().getNum_tarjeta());
-                                
+
                                 switch (resultado) {
-                                case 0:
-                                    JOptionPane.showMessageDialog(null, "Tarjeta eliminada correctamente");
-                                    quit();
-                                    break;
-                                case 1:
-                                    throw new UserException("Fallo al eliminar la tarjeta. Compruebe que no exista ya");
-                                case 10:
-                                    throw new GUIException(
-                                            "Fallo al encontrar el archivo de tarjetas. Contacte con el soporte.");
-                                default:
-                                    throw new GUIException("Error inesperado. Contacte con el soporte");
+                                    case 0:
+                                        JOptionPane.showMessageDialog(null, "Tarjeta eliminada correctamente");
+                                        quit();
+                                        break;
+                                    case 1:
+                                        throw new UserException(
+                                                "Fallo al eliminar la tarjeta. Compruebe que no exista ya");
+                                    case 10:
+                                        throw new GUIException(
+                                                "Fallo al encontrar el archivo de tarjetas. Contacte con el soporte.");
+                                    default:
+                                        throw new GUIException("Error inesperado. Contacte con el soporte");
+                                }
                             }
-                            }
-                           
+
                         } catch (Exception e1) {
                             JOptionPane.showMessageDialog(null, e1.getMessage());
                         }
@@ -262,12 +267,68 @@ public class TarjWindow extends JFrame {
                                 "No se pudo abrir el archivo de usuarios. Contacte con el soporte.");
                     }
                 } else {
-                    JFrame frame = new JFrame("Modicifacion Tarjeta");
-                    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                    frame.getContentPane().add(new ModGUI(_tarj));
+                    JFrame frame1 = new JFrame("Lista Tarjetas");
+                    frame1.addWindowListener(new WindowListener() {
+                        @Override
+                        public void windowOpened(WindowEvent e) {
 
-                    frame.pack();
-                    frame.setVisible(true);
+                        }
+
+                        @Override
+                        public void windowClosing(WindowEvent e) {
+                        }
+
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                            JFrame frame = new JFrame("Modicifacion Tarjeta");
+                            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                            IFachadaSubsTarjetas subsTarjetas = new FachadaSubsTarjetas();
+                            Pair<Integer, Tarjeta> aux = subsTarjetas.buscaTarjeta(Integer.parseInt(NUMTARJETA));
+                            frame.getContentPane().add(new ModGUI(aux.getSecond()));
+
+                            frame.pack();
+                            frame.setVisible(true);
+                        }
+
+                        @Override
+                        public void windowIconified(WindowEvent e) {
+                        }
+
+                        @Override
+                        public void windowDeiconified(WindowEvent e) {
+                        }
+
+                        @Override
+                        public void windowActivated(WindowEvent e) {
+                        }
+
+                        @Override
+                        public void windowDeactivated(WindowEvent e) {
+                        }
+                    });
+                    try {
+                        IFachadaSubsTarjetas subsTarjetas = new FachadaSubsTarjetas();
+                        Pair<List<Tarjeta>, Integer> aux1 = subsTarjetas.consultarListaTarjetas(_user.getDni());
+                        switch (aux1.getSecond()) {
+                            case 0:
+                                frame1.getContentPane().add(new TarjListPanel(aux1.getFirst()));
+                                frame1.pack();
+                                frame1.setVisible(true);
+                                break;
+                            case 1:
+                                throw new GUIException("El usuario no tiene tarjetas a su nombre");
+                            case 2:
+                                throw new GUIException("No se reconoce al usuario.");
+                            case 10:
+                                throw new GUIException(
+                                        "No se pudo conectar con la base de datos. Contacte con el soporte.");
+                            default:
+                                throw new GUIException("Error desconocido. Contacte con el soporte");
+                        }
+
+                    } catch (Exception e1) {
+                        JOptionPane.showMessageDialog(null, e1.getMessage());
+                    }
                 }
 
             }
@@ -372,7 +433,7 @@ public class TarjWindow extends JFrame {
                     }
 
                 });
-                //frame.getContentPane().add(new FiltrarGUI());
+                // frame.getContentPane().add(new FiltrarGUI());
                 frame.pack();
                 frame.setVisible(true);
             }

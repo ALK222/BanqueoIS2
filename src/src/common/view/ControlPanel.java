@@ -112,7 +112,7 @@ public class ControlPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // new Insertar gui tarjeta
-                new TarjWindow(_controller.isAdmin());
+                new TarjWindow(_controller.isAdmin(), _controller.getCurrentUser());
             }
 
         });
