@@ -15,10 +15,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
-import common.exception.GUIException;
 import common.exception.CuentaException;
+import common.exception.GUIException;
 import common.misc.Pair;
-import dominio.Cuenta; 
+import dominio.Cuenta;
 import subscuentas.FachadaSubsCuentas;
 import subscuentas.IFachadaSubsCuentas;
 
@@ -62,7 +62,7 @@ public class CuentaWindow extends JFrame{
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.pack();
         this.setVisible(true);
-        this.setResizable(true);
+        this.setResizable(false);
         this.addWindowListener(new WindowListener() {
 
             @Override

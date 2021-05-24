@@ -3,6 +3,7 @@ package common.view;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -52,7 +53,7 @@ public class InicioSesionGUI extends JPanel {
         contrasenaLabel.setBounds(112, 110, 100, 25);
         contrasenaValue.setBounds(112, 135, 230, 35);
         accesoButton.setBounds(175, 210, 100, 25);
-
+        accesoButton.setMnemonic(KeyEvent.VK_ENTER);
         accesoButton.addActionListener(new ActionListener() {
 
             @Override
@@ -83,6 +84,7 @@ public class InicioSesionGUI extends JPanel {
             }
 
         });
+
     }
 
     public void quit() {

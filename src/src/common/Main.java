@@ -120,6 +120,7 @@ public class Main {
                         FileWriter wr = new FileWriter(testFile);
                         wr.append(
                                 "{\"usuarios\":[{\"Nombre\": \"admin\",\"Email\": \"\",\"Telefono\": 0,\"Contrasena\": \"admin\",\"Domicilio\": \"\",\"DNI\": \"admin\"}]}");
+                        wr.close();
                     }
 
                 }

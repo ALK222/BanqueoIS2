@@ -57,7 +57,8 @@ public class UserWindow extends JFrame {
         createModificarButton(botonesListaModificar);
         createListaButton(botonesListaModificar);
         this.add(botonesListaModificar, BorderLayout.WEST);
-
+        this.pack();
+        this.setResizable(false);
         this.setVisible(true);
     }
 
