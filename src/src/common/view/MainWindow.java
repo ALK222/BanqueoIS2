@@ -30,6 +30,7 @@ public class MainWindow extends JFrame {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.pack();
         this.setVisible(true);
+        setLocationRelativeTo(null);
         this.setResizable(true);
     }
 }

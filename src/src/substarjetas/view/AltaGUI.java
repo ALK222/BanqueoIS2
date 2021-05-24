@@ -49,7 +49,7 @@ public class AltaGUI extends JPanel {
         // construct components
     	titularLabel = new JLabel("Titular");
     	titular = new JTextField(5);
-    	numTarjetaLabel = new JLabel("Numero Tarejeta");
+    	numTarjetaLabel = new JLabel("Número Tarjeta");
     	numTarjeta = new JTextField(5);
     	pinLabel = new JLabel("Pin");
     	pin = new JTextField(5);
@@ -59,8 +59,8 @@ public class AltaGUI extends JPanel {
     	tipo = new JTextField(5);
     	fechaLabel = new JLabel("Fecha");
     	fecha = new JTextField(5);
-    	dniLabel = new JLabel("Dni");
-    	dni= new JTextField(5);
+    	dniLabel = new JLabel("DNI");
+    	dni = new JTextField(5);
         altaButton = new JButton("ACEPTAR");
         cancelButton = new JButton("CANCELAR");
     	
@@ -71,7 +71,7 @@ public class AltaGUI extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     if (titular.getText().equals("") || pin.getText().equals("")
-                            || fecha.getText().equals("") || tipo.getText().equals("")||dni.getText().equals("")) {
+                            || fecha.getText().equals("") || tipo.getText().equals("")|| dni.getText().equals("")) {
                         throw new GUIException("Alguno de los valores obligatorios esta vacio");
                     }
                     IFachadaSubsTarjetas subsTarjetas = new FachadaSubsTarjetas();
@@ -117,7 +117,7 @@ public class AltaGUI extends JPanel {
         titularLabel.setToolTipText("Titular de la tarjeta a dar de alta");
         numTarjetaLabel.setToolTipText("Numero de la tarjeta a dar de alta");
         pinLabel.setToolTipText("Pin de la tarjeta a dar de alta");
-        estadoLabel.setToolTipText("Como se encuentra la tarjeta de estado");
+        estadoLabel.setToolTipText("Estado de la tarjeta");
         tipoLabel.setToolTipText("Tipo de la tarjeta a dar de alta");
         fechaLabel.setToolTipText("Fecha de caducidad de la tarjeta a dar de alta");
         

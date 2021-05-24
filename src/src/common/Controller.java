@@ -1,5 +1,6 @@
 package common;
 
+import java.awt.Dimension;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
@@ -57,6 +58,7 @@ public class Controller {
         frame.getContentPane().add(new InicioSesionGUI(this));
         frame.pack();
         frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
         frame.addWindowListener(new WindowListener() {
 
             @Override

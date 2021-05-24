@@ -62,6 +62,7 @@ public class CuentaWindow extends JFrame{
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.pack();
         this.setVisible(true);
+        this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.addWindowListener(new WindowListener() {
 
@@ -114,6 +115,7 @@ public class CuentaWindow extends JFrame{
                 frame.getContentPane().add(new AltaGUI());
                 frame.pack();
                 frame.setVisible(true);
+                frame.setLocationRelativeTo(null);
             }
         });
         altaButton.setEnabled(_permisosGestor);
@@ -189,6 +191,7 @@ public class CuentaWindow extends JFrame{
                     frame1.getContentPane().add(new CuentaListPanel());
                     frame1.pack();
                     frame1.setVisible(true);
+                    frame1.setLocationRelativeTo(null);
                 } catch (FileNotFoundException e1) {
                     JOptionPane.showMessageDialog(null,
                             "No se pudo abrir el archivo de cuentas. Contacte con el soporte.");
@@ -222,7 +225,7 @@ public class CuentaWindow extends JFrame{
 
                         @Override
                         public void windowClosed(WindowEvent e) {
-                            JFrame frame = new JFrame("Modicifacion Cuenta");
+                            JFrame frame = new JFrame("Modificación Cuenta");
                             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                             IFachadaSubsCuentas subsCuentas = new FachadaSubsCuentas();
                             Cuenta aux = subsCuentas.buscaCuenta(NUM_CUENTA).getFirst();
@@ -230,6 +233,7 @@ public class CuentaWindow extends JFrame{
 
                             frame.pack();
                             frame.setVisible(true);
+                            frame.setLocationRelativeTo(null);
                         }
 
                         @Override
@@ -253,17 +257,19 @@ public class CuentaWindow extends JFrame{
                         frame1.getContentPane().add(new CuentaListPanel());
                         frame1.pack();
                         frame1.setVisible(true);
+                        frame1.setLocationRelativeTo(null);
                     } catch (FileNotFoundException e1) {
                         JOptionPane.showMessageDialog(null,
                                 "No se pudo abrir el archivo de cuentas. Contacte con el soporte.");
                     }
                 } else {
-                    JFrame frame = new JFrame("Modicifacion cuenta");
+                    JFrame frame = new JFrame("Modificación cuenta");
                     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     frame.getContentPane().add(new ModGUI(_account));
 
                     frame.pack();
                     frame.setVisible(true);
+                    frame.setLocationRelativeTo(null);
                 }
 
             }
@@ -280,7 +286,7 @@ public class CuentaWindow extends JFrame{
         listaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame("Opciones de Filtrado");
+                JFrame frame = new JFrame("Opciones de filtrado");
                 frame.addWindowListener(new WindowListener() {
 
                     @Override
@@ -345,6 +351,7 @@ public class CuentaWindow extends JFrame{
                             frame1.getContentPane().add(new CuentaListPanel());
                             frame1.pack();
                             frame1.setVisible(true);
+                            frame.setLocationRelativeTo(null);
                         } catch (Exception e1) {
                             JOptionPane.showMessageDialog(null,
                                     "No se pudo abrir el archivo de cuentas. Contacte con el soporte.");
@@ -372,6 +379,7 @@ public class CuentaWindow extends JFrame{
                 // frame.getContentPane().add(new FiltrarGUI());
                 frame.pack();
                 frame.setVisible(true);
+                frame.setLocationRelativeTo(null);
             }
         });
         listaButton.setEnabled(_permisosGestor);

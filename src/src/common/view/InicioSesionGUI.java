@@ -81,7 +81,7 @@ public class InicioSesionGUI extends JPanel {
                         case 2:
                             break;
                         case 10:
-                            throw new GUIException("No se pudo acceder a la base de datos, Contacte con el soporte");
+                            throw new GUIException("No se pudo acceder a la base de datos, contacte con el soporte");
                         default:
                             break;
                     }
@@ -109,7 +109,7 @@ public class InicioSesionGUI extends JPanel {
      * @param args
      */
     public static void main(String[] args) {
-        JFrame frame = new JFrame("MyPanel");
+        JFrame frame = new JFrame("Inicio Sesion");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(new InicioSesionGUI(null));
         frame.pack();

@@ -1,5 +1,6 @@
 package common;
 
+import java.awt.Dimension;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
@@ -12,6 +13,7 @@ import java.io.InputStream;
 import javax.swing.JFrame;
 
 import common.view.InicioSesionGUI;
+import common.view.MainWindow;
 
 /**
  * Lanzador principal del programa con todos los checks necesarios
@@ -181,6 +183,7 @@ public class Main {
         frame.getContentPane().add(new InicioSesionGUI(c));
         frame.pack();
         frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
         frame.addWindowListener(new WindowListener() {
 
             @Override
