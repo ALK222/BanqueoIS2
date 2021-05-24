@@ -128,7 +128,7 @@ public class TarjWindow extends JFrame {
 
     private void createBajaButton(JToolBar aux) {
         JButton bajaButton = new JButton("Baja tarjeta");
-        bajaButton.setToolTipText("Baja de usuario, solo disponible para gestores");
+        bajaButton.setToolTipText("Baja de tarjeta, solo disponible para gestores");
         bajaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

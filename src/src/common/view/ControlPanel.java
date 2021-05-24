@@ -14,6 +14,7 @@ import javax.swing.SwingUtilities;
 
 import common.Controller;
 import subscuentas.view.CuentaWindow;
+import substarjetas.view.TarjWindow;
 import subsusuarios.model.FachadaSubsUsuarios;
 import subsusuarios.model.IFachadaSubsUsuarios;
 import subsusuarios.view.UserWindow;
@@ -37,7 +38,7 @@ public class ControlPanel extends JPanel {
         // CUENTA BUTTON
         createCuentaButton(toolBar);
         // TARJETA BUTTON
-        createPrestamoButton(toolBar);
+        createTarjetaButton(toolBar);
         // PRESTAMO BUTTON
         createPrestamoButton(toolBar);
         // CIERRE SESION
@@ -100,6 +101,7 @@ public class ControlPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // new Insertar gui tarjeta
+            	new TarjWindow(_controller.isAdmin());
             }
 
         });
