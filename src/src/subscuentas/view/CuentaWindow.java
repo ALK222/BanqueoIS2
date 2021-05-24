@@ -188,7 +188,7 @@ public class CuentaWindow extends JFrame{
 
                 });
                 try {
-                    frame1.getContentPane().add(new CuentaListPanel());
+                    frame1.getContentPane().add(new CuentaListPanel(null));
                     frame1.pack();
                     frame1.setVisible(true);
                     frame1.setLocationRelativeTo(null);
@@ -230,7 +230,7 @@ public class CuentaWindow extends JFrame{
                             IFachadaSubsCuentas subsCuentas = new FachadaSubsCuentas();
                             Cuenta aux = subsCuentas.buscaCuenta(NUM_CUENTA).getFirst();
                             frame.getContentPane().add(new ModGUI(aux));
-
+                            	
                             frame.pack();
                             frame.setVisible(true);
                             frame.setLocationRelativeTo(null);
@@ -254,7 +254,7 @@ public class CuentaWindow extends JFrame{
 
                     });
                     try {
-                        frame1.getContentPane().add(new CuentaListPanel());
+                        frame1.getContentPane().add(new CuentaListPanel(null));
                         frame1.pack();
                         frame1.setVisible(true);
                         frame1.setLocationRelativeTo(null);
@@ -348,7 +348,7 @@ public class CuentaWindow extends JFrame{
                                 }
 
                             });
-                            frame1.getContentPane().add(new CuentaListPanel());
+                            frame1.getContentPane().add(new CuentaListPanel(listaFiltrada.getFirst()));
                             frame1.pack();
                             frame1.setVisible(true);
                             frame.setLocationRelativeTo(null);
@@ -376,7 +376,7 @@ public class CuentaWindow extends JFrame{
 
                 });
                 // TODO: esto no lo he tocado 
-                // frame.getContentPane().add(new FiltrarGUI());
+                frame.getContentPane().add(new FiltrarGUI());
                 frame.pack();
                 frame.setVisible(true);
                 frame.setLocationRelativeTo(null);

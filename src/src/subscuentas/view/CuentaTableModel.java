@@ -16,6 +16,10 @@ public class CuentaTableModel extends AbstractTableModel{
     public CuentaTableModel() throws FileNotFoundException{
         _listaCuentas = CuentasJSON.leerListaCuentas();
     }
+    
+    public CuentaTableModel(List<Cuenta>listaFiltrada) {
+    	_listaCuentas = listaFiltrada; 
+    }
 
 
     @Override
@@ -46,9 +50,9 @@ public class CuentaTableModel extends AbstractTableModel{
         switch(columnIndex){
 
             case 0:
-            return _listaCuentas.get(rowIndex).getTitularCuenta().getFirst();
+            return _listaCuentas.get(rowIndex).getTitularCuenta().getSecond();
             case 1: 
-            return  _listaCuentas.get(rowIndex).getTitularCuenta().getSecond();
+            return  _listaCuentas.get(rowIndex).getTitularCuenta().getFirst();
             case 2: 
             return  _listaCuentas.get(rowIndex).getSaldo(); 
             case 3: 

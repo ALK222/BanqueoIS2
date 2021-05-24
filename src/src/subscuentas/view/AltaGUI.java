@@ -56,8 +56,8 @@ public class AltaGUI extends JPanel {
           titularText = new JTextField(5);
           movimientosText = new JTextField(5);
           dniText = new JTextField(5); 
-          alta = new JButton("Actualizar");
-          volver = new JButton("Volver");
+          alta = new JButton("ACEPTAR");
+          volver = new JButton("VOLVER");
     
 
         // Set button actions
@@ -142,18 +142,18 @@ public class AltaGUI extends JPanel {
         // set component bounds (only needed by Absolute Positioning)
         
 
-        movimientos.setBounds(30,35,870,35); 
-        movimientosText.setBounds(30,10,100,25);
-        dni.setBounds(30,95,200,35); 
-        dniText.setBounds(30,70,100,25); 
-        titular.setBounds(270,70,100,25); 
-        titularText.setBounds(270,95,300,35);
-        firma_digital.setBounds(30,130,100,25);
-        firma_digitalText.setBounds(30,155,400,35); 
-        num_cuenta.setBounds(30,190,100,25); 
-        num_cuentaText.setBounds(30,215,100,35);
-        saldo.setBounds(30,250,50,25);
-        saldoText.setBounds(30,275,350,35);
+        movimientos.setBounds(30,250,90,25); 
+        movimientosText.setBounds(30,275,350,35);
+        dni.setBounds(30,70,100,25); 
+        dniText.setBounds(30,95,200,35); 
+        titular.setBounds(30,10,100,25); 
+        titularText.setBounds(30,35,870,35);
+        firma_digital.setBounds(30,190,100,25);
+        firma_digitalText.setBounds(30,215,200,35); 
+        num_cuenta.setBounds(30,130,150,25); 
+        num_cuentaText.setBounds(30,155,400,35);
+        saldo.setBounds(400,250,100,25);
+        saldoText.setBounds(400,275,100,35);
         alta.setBounds(705,505,100,35); 
         volver.setBounds(815,505,100,35);
     }
