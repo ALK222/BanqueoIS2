@@ -91,7 +91,7 @@ public class ControlPanel extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                new CuentaWindow(_controller.isAdmin());
+                new CuentaWindow(_controller.isAdmin(), _controller.getCurrentUser());
             }
 
         });
@@ -135,7 +135,7 @@ public class ControlPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // insertar gui prestamo
-            	new PrestWindow(_controller.isAdmin());
+                new PrestWindow(_controller.isAdmin());
             }
 
         });

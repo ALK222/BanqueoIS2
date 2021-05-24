@@ -32,8 +32,8 @@ public class CuentaListPanel extends JPanel {
     private JButton cancelButton;
     private JPanel tablaCuentas;
 
-    private JLabel dniAModificar;
-    private JTextField dniLabel;
+    private JLabel numRefText;
+    private JTextField numRef;
 
     private JLabel titularAModificar;
     private JTextField titularText;
@@ -52,8 +52,8 @@ public class CuentaListPanel extends JPanel {
             tablaCuentas = createViewPanel(new JTable(new CuentaTableModel(this.listaFiltrada)), "Lista de cuentas");
         }
 
-        dniAModificar = new JLabel("DNI");
-        dniLabel = new JTextField(5);
+        numRefText = new JLabel("Número de referencia");
+        numRef = new JTextField(5);
         titularAModificar = new JLabel("Titular");
         titularText = new JTextField(5);
         // adjust size and set layout
@@ -64,8 +64,8 @@ public class CuentaListPanel extends JPanel {
         add(modButton);
         add(cancelButton);
         add(tablaCuentas);
-        add(dniAModificar);
-        add(dniLabel);
+        add(numRefText);
+        add(numRef);
         add(titularAModificar);
         add(titularText);
 
@@ -73,21 +73,18 @@ public class CuentaListPanel extends JPanel {
         modButton.setBounds(85, 15, 100, 35);
         cancelButton.setBounds(210, 15, 100, 35);
         tablaCuentas.setBounds(25, 120, 350, 259);
-        dniAModificar.setBounds(25, 380, 100, 25);
-        dniLabel.setBounds(25, 405, 170, 35);
-        titularAModificar.setBounds(25, 435, 100, 25);
-        titularText.setBounds(25, 455, 170, 35); // TODO : Comprobar que esto este bien, y tambien lo del nombre en el
-                                                 // consulta de sadao
+        numRefText.setBounds(25, 380, 300, 25);
+        numRef.setBounds(25, 405, 170, 35);
 
         modButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    if (!dniLabel.getText().equals("")) {
-                        CuentaWindow.NUM_CUENTA = Integer.parseInt(dniLabel.getText());
+                    if (!numRef.getText().equals("")) {
+                        CuentaWindow.NUM_CUENTA = Integer.parseInt(numRef.getText());
                         quit();
                     } else {
-                        throw new GUIException("DNI vacio, introduzca un valor");
+                        throw new GUIException("Número de referencia vacío, introduzca un valor.");
                     }
                 } catch (GUIException e1) {
                     JOptionPane.showMessageDialog(null, e1.getMessage());
