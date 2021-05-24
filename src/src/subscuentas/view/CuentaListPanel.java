@@ -24,15 +24,13 @@ import javax.swing.border.TitledBorder;
 
 import common.exception.GUIException;
 import dominio.Cuenta;
-import subscuentas.FachadaSubsCuentas;
-import subscuentas.IFachadaSubsCuentas;
 
-public class CuentaListPanel extends JPanel{
-	private List<Cuenta> listaFiltrada; 
+public class CuentaListPanel extends JPanel {
+    private List<Cuenta> listaFiltrada;
 
     private JButton modButton;
     private JButton cancelButton;
-    private  JPanel tablaCuentas;
+    private JPanel tablaCuentas;
 
     private JLabel dniAModificar;
     private JTextField dniLabel;
@@ -40,24 +38,24 @@ public class CuentaListPanel extends JPanel{
     private JLabel titularAModificar;
     private JTextField titularText;
 
-    public CuentaListPanel(List<Cuenta> listaFiltrada) throws FileNotFoundException{
+    public CuentaListPanel(List<Cuenta> listaFiltrada) throws FileNotFoundException {
 
-    	this.listaFiltrada = listaFiltrada; 
-    	
-    	// construct components
+        this.listaFiltrada = listaFiltrada;
+
+        // construct components
         modButton = new JButton("ACEPTAR");
         cancelButton = new JButton("CANCELAR");
 
-       if(this.listaFiltrada == null) {
-    	   tablaCuentas =  createViewPanel(new JTable(new CuentaTableModel()), "Lista de cuentas"); 
-       } else {
-    	   tablaCuentas =  createViewPanel(new JTable(new CuentaTableModel(this.listaFiltrada)), "Lista de cuentas"); 
-       }
+        if (this.listaFiltrada == null) {
+            tablaCuentas = createViewPanel(new JTable(new CuentaTableModel()), "Lista de cuentas");
+        } else {
+            tablaCuentas = createViewPanel(new JTable(new CuentaTableModel(this.listaFiltrada)), "Lista de cuentas");
+        }
 
         dniAModificar = new JLabel("DNI");
         dniLabel = new JTextField(5);
-        titularAModificar = new JLabel("Titular"); 
-        titularText = new JTextField(5); 
+        titularAModificar = new JLabel("Titular");
+        titularText = new JTextField(5);
         // adjust size and set layout
         setPreferredSize(new Dimension(397, 574));
         setLayout(null);
@@ -68,8 +66,8 @@ public class CuentaListPanel extends JPanel{
         add(tablaCuentas);
         add(dniAModificar);
         add(dniLabel);
-        add(titularAModificar); 
-        add(titularText); 
+        add(titularAModificar);
+        add(titularText);
 
         // set component bounds (only needed by Absolute Positioning)
         modButton.setBounds(85, 15, 100, 35);
@@ -77,17 +75,17 @@ public class CuentaListPanel extends JPanel{
         tablaCuentas.setBounds(25, 120, 350, 259);
         dniAModificar.setBounds(25, 380, 100, 25);
         dniLabel.setBounds(25, 405, 170, 35);
-        titularAModificar.setBounds(25,435,100,25); 
-        titularText.setBounds(25,455,170,35); // TODO : Comprobar que esto este bien, y tambien lo del nombre en el consulta de sadao  
-
+        titularAModificar.setBounds(25, 435, 100, 25);
+        titularText.setBounds(25, 455, 170, 35); // TODO : Comprobar que esto este bien, y tambien lo del nombre en el
+                                                 // consulta de sadao
 
         modButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    if (!dniLabel.getText().equals("") && !titularText.getText().equals(""))  {
-                        IFachadaSubsCuentas subsCuentas = new FachadaSubsCuentas();  // TODO : esto ha sido modificado respecto al usuarioListPanel 
-                        subsCuentas.consultarListaCuentas(titularText.getText(), dniLabel.getText()); // TODO : no estoy seguro 
+                    if (!dniLabel.getText().equals("")) {
+                        CuentaWindow.NUM_CUENTA = Integer.parseInt(dniLabel.getText());
+                        quit();
                     } else {
                         throw new GUIException("DNI vacio, introduzca un valor");
                     }
@@ -96,7 +94,6 @@ public class CuentaListPanel extends JPanel{
                 }
             }
         });
-
 
         cancelButton.addActionListener(new ActionListener() {
 
@@ -108,8 +105,6 @@ public class CuentaListPanel extends JPanel{
         });
     }
 
-
-    
     private JPanel createViewPanel(JComponent c, String title) {
         JPanel p = new JPanel(new BorderLayout());
         Border b = BorderFactory.createLineBorder(Color.black, 2);
@@ -119,7 +114,6 @@ public class CuentaListPanel extends JPanel{
         p.add(new JScrollPane(c, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED));
         return p;
     }
-
 
     private void quit() {
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
