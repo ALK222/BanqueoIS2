@@ -149,7 +149,7 @@ public class TarjWindow extends JFrame {
                         IFachadaSubsTarjetas subsTarjetas = new FachadaSubsTarjetas();
                         Pair<Integer, Tarjeta> aux = subsTarjetas.buscaTarjeta(Integer.parseInt(NUMTARJETA));
                         int decision = JOptionPane.showConfirmDialog(null,
-                                "¿Dar de baja al tarjeta " + NUMTARJETA + "?", "Baja usuario",
+                                "Â¿Dar de baja al tarjeta " + NUMTARJETA + "?", "Baja usuario",
                                 JOptionPane.YES_NO_CANCEL_OPTION);
                         int resultado = 1;
                         try {
@@ -210,8 +210,8 @@ public class TarjWindow extends JFrame {
     }
 
     private void createModificarButton(JToolBar aux) {
-        JButton modificacionButton = new JButton("Modificación tarjeta");
-        modificacionButton.setToolTipText("Modificación de tarjeta, solo disponible para gestores");
+        JButton modificacionButton = new JButton("ModificaciÃ³n tarjeta");
+        modificacionButton.setToolTipText("ModificaciÃ³n de tarjeta, solo disponible para gestores");
         modificacionButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -346,8 +346,7 @@ public class TarjWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFrame frame = new JFrame("Opciones de Filtrado");
-                if (_permisosGestor) {
-                    frame.addWindowListener(new WindowListener() {
+                frame.addWindowListener(new WindowListener() {
 
                     @Override
                     public void windowOpened(WindowEvent e) {
@@ -407,16 +406,14 @@ public class TarjWindow extends JFrame {
                                 public void windowDeactivated(WindowEvent e) {
                                 }
 
-                            });} catch (Exception e1) {
-                            JOptionPane.showMessageDialog(null,
-                                    "No se pudo abrir el archivo de tarjetas. Contacte con el soporte.");
-                        }
-                }
-                
+                            });
                             frame1.getContentPane().add(new TarjListPanel(listaFiltrada.getFirst()));
                             frame1.pack();
                             frame1.setVisible(true);
-                        
+                        } catch (Exception e1) {
+                            JOptionPane.showMessageDialog(null,
+                                    "No se pudo abrir el archivo de tarjetas. Contacte con el soporte.");
+                        }
                     }
 
                     @Override
@@ -442,7 +439,7 @@ public class TarjWindow extends JFrame {
                 frame.setVisible(true);
             }
         });
-        listaButton.setEnabled(_permisosGestor);
+        listaButton.setEnabled(true);
         listaButton.setPreferredSize(tamanoBoton);
         aux.add(listaButton, BorderLayout.SOUTH);
     }
