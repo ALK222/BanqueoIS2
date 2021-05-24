@@ -35,7 +35,7 @@
 
 
 
-\newcommand{\nombredelproyecto}{\textbf{Diagrama de secuencia y de clases GUI}}
+\newcommand{\nombredelproyecto}{\textbf{Diagrama de clases y componentes}}
 \setcounter{secnumdepth}{4}
 \makeatletter
 \renewcommand{\paragraph}{\@startsection{paragraph}{4}{0ex}%
@@ -111,10 +111,10 @@ Alejandro Barrachina Argudo}
 \tableofcontents
 \newpage
 \section*{Introducción} %INTRODUCCION
-En este documento se mostrarán los diagramas de clases, para mostrar las variables y métodos internos que tienen y utilizan los diferentes componentes, y los diagramas de componentes, para mostrar las partes internas de nuestro proyecto, los conectores y los puertos que implementan cada componente.
+En este documento se muestran el diagrama de componentes y los diagramas de clases de cada parte del programa, siendo este el modelo que se ha seguido para realizar la aplicación.
 
 \section{Diagrama de componentes} %DIAGRAMA DE COMPONENTES
-Usamos un diagrama de componentes para mostrar las partes internas y los conectores de nuestros componentes
+El diagrama de componentes representa cómo se han estructurado los subsistemas de la aplicación, y cómo se relacionan entre ellos.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{images/DiagramaDeComponentes.png}
@@ -122,7 +122,7 @@ Usamos un diagrama de componentes para mostrar las partes internas y los conecto
 
 \newpage
 \section{Diagrama de clases para el modelo del dominio}
-Usamos un diagrama de clases para mostrar el conjunto de nuestras clases,interfaces y sus relaciones
+El diagrama de clases para el modelo del dominio muestra las relaciones existentes entre las clases del programa, además de sus atributos y métodos.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{images/Diagrama_de_clases.png}
@@ -130,6 +130,7 @@ Usamos un diagrama de clases para mostrar el conjunto de nuestras clases,interfa
 
 \newpage
 \section{Diagrama de clases para la lógica del negocio de cada subsistema}
+Los diagramas de clases para la lógica del negocio de cada subsistema recogen los métodos que se hayan en las interfaces de cada uno de ellos, que son los que podrán comunicarse con la Interfaz Gráfica, además de los otros subsistemas.
 \subsection{Subsistema de cuentas}
 \begin{figure}[H]
     \centering
@@ -153,6 +154,7 @@ Usamos un diagrama de clases para mostrar el conjunto de nuestras clases,interfa
 
 \newpage
 \section{Diagrama de clases para la integración con los datos de cada subsistema}
+Los diagramas de clases para la integración con los datos de cada subsistema recogen los métodos que se hayan en las interfaces de los mismos, que son los que podrán comunicarse con la Base de Datos, además de los otros subsistemas.
 \subsection{DAO de cuentas}
 \begin{figure}[H]
     \centering
