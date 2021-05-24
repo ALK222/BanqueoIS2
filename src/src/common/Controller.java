@@ -1,6 +1,5 @@
 package common;
 
-import java.awt.Dimension;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 

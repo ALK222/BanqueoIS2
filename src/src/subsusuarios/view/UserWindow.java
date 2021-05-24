@@ -60,6 +60,7 @@ public class UserWindow extends JFrame {
         this.pack();
         this.setResizable(false);
         this.setVisible(true);
+        this.setLocationRelativeTo(null);
     }
 
     private void createAltaButton(JToolBar aux) {
@@ -74,6 +75,7 @@ public class UserWindow extends JFrame {
                 frame.getContentPane().add(new AltaGUI());
                 frame.pack();
                 frame.setVisible(true);
+                frame.setLocationRelativeTo(null);
             }
         });
         altaButton.setEnabled(_permisosGestor);
@@ -151,6 +153,7 @@ public class UserWindow extends JFrame {
                     frame1.getContentPane().add(new UserListPanel(null));
                     frame1.pack();
                     frame1.setVisible(true);
+                    frame1.setLocationRelativeTo(null);
                 } catch (FileNotFoundException e1) {
                     JOptionPane.showMessageDialog(null,
                             "No se pudo abrir el archivo de usuarios. Contacte con el soporte.");
@@ -193,6 +196,7 @@ public class UserWindow extends JFrame {
 
                             frame.pack();
                             frame.setVisible(true);
+                            frame.setLocationRelativeTo(null);
                         }
 
                         @Override
@@ -216,6 +220,7 @@ public class UserWindow extends JFrame {
                         frame1.getContentPane().add(new UserListPanel(null));
                         frame1.pack();
                         frame1.setVisible(true);
+                        frame1.setLocationRelativeTo(null);
                     } catch (FileNotFoundException e1) {
                         JOptionPane.showMessageDialog(null,
                                 "No se pudo abrir el archivo de usuarios. Contacte con el soporte.");
@@ -227,6 +232,7 @@ public class UserWindow extends JFrame {
 
                     frame.pack();
                     frame.setVisible(true);
+                    frame.setLocationRelativeTo(null);
                 }
 
             }
@@ -309,6 +315,7 @@ public class UserWindow extends JFrame {
                             frame1.getContentPane().add(new UserListPanel(listaFiltrada.getFirst()));
                             frame1.pack();
                             frame1.setVisible(true);
+                            frame.setLocationRelativeTo(null);
                         } catch (Exception e1) {
                             JOptionPane.showMessageDialog(null,
                                     "No se pudo abrir el archivo de usuarios. Contacte con el soporte.");
@@ -335,6 +342,7 @@ public class UserWindow extends JFrame {
                 frame.getContentPane().add(new FiltrarGUI());
                 frame.pack();
                 frame.setVisible(true);
+                frame.setLocationRelativeTo(null);
             }
         });
         listaButton.setEnabled(_permisosGestor);

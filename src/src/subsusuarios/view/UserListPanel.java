@@ -50,11 +50,11 @@ public class UserListPanel extends JPanel {
         setLayout(null);
 
         // add components
-        add(modButton);
-        add(cancelButton);
         add(tablaUsuarios);
         add(dniAModificar);
         add(dniLabel);
+        add(modButton);
+        add(cancelButton);
 
         // set component bounds (only needed by Absolute Positioning)
         modButton.setBounds(85, 15, 100, 35);
@@ -71,7 +71,7 @@ public class UserListPanel extends JPanel {
                         UserWindow.DNI = dniLabel.getText();
                         quit();
                     } else {
-                        throw new GUIException("DNI vacio, introduzca un valor");
+                        throw new GUIException("DNI vacío, introduzca un valor");
                     }
                 } catch (GUIException e1) {
                     JOptionPane.showMessageDialog(null, e1.getMessage());
@@ -111,5 +111,6 @@ public class UserListPanel extends JPanel {
         frame.getContentPane().add(new UserListPanel(null));
         frame.pack();
         frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
     }
 }

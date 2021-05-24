@@ -74,20 +74,20 @@ public class ModGUI extends JPanel {
         dniLabel = new JTextField(5);
         nombreLabel = new JLabel("Nombre*");
         dni = new JLabel("DNI*");
-        contrasena = new JLabel("Contrasena*");
+        contrasena = new JLabel("Contraseña*");
         contrasenaLabel = new JPasswordField(5);
         email = new JLabel("Email");
         emailLabel = new JTextField(5);
-        telefono = new JLabel("Telefono");
+        telefono = new JLabel("Teléfono");
         telefonoLabel = new JTextField(5);
         calle = new JLabel("Calle");
         calleLabel = new JTextField(5);
         portalPisoLabel = new JTextField(5);
         portalPiso = new JLabel("Portal Piso");
         codigoPostalLabel = new JTextField(5);
-        codigoPostal = new JLabel("Codigo Postal");
+        codigoPostal = new JLabel("Código Postal");
         poblacionLabel = new JTextField(5);
-        poblacion = new JLabel("Poblacion");
+        poblacion = new JLabel("Población");
         gestorCheck = new JCheckBox("Gestor");
         dniGestorLabel = new JTextField(5);
         dniGestor = new JLabel("DNI Gestor");
@@ -101,7 +101,7 @@ public class ModGUI extends JPanel {
                 try {
                     if (nombre.getText().equals("") || dniLabel.getText().equals("")
                             || contrasenaLabel.getPassword().length == 0) {
-                        throw new GUIException("Alguno de los valores obligatorios esta vacio");
+                        throw new GUIException("Alguno de los valores obligatorios está vacio");
                     }
                     IFachadaSubsUsuarios subsUsuarios = new FachadaSubsUsuarios();
                     int resultado = 1;
@@ -151,13 +151,13 @@ public class ModGUI extends JPanel {
         // set components properties
         nombre.setToolTipText("Nombre del usuario a dar de alta");
         dniLabel.setToolTipText("DNI del usuario a dar de alta");
-        contrasenaLabel.setToolTipText("Contrasena del usuario");
+        contrasenaLabel.setToolTipText("Contraseña del usuario");
         emailLabel.setToolTipText("Email del usuario a registrar");
-        telefonoLabel.setToolTipText("Telefono del cliente a dar de alta");
+        telefonoLabel.setToolTipText("Teléfono del cliente a dar de alta");
         calleLabel.setToolTipText("Calle del usuario a dar de alta");
         portalPisoLabel.setToolTipText("Portal y piso del usuario a dar de alta");
-        codigoPostalLabel.setToolTipText("Codigo Postal del usuario a dar de alta");
-        poblacionLabel.setToolTipText("Poblacion del usaurio a dar de alta");
+        codigoPostalLabel.setToolTipText("Código Postal del usuario a dar de alta");
+        poblacionLabel.setToolTipText("Población del usuario a dar de alta");
         gestorCheck.setToolTipText("Marcar si el usuario a dar de alta es un gestor");
         dniGestorLabel.setToolTipText("DNI del gestor del usuario");
 

@@ -58,7 +58,7 @@ public class ModGUI extends JPanel{
         dni = new JTextField(5);
         titularLabel = new JLabel("Titular*");
         dniLabel = new JLabel("DNI*");
-        numCuentaLabel = new JLabel("Numero de Cuenta*");
+        numCuentaLabel = new JLabel("Número de Cuenta*");
         numCuenta = new JPasswordField(5);
         saldoLabel = new JLabel("Saldo");
         saldo = new JTextField(5);
@@ -74,7 +74,8 @@ public class ModGUI extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    if(titular.getText().equals("") || dni.getText().equals("") || firmaDigital.getText().equals("")) throw new GUIException("Alguno de los valores obligatorios esta vacío");
+                    if (titular.getText().equals("") || dni.getText().equals("") || firmaDigital.getText().equals("")) 
+                    	throw new GUIException("Alguno de los valores obligatorios esta vacío");
                     
                     IFachadaSubsCuentas subsCuentas = new FachadaSubsCuentas();
                     int resultado = 1;
@@ -113,7 +114,7 @@ public class ModGUI extends JPanel{
         // set components properties
         titular.setToolTipText("Titular de la cuenta a dar de alta");
         dni.setToolTipText("DNI del titular a dar de alta");
-        numCuenta.setToolTipText("Numero de cuenta del usuario");
+        numCuenta.setToolTipText("Número de cuenta del usuario");
         saldo.setToolTipText("Saldo de la cuenta a registrar");
         firmaDigital.setToolTipText("Firma digital del cliente a dar de alta");
         movimientos.setToolTipText("Movimientos del usuario a dar de alta");

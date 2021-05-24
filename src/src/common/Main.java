@@ -1,6 +1,5 @@
 package common;
 
-import java.awt.Dimension;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
@@ -13,7 +12,6 @@ import java.io.InputStream;
 import javax.swing.JFrame;
 
 import common.view.InicioSesionGUI;
-import common.view.MainWindow;
 
 /**
  * Lanzador principal del programa con todos los checks necesarios
@@ -178,7 +176,7 @@ public class Main {
         }
         Controller c = new Controller();
 
-        JFrame frame = new JFrame("Inicio de Sesion");
+        JFrame frame = new JFrame("Iniciar Sesión");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(new InicioSesionGUI(c));
         frame.pack();

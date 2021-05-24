@@ -29,7 +29,7 @@ public class FiltrarGUI extends JPanel {
 
         // construct components
         modeSelector = new JComboBox<String>(modeSelectorItems);
-        modoFiltrado = new JLabel("Modo de Filtrado");
+        modoFiltrado = new JLabel("Modo de filtrado");
         yesButton = new JButton("ACEPTAR");
         noButton = new JButton("CANCELAR");
         modeKeyValue = new JTextField(5);
@@ -104,10 +104,11 @@ public class FiltrarGUI extends JPanel {
     }
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("MyPanel");
+        JFrame frame = new JFrame("Modo de filtrado");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(new FiltrarGUI());
         frame.pack();
         frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
     }
 }
