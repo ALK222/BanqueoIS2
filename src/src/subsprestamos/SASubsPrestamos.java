@@ -47,8 +47,8 @@ public class SASubsPrestamos implements ISASubsPrestamos {
         }
     }
 
-    @Overrride
-    int aceptarSolicitud(int numRef) {
+    @Override
+    public int aceptarSolicitud(int numRef) {
         try {
             if (prestamo.aceptarSolicitud(numRef)) {
                 return 0;

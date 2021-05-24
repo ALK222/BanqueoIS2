@@ -37,7 +37,6 @@ public class SADAOPrestamos implements ISADAOPrestamos {
     @Override
     public boolean cancelarSolicitud(int numReferencia) throws IOException {
         List<Prestamo> listaPrestamos = PrestamoJSON.leerListaPrestamos();
-        Prestamo aux = null;
         int i = 0;
         boolean encontrado = false;
         while (i != 0 && !encontrado) {
@@ -55,7 +54,6 @@ public class SADAOPrestamos implements ISADAOPrestamos {
 
     public boolean aceptarSolicitud(int numReferencia) throws IOException {
         List<Prestamo> listaPrestamos = PrestamoJSON.leerListaPrestamos();
-        Prestamo aux = null;
         int i = 0;
         boolean encontrado = false;
         while (i != 0 && !encontrado) {
