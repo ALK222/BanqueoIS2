@@ -18,17 +18,14 @@ import javax.swing.JToolBar;
 import common.exception.GUIException;
 import common.exception.UserException;
 import common.misc.Pair;
+import dominio.Cuenta;
 import dominio.Persona;
 import dominio.Prestamo;
 import dominio.Tarjeta;
+import subscuentas.FachadaSubsCuentas;
+import subscuentas.IFachadaSubsCuentas;
 import subsprestamos.FachadaSubsPrestamos;
 import subsprestamos.IFachadaSubsPrestamos;
-import substarjetas.FachadaSubsTarjetas;
-import substarjetas.IFachadaSubsTarjetas;
-import substarjetas.view.AltaGUI;
-import substarjetas.view.FiltrarGUI;
-import substarjetas.view.ModGUI;
-import substarjetas.view.TarjListPanel;
 
 public class PrestWindow extends JFrame {
 
@@ -36,17 +33,14 @@ public class PrestWindow extends JFrame {
 
     private boolean _permisosGestor;
     private Persona _user;
-    private Prestamo _prestamo;
     private static Dimension tamanoBoton = new Dimension(200, 50);
 
     public static String DNI = "";
     public static String TIPOFILTRADO = "";
     public static String NUMREFERENCIA = "";
 
-    public PrestWindow(boolean permisosGestor, Prestamo p) {
-        super("Prestamo");
+    public PrestWindow(boolean permisosGestor) {
         _permisosGestor = permisosGestor;
-        _prestamo = p;
         initGUI();
     }
 
@@ -202,7 +196,7 @@ public class PrestWindow extends JFrame {
 
                 });
 		        try {
-		            frame1.getContentPane().add(new TarjListPanel(null));
+		            frame1.getContentPane().add(new PrestListPanel(null));
 		            frame1.pack();
 		            frame1.setVisible(true);
 		        } catch (FileNotFoundException e1) {
@@ -240,9 +234,9 @@ public class PrestWindow extends JFrame {
                         public void windowClosed(WindowEvent e) {
                             JFrame frame = new JFrame("Modicifacion Tarjeta");
                             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                            IFachadaSubsTarjetas subsTarjetas = new FachadaSubsTarjetas();
-                            Pair<Integer, Tarjeta> aux = subsTarjetas.buscaTarjeta(Integer.parseInt(NUMREFERENCIA));
-                            frame.getContentPane().add(new ModGUI(aux.getSecond()));
+                            IFachadaSubsPrestamos subsPrestamos = new FachadaSubsPrestamos();
+                            Pair<Prestamo, Integer> aux = subsPrestamos.buscarPrestamo(Integer.parseInt(NUMREFERENCIA));
+                            frame.getContentPane().add(new ModGUI(aux.getFirst()));
 
                             frame.pack();
                             frame.setVisible(true);
@@ -266,7 +260,7 @@ public class PrestWindow extends JFrame {
 
                     });
                     try {
-                        frame1.getContentPane().add(new TarjListPanel(null));
+                        frame1.getContentPane().add(new PrestListPanel(null));
                         frame1.pack();
                         frame1.setVisible(true);
                     } catch (FileNotFoundException e1) {
@@ -289,9 +283,9 @@ public class PrestWindow extends JFrame {
                         public void windowClosed(WindowEvent e) {
                             JFrame frame = new JFrame("Modicifacion Tarjeta");
                             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                            IFachadaSubsTarjetas subsTarjetas = new FachadaSubsTarjetas();
-                            Pair<Integer, Tarjeta> aux = subsTarjetas.buscaTarjeta(Integer.parseInt(NUMREFERENCIA));
-                            frame.getContentPane().add(new ModGUI(aux.getSecond()));
+                            IFachadaSubsPrestamos subsPrestamos = new FachadaSubsPrestamos();
+                            Pair<Prestamo, Integer> aux = subsPrestamos.buscarPrestamo(Integer.parseInt(NUMREFERENCIA));
+                            frame.getContentPane().add(new ModGUI(aux.getFirst()));
 
                             frame.pack();
                             frame.setVisible(true);
@@ -314,18 +308,20 @@ public class PrestWindow extends JFrame {
                         }
                     });
                     try {
-                        IFachadaSubsTarjetas subsTarjetas = new FachadaSubsTarjetas();
-                        Pair<List<Tarjeta>, Integer> aux1 = subsTarjetas.consultarListaTarjetas(_user.getDni());
+                        IFachadaSubsPrestamos subsPrestamos = new FachadaSubsPrestamos();
+                        IFachadaSubsCuentas subsCuentas = new FachadaSubsCuentas();
+                        Pair<Cuenta, Integer> aux2 = subsCuentas.buscaCuenta(Integer.parseInt(NUMREFERENCIA));
+                        Pair<List<Prestamo>, Integer> aux1 = subsPrestamos.consultarListaPrestamos(aux2.getFirst());
                         switch (aux1.getSecond()) {
                             case 0:
-                                frame1.getContentPane().add(new TarjListPanel(aux1.getFirst()));
+                                frame1.getContentPane().add(new PrestListPanel(aux1.getFirst()));
                                 frame1.pack();
                                 frame1.setVisible(true);
                                 break;
                             case 1:
-                                throw new GUIException("El usuario no tiene tarjetas a su nombre");
+                                throw new GUIException("El usuario no tiene prestamos a su nombre");
                             case 2:
-                                throw new GUIException("No se reconoce al usuario.");
+                                throw new GUIException("No se reconoce el prestamo.");
                             case 10:
                                 throw new GUIException(
                                         "No se pudo conectar con la base de datos. Contacte con el soporte.");
@@ -347,7 +343,7 @@ public class PrestWindow extends JFrame {
     }
 
     private void createListaButton(JToolBar aux) {
-        JButton listaButton = new JButton("Lista de tarjetas");
+        JButton listaButton = new JButton("Lista de prestamos");
         listaButton.setToolTipText("Lista de tarjetas, solo disponible para gestores");
         listaButton.addActionListener(new ActionListener() {
             @Override
@@ -367,22 +363,24 @@ public class PrestWindow extends JFrame {
                     public void windowClosed(WindowEvent e) {
 
                         try {
-                            IFachadaSubsTarjetas subsTarjetas = new FachadaSubsTarjetas();
-                            Pair<List<Tarjeta>, Integer> listaFiltrada = subsTarjetas.consultarListaTarjetas(DNI);
+                            IFachadaSubsPrestamos subsPrestamos = new FachadaSubsPrestamos();
+                            IFachadaSubsCuentas subsCuentas = new FachadaSubsCuentas();
+                            Pair<Cuenta, Integer> aux2 = subsCuentas.buscaCuenta(Integer.parseInt(NUMREFERENCIA));
+                            Pair<List<Prestamo>, Integer> listaFiltrada = subsPrestamos.consultarListaPrestamos(aux2.getFirst());
                             int resultado = listaFiltrada.getSecond();
                             switch (resultado) {
                                 case 0:
                                     break;
                                 case 1:
                                     throw new UserException(
-                                            "Fallo al modificar la tarjeta. Compruebe que no exista ya");
+                                            "Fallo al modificar el prestamo. Compruebe que no exista ya");
                                 case 10:
                                     throw new GUIException(
-                                            "Fallo al encontrar el archivo de tarjetas. Contacte con el soporte.");
+                                            "Fallo al encontrar el archivo de prestamos. Contacte con el soporte.");
                                 default:
                                     throw new GUIException("Error inesperado. Contacte con el soporte");
                             }
-                            JFrame frame1 = new JFrame("Lista Tarjetas");
+                            JFrame frame1 = new JFrame("Lista prestamos");
                             frame1.addWindowListener(new WindowListener() {
                                 @Override
                                 public void windowOpened(WindowEvent e) {
@@ -414,7 +412,7 @@ public class PrestWindow extends JFrame {
                                 }
 
                             });
-                            frame1.getContentPane().add(new TarjListPanel(listaFiltrada.getFirst()));
+                            frame1.getContentPane().add(new PrestListPanel(listaFiltrada.getFirst()));
                             frame1.pack();
                             frame1.setVisible(true);
                         } catch (Exception e1) {
@@ -441,7 +439,7 @@ public class PrestWindow extends JFrame {
 
                 });
                 // frame.getContentPane().add(new FiltrarGUI());
-                frame.getContentPane().add(new FiltrarGUI());
+               // frame.getContentPane().add(new FiltrarGUI());
                 frame.pack();
                 frame.setVisible(true);
             }

@@ -14,6 +14,7 @@ import javax.swing.SwingUtilities;
 
 import common.Controller;
 import subscuentas.view.CuentaWindow;
+import subsprestamos.view.PrestWindow;
 import substarjetas.view.TarjWindow;
 import subsusuarios.model.FachadaSubsUsuarios;
 import subsusuarios.model.IFachadaSubsUsuarios;
@@ -134,6 +135,7 @@ public class ControlPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // insertar gui prestamo
+            	new PrestWindow(_controller.isAdmin());
             }
 
         });
