@@ -60,7 +60,7 @@ public class AltaGUI extends JPanel {
     }
 
     /**
-     * Constructor como tal de la GUI
+     * Constructor del panel de la GUI
      */
     public void initGUI() {
         // construct components

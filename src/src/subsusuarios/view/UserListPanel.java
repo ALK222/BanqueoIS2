@@ -26,7 +26,7 @@ import common.exception.GUIException;
 import dominio.Persona;
 
 /**
- * Panel para escofer el usuario a modificar
+ * Panel para escoger el usuario a modificar
  * 
  * @see JPanel
  */

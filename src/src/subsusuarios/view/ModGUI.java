@@ -78,6 +78,9 @@ public class ModGUI extends JPanel {
         dniLabel.setEnabled(false);
     }
 
+    /**
+     * Constructor del panel de la GUI
+     */
     public void initGUI() {
         // construct components
         nombre = new JTextField(5);

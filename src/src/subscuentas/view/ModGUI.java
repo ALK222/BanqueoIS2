@@ -15,14 +15,18 @@ import javax.swing.SwingUtilities;
 
 import org.json.JSONArray;
 
-import common.exception.GUIException;
 import common.exception.CuentaException;
+import common.exception.GUIException;
 import dominio.Cuenta;
 import subscuentas.FachadaSubsCuentas;
 import subscuentas.IFachadaSubsCuentas;
 
-
-public class ModGUI extends JPanel{
+/**
+ * GUI de modificación de cuentas
+ * 
+ * @see JPanel
+ */
+public class ModGUI extends JPanel {
     protected JTextField titular;
     protected JTextField dni;
     protected JLabel titularLabel;
@@ -38,10 +42,14 @@ public class ModGUI extends JPanel{
     protected JButton altaButton;
     protected JButton cancelButton;
 
-
+    /**
+     * Constructor de la GUI
+     * 
+     * @param p Cuenta a modificar
+     */
     public ModGUI(Cuenta c) {
         initGUI();
-       
+
         dni.setText(c.getTitularCuenta().getSecond());
         titular.setText(c.getTitularCuenta().getFirst());
         firmaDigital.setText(c.getFirmaDigital());
@@ -52,6 +60,9 @@ public class ModGUI extends JPanel{
         dni.setEnabled(false);
     }
 
+    /**
+     * Constructor del panel de la GUI
+     */
     public void initGUI() {
         // construct components
         titular = new JTextField(5);
@@ -74,14 +85,16 @@ public class ModGUI extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    if (titular.getText().equals("") || dni.getText().equals("") || firmaDigital.getText().equals("")) 
-                    	throw new GUIException("Alguno de los valores obligatorios esta vacío");
-                    
+                    if (titular.getText().equals("") || dni.getText().equals("") || firmaDigital.getText().equals(""))
+                        throw new GUIException("Alguno de los valores obligatorios esta vacío");
+
                     IFachadaSubsCuentas subsCuentas = new FachadaSubsCuentas();
                     int resultado = 1;
-                    JSONArray movimientosArray = new JSONArray(); 
+                    JSONArray movimientosArray = new JSONArray();
                     movimientosArray.put(movimientos.getText());
-                    resultado = subsCuentas.modificarCuenta(new Cuenta(titular.getText(),dni.getText(),Integer.parseInt(numCuenta.getText()),Double.parseDouble(saldo.getText()),firmaDigital.getText(), movimientosArray));
+                    resultado = subsCuentas.modificarCuenta(
+                            new Cuenta(titular.getText(), dni.getText(), Integer.parseInt(numCuenta.getText()),
+                                    Double.parseDouble(saldo.getText()), firmaDigital.getText(), movimientosArray));
                     switch (resultado) {
                         case 0:
                             JOptionPane.showMessageDialog(null, "Cuenta modificada correctamente");
@@ -118,7 +131,6 @@ public class ModGUI extends JPanel{
         saldo.setToolTipText("Saldo de la cuenta a registrar");
         firmaDigital.setToolTipText("Firma digital del cliente a dar de alta");
         movimientos.setToolTipText("Movimientos del usuario a dar de alta");
-      
 
         // adjust size and set layout
         setPreferredSize(new Dimension(944, 574));
@@ -157,6 +169,9 @@ public class ModGUI extends JPanel{
         cancelButton.setBounds(815, 505, 100, 35);
     }
 
+    /**
+     * Comportamiento al cerrar la ventana
+     */
     private void quit() {
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         frame.dispose();

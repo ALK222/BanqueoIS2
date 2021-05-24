@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch CuentaListPanel",
+            "request": "launch",
+            "mainClass": "subscuentas.view.CuentaListPanel",
+            "projectName": "Bankeo"
+        },
+        {
+            "type": "java",
             "name": "Launch AltaGUI",
             "request": "launch",
             "mainClass": "subsprestamos.view.AltaGUI",

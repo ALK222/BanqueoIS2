@@ -527,38 +527,6 @@ public class CuentaWindow extends JFrame {
             frame1.pack();
             frame1.setVisible(true);
             frame1.setLocationRelativeTo(null);
-            frame1.addWindowListener(new WindowListener() {
-                @Override
-                public void windowOpened(WindowEvent e) {
-                }
-
-                @Override
-                public void windowClosing(WindowEvent e) {
-                }
-
-                @Override
-                public void windowClosed(WindowEvent e) {
-
-                }
-
-                @Override
-                public void windowIconified(WindowEvent e) {
-                }
-
-                @Override
-                public void windowDeiconified(WindowEvent e) {
-                }
-
-                @Override
-                public void windowActivated(WindowEvent e) {
-                }
-
-                @Override
-                public void windowDeactivated(WindowEvent e) {
-                }
-
-            });
-
         } catch (Exception e1) {
             JOptionPane.showMessageDialog(null, "No se pudo abrir el archivo de cuentas. Contacte con el soporte.");
         }

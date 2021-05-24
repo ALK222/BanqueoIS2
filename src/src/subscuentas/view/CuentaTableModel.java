@@ -8,15 +8,30 @@ import javax.swing.table.AbstractTableModel;
 import cuentadao.control.CuentasJSON;
 import dominio.Cuenta;
 
+/**
+ * Tabla para los datos de cuentas
+ * 
+ * @see AbstractTableModel
+ */
 public class CuentaTableModel extends AbstractTableModel {
     private static final long serialVersionUID = 1L;
     private String _columnas[] = { "DNI", "Titular", "Saldo", "Firma digital", "Numero de cuenta" };
     private List<Cuenta> _listaCuentas;
 
+    /**
+     * Constructor vacío para que busque la lista de cuentas entera
+     * 
+     * @throws FileNotFoundException Si no puede contactar con la base de datos
+     */
     public CuentaTableModel() throws FileNotFoundException {
         _listaCuentas = CuentasJSON.leerListaCuentas();
     }
 
+    /**
+     * Constructor con una lista ya dada
+     * 
+     * @param listaFiltrada lista a la que se le ha aplicado un filtro
+     */
     public CuentaTableModel(List<Cuenta> listaFiltrada) {
         _listaCuentas = listaFiltrada;
     }
