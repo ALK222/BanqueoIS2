@@ -40,7 +40,7 @@ public class Prestamo {
 	public int getCuentaAsociada() {
 		return _cuentaAsociada;
 	}
-
+	
 	public int getNumReferencia() {
 		return _numReferencia;
 	}
