@@ -83,6 +83,7 @@ public class SADAOTarjetas implements ISADAOTarjetas {
 			listaTarjetas.remove(i);
 			listaTarjetas.add(t);
 		}
+		TarjetasJSON.guardarListaTarjetas(listaTarjetas);
 		return conseguido;
 	}
 

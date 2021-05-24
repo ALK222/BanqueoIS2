@@ -11,11 +11,11 @@
         },
         {
             "Tipo": "CREDITO",
-            "PIN": 1234,
+            "PIN": 1111,
             "Fecha_CAD": "03/25",
             "Titular": "Antonio Machado Ruiz",
             "DNI": "01234568A",
-            "Estado": true,
+            "Estado": false,
             "Num_Tarjeta": 1234124
         }
     ]
