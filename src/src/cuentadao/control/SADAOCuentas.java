@@ -87,11 +87,18 @@ public class SADAOCuentas implements ISADAOCuenta {
     public boolean modificarCuentas(Cuenta c) throws IOException {
         List<Cuenta> listaCuentas = CuentasJSON.leerListaCuentas();
         boolean conseguido = false;
-        for (Cuenta cAux : listaCuentas) {
-            if (cAux.getNumeroCuenta() == c.getNumeroCuenta()) {
-                cAux = c;
+        int i = 0;
+        while (i < listaCuentas.size() && !conseguido) {
+            if (c.getNumeroCuenta() == listaCuentas.get(i).getNumeroCuenta()) {
                 conseguido = true;
             }
+            if (!conseguido) {
+                i++;
+            }
+        }
+        if (conseguido) {
+            listaCuentas.remove(i);
+            listaCuentas.add(c);
         }
 
         CuentasJSON.guardarListaCuentas(listaCuentas);

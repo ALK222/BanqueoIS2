@@ -70,13 +70,19 @@ public class SADAOTarjetas implements ISADAOTarjetas {
 	public boolean modificarTarjeta(Tarjeta t) throws IOException {
 		List<Tarjeta> listaTarjetas = TarjetasJSON.leerListaTarjetas();
 		boolean conseguido = false;
-		for (Tarjeta tarjeta : listaTarjetas) {
-			if (tarjeta.compareTo(t) == 0) {
-				tarjeta = t;
+		int i = 0;
+		while (i < listaTarjetas.size() && !conseguido) {
+			if (t.compareTo(listaTarjetas.get(i)) == 0) {
 				conseguido = true;
 			}
+			if (!conseguido) {
+				i++;
+			}
 		}
-		TarjetasJSON.guardarListaTarjetas(listaTarjetas);
+		if (conseguido) {
+			listaTarjetas.remove(i);
+			listaTarjetas.add(t);
+		}
 		return conseguido;
 	}
 

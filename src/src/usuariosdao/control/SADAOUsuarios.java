@@ -105,8 +105,11 @@ public class SADAOUsuarios implements ISADAOUsuarios {
                 i++;
             }
         }
-        listaPersonas.remove(i);
-        listaPersonas.add(p);
+        if (conseguido) {
+            listaPersonas.remove(i);
+            listaPersonas.add(p);
+        }
+
         UsuariosJSON.guardarListaUsuarios(listaPersonas);
         return conseguido;
     }
