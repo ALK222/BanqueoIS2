@@ -1,4 +1,4 @@
-name: Unit test Cuentas
+name: Compile
 
 on: [push]
 
