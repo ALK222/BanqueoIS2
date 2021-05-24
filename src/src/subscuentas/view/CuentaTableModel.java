@@ -8,7 +8,7 @@ import javax.swing.table.AbstractTableModel;
 import cuentadao.control.CuentasJSON;
 import dominio.Cuenta;
 
-public class CuentaTableModel extends AbstractTableModel{
+public class CuentaTableModel extends AbstractTableModel {
     private static final long serialVersionUID = 1L;
     private String _columnas[] = {"DNI", "Titular","Saldo", "Firma digital", "Numero de cuenta"};
     private  List<Cuenta>_listaCuentas;
@@ -16,9 +16,9 @@ public class CuentaTableModel extends AbstractTableModel{
     public CuentaTableModel() throws FileNotFoundException {
         _listaCuentas = CuentasJSON.leerListaCuentas();
     }
-    
-    public CuentaTableModel(List<Cuenta>listaFiltrada) {
-    	_listaCuentas = listaFiltrada; 
+
+    public CuentaTableModel(List<Cuenta> listaFiltrada) {
+        _listaCuentas = listaFiltrada;
     }
 
     public CuentaTableModel(List<Cuenta> listaFiltrada) {
@@ -31,7 +31,6 @@ public class CuentaTableModel extends AbstractTableModel{
         return _columnas[c];
     }
 
-
     @Override
     public boolean isCellEditable(int arg0, int arg1) {
         return false;
@@ -39,7 +38,7 @@ public class CuentaTableModel extends AbstractTableModel{
 
     @Override
     public int getRowCount() {
-      
+
         return _listaCuentas.size();
     }
 
@@ -50,22 +49,22 @@ public class CuentaTableModel extends AbstractTableModel{
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-       
-        switch(columnIndex){
+
+        switch (columnIndex) {
 
             case 0:
-            return _listaCuentas.get(rowIndex).getTitularCuenta().getSecond();
-            case 1: 
-            return  _listaCuentas.get(rowIndex).getTitularCuenta().getFirst();
-            case 2: 
-            return  _listaCuentas.get(rowIndex).getSaldo(); 
-            case 3: 
-            return _listaCuentas.get(rowIndex).getFirmaDigital(); 
+                return _listaCuentas.get(rowIndex).getTitularCuenta().getSecond();
+            case 1:
+                return _listaCuentas.get(rowIndex).getTitularCuenta().getFirst();
+            case 2:
+                return _listaCuentas.get(rowIndex).getSaldo();
+            case 3:
+                return _listaCuentas.get(rowIndex).getFirmaDigital();
             case 4:
-            return _listaCuentas.get(rowIndex).getNumeroCuenta(); 
+                return _listaCuentas.get(rowIndex).getNumeroCuenta();
             default:
-            return null; 
+                return null;
         }
     }
-    
+
 }

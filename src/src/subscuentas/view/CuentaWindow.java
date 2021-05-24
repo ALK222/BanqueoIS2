@@ -440,4 +440,8 @@ public class CuentaWindow extends JFrame {
         listaButton.setPreferredSize(tamanoBoton);
         aux.add(listaButton, BorderLayout.SOUTH);
     }
-}
+
+});
+// TODO: esto no lo he tocado
+// frame.getContentPane().add(new FiltrarGUI());
+frame.pack();frame.setVisible(true);frame.setLocationRelativeTo(null);}});listaButton.setEnabled(true);listaButton.setPreferredSize(tamanoBoton);aux.add(listaButton,BorderLayout.SOUTH);}}
