@@ -29,7 +29,7 @@ public class ImagePanel extends JPanel {
                     testFile = new File("./resources/banqueo.png");
                     image = ImageIO.read(testFile);
                 } catch (IOException ex1) {
-                    testFile = new File(System.getProperty("user.dir") + "src/resources/banqueo.png");
+                    testFile = new File(System.getProperty("user.dir") + "/src/resources/banqueo.png");
                     try {
                         image = ImageIO.read(testFile);
                     } catch (IOException e1) {
