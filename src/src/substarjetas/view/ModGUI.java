@@ -40,23 +40,28 @@ public class ModGUI extends JPanel {
     protected JButton cancelButton;
 
     public ModGUI(Tarjeta t) {
+    	String estadoAux="ON";
         initGUI();
-        dniLabel.setText(t.get_dni());
-        titularLabel.setText(t.getTitular());
-        numTarjetaLabel.setText(String.valueOf(t.getNum_tarjeta()));
-        pinLabel.setText(String.valueOf(t.getPin()));
-        estadoLabel.setText(String.valueOf(t.getEstado()));
-        tipoLabel.setText(String.valueOf(t.getTipo_tarjeta()));
-        fechaLabel.setText(t.getFechaCad());
+        dni.setText(t.get_dni());
+        titular.setText(t.getTitular());
+        numTarjeta.setText(String.valueOf(t.getNum_tarjeta()));
+        pin.setText(String.valueOf(t.getPin()));
+        if(t.getEstado()==false) 
+        	estadoAux="OFF";
+        estado.setText(estadoAux);
+        tipo.setText(String.valueOf(t.getTipo_tarjeta()));
+        fecha.setText(t.getFechaCad());
 
-        dniLabel.setEnabled(false);
+        dni.setEnabled(false);
+        numTarjeta.setEnabled(false);
+        titular.setEnabled(false);
     }
 
     public void initGUI() {
         // construct components
     	titularLabel = new JLabel("Titular");
     	titular = new JTextField(5);
-    	numTarjetaLabel = new JLabel("NUmero de Tarejeta");
+    	numTarjetaLabel = new JLabel("Numero Tarjeta");
     	numTarjeta = new JTextField(5);
     	pinLabel = new JLabel("Pin");
     	pin = new JTextField(5);
@@ -156,18 +161,18 @@ public class ModGUI extends JPanel {
         // set component bounds (only needed by Absolute Positioning)
         titularLabel.setBounds(30, 10, 100, 25);
         titular.setBounds(30, 35, 870, 35);
-        dniLabel.setBounds(30, 95, 200, 35);
-        dni.setBounds(30, 70, 100, 25);
+        dniLabel.setBounds( 30, 70, 100, 25);
+        dni.setBounds(30, 95, 200, 35);
         numTarjetaLabel.setBounds(30, 130, 100, 25);
         numTarjeta.setBounds(30, 155, 400, 35);
         pinLabel.setBounds(30, 190, 100, 25);
         pin.setBounds(30, 215, 200, 35);
         tipoLabel.setBounds(30, 250, 50, 25);
         tipo.setBounds(30, 275, 350, 35);
-        estadoLabel.setBounds(400, 275, 100, 35);
-        estado.setBounds(400, 250, 100, 25);
-        fechaLabel.setBounds(518, 275, 100, 35);
-        fecha.setBounds(518, 250, 100, 25);
+        estadoLabel.setBounds(400, 250, 100, 25);
+        estado.setBounds(400, 275, 100, 35);
+        fechaLabel.setBounds(518, 250, 100, 25);
+        fecha.setBounds(518, 275, 100, 35);
         altaButton.setBounds(705, 505, 100, 35);
         cancelButton.setBounds(815, 505, 100, 35);
     }
