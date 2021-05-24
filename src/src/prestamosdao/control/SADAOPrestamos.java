@@ -23,7 +23,7 @@ public class SADAOPrestamos implements ISADAOPrestamos {
     @Override
     public boolean solicitaPrestamo(Cuenta c, Prestamo p) throws IOException {
         List<Prestamo> listaPrestamos = PrestamoJSON.leerListaPrestamos();
-        int prestamosActuales = consultarListaPrestamos(c, listaPrestamos).size();
+        int prestamosActuales = consultarListaPrestamos(c).size();
 
         if (prestamosActuales < MAX_PRESTAMOS) {
             listaPrestamos.add(p);
@@ -112,7 +112,8 @@ public class SADAOPrestamos implements ISADAOPrestamos {
     }
 
     @Override
-    public List<Prestamo> consultarListaPrestamos(Cuenta c, List<Prestamo> listaPrestamos) {
+    public List<Prestamo> consultarListaPrestamos(Cuenta c) throws FileNotFoundException {
+        List<Prestamo> listaPrestamos = PrestamoJSON.leerListaPrestamos();
         List<Prestamo> aux = new ArrayList<Prestamo>();
         for (Prestamo prestamo : listaPrestamos) {
             if (prestamo.esCuentaAsociada(c)) {

@@ -44,8 +44,8 @@ public class FachadaDAOPrestamos implements IFachadaDAOPrestamos {
     }
 
     @Override
-    public List<Prestamo> consultarListaPrestamos(Cuenta c, List<Prestamo> listaPrestamos) {
-        return daoPrest.consultarListaPrestamos(c, listaPrestamos);
+    public List<Prestamo> consultarListaPrestamos(Cuenta c) throws FileNotFoundException {
+        return daoPrest.consultarListaPrestamos(c);
     }
 
     @Override

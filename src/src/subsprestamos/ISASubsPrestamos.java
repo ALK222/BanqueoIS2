@@ -42,13 +42,12 @@ public interface ISASubsPrestamos {
     /**
      * Consulta una lista de prestamos
      * 
-     * @param c              Cuenta asociada al prestamo
-     * @param listaPrestamos Listado total de prestamos
+     * @param c Cuenta asociada al prestamo
      * @return 0 si todo fue bien, 1 si no se pudo solicitar, 2 si hubo una
      *         UserException y 10 si hubo una IOException y un listado de prestamos
      *         si todo sale bien
      */
-    Pair<List<Prestamo>, Integer> consultarListaPrestamos(Cuenta c, List<Prestamo> listaPrestamos);
+    Pair<List<Prestamo>, Integer> consultarListaPrestamos(Cuenta c);
 
     /**
      * Busca un prestamo dado un numero de referencia

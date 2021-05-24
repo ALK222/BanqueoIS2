@@ -66,8 +66,9 @@ public interface ISADAOPrestamos {
      * 
      * @param c cuenta asociada a los prestamos
      * @return una lista con todos los prestamos asociados a la cuenta
+     * @throws FileNotFoundException
      */
-    List<Prestamo> consultarListaPrestamos(Cuenta c, List<Prestamo> listaPrestamos);
+    List<Prestamo> consultarListaPrestamos(Cuenta c) throws FileNotFoundException;
 
     /**
      * Busca un prestamo concreto en la base de datos

@@ -61,12 +61,18 @@ public class SASubsPrestamos implements ISASubsPrestamos {
     }
 
     @Override
-    public Pair<List<Prestamo>, Integer> consultarListaPrestamos(Cuenta c, List<Prestamo> listaPrestamos) {
-        List<Prestamo> listaPrestamosBuscados = prestamo.consultarListaPrestamos(c, listaPrestamos);
-        if (listaPrestamosBuscados != null) {
-            return new Pair<List<Prestamo>, Integer>(listaPrestamosBuscados, 0);
+    public Pair<List<Prestamo>, Integer> consultarListaPrestamos(Cuenta c) {
+        List<Prestamo> listaPrestamosBuscados;
+        try {
+            listaPrestamosBuscados = prestamo.consultarListaPrestamos(c);
+            if (listaPrestamosBuscados != null) {
+                return new Pair<List<Prestamo>, Integer>(listaPrestamosBuscados, 0);
+            }
+            return new Pair<List<Prestamo>, Integer>(null, 1);
+        } catch (FileNotFoundException e) {
+            return new Pair<List<Prestamo>, Integer>(null, 10);
         }
-        return new Pair<List<Prestamo>, Integer>(null, 1);
+
     }
 
     @Override
