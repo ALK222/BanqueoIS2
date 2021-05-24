@@ -19,19 +19,24 @@ public class Main {
         File testFile;
         InputStream in;
         try {
-            testFile = new File(System.getProperty("user.dir") + "/resources/prestamos.json");
+            testFile = new File(System.getProperty("user.dir") + "/resources/Prestamos.json");
             in = new FileInputStream(testFile);
         } catch (FileNotFoundException e) {
             try {
-                testFile = new File(System.getProperty("user.dir") + "/src/src/resources/prestamos.json");
+                testFile = new File(System.getProperty("user.dir") + "/src/src/resources/Prestamos.json");
                 in = new FileInputStream(testFile);
             } catch (FileNotFoundException ex) {
                 try {
-                    testFile = new File("./resources/prestamos.json");
+                    testFile = new File("./resources/Tarjetas.json");
                     in = new FileInputStream(testFile);
                 } catch (FileNotFoundException ex1) {
-                    testFile = new File(System.getProperty("user.dir") + "/resources/prestamos.json");
-                    testFile.createNewFile();
+                    try {
+                        testFile = new File(System.getProperty("user.dir") + "/resources/Prestamos.json");
+                        testFile.createNewFile();
+                    } catch (Exception e2) {
+                        testFile = new File(System.getProperty("user.dir") + "/src/resources/Prestamos.json");
+                        in = new FileInputStream(testFile);
+                    }
                 }
             }
         }
@@ -41,19 +46,24 @@ public class Main {
         File testFile;
         InputStream in;
         try {
-            testFile = new File(System.getProperty("user.dir") + "/resources/cuentas.json");
+            testFile = new File(System.getProperty("user.dir") + "/resources/Usuarios.json");
             in = new FileInputStream(testFile);
         } catch (FileNotFoundException e) {
             try {
-                testFile = new File(System.getProperty("user.dir") + "/src/src/resources/cuentas.json");
+                testFile = new File(System.getProperty("user.dir") + "/src/src/resources/Usuarios.json");
                 in = new FileInputStream(testFile);
             } catch (FileNotFoundException ex) {
                 try {
-                    testFile = new File("./resources/cuentas.json");
+                    testFile = new File("./resources/Tarjetas.json");
                     in = new FileInputStream(testFile);
                 } catch (FileNotFoundException ex1) {
-                    testFile = new File(System.getProperty("user.dir") + "/resources/cuentas.json");
-                    testFile.createNewFile();
+                    try {
+                        testFile = new File(System.getProperty("user.dir") + "/resources/Usuarios.json");
+                        testFile.createNewFile();
+                    } catch (Exception e2) {
+                        testFile = new File(System.getProperty("user.dir") + "/src/resources/Usuarios.json");
+                        in = new FileInputStream(testFile);
+                    }
                 }
             }
         }
@@ -74,8 +84,13 @@ public class Main {
                     testFile = new File("./resources/Tarjetas.json");
                     in = new FileInputStream(testFile);
                 } catch (FileNotFoundException ex1) {
-                    testFile = new File(System.getProperty("user.dir") + "/resources/Tarjetas.json");
-                    testFile.createNewFile();
+                    try {
+                        testFile = new File(System.getProperty("user.dir") + "/resources/Tarjetas.json");
+                        testFile.createNewFile();
+                    } catch (Exception e2) {
+                        testFile = new File(System.getProperty("user.dir") + "/src/resources/Tarjetas.json");
+                        in = new FileInputStream(testFile);
+                    }
                 }
             }
         }
@@ -96,11 +111,17 @@ public class Main {
                     testFile = new File("./resources/Usuarios.json");
                     in = new FileInputStream(testFile);
                 } catch (FileNotFoundException ex1) {
-                    testFile = new File(System.getProperty("user.dir") + "/resources/Usuarios.json");
-                    testFile.createNewFile();
-                    FileWriter wr = new FileWriter(testFile);
-                    wr.append(
-                            "{\"usuarios\":[{\"Nombre\": \"admin\",\"Email\": \"\",\"Telefono\": 0,\"Contrasena\": \"admin\",\"Domicilio\": \"\",\"DNI\": \"admin\"}]}");
+                    try {
+                        testFile = new File(System.getProperty("user.dir") + "/src/resources/Usuarios.json");
+                        in = new FileInputStream(testFile);
+                    } catch (Exception e2) {
+                        testFile = new File(System.getProperty("user.dir") + "/resources/Usuarios.json");
+                        testFile.createNewFile();
+                        FileWriter wr = new FileWriter(testFile);
+                        wr.append(
+                                "{\"usuarios\":[{\"Nombre\": \"admin\",\"Email\": \"\",\"Telefono\": 0,\"Contrasena\": \"admin\",\"Domicilio\": \"\",\"DNI\": \"admin\"}]}");
+                    }
+
                 }
             }
         }
@@ -120,7 +141,6 @@ public class Main {
             e.printStackTrace();
         }
         Controller c = new Controller();
-        new InicioSesionGUI(c);
 
         JFrame frame = new JFrame("Inicio de Sesion");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

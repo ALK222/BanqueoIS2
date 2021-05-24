@@ -1,5 +1,11 @@
 package common;
 
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
+import javax.swing.JFrame;
+
+import common.view.InicioSesionGUI;
 import common.view.MainWindow;
 import dominio.Persona;
 
@@ -35,6 +41,48 @@ public class Controller {
 
     public void initGUI() {
         new MainWindow(this);
+    }
+
+    public void sesionCerrada() {
+        _currentUser = new Persona(null, null, null, 0, null, null);
+        _isAdmin = false;
+        JFrame frame = new JFrame("Inicio de Sesion");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().add(new InicioSesionGUI(this));
+        frame.pack();
+        frame.setVisible(true);
+        frame.addWindowListener(new WindowListener() {
+
+            @Override
+            public void windowOpened(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) {
+                initGUI();
+            }
+
+            @Override
+            public void windowIconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowActivated(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+            }
+
+        });
     }
 
 }

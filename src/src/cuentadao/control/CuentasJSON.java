@@ -44,7 +44,12 @@ public class CuentasJSON {
                     testFile = new File("./resources/Cuentas.json");
                     in = new FileInputStream(testFile);
                 } catch (FileNotFoundException ex1) {
-                    throw ex1;
+                    try {
+                        testFile = new File(System.getProperty("user.dir") + "/src/resources/Cuentas.json");
+                        in = new FileInputStream(testFile);
+                    } catch (FileNotFoundException e2) {
+                        throw e2;
+                    }
                 }
             }
         }

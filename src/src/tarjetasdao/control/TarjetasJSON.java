@@ -44,7 +44,12 @@ public class TarjetasJSON {
                     testFile = new File("./resources/Tarjetas.json");
                     in = new FileInputStream(testFile);
                 } catch (FileNotFoundException ex1) {
-                    throw ex1;
+                    try {
+                        testFile = new File(System.getProperty("user.dir") + "/src/resources/Tarjetas.json");
+                        in = new FileInputStream(testFile);
+                    } catch (FileNotFoundException ex2) {
+                        throw ex2;
+                    }
                 }
             }
         }
@@ -96,7 +101,12 @@ public class TarjetasJSON {
                     testFile = new File("./resources/Tarjetas.json");
                     in = new FileWriter(testFile);
                 } catch (FileNotFoundException ex1) {
-                    throw ex1;
+                    try {
+                        testFile = new File(System.getProperty("user.dir") + "/src/resources/Tarjetas.json");
+                        in = new FileWriter(testFile);
+                    } catch (FileNotFoundException e2) {
+                        throw e2;
+                    }
                 }
             }
         }

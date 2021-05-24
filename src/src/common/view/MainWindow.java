@@ -1,24 +1,29 @@
 package common.view;
 
 import java.awt.BorderLayout;
+import java.awt.image.BufferedImage;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
 
 import common.Controller;
-import subsusuarios.view.UserWindow;
 
-public class MainWindow extends JPanel {
+public class MainWindow extends JFrame {
     private Controller _controller;
+    private BufferedImage _image;
 
     public MainWindow(Controller c) {
 
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BorderLayout());
         _controller = c;
-        this.setLayout(new BorderLayout());
-        JTabbedPane tabbedPane = new JTabbedPane();
+        this.setContentPane(mainPanel);
+        mainPanel.add(new ControlPanel(_controller), BorderLayout.PAGE_START);
+        mainPanel.add(new ImagePanel());
 
-        tabbedPane.addTab("Usuario", new UserWindow(c.isAdmin(), c.getCurrentUser()));
-
-        this.add(tabbedPane, BorderLayout.NORTH);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.pack();
+        this.setVisible(true);
+        this.setResizable(true);
     }
 }
