@@ -37,7 +37,7 @@ public class UsuariosJSON {
                     in = new FileInputStream(testFile);
                 } catch (FileNotFoundException ex1) {
                     try {
-                        testFile = new File(System.getProperty("user.dir") + "/resources/usuarios.json");
+                        testFile = new File(System.getProperty("user.dir") + "/src/resources/usuarios.json");
                         in = new FileInputStream(testFile);
                     } catch (FileNotFoundException e2) {
                         throw e2;
