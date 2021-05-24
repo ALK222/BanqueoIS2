@@ -22,6 +22,11 @@ import dominio.Persona;
 import subsusuarios.model.FachadaSubsUsuarios;
 import subsusuarios.model.IFachadaSubsUsuarios;
 
+/**
+ * GUI de modificación de usuarios
+ * 
+ * @see JPanel
+ */
 public class ModGUI extends JPanel {
     protected JTextField nombre;
     protected JTextField dniLabel;
@@ -47,6 +52,11 @@ public class ModGUI extends JPanel {
     protected JButton altaButton;
     protected JButton cancelButton;
 
+    /**
+     * Constructor de la GUI
+     * 
+     * @param p Usuario a modificar
+     */
     public ModGUI(Persona p) {
         initGUI();
         if (p.getClass() == Cliente.class) {
@@ -216,6 +226,9 @@ public class ModGUI extends JPanel {
         cancelButton.setBounds(815, 505, 100, 35);
     }
 
+    /**
+     * Comportamiento al cerrar la ventana
+     */
     private void quit() {
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         frame.dispose();

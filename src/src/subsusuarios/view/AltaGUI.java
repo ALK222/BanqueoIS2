@@ -21,6 +21,11 @@ import dominio.Gestor;
 import subsusuarios.model.FachadaSubsUsuarios;
 import subsusuarios.model.IFachadaSubsUsuarios;
 
+/**
+ * GUI del alta de usuarios
+ * 
+ * @see JPanel
+ */
 public class AltaGUI extends JPanel {
 
     protected JTextField nombre;
@@ -47,10 +52,16 @@ public class AltaGUI extends JPanel {
     protected JButton altaButton;
     protected JButton cancelButton;
 
+    /**
+     * Constructor de la GUI
+     */
     public AltaGUI() {
         initGUI();
     }
 
+    /**
+     * Constructor como tal de la GUI
+     */
     public void initGUI() {
         // construct components
         nombre = new JTextField(5);
@@ -199,6 +210,9 @@ public class AltaGUI extends JPanel {
         cancelButton.setBounds(815, 505, 100, 35);
     }
 
+    /**
+     * Comportamiento al cerrar la ventana
+     */
     private void quit() {
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         frame.dispose();

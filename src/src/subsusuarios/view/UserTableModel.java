@@ -8,15 +8,31 @@ import javax.swing.table.AbstractTableModel;
 import dominio.Persona;
 import usuariosdao.control.UsuariosJSON;
 
+/**
+ * Tabla para los datos de usuarios
+ * 
+ * @see AbstractTableModel
+ */
 public class UserTableModel extends AbstractTableModel {
+
     private static final long serialVersionUID = 1L;
     private List<Persona> _personas;
     private String[] labels = { "DNI", "Nombre" };
 
+    /**
+     * Constructor vacío para que busque la lista de usuarios total
+     * 
+     * @throws FileNotFoundException Si no puede contactar con la base de datos
+     */
     public UserTableModel() throws FileNotFoundException {
         _personas = UsuariosJSON.leerListaUsuarios();
     }
 
+    /**
+     * Constructor con una lista ya dada
+     * 
+     * @param listaFiltrada lista a la que se le ha aplicado un filtro
+     */
     public UserTableModel(List<Persona> listaFiltrada) {
         _personas = listaFiltrada;
     }

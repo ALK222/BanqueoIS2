@@ -15,6 +15,9 @@ import javax.swing.SwingUtilities;
 
 import common.exception.GUIException;
 
+/**
+ * GUI de filtrado
+ */
 public class FiltrarGUI extends JPanel {
     private JComboBox<String> modeSelector;
     private JLabel modoFiltrado;
@@ -23,6 +26,9 @@ public class FiltrarGUI extends JPanel {
     private JTextField modeKeyValue;
     private JLabel modeKey;
 
+    /**
+     * Constructor de la GUI
+     */
     public FiltrarGUI() {
         // construct preComponents
         String[] modeSelectorItems = { "Calle", "Ciudad", "Código Postal" };
@@ -98,6 +104,9 @@ public class FiltrarGUI extends JPanel {
         });
     }
 
+    /**
+     * Comportamiento al cerrar la ventana
+     */
     private void quit() {
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         frame.dispose();
