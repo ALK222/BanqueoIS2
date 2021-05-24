@@ -5,20 +5,24 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
-import dominio.Cuenta;
 import cuentadao.control.CuentasJSON;
+import dominio.Cuenta;
 
 public class CuentaTableModel extends AbstractTableModel{
     private static final long serialVersionUID = 1L;
     private String _columnas[] = {"DNI", "Titular","Saldo", "Firma digital", "Numero de cuenta"};
     private  List<Cuenta>_listaCuentas;
     
-    public CuentaTableModel() throws FileNotFoundException{
+    public CuentaTableModel() throws FileNotFoundException {
         _listaCuentas = CuentasJSON.leerListaCuentas();
     }
     
     public CuentaTableModel(List<Cuenta>listaFiltrada) {
     	_listaCuentas = listaFiltrada; 
+    }
+
+    public CuentaTableModel(List<Cuenta> listaFiltrada) {
+        _listaCuentas = listaFiltrada;
     }
 
 
