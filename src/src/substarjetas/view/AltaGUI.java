@@ -49,7 +49,7 @@ public class AltaGUI extends JPanel {
         // construct components
     	titularLabel = new JLabel("Titular");
     	titular = new JTextField(5);
-    	numTarjetaLabel = new JLabel("NUmero de Tarejeta");
+    	numTarjetaLabel = new JLabel("Numero Tarejeta");
     	numTarjeta = new JTextField(5);
     	pinLabel = new JLabel("Pin");
     	pin = new JTextField(5);
@@ -148,20 +148,21 @@ public class AltaGUI extends JPanel {
 
         titularLabel.setBounds(30, 10, 100, 25);
         titular.setBounds(30, 35, 870, 35);
-        dniLabel.setBounds(30, 95, 200, 35);
-        dni.setBounds(30, 70, 100, 25);
+        dniLabel.setBounds(30, 70, 100, 25);
+        dni.setBounds(30, 95, 200, 35);
         numTarjetaLabel.setBounds(30, 130, 100, 25);
         numTarjeta.setBounds(30, 155, 400, 35);
         pinLabel.setBounds(30, 190, 100, 25);
         pin.setBounds(30, 215, 200, 35);
         tipoLabel.setBounds(30, 250, 50, 25);
         tipo.setBounds(30, 275, 350, 35);
-        estadoLabel.setBounds(400, 275, 100, 35);
-        estado.setBounds(400, 250, 100, 25);
-        fechaLabel.setBounds(518, 275, 100, 35);
-        fecha.setBounds(518, 250, 100, 25);
+        estadoLabel.setBounds(400, 250, 100, 25);
+        estado.setBounds(400, 275, 100, 35);
+        fechaLabel.setBounds(518, 250, 100, 25);
+        fecha.setBounds(518, 275, 100, 35);
         altaButton.setBounds(705, 505, 100, 35);
         cancelButton.setBounds(815, 505, 100, 35);
+        
     }
 
     private void quit() {
