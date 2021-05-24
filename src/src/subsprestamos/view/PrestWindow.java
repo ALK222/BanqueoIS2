@@ -160,6 +160,9 @@ public class PrestWindow extends JFrame {
                         try {
                             if (decision == 0) {
                                 resultado = subsPrestamos.cancelarSolicitud(aux.getSecond());
+                            } else if (decision == 1){
+                                resultado = subsPrestamos.aceptarSolicitud(aux.getSecond()); 
+                            }
 
                                 switch (resultado) {
                                     case 0:
@@ -175,7 +178,7 @@ public class PrestWindow extends JFrame {
                                     default:
                                         throw new GUIException("Error inesperado. Contacte con el soporte");
                                 }
-                            }
+                            
 
                         } catch (Exception e1) {
                             JOptionPane.showMessageDialog(null, e1.getMessage());
