@@ -8,13 +8,16 @@ import java.util.List;
 import common.exception.UserException;
 import dominio.Tarjeta;
 
+/**
+ * Gestiona la informacion saliente sobre las Tarjetas
+ */
 public class SADAOTarjetas implements ISADAOTarjetas {
 
 	@Override
 	public boolean altaTarjeta(Tarjeta t) throws IOException { // Se ha cambiado de Tarjeta a boolean
 		List<Tarjeta> listaTarjetas = TarjetasJSON.leerListaTarjetas();
 		boolean ok = listaTarjetas.contains(t) ? false : listaTarjetas.add(t);
-		TarjetasJSON.guardarListaUsuarios(listaTarjetas);
+		TarjetasJSON.guardarListaTarjetas(listaTarjetas);
 		return ok;
 	}
 
@@ -29,7 +32,7 @@ public class SADAOTarjetas implements ISADAOTarjetas {
 			++i;
 		}
 		boolean ok = t != null ? listaTarjetas.remove(t) : false;
-		TarjetasJSON.guardarListaUsuarios(listaTarjetas);
+		TarjetasJSON.guardarListaTarjetas(listaTarjetas);
 		return ok;
 	}
 
@@ -59,7 +62,7 @@ public class SADAOTarjetas implements ISADAOTarjetas {
 		} catch (Exception e) {
 			throw e;
 		}
-		TarjetasJSON.guardarListaUsuarios(listaTarjetas);
+		TarjetasJSON.guardarListaTarjetas(listaTarjetas);
 		return null;
 	}
 
@@ -73,7 +76,7 @@ public class SADAOTarjetas implements ISADAOTarjetas {
 				conseguido = true;
 			}
 		}
-		TarjetasJSON.guardarListaUsuarios(listaTarjetas);
+		TarjetasJSON.guardarListaTarjetas(listaTarjetas);
 		return conseguido;
 	}
 

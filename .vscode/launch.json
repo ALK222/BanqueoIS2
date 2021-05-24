@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch FiltrarGUI",
+            "request": "launch",
+            "mainClass": "subsusuarios.view.FiltrarGUI",
+            "projectName": "Bankeo"
+        },
+        {
+            "type": "java",
+            "name": "Launch UserWindow",
+            "request": "launch",
+            "mainClass": "subsusuarios.view.UserWindow",
+            "projectName": "Bankeo"
+        },
+        {
+            "type": "java",
             "name": "Launch UserListPanel",
             "request": "launch",
             "mainClass": "subsusuarios.view.UserListPanel",

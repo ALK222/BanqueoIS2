@@ -5,6 +5,9 @@ import java.util.List;
 import common.misc.Pair;
 import dominio.Persona;
 
+/**
+ * Interfaz de la fachada del sistema de aplicaciones
+ */
 public interface IFachadaSubsUsuarios {
 
     /**

@@ -8,7 +8,7 @@ import dominio.Cuenta;
 import dominio.Prestamo;
 
 /**
- * Intermediario entre el SADAO de prestamos y la GUI
+ * Intermediario entre el SADAO de prestamos y el SA
  */
 public class FachadaDAOPrestamos implements IFachadaDAOPrestamos {
 

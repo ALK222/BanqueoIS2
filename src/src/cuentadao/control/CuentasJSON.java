@@ -17,23 +17,41 @@ import org.json.JSONTokener;
 
 import dominio.Cuenta;
 
+/**
+ * Intermediario entre el DAOCuentas y la "base de datos"
+ */
 public class CuentasJSON {
 
+    /**
+     * Lectura del fichero que hace de base de datos
+     * 
+     * @return Una lista con todas las cuentas guardadas
+     * @throws FileNotFoundException Si no consigue encontrar el fichero
+     */
     public static List<Cuenta> leerListaCuentas() throws FileNotFoundException {
         File testFile = null;
         InputStream in = null;
 
         try {
-            testFile = new File(System.getProperty("user.dir") + "/src/resources/cuentas.json");
+            testFile = new File(System.getProperty("user.dir") + "/resources/Cuentas.json");
             in = new FileInputStream(testFile);
         } catch (FileNotFoundException e) {
             try {
-                testFile = new File("./resources/cuentas.json");
+                testFile = new File(System.getProperty("user.dir") + "/src/src/resources/Cuentas.json");
                 in = new FileInputStream(testFile);
             } catch (FileNotFoundException ex) {
-                throw ex;
+                try {
+                    testFile = new File("./resources/Cuentas.json");
+                    in = new FileInputStream(testFile);
+                } catch (FileNotFoundException ex1) {
+                    try {
+                        testFile = new File(System.getProperty("user.dir") + "/src/resources/Cuentas.json");
+                        in = new FileInputStream(testFile);
+                    } catch (FileNotFoundException e2) {
+                        throw e2;
+                    }
+                }
             }
-
         }
 
         List<Cuenta> listaCuentas = new ArrayList<Cuenta>();
@@ -62,18 +80,29 @@ public class CuentasJSON {
         return listaCuentas;
     }
 
+    /**
+     * Guardado de la lista actualizada en el fichero
+     * 
+     * @param listaCuentas Listado de cuentas con las ultimas modificaciones
+     * @throws IOException Si no encuentra el archivo o no puede escribir en el
+     */
     public static void guardarListaCuentas(List<Cuenta> listaCuentas) throws IOException {
         File testFile = null;
         FileWriter in = null;
         try {
-            testFile = new File(System.getProperty("user.dir") + "/src/resources/cuentas.json");
+            testFile = new File(System.getProperty("user.dir") + "/resources/Cuentas.json");
             in = new FileWriter(testFile);
         } catch (FileNotFoundException e) {
             try {
-                testFile = new File("./resources/cuentas.json");
+                testFile = new File(System.getProperty("user.dir") + "/src/src/resources/Cuentas.json");
                 in = new FileWriter(testFile);
             } catch (FileNotFoundException ex) {
-                throw ex;
+                try {
+                    testFile = new File("./resources/Cuentas.json");
+                    in = new FileWriter(testFile);
+                } catch (FileNotFoundException ex1) {
+                    throw ex1;
+                }
             }
         }
         JSONArray ja = new JSONArray();

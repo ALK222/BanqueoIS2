@@ -9,6 +9,9 @@ import dominio.Tarjeta;
 import tarjetasdao.control.FachadaDAOTarjetas;
 import tarjetasdao.control.IFachadaDAOTarjetas;
 
+/**
+ * Interprete del DAOPrestamos
+ */
 public class SASubsTarjetas implements ISASubsTarjetas {
     IFachadaDAOTarjetas tarjeta;
 

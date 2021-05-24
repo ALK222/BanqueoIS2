@@ -10,6 +10,9 @@ import cuentadao.control.IFachadaDAOCuentas;
 import dominio.Cuenta;
 import dominio.Persona;
 
+/**
+ * Interprete del DAOCuentas
+ */
 public class SASubsCuentas implements ISASubsCuentas {
 	List<Cuenta> _listaCuentas;
 	List<Persona> _listaPersonas;

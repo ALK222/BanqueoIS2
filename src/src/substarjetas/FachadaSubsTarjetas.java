@@ -5,6 +5,9 @@ import java.util.List;
 import common.misc.Pair;
 import dominio.Tarjeta;
 
+/**
+ * Intermediario entre el SAPrestamos y la gui
+ */
 public class FachadaSubsTarjetas implements IFachadaSubsTarjetas {
     ISASubsTarjetas subsTarjetas;
 

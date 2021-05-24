@@ -8,6 +8,9 @@ import org.json.JSONArray;
 import common.exception.UserException;
 import dominio.Cuenta;
 
+/**
+ * Intermediario entre el DAOCuentas y el SACuentas
+ */
 public class FachadaDAOCuentas implements IFachadaDAOCuentas {
 
     private ISADAOCuenta daoCuen;

@@ -5,6 +5,9 @@ import java.util.List;
 import common.misc.Pair;
 import dominio.Cuenta;
 
+/**
+ * Intermediario entre el sistema de aplicaciones y la GUI
+ */
 public class FachadaSubsCuentas implements IFachadaSubsCuentas {
     ISASubsCuentas subsCuentas;
 

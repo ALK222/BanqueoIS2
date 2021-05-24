@@ -6,6 +6,9 @@ import java.util.List;
 import common.exception.UserException;
 import dominio.Tarjeta;
 
+/**
+ * Interfaz del DAOTarjetas
+ */
 public interface ISADAOTarjetas {
      /**
       * Alta de una tarjeta en la base de datos

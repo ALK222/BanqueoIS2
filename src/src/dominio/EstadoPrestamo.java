@@ -1,5 +1,8 @@
 package dominio;
 
+/**
+ * Objeto EstadoPrestamo, te dice el estado administrativo de un prestamo
+ */
 public enum EstadoPrestamo {
   SOLICITADO, ACEPTADO, DENEGADO;
 

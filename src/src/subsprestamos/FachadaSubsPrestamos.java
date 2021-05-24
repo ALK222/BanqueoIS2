@@ -6,6 +6,9 @@ import common.misc.Pair;
 import dominio.Cuenta;
 import dominio.Prestamo;
 
+/**
+ * Intermediario entre el SAPrestamos y la gui
+ */
 public class FachadaSubsPrestamos implements IFachadaSubsPrestamos {
     ISASubsPrestamos subsPrestamo;
 

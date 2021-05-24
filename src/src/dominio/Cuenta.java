@@ -6,6 +6,9 @@ import org.json.JSONArray;
 
 import common.misc.Pair;
 
+/**
+ * Objeto cuenta, te dice el dinero y el titular de una cuenta
+ */
 public class Cuenta {
 
 	private Pair<String, String> _titularCuenta;

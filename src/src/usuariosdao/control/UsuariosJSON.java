@@ -36,10 +36,14 @@ public class UsuariosJSON {
                     testFile = new File("./resources/usuarios.json");
                     in = new FileInputStream(testFile);
                 } catch (FileNotFoundException ex1) {
-                    throw ex1;
+                    try {
+                        testFile = new File(System.getProperty("user.dir") + "/resources/usuarios.json");
+                        in = new FileInputStream(testFile);
+                    } catch (FileNotFoundException e2) {
+                        throw e2;
+                    }
                 }
             }
-
         }
         List<Persona> listaUsuarios = new ArrayList<Persona>();
         try {
@@ -84,7 +88,12 @@ public class UsuariosJSON {
                     testFile = new File("./resources/usuarios.json");
                     in = new FileWriter(testFile);
                 } catch (FileNotFoundException ex1) {
-                    throw ex1;
+                    try {
+                        testFile = new File(System.getProperty("user.dir") + "/src/resources/usuarios.json");
+                        in = new FileWriter(testFile);
+                    } catch (FileNotFoundException e2) {
+                        throw e2;
+                    }
                 }
             }
         }

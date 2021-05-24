@@ -35,7 +35,7 @@ class TestSubTarjetas {
     @AfterEach
     public void clear() throws IOException {
         System.out.println("Limpiando Lista");
-        TarjetasJSON.guardarListaUsuarios(_listaOriginal);
+        TarjetasJSON.guardarListaTarjetas(_listaOriginal);
     }
 
     @Test

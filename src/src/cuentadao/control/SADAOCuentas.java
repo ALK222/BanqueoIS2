@@ -13,6 +13,9 @@ import dominio.Cuenta;
 import dominio.Persona;
 import usuariosdao.control.UsuariosJSON;
 
+/**
+ * Gestiona la informacion saliente sobre las cuentas
+ */
 public class SADAOCuentas implements ISADAOCuenta {
 
     @Override
