@@ -25,7 +25,6 @@ import javax.swing.border.TitledBorder;
 import common.exception.GUIException;
 import dominio.Tarjeta;
 import subsusuarios.view.UserListPanel;
-import subsusuarios.view.UserWindow;
 
 public class TarjListPanel extends JPanel {
 	
@@ -73,7 +72,7 @@ public class TarjListPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     if (numTarj.getText() != "") {
-                        UserWindow.DNI = numTarj.getText();
+                        TarjWindow.NUMTARJETA = numTarj.getText();
                         quit();
                     } else {
                         throw new GUIException("Tarjeta vacio, introduzca un valor");
@@ -118,4 +117,3 @@ public class TarjListPanel extends JPanel {
         frame.setVisible(true);
     }
 }
-

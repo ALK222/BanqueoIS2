@@ -21,9 +21,6 @@ import common.misc.Pair;
 import dominio.Tarjeta;
 import substarjetas.FachadaSubsTarjetas;
 import substarjetas.IFachadaSubsTarjetas;
-import substarjetas.view.AltaGUI;
-import substarjetas.view.ModGUI;
-import substarjetas.view.TarjListPanel;
 
 public class TarjWindow extends JFrame {
 	
