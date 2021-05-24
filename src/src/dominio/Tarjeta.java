@@ -51,6 +51,10 @@ public class Tarjeta {
 	public void setEstado(boolean estado) {
 		this._estado = estado;
 	}
+	
+	public boolean getEstado() {
+		return _estado;
+	}
 
 	public int getNum_tarjeta() {
 		return _numTarjeta;
