@@ -3,5 +3,13 @@
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
         "src/lib/json.jar"
+    ],
+    "spellright.language": [
+        "en",
+        "es"
+    ],
+    "spellright.documentTypes": [
+        "markdown",
+        "latex"
     ]
 }
