@@ -20,34 +20,34 @@ import substarjetas.FachadaSubsTarjetas;
 import substarjetas.IFachadaSubsTarjetas;
 
 public class ModGUI extends JPanel {
-	private static final long serialVersionUID = 1L;
-	
-	protected JLabel titularLabel;
-	protected JTextField titular;
-	protected JLabel numTarjetaLabel;
-	protected JTextField numTarjeta;
-	protected JLabel pinLabel;
-	protected JTextField pin;
-	protected JLabel estadoLabel;
-	protected JTextField estado;
-	protected JLabel tipoLabel;
-	protected JTextField tipo;
-	protected JLabel fechaLabel;
-	protected JTextField fecha;
-	protected JLabel dniLabel;
-	protected JTextField dni;
-	protected JButton altaButton;
+    private static final long serialVersionUID = 1L;
+
+    protected JLabel titularLabel;
+    protected JTextField titular;
+    protected JLabel numTarjetaLabel;
+    protected JTextField numTarjeta;
+    protected JLabel pinLabel;
+    protected JTextField pin;
+    protected JLabel estadoLabel;
+    protected JTextField estado;
+    protected JLabel tipoLabel;
+    protected JTextField tipo;
+    protected JLabel fechaLabel;
+    protected JTextField fecha;
+    protected JLabel dniLabel;
+    protected JTextField dni;
+    protected JButton altaButton;
     protected JButton cancelButton;
 
     public ModGUI(Tarjeta t) {
-    	String estadoAux="ON";
+        String estadoAux = "ON";
         initGUI();
         dni.setText(t.get_dni());
         titular.setText(t.getTitular());
         numTarjeta.setText(String.valueOf(t.getNum_tarjeta()));
         pin.setText(String.valueOf(t.getPin()));
-        if(t.getEstado()==false) 
-        	estadoAux="OFF";
+        if (t.getEstado() == false)
+            estadoAux = "OFF";
         estado.setText(estadoAux);
         tipo.setText(String.valueOf(t.getTipo_tarjeta()));
         fecha.setText(t.getFechaCad());
@@ -59,46 +59,46 @@ public class ModGUI extends JPanel {
 
     public void initGUI() {
         // construct components
-    	titularLabel = new JLabel("Titular");
-    	titular = new JTextField(5);
-    	numTarjetaLabel = new JLabel("Numero Tarjeta");
-    	numTarjeta = new JTextField(5);
-    	pinLabel = new JLabel("Pin");
-    	pin = new JTextField(5);
-    	estadoLabel = new JLabel("Estado: ON/OFF");
-    	estado = new JTextField(5);
-    	tipoLabel = new JLabel("Tipo");
-    	tipo = new JTextField(5);
-    	fechaLabel = new JLabel("Fecha");
-    	fecha = new JTextField(5);
-    	dniLabel = new JLabel("Dni");
-    	dni= new JTextField(5);
+        titularLabel = new JLabel("Titular");
+        titular = new JTextField(5);
+        numTarjetaLabel = new JLabel("Numero Tarjeta");
+        numTarjeta = new JTextField(5);
+        pinLabel = new JLabel("Pin");
+        pin = new JTextField(5);
+        estadoLabel = new JLabel("Estado: ON/OFF");
+        estado = new JTextField(5);
+        tipoLabel = new JLabel("Tipo");
+        tipo = new JTextField(5);
+        fechaLabel = new JLabel("Fecha");
+        fecha = new JTextField(5);
+        dniLabel = new JLabel("Dni");
+        dni = new JTextField(5);
         altaButton = new JButton("ACEPTAR");
         cancelButton = new JButton("CANCELAR");
-        
-        
-        
 
         // Set button actions
         altaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                	 if (titular.getText().equals("") || pin.getText().equals("")
-                             || fecha.getText().equals("") || tipo.getText().equals("")||dni.getText().equals("")) {
-                         throw new GUIException("Alguno de los valores obligatorios esta vacio");
-                     }
+                    if (titular.getText().equals("") || pin.getText().equals("") || fecha.getText().equals("")
+                            || tipo.getText().equals("") || dni.getText().equals("")) {
+                        throw new GUIException("Alguno de los valores obligatorios esta vacio");
+                    }
                     IFachadaSubsTarjetas subsTarejtas = new FachadaSubsTarjetas();
                     int resultado = 1;
                     boolean estadoAux;
-                    
-                    if(estado.getText()=="ON") estadoAux=true;
-                    else estadoAux=false;
-                    
-                    resultado = subsTarejtas.modificarTarjeta(new Tarjeta(titular.getText(), Integer.parseInt(pin.getText()),
-                                estadoAux, Integer.parseInt(numTarjeta.getText()), fecha.getText(), TipoTarjeta.parse(tipo.getText()),dni.getText()));
-                        
-                    
+
+                    if (estado.getText().equals("ON")) {
+                        estadoAux = true;
+                    } else {
+                        estadoAux = false;
+                    }
+
+                    resultado = subsTarejtas.modificarTarjeta(new Tarjeta(titular.getText(),
+                            Integer.parseInt(pin.getText()), estadoAux, Integer.parseInt(numTarjeta.getText()),
+                            fecha.getText(), TipoTarjeta.parse(tipo.getText()), dni.getText()));
+
                     switch (resultado) {
                         case 0:
                             JOptionPane.showMessageDialog(null, "Tarjeta modificada correctamente");
@@ -161,7 +161,7 @@ public class ModGUI extends JPanel {
         // set component bounds (only needed by Absolute Positioning)
         titularLabel.setBounds(30, 10, 100, 25);
         titular.setBounds(30, 35, 870, 35);
-        dniLabel.setBounds( 30, 70, 100, 25);
+        dniLabel.setBounds(30, 70, 100, 25);
         dni.setBounds(30, 95, 200, 35);
         numTarjetaLabel.setBounds(30, 130, 100, 25);
         numTarjeta.setBounds(30, 155, 400, 35);
