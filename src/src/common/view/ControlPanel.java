@@ -157,7 +157,7 @@ public class ControlPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int decision = JOptionPane.showConfirmDialog(null, "¿Desea cerrar sesión?", "Cerrar sesión",
-                        JOptionPane.YES_NO_CANCEL_OPTION);
+                        JOptionPane.YES_NO_OPTION);
                 if (decision == 0) {
                     IFachadaSubsUsuarios subsUsuarios = new FachadaSubsUsuarios();
                     subsUsuarios.cerrarSesion();
