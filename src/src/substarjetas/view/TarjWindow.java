@@ -415,6 +415,9 @@ public class TarjWindow extends JFrame {
         aux.add(listaButton, BorderLayout.SOUTH);
     }
 
+    /**
+     * Comportamiento para la lista de tarjetas cuando la usa un gestor
+     */
     private void createGestorListFrame() {
         JFrame frame = new JFrame("Opciones de Filtrado");
         frame.getContentPane().add(new FiltrarGUI());
@@ -513,6 +516,9 @@ public class TarjWindow extends JFrame {
         });
     }
 
+    /**
+     * Comportamiento para la lista de tarjetas cuando la usa un cliente
+     */
     private void createUserListFrame() {
 
         try {
@@ -521,6 +527,11 @@ public class TarjWindow extends JFrame {
             int resultado = listaFiltrada.getSecond();
             switch (resultado) {
                 case 0:
+                    JFrame frame1 = new JFrame("Lista Tarjetas");
+                    frame1.getContentPane().add(new TarjListPanel(listaFiltrada.getFirst()));
+                    frame1.pack();
+                    frame1.setVisible(true);
+                    frame1.setLocationRelativeTo(null);
                     break;
                 case 1:
                     throw new UserException("El usuario no tiene tarjetas.");
@@ -529,11 +540,7 @@ public class TarjWindow extends JFrame {
                 default:
                     throw new GUIException("Error inesperado. Contacte con el soporte");
             }
-            JFrame frame1 = new JFrame("Lista Tarjetas");
-            frame1.getContentPane().add(new TarjListPanel(listaFiltrada.getFirst()));
-            frame1.pack();
-            frame1.setVisible(true);
-            frame1.setLocationRelativeTo(null);
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }

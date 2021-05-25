@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch FiltrarGUI",
+            "request": "launch",
+            "mainClass": "substarjetas.view.FiltrarGUI",
+            "projectName": "Bankeo"
+        },
+        {
+            "type": "java",
             "name": "Launch CuentaListPanel",
             "request": "launch",
             "mainClass": "subscuentas.view.CuentaListPanel",
