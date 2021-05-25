@@ -43,7 +43,7 @@ public class Main {
                         testFile = new File(System.getProperty("user.dir") + "/resources/Prestamos.json");
                         testFile.createNewFile();
                         FileWriter wr = new FileWriter(testFile);
-                        wr.append("{\"prestamos\":[]}");
+                        wr.append("{\"Prestamos\":[]}");
                         wr.close();
                     } catch (Exception e2) {
                         testFile = new File(System.getProperty("user.dir") + "/src/resources/Prestamos.json");
