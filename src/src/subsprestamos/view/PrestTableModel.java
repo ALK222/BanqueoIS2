@@ -13,7 +13,7 @@ import tarjetasdao.control.TarjetasJSON;
 public class PrestTableModel extends AbstractTableModel {
     private static final long serialVersionUID = 1L;
     private List<Prestamo> _prestamos;
-    private String[] labels = { "DNI", "Numero Tarjeta" };
+    private String[] labels = { "Numero de Prestamo", "Numero De Referencia" };
 
     public PrestTableModel() throws FileNotFoundException {
     	_prestamos = PrestamoJSON.leerListaPrestamos();

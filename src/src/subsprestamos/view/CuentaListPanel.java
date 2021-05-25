@@ -32,6 +32,7 @@ import dominio.Cuenta;
  * @see JPanel
  */
 public class CuentaListPanel extends JPanel {
+	
     private List<Cuenta> listaFiltrada;
 
     private JButton modButton;
