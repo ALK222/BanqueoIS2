@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -28,7 +29,7 @@ import subscuentas.IFachadaSubsCuentas;
  * 
  * @see JFrame
  */
-public class CuentaWindow extends JFrame {
+public class CuentaWindow extends JDialog {
 
     private boolean _permisosGestor;
     private Persona _currentUser;
@@ -45,7 +46,7 @@ public class CuentaWindow extends JFrame {
      * @param p              Usuario actual del programa
      */
     public CuentaWindow(boolean permisosGestor, Persona p) {
-        super("Cuenta");
+        //super("Cuenta");
         _permisosGestor = permisosGestor;
         _currentUser = p;
         initGUI();
@@ -134,7 +135,9 @@ public class CuentaWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                JFrame frame = new JFrame("Alta Cuenta");
+            	JDialog frame = new JDialog();
+                frame.setTitle("Alta cuenta");
+                frame.setModal(true);
                 frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 frame.getContentPane().add(new AltaGUI());
                 frame.pack();
@@ -261,7 +264,9 @@ public class CuentaWindow extends JFrame {
     }
 
     private void createGestorModFrame() {
-        JFrame frame1 = new JFrame("Lista Cuentas");
+    	JDialog frame1 = new JDialog();
+        frame1.setTitle("Lista Cuentas");
+        frame1.setModal(true);
         try {
             frame1.getContentPane().add(new CuentaListPanel(null));
             frame1.pack();
@@ -284,7 +289,9 @@ public class CuentaWindow extends JFrame {
             @Override
             public void windowClosed(WindowEvent e) {
                 if (!NUM_CUENTA.equals("")) {
-                    JFrame frame = new JFrame("Modificación Cuenta");
+                	JDialog frame = new JDialog();
+                    frame.setTitle("Modicifacion Cuenta");
+                    frame.setModal(true);
                     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     IFachadaSubsCuentas subsCuentas = new FachadaSubsCuentas();
                     Cuenta aux = subsCuentas.buscaCuenta(Integer.parseInt(NUM_CUENTA)).getFirst();
@@ -320,7 +327,9 @@ public class CuentaWindow extends JFrame {
      * Creador de la ventana de modificación para clientes
      */
     private void createUserModFrame() {
-        JFrame frame1 = new JFrame("Lista Cuentas");
+    	JDialog frame1 = new JDialog();
+        frame1.setTitle("Lista Cuentas");
+        frame1.setModal(true);
         try {
             IFachadaSubsCuentas subsCuentas = new FachadaSubsCuentas();
             Pair<List<Cuenta>, Integer> listaFiltrada = subsCuentas.consultarListaCuentas(_currentUser.getNombre(),
@@ -357,7 +366,9 @@ public class CuentaWindow extends JFrame {
             @Override
             public void windowClosed(WindowEvent e) {
                 if (!NUM_CUENTA.equals("")) {
-                    JFrame frame = new JFrame("Modificación Cuenta");
+                	JDialog frame = new JDialog();
+                    frame.setTitle("Modificacion Cuenta");
+                    frame.setModal(true);
                     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     IFachadaSubsCuentas subsCuentas = new FachadaSubsCuentas();
                     Cuenta aux = subsCuentas.buscaCuenta(Integer.parseInt(NUM_CUENTA)).getFirst();
@@ -418,7 +429,9 @@ public class CuentaWindow extends JFrame {
      * Creador de la ventana de Listas para gestores
      */
     private void createGestorListFrame() {
-        JFrame frame = new JFrame("Opciones de filtrado");
+        JDialog frame = new JDialog();
+        frame.setTitle("Opciones de filtrado");
+        frame.setModal(true);
         frame.getContentPane().add(new FiltrarGUI());
         frame.pack();
         frame.setVisible(true);
@@ -443,7 +456,9 @@ public class CuentaWindow extends JFrame {
                         int resultado = listaFiltrada.getSecond();
                         switch (resultado) {
                             case 0:
-                                JFrame frame1 = new JFrame("Lista Cuentas");
+                            	JDialog frame1 = new JDialog();
+                                frame1.setTitle("Lista cuentas");
+                                frame1.setModal(true);
                                 frame1.getContentPane().add(new CuentaListPanel(listaFiltrada.getFirst()));
                                 frame1.pack();
                                 frame1.setVisible(true);
@@ -528,7 +543,9 @@ public class CuentaWindow extends JFrame {
             int resultado = listaFiltrada.getSecond();
             switch (resultado) {
                 case 0:
-                    JFrame frame1 = new JFrame("Lista Cuentas");
+                	JDialog frame1 = new JDialog();
+                    frame1.setTitle("Lista cuentas");
+                    frame1.setModal(true);
                     frame1.getContentPane().add(new CuentaListPanel(listaFiltrada.getFirst()));
                     frame1.pack();
                     frame1.setVisible(true);
