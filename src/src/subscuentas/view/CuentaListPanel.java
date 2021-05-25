@@ -41,9 +41,6 @@ public class CuentaListPanel extends JPanel {
     private JLabel numRefText;
     private JTextField numRef;
 
-    private JLabel titularAModificar;
-    private JTextField titularText;
-
     /**
      * Constructor de CuentaListPanel
      * 
@@ -68,36 +65,27 @@ public class CuentaListPanel extends JPanel {
 
         numRefText = new JLabel("NÚM REFERENCIA: ");
         numRef = new JTextField();
-        Dimension dimensionLabel = new Dimension (200,25);
+        Dimension dimensionLabel = new Dimension(200, 25);
         numRef.setPreferredSize(dimensionLabel);
-        titularAModificar = new JLabel("Titular");
-        titularText = new JTextField();
-        dimensionLabel = new Dimension (200,25);
-        titularText.setPreferredSize(dimensionLabel);
+        dimensionLabel = new Dimension(200, 25);
         // adjust size and set layout
         setPreferredSize(new Dimension(500, 530));
-        /*setLayout(null);
+        /*
+         * setLayout(null);
+         * 
+         * // add components add(modButton); add(cancelButton); add(tablaCuentas);
+         * add(numRefText); add(numRef); add(titularAModificar); add(titularText);
+         * 
+         * // set component bounds (only needed by Absolute Positioning)
+         * modButton.setBounds(85, 15, 100, 35); cancelButton.setBounds(210, 15, 100,
+         * 35); tablaCuentas.setBounds(25, 120, 350, 259); numRefText.setBounds(25, 380,
+         * 300, 25); numRef.setBounds(25, 405, 170, 35);
+         */
 
-        // add components
-        add(modButton);
-        add(cancelButton);
-        add(tablaCuentas);
-        add(numRefText);
-        add(numRef);
-        add(titularAModificar);
-        add(titularText);
-
-        // set component bounds (only needed by Absolute Positioning)
-        modButton.setBounds(85, 15, 100, 35);
-        cancelButton.setBounds(210, 15, 100, 35);
-        tablaCuentas.setBounds(25, 120, 350, 259);
-        numRefText.setBounds(25, 380, 300, 25);
-        numRef.setBounds(25, 405, 170, 35);*/
-        
         JPanel panel = new JPanel(new BorderLayout());
         JPanel panelAux = new JPanel(new FlowLayout());
         JPanel panelAux2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        
+
         panel.add(tablaCuentas, BorderLayout.NORTH);
         panelAux2.add(numRefText);
         panelAux2.add(numRef);
@@ -105,9 +93,8 @@ public class CuentaListPanel extends JPanel {
         panelAux.add(modButton);
         panelAux.add(cancelButton);
         panel.add(panelAux, BorderLayout.SOUTH);
-        
+
         add(panel);
-        
 
         modButton.addActionListener(new ActionListener() {
             @Override

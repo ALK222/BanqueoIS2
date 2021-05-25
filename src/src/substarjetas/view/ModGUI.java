@@ -39,7 +39,7 @@ public class ModGUI extends JPanel {
     protected JButton altaButton;
     protected JButton cancelButton;
 
-    public ModGUI(Tarjeta t) {
+    public ModGUI(Tarjeta t, boolean permisosGestor) {
         String estadoAux = "ON";
         initGUI();
         dni.setText(t.get_dni());
@@ -55,6 +55,8 @@ public class ModGUI extends JPanel {
         dni.setEnabled(false);
         numTarjeta.setEnabled(false);
         titular.setEnabled(false);
+        tipo.setEnabled(permisosGestor);
+
     }
 
     public void initGUI() {

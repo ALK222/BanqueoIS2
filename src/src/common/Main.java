@@ -25,6 +25,7 @@ public class Main {
      */
     public static void checkPrestamoFile() throws IOException {
         File testFile;
+        @SuppressWarnings("unused")
         InputStream in;
         try {
             testFile = new File(System.getProperty("user.dir") + "/resources/Prestamos.json");
@@ -57,6 +58,7 @@ public class Main {
      */
     public static void checkCuentaFile() throws IOException {
         File testFile;
+        @SuppressWarnings("unused")
         InputStream in;
         try {
             testFile = new File(System.getProperty("user.dir") + "/resources/Usuarios.json");
@@ -89,6 +91,7 @@ public class Main {
      */
     public static void checkTarjetaFile() throws IOException {
         File testFile;
+        @SuppressWarnings("unused")
         InputStream in;
         try {
             testFile = new File(System.getProperty("user.dir") + "/resources/Tarjetas.json");
@@ -121,6 +124,7 @@ public class Main {
      */
     public static void checkUsuarioFile() throws IOException {
         File testFile;
+        @SuppressWarnings("unused")
         InputStream in;
         try {
             testFile = new File(System.getProperty("user.dir") + "/resources/Usuarios.json");

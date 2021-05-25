@@ -23,19 +23,29 @@ import dominio.Tarjeta;
 import substarjetas.FachadaSubsTarjetas;
 import substarjetas.IFachadaSubsTarjetas;
 
+/**
+ * Ventana principal para la GUI de gestión de tarjetas
+ * 
+ * @see JFrame
+ */
 public class TarjWindow extends JFrame {
 
     private static final long serialVersionUID = 1L;
 
     private boolean _permisosGestor;
     private Persona _user;
-    private Tarjeta _tarj;
     private static Dimension tamanoBoton = new Dimension(200, 50);
 
     public static String DNI = "";
     public static String TIPOFILTRADO = "";
     public static String NUMTARJETA = "";
 
+    /**
+     * Constructor para la GUI de tarjetas
+     * 
+     * @param permisosGestor Activa o no las funciones de gestor
+     * @param p              Usuario actual del programa
+     */
     public TarjWindow(boolean permisosGestor, Persona p) {
         super("Tarjeta");
         _permisosGestor = permisosGestor;
@@ -43,6 +53,9 @@ public class TarjWindow extends JFrame {
         initGUI();
     }
 
+    /**
+     * Creador de la ventana principal de la GUI de tarjetas
+     */
     private void initGUI() {
 
         JPanel mainPanel = new JPanel();
@@ -104,10 +117,18 @@ public class TarjWindow extends JFrame {
         });
     }
 
+    /**
+     * Comportamiento de la ventana al cerrarse
+     */
     private void quit() {
         this.dispose();
     }
 
+    /**
+     * Método para crear el botón de alta de cuentas
+     * 
+     * @param aux Barra a la que añadir el botón
+     */
     private void createAltaButton(JToolBar aux) {
         JButton altaButton = new JButton("Alta Tarjeta");
         altaButton.setToolTipText("Alta de tarjeta, solo disponible para gestores");
@@ -128,6 +149,11 @@ public class TarjWindow extends JFrame {
         aux.add(altaButton, BorderLayout.NORTH);
     }
 
+    /**
+     * Método para crear el botón de baja de cuentas
+     * 
+     * @param aux Barra a la que añadir el botón
+     */
     private void createBajaButton(JToolBar aux) {
         JButton bajaButton = new JButton("Baja tarjeta");
         bajaButton.setToolTipText("Baja de tarjeta, solo disponible para gestores");
@@ -135,6 +161,15 @@ public class TarjWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFrame frame1 = new JFrame("Lista Tarjetas");
+                try {
+                    frame1.getContentPane().add(new TarjListPanel(null));
+                    frame1.pack();
+                    frame1.setVisible(true);
+                    frame1.setLocationRelativeTo(null);
+                } catch (FileNotFoundException e1) {
+                    JOptionPane.showMessageDialog(null,
+                            "No se pudo abrir el archivo de tarjetas. Contacte con el soporte.");
+                }
                 frame1.addWindowListener(new WindowListener() {
 
                     @Override
@@ -151,7 +186,7 @@ public class TarjWindow extends JFrame {
                         IFachadaSubsTarjetas subsTarjetas = new FachadaSubsTarjetas();
                         Pair<Integer, Tarjeta> aux = subsTarjetas.buscaTarjeta(Integer.parseInt(NUMTARJETA));
                         int decision = JOptionPane.showConfirmDialog(null,
-                                "Â¿Dar de baja al tarjeta " + NUMTARJETA + "?", "Baja usuario",
+                                "¿Dar de baja al tarjeta " + NUMTARJETA + "?", "Baja usuario",
                                 JOptionPane.YES_NO_CANCEL_OPTION);
                         int resultado = 1;
                         try {
@@ -196,15 +231,7 @@ public class TarjWindow extends JFrame {
                     }
 
                 });
-                try {
-                    frame1.getContentPane().add(new TarjListPanel(null));
-                    frame1.pack();
-                    frame1.setVisible(true);
-                    frame1.setLocationRelativeTo(null);
-                } catch (FileNotFoundException e1) {
-                    JOptionPane.showMessageDialog(null,
-                            "No se pudo abrir el archivo de tarjetas. Contacte con el soporte.");
-                }
+
             }
         });
         bajaButton.setEnabled(_permisosGestor);
@@ -212,6 +239,11 @@ public class TarjWindow extends JFrame {
         aux.add(bajaButton, BorderLayout.SOUTH);
     }
 
+    /**
+     * Método para crear el botón de modificación de cuentas
+     * 
+     * @param aux barra a la que añadir el botón
+     */
     private void createModificarButton(JToolBar aux) {
         JButton modificacionButton = new JButton("ModificaciÃ³n tarjeta");
         modificacionButton.setToolTipText("ModificaciÃ³n de tarjeta, solo disponible para gestores");
@@ -220,122 +252,9 @@ public class TarjWindow extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 if (_permisosGestor) {
-                    JFrame frame1 = new JFrame("Lista Tarjetas");
-                    frame1.addWindowListener(new WindowListener() {
-
-                        @Override
-                        public void windowOpened(WindowEvent e) {
-
-                        }
-
-                        @Override
-                        public void windowClosing(WindowEvent e) {
-                        }
-
-                        @Override
-                        public void windowClosed(WindowEvent e) {
-                            JFrame frame = new JFrame("Modicifacion Tarjeta");
-                            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                            IFachadaSubsTarjetas subsTarjetas = new FachadaSubsTarjetas();
-                            Pair<Integer, Tarjeta> aux = subsTarjetas.buscaTarjeta(Integer.parseInt(NUMTARJETA));
-                            frame.getContentPane().add(new ModGUI(aux.getSecond()));
-
-                            frame.pack();
-                            frame.setVisible(true);
-                            frame.setLocationRelativeTo(null);
-                        }
-
-                        @Override
-                        public void windowIconified(WindowEvent e) {
-                        }
-
-                        @Override
-                        public void windowDeiconified(WindowEvent e) {
-                        }
-
-                        @Override
-                        public void windowActivated(WindowEvent e) {
-                        }
-
-                        @Override
-                        public void windowDeactivated(WindowEvent e) {
-                        }
-
-                    });
-                    try {
-                        frame1.getContentPane().add(new TarjListPanel(null));
-                        frame1.pack();
-                        frame1.setVisible(true);
-                        frame1.setLocationRelativeTo(null);
-                    } catch (FileNotFoundException e1) {
-                        JOptionPane.showMessageDialog(null,
-                                "No se pudo abrir el archivo de usuarios. Contacte con el soporte.");
-                    }
+                    createGestorModFrame();
                 } else {
-                    JFrame frame1 = new JFrame("Lista Tarjetas");
-                    frame1.addWindowListener(new WindowListener() {
-                        @Override
-                        public void windowOpened(WindowEvent e) {
-
-                        }
-
-                        @Override
-                        public void windowClosing(WindowEvent e) {
-                        }
-
-                        @Override
-                        public void windowClosed(WindowEvent e) {
-                            JFrame frame = new JFrame("Modicifacion Tarjeta");
-                            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                            IFachadaSubsTarjetas subsTarjetas = new FachadaSubsTarjetas();
-                            Pair<Integer, Tarjeta> aux = subsTarjetas.buscaTarjeta(Integer.parseInt(NUMTARJETA));
-                            frame.getContentPane().add(new ModGUI(aux.getSecond()));
-
-                            frame.pack();
-                            frame.setVisible(true);
-                            frame.setLocationRelativeTo(null);
-                        }
-
-                        @Override
-                        public void windowIconified(WindowEvent e) {
-                        }
-
-                        @Override
-                        public void windowDeiconified(WindowEvent e) {
-                        }
-
-                        @Override
-                        public void windowActivated(WindowEvent e) {
-                        }
-
-                        @Override
-                        public void windowDeactivated(WindowEvent e) {
-                        }
-                    });
-                    try {
-                        IFachadaSubsTarjetas subsTarjetas = new FachadaSubsTarjetas();
-                        Pair<List<Tarjeta>, Integer> aux1 = subsTarjetas.consultarListaTarjetas(_user.getDni());
-                        switch (aux1.getSecond()) {
-                            case 0:
-                                frame1.getContentPane().add(new TarjListPanel(aux1.getFirst()));
-                                frame1.pack();
-                                frame1.setVisible(true);
-                                frame1.setLocationRelativeTo(null);
-                                break;
-                            case 1:
-                                throw new GUIException("El usuario no tiene tarjetas a su nombre");
-                            case 2:
-                                throw new GUIException("No se reconoce al usuario.");
-                            case 10:
-                                throw new GUIException(
-                                        "No se pudo conectar con la base de datos. Contacte con el soporte.");
-                            default:
-                                throw new GUIException("Error desconocido. Contacte con el soporte");
-                        }
-
-                    } catch (Exception e1) {
-                        JOptionPane.showMessageDialog(null, e1.getMessage());
-                    }
+                    createUserModFrame();
                 }
 
             }
@@ -346,110 +265,278 @@ public class TarjWindow extends JFrame {
 
     }
 
+    /**
+     * Creador de la ventana de modificación para gestores
+     */
+    private void createGestorModFrame() {
+        JFrame frame1 = new JFrame("Lista Tarjetas");
+        try {
+            frame1.getContentPane().add(new TarjListPanel(null));
+            frame1.pack();
+            frame1.setVisible(true);
+            frame1.setLocationRelativeTo(null);
+        } catch (FileNotFoundException e1) {
+            JOptionPane.showMessageDialog(null, "No se pudo abrir el archivo de usuarios. Contacte con el soporte.");
+        }
+        frame1.addWindowListener(new WindowListener() {
+
+            @Override
+            public void windowOpened(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) {
+                JFrame frame = new JFrame("Modicifacion Tarjeta");
+                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                IFachadaSubsTarjetas subsTarjetas = new FachadaSubsTarjetas();
+                Pair<Integer, Tarjeta> aux = subsTarjetas.buscaTarjeta(Integer.parseInt(NUMTARJETA));
+                frame.getContentPane().add(new ModGUI(aux.getSecond(), true));
+                frame.pack();
+                frame.setVisible(true);
+                frame.setLocationRelativeTo(null);
+            }
+
+            @Override
+            public void windowIconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowActivated(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+            }
+
+        });
+    }
+
+    /**
+     * Creador de la ventana de modificación de tarjetas para usuarios
+     */
+    private void createUserModFrame() {
+        JFrame frame1 = new JFrame("Lista Tarjetas");
+        try {
+            IFachadaSubsTarjetas subsTarjetas = new FachadaSubsTarjetas();
+            Pair<List<Tarjeta>, Integer> aux1 = subsTarjetas.consultarListaTarjetas(_user.getDni());
+            switch (aux1.getSecond()) {
+                case 0:
+                    frame1.getContentPane().add(new TarjListPanel(aux1.getFirst()));
+                    frame1.pack();
+                    frame1.setVisible(true);
+                    frame1.setLocationRelativeTo(null);
+                    break;
+                case 1:
+                    throw new GUIException("El usuario no tiene tarjetas a su nombre");
+                case 2:
+                    throw new GUIException("No se reconoce al usuario.");
+                case 10:
+                    throw new GUIException("No se pudo conectar con la base de datos. Contacte con el soporte.");
+                default:
+                    throw new GUIException("Error desconocido. Contacte con el soporte");
+            }
+
+        } catch (Exception e1) {
+            JOptionPane.showMessageDialog(null, e1.getMessage());
+        }
+        frame1.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) {
+                if (!NUMTARJETA.equals("")) {
+                    JFrame frame = new JFrame("Modicifacion Tarjeta");
+                    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    IFachadaSubsTarjetas subsTarjetas = new FachadaSubsTarjetas();
+                    Pair<Integer, Tarjeta> aux = subsTarjetas.buscaTarjeta(Integer.parseInt(NUMTARJETA));
+                    frame.getContentPane().add(new ModGUI(aux.getSecond(), false));
+
+                    frame.pack();
+                    frame.setVisible(true);
+                    frame.setLocationRelativeTo(null);
+                }
+            }
+
+            @Override
+            public void windowIconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowActivated(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+            }
+        });
+
+    }
+
+    /**
+     * Método para crear el botón de consulta de listas
+     * 
+     * @param aux barra a la que añadir el botón
+     */
     private void createListaButton(JToolBar aux) {
         JButton listaButton = new JButton("Lista de tarjetas");
         listaButton.setToolTipText("Lista de tarjetas, solo disponible para gestores");
         listaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame("Opciones de Filtrado");
-                frame.addWindowListener(new WindowListener() {
-
-                    @Override
-                    public void windowOpened(WindowEvent e) {
-                    }
-
-                    @Override
-                    public void windowClosing(WindowEvent e) {
-                    }
-
-                    @Override
-                    public void windowClosed(WindowEvent e) {
-
-                        try {
-                            IFachadaSubsTarjetas subsTarjetas = new FachadaSubsTarjetas();
-                            Pair<List<Tarjeta>, Integer> listaFiltrada = subsTarjetas.consultarListaTarjetas(DNI);
-                            int resultado = listaFiltrada.getSecond();
-                            switch (resultado) {
-                                case 0:
-                                    break;
-                                case 1:
-                                    throw new UserException(
-                                            "Fallo al modificar la tarjeta. Compruebe que no exista ya");
-                                case 10:
-                                    throw new GUIException(
-                                            "Fallo al encontrar el archivo de tarjetas. Contacte con el soporte.");
-                                default:
-                                    throw new GUIException("Error inesperado. Contacte con el soporte");
-                            }
-                            JFrame frame1 = new JFrame("Lista Tarjetas");
-                            frame1.addWindowListener(new WindowListener() {
-                                @Override
-                                public void windowOpened(WindowEvent e) {
-                                }
-
-                                @Override
-                                public void windowClosing(WindowEvent e) {
-                                }
-
-                                @Override
-                                public void windowClosed(WindowEvent e) {
-
-                                }
-
-                                @Override
-                                public void windowIconified(WindowEvent e) {
-                                }
-
-                                @Override
-                                public void windowDeiconified(WindowEvent e) {
-                                }
-
-                                @Override
-                                public void windowActivated(WindowEvent e) {
-                                }
-
-                                @Override
-                                public void windowDeactivated(WindowEvent e) {
-                                }
-
-                            });
-                            frame1.getContentPane().add(new TarjListPanel(listaFiltrada.getFirst()));
-                            frame1.pack();
-                            frame1.setVisible(true);
-                            frame1.setLocationRelativeTo(null);
-                        } catch (Exception e1) {
-                            JOptionPane.showMessageDialog(null,
-                                    "No se pudo abrir el archivo de tarjetas. Contacte con el soporte.");
-                        }
-                    }
-
-                    @Override
-                    public void windowIconified(WindowEvent e) {
-                    }
-
-                    @Override
-                    public void windowDeiconified(WindowEvent e) {
-                    }
-
-                    @Override
-                    public void windowActivated(WindowEvent e) {
-                    }
-
-                    @Override
-                    public void windowDeactivated(WindowEvent e) {
-                    }
-
-                });
-                // frame.getContentPane().add(new FiltrarGUI());
-                frame.getContentPane().add(new FiltrarGUI());
-                frame.pack();
-                frame.setVisible(true);
-                frame.setLocationRelativeTo(null);
+                if (_permisosGestor) {
+                    createGestorListFrame();
+                } else {
+                    createUserListFrame();
+                }
             }
         });
         listaButton.setEnabled(true);
         listaButton.setPreferredSize(tamanoBoton);
         aux.add(listaButton, BorderLayout.SOUTH);
+    }
+
+    private void createGestorListFrame() {
+        JFrame frame = new JFrame("Opciones de Filtrado");
+        frame.getContentPane().add(new FiltrarGUI());
+        frame.pack();
+        frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
+        frame.addWindowListener(new WindowListener() {
+
+            @Override
+            public void windowOpened(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) {
+                if (!DNI.equals("")) {
+                    try {
+                        IFachadaSubsTarjetas subsTarjetas = new FachadaSubsTarjetas();
+                        Pair<List<Tarjeta>, Integer> listaFiltrada = subsTarjetas.consultarListaTarjetas(DNI);
+                        int resultado = listaFiltrada.getSecond();
+                        switch (resultado) {
+                            case 0:
+                                break;
+                            case 1:
+                                throw new UserException("El usuario no tiene tarjetas a su nombre.");
+                            case 10:
+                                throw new GUIException(
+                                        "Fallo al encontrar el archivo de tarjetas. Contacte con el soporte.");
+                            default:
+                                throw new GUIException("Error inesperado. Contacte con el soporte");
+                        }
+                        JFrame frame1 = new JFrame("Lista Tarjetas");
+                        frame1.getContentPane().add(new TarjListPanel(listaFiltrada.getFirst()));
+                        frame1.pack();
+                        frame1.setVisible(true);
+                        frame1.setLocationRelativeTo(null);
+                        frame1.addWindowListener(new WindowListener() {
+                            @Override
+                            public void windowOpened(WindowEvent e) {
+                            }
+
+                            @Override
+                            public void windowClosing(WindowEvent e) {
+                            }
+
+                            @Override
+                            public void windowClosed(WindowEvent e) {
+
+                            }
+
+                            @Override
+                            public void windowIconified(WindowEvent e) {
+                            }
+
+                            @Override
+                            public void windowDeiconified(WindowEvent e) {
+                            }
+
+                            @Override
+                            public void windowActivated(WindowEvent e) {
+                            }
+
+                            @Override
+                            public void windowDeactivated(WindowEvent e) {
+                            }
+
+                        });
+
+                    } catch (Exception e1) {
+                        JOptionPane.showMessageDialog(null,
+                                "No se pudo abrir el archivo de tarjetas. Contacte con el soporte.");
+                    }
+                }
+
+            }
+
+            @Override
+            public void windowIconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowActivated(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+            }
+
+        });
+    }
+
+    private void createUserListFrame() {
+
+        try {
+            IFachadaSubsTarjetas subsTarjetas = new FachadaSubsTarjetas();
+            Pair<List<Tarjeta>, Integer> listaFiltrada = subsTarjetas.consultarListaTarjetas(_user.getDni());
+            int resultado = listaFiltrada.getSecond();
+            switch (resultado) {
+                case 0:
+                    break;
+                case 1:
+                    throw new UserException("El usuario no tiene tarjetas.");
+                case 10:
+                    throw new GUIException("Fallo al encontrar el archivo de tarjetas. Contacte con el soporte.");
+                default:
+                    throw new GUIException("Error inesperado. Contacte con el soporte");
+            }
+            JFrame frame1 = new JFrame("Lista Tarjetas");
+            frame1.getContentPane().add(new TarjListPanel(listaFiltrada.getFirst()));
+            frame1.pack();
+            frame1.setVisible(true);
+            frame1.setLocationRelativeTo(null);
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+
     }
 }

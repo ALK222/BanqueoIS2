@@ -313,6 +313,9 @@ public class CuentaWindow extends JFrame {
         });
     }
 
+    /**
+     * Creador de la ventana de modificación para clientes
+     */
     private void createUserModFrame() {
         JFrame frame1 = new JFrame("Lista Cuentas");
         try {
