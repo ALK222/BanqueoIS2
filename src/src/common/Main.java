@@ -36,12 +36,15 @@ public class Main {
                 in = new FileInputStream(testFile);
             } catch (FileNotFoundException ex) {
                 try {
-                    testFile = new File("./resources/Tarjetas.json");
+                    testFile = new File("./resources/Prestamos.json");
                     in = new FileInputStream(testFile);
                 } catch (FileNotFoundException ex1) {
                     try {
                         testFile = new File(System.getProperty("user.dir") + "/resources/Prestamos.json");
                         testFile.createNewFile();
+                        FileWriter wr = new FileWriter(testFile);
+                        wr.append("{\"personas\":[]}");
+                        wr.close();
                     } catch (Exception e2) {
                         testFile = new File(System.getProperty("user.dir") + "/src/resources/Prestamos.json");
                         in = new FileInputStream(testFile);
@@ -61,22 +64,28 @@ public class Main {
         @SuppressWarnings("unused")
         InputStream in;
         try {
-            testFile = new File(System.getProperty("user.dir") + "/resources/Usuarios.json");
+            testFile = new File(System.getProperty("user.dir") + "/resources/Cuentas.json");
             in = new FileInputStream(testFile);
         } catch (FileNotFoundException e) {
             try {
-                testFile = new File(System.getProperty("user.dir") + "/src/src/resources/Usuarios.json");
+                testFile = new File(System.getProperty("user.dir") + "/src/src/resources/Cuentas.json");
                 in = new FileInputStream(testFile);
             } catch (FileNotFoundException ex) {
                 try {
-                    testFile = new File("./resources/Tarjetas.json");
+                    testFile = new File("./resources/Cuentas.json");
                     in = new FileInputStream(testFile);
                 } catch (FileNotFoundException ex1) {
                     try {
-                        testFile = new File(System.getProperty("user.dir") + "/resources/Usuarios.json");
-                        testFile.createNewFile();
+                        testFile = new File(System.getProperty("user.dir") + "/resources/Cuentas.json");
+                        if (!testFile.exists()) {
+                            testFile.createNewFile();
+                            FileWriter wr = new FileWriter(testFile);
+                            wr.append("{\"cuentas\":[]}");
+                            wr.close();
+                        }
+
                     } catch (Exception e2) {
-                        testFile = new File(System.getProperty("user.dir") + "/src/resources/Usuarios.json");
+                        testFile = new File(System.getProperty("user.dir") + "/src/resources/Cuentas.json");
                         in = new FileInputStream(testFile);
                     }
                 }
@@ -107,7 +116,12 @@ public class Main {
                 } catch (FileNotFoundException ex1) {
                     try {
                         testFile = new File(System.getProperty("user.dir") + "/resources/Tarjetas.json");
-                        testFile.createNewFile();
+                        if (!testFile.exists()) {
+                            testFile.createNewFile();
+                            FileWriter wr = new FileWriter(testFile);
+                            wr.append("{\"tarjetas\":[]}");
+                            wr.close();
+                        }
                     } catch (Exception e2) {
                         testFile = new File(System.getProperty("user.dir") + "/src/resources/Tarjetas.json");
                         in = new FileInputStream(testFile);
@@ -143,7 +157,9 @@ public class Main {
                         in = new FileInputStream(testFile);
                     } catch (Exception e2) {
                         testFile = new File(System.getProperty("user.dir") + "/resources/Usuarios.json");
-                        testFile.createNewFile();
+                        if (!testFile.exists()) {
+                            testFile.createNewFile();
+                        }
                         FileWriter wr = new FileWriter(testFile);
                         wr.append(
                                 "{\"usuarios\":[{\"Nombre\": \"admin\",\"Email\": \"\",\"Telefono\": 0,\"Contrasena\": \"admin\",\"Domicilio\": \"\",\"DNI\": \"admin\"}]}");
@@ -161,6 +177,9 @@ public class Main {
      * @throws IOException si no se pudo encontrar o crear la base de datos
      */
     public static void checkfiles() throws IOException {
+        if (!new File(System.getProperty("user.dir") + "/resources").exists()) {
+            new File(System.getProperty("user.dir") + "/resources/").mkdir();
+        }
         checkCuentaFile();
         checkPrestamoFile();
         checkTarjetaFile();
