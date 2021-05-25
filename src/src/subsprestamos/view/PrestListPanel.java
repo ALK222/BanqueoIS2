@@ -25,10 +25,6 @@ import javax.swing.border.TitledBorder;
 
 import common.exception.GUIException;
 import dominio.Prestamo;
-import dominio.Tarjeta;
-import substarjetas.view.TarjListPanel;
-import substarjetas.view.TarjTableModel;
-import substarjetas.view.TarjWindow;
 
 public class PrestListPanel extends JPanel {
 	
@@ -126,4 +122,3 @@ public class PrestListPanel extends JPanel {
         frame.setLocationRelativeTo(null);
     }
 }
-

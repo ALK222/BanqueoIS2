@@ -3,7 +3,6 @@ package common.view;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -22,7 +21,6 @@ public class ImagePanel extends JPanel {
      */
     public ImagePanel() {
         File testFile;
-        InputStream in;
         try {
             testFile = new File(System.getProperty("user.dir") + "/resources/banqueo.png");
             image = ImageIO.read(testFile);

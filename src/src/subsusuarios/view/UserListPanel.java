@@ -12,6 +12,7 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -52,31 +53,37 @@ public class UserListPanel extends JPanel {
         // construct components
         modButton = new JButton("ACEPTAR");
         cancelButton = new JButton("CANCELAR");
+        JTable uJTable;
         if (listaFiltrada == null) {
-            tablaUsuarios = createViewPanel(new JTable(new UserTableModel()), "Lista de usuarios");
+            uJTable = new JTable(new UserTableModel());
         } else {
-            tablaUsuarios = createViewPanel(new JTable(new UserTableModel(listaFiltrada)), "Lista de usuarios");
+            uJTable = new JTable(new UserTableModel(listaFiltrada));
         }
+        uJTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        JScrollPane aux = new JScrollPane(uJTable);
+        aux.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        aux.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        aux.setPreferredSize(new Dimension(600, 300));
+        tablaUsuarios = createViewPanel(aux, "Lista de usuarios");
+        tablaUsuarios.setPreferredSize(new Dimension(700, 400));
         dniAModificar = new JLabel("DNI: ");
         dniLabel = new JTextField();
-        Dimension dimensionLabel = new Dimension (100,25);
+        Dimension dimensionLabel = new Dimension(100, 25);
         dniLabel.setPreferredSize(dimensionLabel);
-        
-        // adjust size and set layout
-        setPreferredSize(new Dimension(500, 530));
-        //setLayout(null);
 
-        /*// add components
-        add(tablaUsuarios);
-        add(dniAModificar);
-        add(dniLabel);
-        add(modButton);
-        add(cancelButton);*/
-        
+        // adjust size and set layout
+        setPreferredSize(new Dimension(700, 530));
+        // setLayout(null);
+
+        /*
+         * // add components add(tablaUsuarios); add(dniAModificar); add(dniLabel);
+         * add(modButton); add(cancelButton);
+         */
+
         JPanel panel = new JPanel(new BorderLayout());
         JPanel panelAux = new JPanel(new FlowLayout());
         JPanel panelAux2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        
+
         panel.add(tablaUsuarios, BorderLayout.NORTH);
         panelAux2.add(dniAModificar);
         panelAux2.add(dniLabel);
@@ -84,15 +91,15 @@ public class UserListPanel extends JPanel {
         panelAux.add(modButton);
         panelAux.add(cancelButton);
         panel.add(panelAux, BorderLayout.SOUTH);
-        
+
         add(panel);
 
-        /*// set component bounds (only needed by Absolute Positioning)
-        modButton.setBounds(85, 15, 100, 35);
-        cancelButton.setBounds(210, 15, 100, 35);
-        tablaUsuarios.setBounds(25, 120, 350, 259);
-        dniAModificar.setBounds(25, 380, 100, 25);
-        dniLabel.setBounds(25, 405, 170, 35);*/
+        /*
+         * // set component bounds (only needed by Absolute Positioning)
+         * modButton.setBounds(85, 15, 100, 35); cancelButton.setBounds(210, 15, 100,
+         * 35); tablaUsuarios.setBounds(25, 120, 350, 259); dniAModificar.setBounds(25,
+         * 380, 100, 25); dniLabel.setBounds(25, 405, 170, 35);
+         */
 
         modButton.addActionListener(new ActionListener() {
             @Override
@@ -143,12 +150,12 @@ public class UserListPanel extends JPanel {
      * Comportamiento al cerrar la ventana
      */
     private void quit() {
-        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        JDialog frame = (JDialog) SwingUtilities.getWindowAncestor(this);
         frame.dispose();
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        JFrame frame = new JFrame("MyPanel");
+        JDialog frame = new JDialog();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(new UserListPanel(null));
         frame.pack();

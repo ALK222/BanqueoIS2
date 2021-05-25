@@ -48,7 +48,6 @@ public class PrestWindow extends JFrame {
     }
 
     private void initGUI() {
-
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
         this.setContentPane(mainPanel);
@@ -72,7 +71,7 @@ public class PrestWindow extends JFrame {
         this.pack();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
-        this.setResizable(true);
+        this.setResizable(false);
         this.addWindowListener(new WindowListener() {
 
             @Override

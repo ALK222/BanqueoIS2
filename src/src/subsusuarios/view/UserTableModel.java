@@ -17,7 +17,7 @@ public class UserTableModel extends AbstractTableModel {
 
     private static final long serialVersionUID = 1L;
     private List<Persona> _personas;
-    private String[] labels = { "DNI", "Nombre" };
+    private String[] labels = { "DNI", "Nombre", "Email", "Teléfono", "Domicilio" };
 
     /**
      * Constructor vacío para que busque la lista de usuarios total
@@ -62,6 +62,15 @@ public class UserTableModel extends AbstractTableModel {
                 break;
             case 1:
                 o = aux.getNombre();
+                break;
+            case 2:
+                o = aux.getEmail();
+                break;
+            case 3:
+                o = String.valueOf(aux.getTlf());
+                break;
+            case 4:
+                o = aux.getDomicilio();
                 break;
         }
         return o;

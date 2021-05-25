@@ -10,7 +10,7 @@ import java.io.FileNotFoundException;
 import java.util.List;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JToolBar;
 import javax.swing.UIManager;
@@ -25,9 +25,9 @@ import subsusuarios.model.IFachadaSubsUsuarios;
 /**
  * Ventana principal de la GUI de gestión de usuarios
  * 
- * @see JFrame
+ * @see JDialog
  */
-public class UserWindow extends JFrame {
+public class UserWindow extends JDialog {
 
     private boolean _permisosGestor;
     private Persona _user;
@@ -60,7 +60,7 @@ public class UserWindow extends JFrame {
      * Constructor de la parte gráfica de la ventana
      */
     private void initGUI() {
-
+        setModal(true);
         // Buttons
         JToolBar botonesAltaBaja = new JToolBar();
         botonesAltaBaja.setLayout(new BorderLayout());
@@ -104,8 +104,10 @@ public class UserWindow extends JFrame {
      * Creador de la ventana de alta de usuarios
      */
     private void createAltaFrame() {
-        JFrame frame = new JFrame("Alta Usuario");
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        JDialog frame = new JDialog();
+        frame.setModal(true);
+        frame.setTitle("Alta usuario");
+        frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         frame.getContentPane().add(new AltaGUI());
         frame.pack();
         frame.setVisible(true);
@@ -135,7 +137,9 @@ public class UserWindow extends JFrame {
      * Creador de la ventana de baja de usuarios
      */
     private void createBajaFrame() {
-        JFrame frame1 = new JFrame("Lista Usuarios");
+        JDialog frame1 = new JDialog();
+        frame1.setModal(true);
+        frame1.setTitle("Lista Usuarios");
         try {
             frame1.getContentPane().add(new UserListPanel(null));
             frame1.pack();
@@ -159,32 +163,36 @@ public class UserWindow extends JFrame {
             @Override
             public void windowClosed(WindowEvent e) {
                 // LANZAR LA BAJA DE USUARIO
-                IFachadaSubsUsuarios subsUsuarios = new FachadaSubsUsuarios();
-                Persona aux = subsUsuarios.buscarUsuario(DNI).getFirst();
-                UIManager.put("OptionPane.noButtonText", "Si");
-                UIManager.put("OptionPane.yesButtonText", "No");
-                int decision = JOptionPane.showConfirmDialog(null, "¿Dar de baja al usuario " + DNI + "?",
-                        "Baja usuario", JOptionPane.YES_NO_CANCEL_OPTION);
-                int resultado = 1;
-                try {
-                    if (decision == 0) {
-                        resultado = subsUsuarios.bajaUsuario(aux);
-                        switch (resultado) {
-                            case 0:
-                                JOptionPane.showMessageDialog(null, "Usuario eliminado correctamente.");
-                                quit();
-                                break;
-                            case 1:
-                                throw new UserException("Fallo al eliminar el usuario. Compruebe que no exista ya.");
-                            case 10:
-                                throw new GUIException(
-                                        "Fallo al encontrar el archivo de usuarios. Contacte con el soporte.");
-                            default:
-                                throw new GUIException("Error inesperado. Contacte con el soporte.");
+                if (!DNI.equals("")) {
+                    IFachadaSubsUsuarios subsUsuarios = new FachadaSubsUsuarios();
+                    Persona aux = subsUsuarios.buscarUsuario(DNI).getFirst();
+                    UIManager.put("OptionPane.noButtonText", "No");
+                    UIManager.put("OptionPane.yesButtonText", "Si");
+                    int decision = JOptionPane.showConfirmDialog(null, "¿Dar de baja al usuario " + DNI + "?",
+                            "Baja usuario", JOptionPane.YES_NO_CANCEL_OPTION);
+                    int resultado = 1;
+                    try {
+                        if (decision == 0) {
+                            resultado = subsUsuarios.bajaUsuario(aux);
+                            switch (resultado) {
+                                case 0:
+                                    JOptionPane.showMessageDialog(null, "Usuario eliminado correctamente.");
+                                    quit();
+                                    break;
+                                case 1:
+                                    throw new UserException(
+                                            "Fallo al eliminar el usuario. Compruebe que no exista ya.");
+                                case 10:
+                                    throw new GUIException(
+                                            "Fallo al encontrar el archivo de usuarios. Contacte con el soporte.");
+                                default:
+                                    throw new GUIException("Error inesperado. Contacte con el soporte.");
+                            }
                         }
+                    } catch (Exception e1) {
+                        JOptionPane.showMessageDialog(null, e1.getMessage());
                     }
-                } catch (Exception e1) {
-                    JOptionPane.showMessageDialog(null, e1.getMessage());
+
                 }
 
             }
@@ -238,7 +246,9 @@ public class UserWindow extends JFrame {
      * Creador de la ventana de modificación para gestores
      */
     private void createGestorModFrame() {
-        JFrame frame1 = new JFrame("Lista Usuarios");
+        JDialog frame1 = new JDialog();
+        frame1.setModal(true);
+        frame1.setTitle("Lista Usuarios");
         try {
             frame1.getContentPane().add(new UserListPanel(null));
             frame1.pack();
@@ -261,8 +271,10 @@ public class UserWindow extends JFrame {
             @Override
             public void windowClosed(WindowEvent e) {
                 if (!DNI.equals("")) {
-                    JFrame frame = new JFrame("Modicifacion Usuario");
-                    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    JDialog frame = new JDialog();
+                    frame.setModal(true);
+                    frame.setTitle("Modicifacion Usuario");
+                    frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                     IFachadaSubsUsuarios subsUsuarios = new FachadaSubsUsuarios();
                     Persona aux = subsUsuarios.buscarUsuario(DNI).getFirst();
                     frame.getContentPane().add(new ModGUI(aux));
@@ -297,8 +309,10 @@ public class UserWindow extends JFrame {
      * Creador de la ventana de modificación para clientes
      */
     private void createUserModFrame() {
-        JFrame frame = new JFrame("Modicifación Usuario");
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        JDialog frame = new JDialog();
+        frame.setModal(true);
+        frame.setTitle("Modicifación Usuario");
+        frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         frame.getContentPane().add(new ModGUI(_user));
 
         frame.pack();
@@ -318,7 +332,9 @@ public class UserWindow extends JFrame {
         listaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame("Opciones de Filtrado");
+                JDialog frame = new JDialog();
+                frame.setModal(true);
+                frame.setTitle("Opciones de Filtrado");
                 frame.getContentPane().add(new FiltrarGUI());
                 frame.pack();
                 frame.setVisible(true);
@@ -353,7 +369,9 @@ public class UserWindow extends JFrame {
                                 default:
                                     throw new GUIException("Error inesperado. Contacte con el soporte");
                             }
-                            JFrame frame1 = new JFrame("Lista Usuarios");
+                            JDialog frame1 = new JDialog();
+                            frame1.setModal(true);
+                            frame1.setTitle("Lista Usuarios");
                             frame1.getContentPane().add(new UserListPanel(listaFiltrada.getFirst()));
                             frame1.pack();
                             frame1.setVisible(true);

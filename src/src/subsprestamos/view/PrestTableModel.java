@@ -6,9 +6,7 @@ import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 import dominio.Prestamo;
-import dominio.Tarjeta;
 import prestamosdao.control.PrestamoJSON;
-import tarjetasdao.control.TarjetasJSON;
 
 public class PrestTableModel extends AbstractTableModel {
     private static final long serialVersionUID = 1L;
@@ -59,5 +57,3 @@ public class PrestTableModel extends AbstractTableModel {
     }
 
 }
-
-
