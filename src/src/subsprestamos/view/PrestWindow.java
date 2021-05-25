@@ -35,7 +35,7 @@ public class PrestWindow extends JFrame {
     private Persona _user;
     private static Dimension tamanoBoton = new Dimension(200, 50);
 
-    public static String DNI = "";
+    public static String CUENTAASOCIADA = "";
     public static String TIPOFILTRADO = "";
     public static String NUMREFERENCIA = "";
 
