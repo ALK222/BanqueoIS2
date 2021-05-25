@@ -51,7 +51,7 @@ public interface ISADAOCuenta {
     Cuenta consultarCuenta(int num_cuenta) throws IOException;
 
     /**
-     * Modificacion de una cuenta
+     * Modificación de una cuenta
      * 
      * @param c Cuenta modificada
      * @return Si los cambios se pudieron guardar o no en la base de datos

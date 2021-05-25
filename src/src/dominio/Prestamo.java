@@ -17,13 +17,14 @@ public class Prestamo {
 	/**
 	 * Constructor con argumentos para Prestamo
 	 * 
-	 * @param numReferencia
-	 * @param cantidadSolicitada
-	 * @param plazoDevolucion
-	 * @param aval
-	 * @param profesion
-	 * @param firmaSeguroDefuncion
-	 * @param estadoPrestamo
+	 * @param numReferencia        Número de referencia del préstamo
+	 * @param cantidadSolicitada   Cantidad solicitada en el prestamo
+	 * @param plazoDevolucion      Plazo de devolución del prestamo
+	 * @param aval                 Aval para el prestamo
+	 * @param profesion            Profesión del solicitante
+	 * @param firmaSeguroDefuncion Comprobante de si hay o no firma de un seguro de
+	 *                             defunción
+	 * @param estadoPrestamo       Estado del prestamo
 	 */
 	public Prestamo(int numReferencia, double cantidadSolicitada, String plazoDevolucion, int aval, String profesion,
 			boolean firmaSeguroDefuncion, EstadoPrestamo estadoPrestamo, int cuentaAsociada) {
@@ -40,7 +41,7 @@ public class Prestamo {
 	public int getCuentaAsociada() {
 		return _cuentaAsociada;
 	}
-	
+
 	public int getNumReferencia() {
 		return _numReferencia;
 	}

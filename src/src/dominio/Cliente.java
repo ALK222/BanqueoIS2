@@ -12,15 +12,15 @@ public class Cliente extends Persona {
 	private String _gestorDni;
 
 	/**
-	 * Constructor con parametros de Cliente
+	 * Constructor con parámetros de Cliente
 	 * 
-	 * @param dni
-	 * @param nombre
-	 * @param domicilio
-	 * @param tlf
-	 * @param gestorDni
-	 * @param contrasena
-	 * @param email
+	 * @param dni        DNI del usuario
+	 * @param nombre     Nombre del usuario
+	 * @param domicilio  Domicilio del usuario
+	 * @param tlf        Telefono del usuario
+	 * @param gestorDni  DNI de su gestor asignado
+	 * @param contrasena Contraseña del usuario
+	 * @param email      Email del usuario
 	 */
 	public Cliente(String dni, String nombre, String domicilio, int tlf, String gestorDni, String contrasena,
 			String email) {

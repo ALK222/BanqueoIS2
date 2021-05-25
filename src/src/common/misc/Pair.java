@@ -32,6 +32,7 @@ public class Pair<T1, T2> {
         if (getClass() != o.getClass()) {
             return false;
         }
+        @SuppressWarnings("rawtypes")
         Pair p = (Pair) o;
         if (p.getFirst().getClass() == this._first.getClass() && p.getSecond().getClass() == this._second.getClass()) {
             return Objects.equals(_first, p.getFirst()) && Objects.equals(_second, p.getSecond());

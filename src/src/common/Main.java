@@ -167,6 +167,12 @@ public class Main {
         checkUsuarioFile();
     }
 
+    /**
+     * Ventana de inicio de sesión
+     * 
+     * @param c controller principal del programa al que pasarle el usuario y sus
+     *          permisos
+     */
     public static void inicioSesionGui(Controller c) {
         JFrame frame = new JFrame("Iniciar Sesión");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -174,6 +180,7 @@ public class Main {
         frame.pack();
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
         frame.addWindowListener(new WindowListener() {
 
             @Override

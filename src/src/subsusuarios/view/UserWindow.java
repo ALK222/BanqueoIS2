@@ -108,6 +108,7 @@ public class UserWindow extends JDialog {
     private void createAltaFrame() {
         JDialog frame = new JDialog();
         frame.setModal(true);
+        frame.setResizable(false);
         frame.setTitle("Alta usuario");
         frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         frame.getContentPane().add(new AltaGUI());
@@ -141,6 +142,7 @@ public class UserWindow extends JDialog {
     private void createBajaFrame() {
         JDialog frame1 = new JDialog();
         frame1.setModal(true);
+        frame1.setResizable(false);
         frame1.setTitle("Lista Usuarios");
         try {
             frame1.getContentPane().add(new UserListPanel(null));
@@ -250,6 +252,7 @@ public class UserWindow extends JDialog {
     private void createGestorModFrame() {
         JDialog frame1 = new JDialog();
         frame1.setModal(true);
+        frame1.setResizable(false);
         frame1.setTitle("Lista Usuarios");
         try {
             frame1.getContentPane().add(new UserListPanel(null));
@@ -276,6 +279,7 @@ public class UserWindow extends JDialog {
                     JDialog frame = new JDialog();
                     frame.setModal(true);
                     frame.setTitle("Modicifacion Usuario");
+                    frame.setResizable(false);
                     frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                     IFachadaSubsUsuarios subsUsuarios = new FachadaSubsUsuarios();
                     Persona aux = subsUsuarios.buscarUsuario(DNI).getFirst();
@@ -314,6 +318,7 @@ public class UserWindow extends JDialog {
         JDialog frame = new JDialog();
         frame.setModal(true);
         frame.setTitle("Modicifación Usuario");
+        frame.setResizable(false);
         frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         frame.getContentPane().add(new ModGUI(_user));
 
@@ -336,6 +341,7 @@ public class UserWindow extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 JDialog frame = new JDialog();
                 frame.setModal(true);
+                frame.setResizable(false);
                 frame.setTitle("Opciones de Filtrado");
                 frame.getContentPane().add(new FiltrarGUI());
                 frame.pack();
@@ -353,66 +359,70 @@ public class UserWindow extends JDialog {
 
                     @Override
                     public void windowClosed(WindowEvent e) {
+                        if (!TIPOFILTRADO.equals("") && !DOMICILIO.equals("")) {
+                            try {
+                                IFachadaSubsUsuarios subsUsuarios = new FachadaSubsUsuarios();
+                                Pair<List<Persona>, Integer> listaFiltrada = subsUsuarios
+                                        .consultarListaUsuarios(DOMICILIO, TIPOFILTRADO);
+                                int resultado = listaFiltrada.getSecond();
+                                switch (resultado) {
+                                    case 0:
+                                        break;
+                                    case 1:
+                                        throw new UserException(
+                                                "Fallo al modificar el usuario. Compruebe que no exista ya");
+                                    case 10:
+                                        throw new GUIException(
+                                                "Fallo al encontrar el archivo de usuarios. Contacte con el soporte.");
+                                    default:
+                                        throw new GUIException("Error inesperado. Contacte con el soporte");
+                                }
+                                JDialog frame1 = new JDialog();
+                                frame1.setModal(true);
+                                frame1.setTitle("Lista Usuarios");
+                                frame1.setResizable(false);
+                                frame1.getContentPane().add(new UserListPanel(listaFiltrada.getFirst()));
+                                frame1.pack();
+                                frame1.setVisible(true);
+                                frame.setLocationRelativeTo(null);
+                                frame1.addWindowListener(new WindowListener() {
+                                    @Override
+                                    public void windowOpened(WindowEvent e) {
+                                    }
 
-                        try {
-                            IFachadaSubsUsuarios subsUsuarios = new FachadaSubsUsuarios();
-                            Pair<List<Persona>, Integer> listaFiltrada = subsUsuarios.consultarListaUsuarios(DOMICILIO,
-                                    TIPOFILTRADO);
-                            int resultado = listaFiltrada.getSecond();
-                            switch (resultado) {
-                                case 0:
-                                    break;
-                                case 1:
-                                    throw new UserException(
-                                            "Fallo al modificar el usuario. Compruebe que no exista ya");
-                                case 10:
-                                    throw new GUIException(
-                                            "Fallo al encontrar el archivo de usuarios. Contacte con el soporte.");
-                                default:
-                                    throw new GUIException("Error inesperado. Contacte con el soporte");
+                                    @Override
+                                    public void windowClosing(WindowEvent e) {
+                                    }
+
+                                    @Override
+                                    public void windowClosed(WindowEvent e) {
+
+                                    }
+
+                                    @Override
+                                    public void windowIconified(WindowEvent e) {
+                                    }
+
+                                    @Override
+                                    public void windowDeiconified(WindowEvent e) {
+                                    }
+
+                                    @Override
+                                    public void windowActivated(WindowEvent e) {
+                                    }
+
+                                    @Override
+                                    public void windowDeactivated(WindowEvent e) {
+                                    }
+
+                                });
+
+                            } catch (Exception e1) {
+                                JOptionPane.showMessageDialog(null,
+                                        "No se pudo abrir el archivo de usuarios. Contacte con el soporte.");
                             }
-                            JDialog frame1 = new JDialog();
-                            frame1.setModal(true);
-                            frame1.setTitle("Lista Usuarios");
-                            frame1.getContentPane().add(new UserListPanel(listaFiltrada.getFirst()));
-                            frame1.pack();
-                            frame1.setVisible(true);
-                            frame.setLocationRelativeTo(null);
-                            frame1.addWindowListener(new WindowListener() {
-                                @Override
-                                public void windowOpened(WindowEvent e) {
-                                }
-
-                                @Override
-                                public void windowClosing(WindowEvent e) {
-                                }
-
-                                @Override
-                                public void windowClosed(WindowEvent e) {
-
-                                }
-
-                                @Override
-                                public void windowIconified(WindowEvent e) {
-                                }
-
-                                @Override
-                                public void windowDeiconified(WindowEvent e) {
-                                }
-
-                                @Override
-                                public void windowActivated(WindowEvent e) {
-                                }
-
-                                @Override
-                                public void windowDeactivated(WindowEvent e) {
-                                }
-
-                            });
-
-                        } catch (Exception e1) {
-                            JOptionPane.showMessageDialog(null,
-                                    "No se pudo abrir el archivo de usuarios. Contacte con el soporte.");
+                            TIPOFILTRADO = "";
+                            DOMICILIO = "";
                         }
                     }
 

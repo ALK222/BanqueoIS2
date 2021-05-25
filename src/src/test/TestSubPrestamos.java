@@ -19,8 +19,8 @@ import dominio.EstadoPrestamo;
 import dominio.Prestamo;
 import prestamosdao.control.PrestamoJSON;
 import prestamosdao.control.SADAOPrestamos;
-import subsprestamos.FachadaSubsPrestamos;
-import subsprestamos.IFachadaSubsPrestamos;
+import subsprestamos.model.FachadaSubsPrestamos;
+import subsprestamos.model.IFachadaSubsPrestamos;
 
 @RunWith(JUnitPlatform.class)
 public class TestSubPrestamos {

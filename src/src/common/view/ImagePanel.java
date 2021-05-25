@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 
 /**
  * Panel de imagen
+ * 
+ * @see JPanel
  */
 public class ImagePanel extends JPanel {
 

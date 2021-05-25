@@ -8,17 +8,32 @@ import javax.swing.table.AbstractTableModel;
 import dominio.Prestamo;
 import prestamosdao.control.PrestamoJSON;
 
+/**
+ * Tabla para los datos de prestamos
+ * 
+ * @see AbstractTableModel
+ */
 public class PrestTableModel extends AbstractTableModel {
     private static final long serialVersionUID = 1L;
     private List<Prestamo> _prestamos;
     private String[] labels = { "Numero de Prestamo", "Numero De Referencia" };
 
+    /**
+     * Constructor vacío para que busque la lista de cuentas entera
+     * 
+     * @throws FileNotFoundException Si no puede contactar con la base de datos
+     */
     public PrestTableModel() throws FileNotFoundException {
-    	_prestamos = PrestamoJSON.leerListaPrestamos();
+        _prestamos = PrestamoJSON.leerListaPrestamos();
     }
 
+    /**
+     * Constructor con una lista ya dada
+     * 
+     * @param listaFiltrada lista a la que se le ha aplicado un filtro
+     */
     public PrestTableModel(List<Prestamo> listaFiltrada) {
-    	_prestamos = listaFiltrada;
+        _prestamos = listaFiltrada;
     }
 
     @Override

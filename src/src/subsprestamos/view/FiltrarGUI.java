@@ -31,7 +31,7 @@ public class FiltrarGUI extends JPanel {
      */
     public FiltrarGUI() {
         // construct preComponents
-        String[] modeSelectorItems = { "Cuenta Asociada"};
+        String[] modeSelectorItems = { "Cuenta Asociada" };
 
         // construct components
         modeSelector = new JComboBox<String>(modeSelectorItems);
@@ -70,7 +70,7 @@ public class FiltrarGUI extends JPanel {
                     if (modeKey.getText() == "") {
                         throw new GUIException("Cuenta Asociada obligatorio.");
                     }
-                    PrestWindow.CUENTAASOCIADA = modeKeyValue.getText();
+                    PrestWindow.NUMCUENTA = modeKeyValue.getText();
                     quit();
                 } catch (Exception e1) {
                     JOptionPane.showMessageDialog(null, e1.getMessage());

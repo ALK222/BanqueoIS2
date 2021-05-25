@@ -18,12 +18,12 @@ public class Persona implements Comparable<Persona> {
 	/**
 	 * Constructor de usuario con parámetros
 	 * 
-	 * @param dni
-	 * @param nombre
-	 * @param domicilio
-	 * @param tlf
-	 * @param contrasena
-	 * @param email
+	 * @param dni        DNI del usuario
+	 * @param nombre     Nombre del usuario
+	 * @param domicilio  Domicilio del usuario
+	 * @param tlf        Teléfono del usuario
+	 * @param contrasena Contraseña del usuario
+	 * @param email      Email del usuario
 	 */
 	public Persona(String dni, String nombre, String domicilio, int tlf, String contrasena, String email) {
 		this._dni = dni;

@@ -15,8 +15,8 @@ import org.junit.runner.RunWith;
 
 import dominio.Tarjeta;
 import dominio.TipoTarjeta;
-import substarjetas.FachadaSubsTarjetas;
-import substarjetas.IFachadaSubsTarjetas;
+import substarjetas.model.FachadaSubsTarjetas;
+import substarjetas.model.IFachadaSubsTarjetas;
 import tarjetasdao.control.TarjetasJSON;
 
 @RunWith(JUnitPlatform.class)

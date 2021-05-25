@@ -20,11 +20,11 @@ import common.exception.GUIException;
 import common.misc.Pair;
 import dominio.Cuenta;
 import dominio.Persona;
-import subscuentas.FachadaSubsCuentas;
-import subscuentas.IFachadaSubsCuentas;
+import subscuentas.model.FachadaSubsCuentas;
+import subscuentas.model.IFachadaSubsCuentas;
 
 /**
- * Ventana principal de la GUI de gestión de usuarios
+ * Ventana principal de la GUI de gestión de cuentas
  * 
  * @see JDialog
  */
@@ -59,7 +59,6 @@ public class CuentaWindow extends JDialog {
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
         this.setContentPane(mainPanel);
-        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setTitle("Control de cuentas");
         // Buttons
         JToolBar botonesAltaBaja = new JToolBar();
@@ -76,44 +75,12 @@ public class CuentaWindow extends JDialog {
         createListaButton(botonesListaModificar);
         this.add(botonesListaModificar, BorderLayout.WEST);
 
-        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         this.pack();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        this.addWindowListener(new WindowListener() {
 
-            @Override
-            public void windowOpened(WindowEvent e) {
-            }
-
-            @Override
-            public void windowIconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeiconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeactivated(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-                quit();
-
-            }
-
-            @Override
-            public void windowClosed(WindowEvent e) {
-
-            }
-
-            @Override
-            public void windowActivated(WindowEvent e) {
-            }
-        });
     }
 
     /**
@@ -138,6 +105,7 @@ public class CuentaWindow extends JDialog {
                 JDialog frame = new JDialog();
                 frame.setTitle("Alta cuenta");
                 frame.setModal(true);
+                frame.setResizable(false);
                 frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                 frame.getContentPane().add(new AltaGUI());
                 frame.pack();
@@ -164,6 +132,7 @@ public class CuentaWindow extends JDialog {
                 JDialog frame1 = new JDialog();
                 frame1.setTitle("Lista Cuentas");
                 frame1.setModal(true);
+                frame1.setResizable(false);
                 try {
                     frame1.getContentPane().add(new CuentaListPanel(null));
                     frame1.pack();
@@ -186,32 +155,39 @@ public class CuentaWindow extends JDialog {
 
                     @Override
                     public void windowClosed(WindowEvent e) {
-                        IFachadaSubsCuentas subsCuentas = new FachadaSubsCuentas();
-                        Cuenta aux = subsCuentas.buscaCuenta(Integer.parseInt(NUM_CUENTA)).getFirst();
-                        int decision = JOptionPane.showConfirmDialog(null,
-                                "¿Dar de baja a la cuenta " + NUM_CUENTA + "?", "Baja cuenta",
-                                JOptionPane.YES_NO_CANCEL_OPTION);
-                        int resultado = 1;
-                        try {
-                            if (decision == 0) {
-                                resultado = subsCuentas.bajaCuenta(aux);
+                        if (!NUM_CUENTA.equals("")) {
+
+                            IFachadaSubsCuentas subsCuentas = new FachadaSubsCuentas();
+                            Cuenta aux = subsCuentas.buscaCuenta(Integer.parseInt(NUM_CUENTA)).getFirst();
+                            int decision = JOptionPane.showConfirmDialog(null,
+                                    "¿Dar de baja a la cuenta " + NUM_CUENTA + "?", "Baja cuenta",
+                                    JOptionPane.YES_NO_CANCEL_OPTION);
+                            int resultado = 1;
+                            if (decision != 2) {
+                                try {
+
+                                    if (decision == 0) {
+                                        resultado = subsCuentas.bajaCuenta(aux);
+                                    }
+                                    switch (resultado) {
+                                        case 0:
+                                            JOptionPane.showMessageDialog(null, "Cuenta eliminada correctamente");
+                                            quit();
+                                            break;
+                                        case 1:
+                                            throw new CuentaException(
+                                                    "Fallo al eliminar la cuenta. Compruebe que no exista ya");
+                                        case 10:
+                                            throw new GUIException(
+                                                    "Fallo al encontrar el archivo de cuentas. Contacte con el soporte.");
+                                        default:
+                                            throw new GUIException("Error inesperado. Contacte con el soporte");
+                                    }
+                                } catch (Exception e1) {
+                                    JOptionPane.showMessageDialog(null, e1.getMessage());
+                                }
                             }
-                            switch (resultado) {
-                                case 0:
-                                    JOptionPane.showMessageDialog(null, "Cuenta eliminada correctamente");
-                                    quit();
-                                    break;
-                                case 1:
-                                    throw new CuentaException(
-                                            "Fallo al eliminar la cuenta. Compruebe que no exista ya");
-                                case 10:
-                                    throw new GUIException(
-                                            "Fallo al encontrar el archivo de cuentas. Contacte con el soporte.");
-                                default:
-                                    throw new GUIException("Error inesperado. Contacte con el soporte");
-                            }
-                        } catch (Exception e1) {
-                            JOptionPane.showMessageDialog(null, e1.getMessage());
+                            NUM_CUENTA = "";
                         }
                     }
 
@@ -265,10 +241,14 @@ public class CuentaWindow extends JDialog {
 
     }
 
+    /**
+     * Comportamienteo de la ventana de modicicación para gestores
+     */
     private void createGestorModFrame() {
         JDialog frame1 = new JDialog();
         frame1.setTitle("Lista Cuentas");
         frame1.setModal(true);
+        frame1.setResizable(false);
         try {
             frame1.getContentPane().add(new CuentaListPanel(null));
             frame1.pack();
@@ -294,6 +274,7 @@ public class CuentaWindow extends JDialog {
                     JDialog frame = new JDialog();
                     frame.setTitle("Modicifacion Cuenta");
                     frame.setModal(true);
+                    frame.setResizable(false);
                     frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                     IFachadaSubsCuentas subsCuentas = new FachadaSubsCuentas();
                     Cuenta aux = subsCuentas.buscaCuenta(Integer.parseInt(NUM_CUENTA)).getFirst();
@@ -332,6 +313,7 @@ public class CuentaWindow extends JDialog {
         JDialog frame1 = new JDialog();
         frame1.setTitle("Lista Cuentas");
         frame1.setModal(true);
+        frame1.setResizable(false);
         try {
             IFachadaSubsCuentas subsCuentas = new FachadaSubsCuentas();
             Pair<List<Cuenta>, Integer> listaFiltrada = subsCuentas.consultarListaCuentas(_currentUser.getNombre(),
@@ -371,6 +353,7 @@ public class CuentaWindow extends JDialog {
                     JDialog frame = new JDialog();
                     frame.setTitle("Modificacion Cuenta");
                     frame.setModal(true);
+                    frame.setResizable(true);
                     frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                     IFachadaSubsCuentas subsCuentas = new FachadaSubsCuentas();
                     Cuenta aux = subsCuentas.buscaCuenta(Integer.parseInt(NUM_CUENTA)).getFirst();
@@ -434,6 +417,7 @@ public class CuentaWindow extends JDialog {
         JDialog frame = new JDialog();
         frame.setTitle("Opciones de filtrado");
         frame.setModal(true);
+        frame.setResizable(false);
         frame.getContentPane().add(new FiltrarGUI());
         frame.pack();
         frame.setVisible(true);
@@ -461,6 +445,7 @@ public class CuentaWindow extends JDialog {
                                 JDialog frame1 = new JDialog();
                                 frame1.setTitle("Lista cuentas");
                                 frame1.setModal(true);
+                                frame1.setResizable(false);
                                 frame1.getContentPane().add(new CuentaListPanel(listaFiltrada.getFirst()));
                                 frame1.pack();
                                 frame1.setVisible(true);
@@ -548,6 +533,7 @@ public class CuentaWindow extends JDialog {
                     JDialog frame1 = new JDialog();
                     frame1.setTitle("Lista cuentas");
                     frame1.setModal(true);
+                    frame1.setResizable(false);
                     frame1.getContentPane().add(new CuentaListPanel(listaFiltrada.getFirst()));
                     frame1.pack();
                     frame1.setVisible(true);

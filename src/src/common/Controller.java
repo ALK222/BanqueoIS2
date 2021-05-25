@@ -36,6 +36,9 @@ public class Controller {
         _isAdmin = second;
     }
 
+    /**
+     * Inicio de la GUI
+     */
     public void initGUI() {
         new MainWindow(this);
     }

@@ -22,6 +22,8 @@ import subsusuarios.view.UserWindow;
 
 /**
  * Botones del programa principal
+ * 
+ * @see JPanel
  */
 public class ControlPanel extends JPanel {
 
@@ -112,7 +114,6 @@ public class ControlPanel extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                // new Insertar gui tarjeta
                 new TarjWindow(_controller.isAdmin(), _controller.getCurrentUser());
             }
 
@@ -134,7 +135,6 @@ public class ControlPanel extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                // insertar gui prestamo
                 new PrestWindow(_controller.isAdmin(), _controller.getCurrentUser());
             }
 

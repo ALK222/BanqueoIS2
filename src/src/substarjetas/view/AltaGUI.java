@@ -16,8 +16,8 @@ import common.exception.GUIException;
 import common.exception.UserException;
 import dominio.Tarjeta;
 import dominio.TipoTarjeta;
-import substarjetas.FachadaSubsTarjetas;
-import substarjetas.IFachadaSubsTarjetas;
+import substarjetas.model.FachadaSubsTarjetas;
+import substarjetas.model.IFachadaSubsTarjetas;
 
 /**
  * GUI de alta de tarjetas
@@ -181,7 +181,7 @@ public class AltaGUI extends JPanel {
      * Comportamiento al cerrar la ventana
      */
     private void quit() {
-    	JDialog frame = (JDialog) SwingUtilities.getWindowAncestor(this);
+        JDialog frame = (JDialog) SwingUtilities.getWindowAncestor(this);
         frame.dispose();
     }
 }

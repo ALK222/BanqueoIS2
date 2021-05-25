@@ -6,46 +6,46 @@ package common.exception;
 public class CuentaException extends Exception {
 
     /**
-     * Void constructor
+     * Constructor vacío
      */
     public CuentaException() {
     }
 
     /**
-     * Constructor with a message
+     * Contructor con un mensaje
      * 
-     * @param message message string
+     * @param message String con el mensaje
      */
     public CuentaException(String message) {
         super(message);
     }
 
     /**
-     * Constructor with a cause for the exception
+     * Constructor con una causa
      * 
-     * @param cause cause of the exception
+     * @param cause Causa de la excepción
      */
     public CuentaException(Throwable cause) {
         super(cause);
     }
 
     /**
-     * Constructor with a message and a cause for the exception
+     * Constructor con un mensaje y una causa
      * 
-     * @param message message of the exception
-     * @param cause   cause of the exception
+     * @param message Mensaje de la excepción
+     * @param cause   Causa de la excepcion
      */
     public CuentaException(String message, Throwable cause) {
         super(message, cause);
     }
 
     /**
-     * Constructor with a message and a cause for the exception
+     * Constructor con un mensaje, una causa y dos flags
      * 
-     * @param message            message of the exception
-     * @param cause              cause of the exception
-     * @param enableSuppresion   whether or not supresion is enable
-     * @param writableStackTrace whether or not the stack trace should be writable
+     * @param message            Mensaje de la excepción
+     * @param cause              Causa de la excepción
+     * @param enableSuppresion   Activar o no la supresión
+     * @param writableStackTrace Escribir o no en la pila
      */
     public CuentaException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);

@@ -16,13 +16,13 @@ public class Tarjeta {
 	/**
 	 * Constructor parametrizado de tarjeta
 	 * 
-	 * @param titular
-	 * @param pin
-	 * @param estado
-	 * @param numTarjeta
-	 * @param fechaCad
-	 * @param tipoTarjeta
-	 * @param dni
+	 * @param titular     Titular de la tarjeta
+	 * @param pin         PIN de la tarjeta
+	 * @param estado      Si la tarjeta está activa o no
+	 * @param numTarjeta  Número de la tarjeta
+	 * @param fechaCad    Fecha de caducidad de la tarjeta
+	 * @param tipoTarjeta Tipo de la tarjeta
+	 * @param dni         DNI del dueño
 	 */
 	public Tarjeta(String titular, int pin, boolean estado, int numTarjeta, String fechaCad, TipoTarjeta tipoTarjeta,
 			String dni) {
@@ -66,7 +66,7 @@ public class Tarjeta {
 	public void setEstado(boolean estado) {
 		this._estado = estado;
 	}
-	
+
 	public boolean getEstado() {
 		return _estado;
 	}

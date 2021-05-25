@@ -19,11 +19,16 @@ import common.misc.Pair;
 import dominio.Cuenta;
 import dominio.EstadoPrestamo;
 import dominio.Prestamo;
-import subscuentas.FachadaSubsCuentas;
-import subscuentas.IFachadaSubsCuentas;
-import subsprestamos.FachadaSubsPrestamos;
-import subsprestamos.IFachadaSubsPrestamos;
+import subscuentas.model.FachadaSubsCuentas;
+import subscuentas.model.IFachadaSubsCuentas;
+import subsprestamos.model.FachadaSubsPrestamos;
+import subsprestamos.model.IFachadaSubsPrestamos;
 
+/**
+ * GUI del alta de préstamos
+ * 
+ * @see JPanel
+ */
 public class AltaGUI extends JPanel {
 
     private static final long serialVersionUID = 1L;
@@ -45,10 +50,16 @@ public class AltaGUI extends JPanel {
     protected JButton altaButton;
     protected JButton cancelButton;
 
+    /**
+     * Constructor de la GUI
+     */
     public AltaGUI() {
         initGUI();
     }
 
+    /**
+     * Constructor del panel de la GUI
+     */
     public void initGUI() {
         // construct components
         cantidadLabel = new JLabel("Cantidad*");
@@ -181,6 +192,9 @@ public class AltaGUI extends JPanel {
 
     }
 
+    /**
+     * Comportamiento al cerrar la ventana
+     */
     private void quit() {
         JDialog frame = (JDialog) SwingUtilities.getWindowAncestor(this);
         frame.dispose();

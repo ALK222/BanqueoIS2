@@ -16,8 +16,8 @@ import common.exception.GUIException;
 import common.exception.UserException;
 import dominio.EstadoPrestamo;
 import dominio.Prestamo;
-import subsprestamos.FachadaSubsPrestamos;
-import subsprestamos.IFachadaSubsPrestamos;
+import subsprestamos.model.FachadaSubsPrestamos;
+import subsprestamos.model.IFachadaSubsPrestamos;
 
 public class ModGUI extends JPanel {
     private static final long serialVersionUID = 1L;

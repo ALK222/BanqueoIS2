@@ -1,4 +1,4 @@
-package subscuentas;
+package subscuentas.model;
 
 import java.util.List;
 
@@ -6,9 +6,10 @@ import common.misc.Pair;
 import dominio.Cuenta;
 
 /**
- * Interfaz de la fachada del sistema de aplicaciones
+ * Interfaz del sistema de aplicaciones
  */
-public interface IFachadaSubsCuentas {
+public interface ISASubsCuentas {
+
     /**
      * Da de alta una cuenta
      * 

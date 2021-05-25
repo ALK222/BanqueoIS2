@@ -18,8 +18,8 @@ import org.json.JSONArray;
 import common.exception.CuentaException;
 import common.exception.GUIException;
 import dominio.Cuenta;
-import subscuentas.FachadaSubsCuentas;
-import subscuentas.IFachadaSubsCuentas;
+import subscuentas.model.FachadaSubsCuentas;
+import subscuentas.model.IFachadaSubsCuentas;
 
 /**
  * GUI de modificación de cuentas
@@ -138,7 +138,7 @@ public class ModGUI extends JPanel {
 
         // add components
         add(titular);
-        add(dni);
+        add(dniLabel);
         add(titularLabel);
         add(dni);
         add(numCuentaLabel);
@@ -156,7 +156,7 @@ public class ModGUI extends JPanel {
         titular.setBounds(30, 35, 870, 35);
         dni.setBounds(30, 95, 200, 35);
         titularLabel.setBounds(30, 10, 100, 25);
-        dni.setBounds(30, 70, 100, 25);
+        dniLabel.setBounds(30, 70, 100, 25);
         numCuentaLabel.setBounds(270, 70, 100, 25);
         numCuenta.setBounds(270, 95, 300, 35);
         saldoLabel.setBounds(30, 130, 100, 25);
@@ -173,7 +173,7 @@ public class ModGUI extends JPanel {
      * Comportamiento al cerrar la ventana
      */
     private void quit() {
-    	JDialog frame = (JDialog) SwingUtilities.getWindowAncestor(this);
+        JDialog frame = (JDialog) SwingUtilities.getWindowAncestor(this);
         frame.dispose();
     }
 }

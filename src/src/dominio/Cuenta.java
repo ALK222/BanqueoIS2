@@ -17,6 +17,16 @@ public class Cuenta {
 	private String _firmaDigital;
 	private JSONArray _movimientos;
 
+	/**
+	 * Constructor con parámetros para cuenta
+	 * 
+	 * @param titularCuenta Nombre del titular de la cuenta
+	 * @param dni           DNI del titular
+	 * @param numeroCuenta  Número de la cuenta
+	 * @param saldo         Saldo actual de la cuenta
+	 * @param firmaDigital  Firma digital del titular
+	 * @param movimientos   Movimientos de la cuenta
+	 */
 	public Cuenta(String titularCuenta, String dni, int numeroCuenta, double saldo, String firmaDigital,
 			JSONArray movimientos) {
 		_titularCuenta = new Pair<String, String>(titularCuenta, dni);

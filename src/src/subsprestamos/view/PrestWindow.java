@@ -23,11 +23,16 @@ import common.misc.Pair;
 import dominio.Cuenta;
 import dominio.Persona;
 import dominio.Prestamo;
-import subscuentas.FachadaSubsCuentas;
-import subscuentas.IFachadaSubsCuentas;
-import subsprestamos.FachadaSubsPrestamos;
-import subsprestamos.IFachadaSubsPrestamos;
+import subscuentas.model.FachadaSubsCuentas;
+import subscuentas.model.IFachadaSubsCuentas;
+import subsprestamos.model.FachadaSubsPrestamos;
+import subsprestamos.model.IFachadaSubsPrestamos;
 
+/**
+ * Ventana principal de la GUI de gestión de préstamos
+ * 
+ * @see JDialog
+ */
 public class PrestWindow extends JDialog {
 
     private static final long serialVersionUID = 1L;
@@ -36,17 +41,24 @@ public class PrestWindow extends JDialog {
     private Persona _user;
     private static Dimension tamanoBoton = new Dimension(200, 50);
 
-    public static String CUENTAASOCIADA = "";
-    public static String TIPOFILTRADO = "";
     public static String NUMREFERENCIA = "";
     public static String NUMCUENTA = "";
 
+    /**
+     * Constructor para la GUI de cuentas
+     * 
+     * @param permisosGestor Activa o no las funciones de gestor
+     * @param p              Usuario actual del programa
+     */
     public PrestWindow(boolean permisosGestor, Persona p) {
         _permisosGestor = permisosGestor;
         _user = p;
         initGUI();
     }
 
+    /**
+     * Creador de la ventana principal de la GUI de cuentas
+     */
     private void initGUI() {
         setModal(true);
 
@@ -71,7 +83,6 @@ public class PrestWindow extends JDialog {
         createListaButton(botonesListaModificar);
         this.add(botonesListaModificar, BorderLayout.WEST);
 
-        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.pack();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
@@ -111,10 +122,18 @@ public class PrestWindow extends JDialog {
         });
     }
 
+    /**
+     * Comportamiento de la ventana al cerrarse
+     */
     private void quit() {
         this.dispose();
     }
 
+    /**
+     * Método para crear el botón de alta de cuentas
+     * 
+     * @param aux Barra a la que añadir el botón
+     */
     private void createAltaButton(JToolBar aux) {
         JButton altaButton = new JButton("Solicitar Prestamo");
         altaButton.setToolTipText("Solicitar prestamo, solo disponible para clientes");
@@ -129,6 +148,7 @@ public class PrestWindow extends JDialog {
                 frame.getContentPane().add(new AltaGUI());
                 frame.pack();
                 frame.setVisible(true);
+                frame.setResizable(false);
                 frame.setLocationRelativeTo(null);
             }
         });
@@ -137,6 +157,11 @@ public class PrestWindow extends JDialog {
         aux.add(altaButton, BorderLayout.NORTH);
     }
 
+    /**
+     * Método para crear el botón de baja de cuentas
+     * 
+     * @param aux Barra a la que añadir el botón
+     */
     private void createBajaButton(JToolBar aux) {
         JButton bajaButton = new JButton("Aceptar/Cancelar prestamo");
         bajaButton.setToolTipText("Cancelar el prestamo, solo disponible para gestores");
@@ -146,6 +171,7 @@ public class PrestWindow extends JDialog {
                 JDialog frame1 = new JDialog();
                 frame1.setTitle("Lista Prestamos");
                 frame1.setModal(true);
+                frame1.setResizable(false);
                 frame1.addWindowListener(new WindowListener() {
 
                     @Override
@@ -250,6 +276,11 @@ public class PrestWindow extends JDialog {
         aux.add(bajaButton, BorderLayout.SOUTH);
     }
 
+    /**
+     * Método para crear el botón de modificación de cuentas
+     * 
+     * @param aux barra a la que añadir el botón
+     */
     private void createModificarButton(JToolBar aux) {
         JButton modificacionButton = new JButton("Modificación préstamo");
         modificacionButton.setToolTipText("Modificación de préstamo, solo disponible para gestores");
@@ -264,10 +295,14 @@ public class PrestWindow extends JDialog {
         aux.add(modificacionButton, BorderLayout.NORTH);
     }
 
+    /**
+     * Comportamienteo de la ventana de modicicación para gestores
+     */
     private void createGestorModFrame() {
         JDialog frame1 = new JDialog();
         frame1.setTitle("Lista Prestamos");
         frame1.setModal(true);
+        frame1.setResizable(false);
         try {
             frame1.getContentPane().add(new PrestListPanel(null));
             frame1.pack();
@@ -293,6 +328,7 @@ public class PrestWindow extends JDialog {
                     JDialog frame = new JDialog();
                     frame.setTitle("Modicifacion Prestamo");
                     frame.setModal(true);
+                    frame.setResizable(false);
                     frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                     IFachadaSubsPrestamos subsPrestamos = new FachadaSubsPrestamos();
                     Pair<Prestamo, Integer> aux = subsPrestamos.buscarPrestamo(Integer.parseInt(NUMREFERENCIA));
@@ -325,6 +361,11 @@ public class PrestWindow extends JDialog {
         });
     }
 
+    /**
+     * Método para crear el botón de listas de cuentas
+     * 
+     * @param aux barra a la que añadir el botón
+     */
     private void createListaButton(JToolBar aux) {
         JButton listaButton = new JButton("Lista de prestamos");
         listaButton.setToolTipText("Lista de prestamos, solo disponible para gestores");
@@ -345,10 +386,14 @@ public class PrestWindow extends JDialog {
         aux.add(listaButton, BorderLayout.SOUTH);
     }
 
+    /**
+     * Creador de la ventana de Listas para gestores
+     */
     private void createGestorListView() {
         JDialog frame1 = new JDialog();
         frame1.setTitle("Lista Prestamos");
         frame1.setModal(true);
+        frame1.setResizable(false);
         try {
             frame1.getContentPane().add(new PrestListPanel(null));
             frame1.pack();
@@ -360,6 +405,9 @@ public class PrestWindow extends JDialog {
 
     }
 
+    /**
+     * Creador de la ventana de Listas para usuarios
+     */
     private void createUserListView() {
         try { // Listado de cuentas
             IFachadaSubsCuentas subsCuentas = new FachadaSubsCuentas();
@@ -378,6 +426,7 @@ public class PrestWindow extends JDialog {
             JDialog frame1 = new JDialog();
             frame1.setTitle("Lista Cuentas");
             frame1.setModal(true);
+            frame1.setResizable(false);
             frame1.getContentPane().add(new CuentaListPanel(aux2.getFirst()));
             frame1.pack();
             frame1.setVisible(true);
@@ -394,76 +443,82 @@ public class PrestWindow extends JDialog {
 
                 @Override
                 public void windowClosed(WindowEvent e) {
-                    try { // Lista de prestamos
-                        IFachadaSubsPrestamos subsPrestamos = new FachadaSubsPrestamos();
-                        int resultado = aux2.getSecond();
-                        switch (resultado) {
-                            case 0:
-                                Pair<Cuenta, Integer> resultadoCuenta = subsCuentas
-                                        .buscaCuenta(Integer.parseInt(NUMCUENTA));
-                                if (resultadoCuenta.getSecond() == 1) {
-                                    throw new CuentaException("Cuenta no encontrada.");
-                                } else if (resultadoCuenta.getSecond() == 10) {
-                                    throw new CuentaException(
-                                            "No se pudo contactar con la base de datos. Contacte con el soporte.");
-                                }
-                                Pair<List<Prestamo>, Integer> listaFiltrada = subsPrestamos
-                                        .consultarListaPrestamos(resultadoCuenta.getFirst());
-                                if (resultadoCuenta.getSecond() == 1) {
-                                    throw new CuentaException("La cuenta no tiene prestamos asociados.");
-                                } else if (resultadoCuenta.getSecond() == 10) {
-                                    throw new CuentaException(
-                                            "No se pudo contactar con la base de datos. Contacte con el soporte.");
-                                }
-                                JDialog frame2 = new JDialog();
-                                frame2.setTitle("Lista prestamos");
-                                frame2.setModal(true);
-                                frame2.getContentPane().add(new PrestListPanel(listaFiltrada.getFirst()));
-                                frame2.pack();
-                                frame2.setVisible(true);
-                                frame2.setLocationRelativeTo(null);
-                                frame2.addWindowListener(new WindowListener() {
-                                    @Override
-                                    public void windowOpened(WindowEvent e) {
+                    if (!NUMCUENTA.equals("")) {
+                        try { // Lista de prestamos
+
+                            IFachadaSubsPrestamos subsPrestamos = new FachadaSubsPrestamos();
+                            int resultado = aux2.getSecond();
+                            switch (resultado) {
+                                case 0:
+                                    Pair<Cuenta, Integer> resultadoCuenta = subsCuentas
+                                            .buscaCuenta(Integer.parseInt(NUMCUENTA));
+                                    if (resultadoCuenta.getSecond() == 1) {
+                                        throw new CuentaException("Cuenta no encontrada.");
+                                    } else if (resultadoCuenta.getSecond() == 10) {
+                                        throw new CuentaException(
+                                                "No se pudo contactar con la base de datos. Contacte con el soporte.");
                                     }
-
-                                    @Override
-                                    public void windowClosing(WindowEvent e) {
+                                    Pair<List<Prestamo>, Integer> listaFiltrada = subsPrestamos
+                                            .consultarListaPrestamos(resultadoCuenta.getFirst());
+                                    if (resultadoCuenta.getSecond() == 1) {
+                                        throw new CuentaException("La cuenta no tiene prestamos asociados.");
+                                    } else if (resultadoCuenta.getSecond() == 10) {
+                                        throw new CuentaException(
+                                                "No se pudo contactar con la base de datos. Contacte con el soporte.");
                                     }
+                                    JDialog frame2 = new JDialog();
+                                    frame2.setTitle("Lista prestamos");
+                                    frame2.setModal(true);
+                                    frame2.setResizable(false);
+                                    frame2.getContentPane().add(new PrestListPanel(listaFiltrada.getFirst()));
+                                    frame2.pack();
+                                    frame2.setVisible(true);
+                                    frame2.setLocationRelativeTo(null);
+                                    frame2.addWindowListener(new WindowListener() {
+                                        @Override
+                                        public void windowOpened(WindowEvent e) {
+                                        }
 
-                                    @Override
-                                    public void windowClosed(WindowEvent e) {
+                                        @Override
+                                        public void windowClosing(WindowEvent e) {
+                                        }
 
-                                    }
+                                        @Override
+                                        public void windowClosed(WindowEvent e) {
 
-                                    @Override
-                                    public void windowIconified(WindowEvent e) {
-                                    }
+                                        }
 
-                                    @Override
-                                    public void windowDeiconified(WindowEvent e) {
-                                    }
+                                        @Override
+                                        public void windowIconified(WindowEvent e) {
+                                        }
 
-                                    @Override
-                                    public void windowActivated(WindowEvent e) {
-                                    }
+                                        @Override
+                                        public void windowDeiconified(WindowEvent e) {
+                                        }
 
-                                    @Override
-                                    public void windowDeactivated(WindowEvent e) {
-                                    }
+                                        @Override
+                                        public void windowActivated(WindowEvent e) {
+                                        }
 
-                                });
-                                break;
-                            case 1:
-                                throw new UserException("Fallo al modificar el prestamo. Compruebe que no exista ya");
-                            case 10:
-                                throw new GUIException(
-                                        "Fallo al encontrar el archivo de prestamos. Contacte con el soporte.");
-                            default:
-                                throw new GUIException("Error inesperado. Contacte con el soporte");
+                                        @Override
+                                        public void windowDeactivated(WindowEvent e) {
+                                        }
+
+                                    });
+                                    break;
+                                case 1:
+                                    throw new UserException(
+                                            "Fallo al modificar el prestamo. Compruebe que no exista ya");
+                                case 10:
+                                    throw new GUIException(
+                                            "Fallo al encontrar el archivo de prestamos. Contacte con el soporte.");
+                                default:
+                                    throw new GUIException("Error inesperado. Contacte con el soporte");
+                            }
+                        } catch (Exception e1) {
+                            JOptionPane.showMessageDialog(null, e1.getMessage());
                         }
-                    } catch (Exception e1) {
-                        JOptionPane.showMessageDialog(null, e1.getMessage());
+                        NUMCUENTA = "";
                     }
                 }
 

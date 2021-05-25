@@ -1,4 +1,4 @@
-package subscuentas;
+package subscuentas.model;
 
 import java.io.IOException;
 import java.util.List;

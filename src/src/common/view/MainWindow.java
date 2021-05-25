@@ -9,6 +9,8 @@ import common.Controller;
 
 /**
  * Ventana principal del programa
+ * 
+ * @see JFrame
  */
 public class MainWindow extends JFrame {
     private Controller _controller;
@@ -31,6 +33,6 @@ public class MainWindow extends JFrame {
         this.pack();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
-        this.setResizable(true);
+        this.setResizable(false);
     }
 }

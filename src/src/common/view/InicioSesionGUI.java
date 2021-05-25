@@ -23,6 +23,8 @@ import subsusuarios.model.IFachadaSubsUsuarios;
 
 /**
  * Ventana de inicio de sesion
+ * 
+ * @see JPanel
  */
 public class InicioSesionGUI extends JPanel {
     private JTextField dniValue;

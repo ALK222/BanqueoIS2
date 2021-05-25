@@ -17,8 +17,8 @@ import org.json.JSONArray;
 import common.exception.CuentaException;
 import common.exception.GUIException;
 import dominio.Cuenta;
-import subscuentas.FachadaSubsCuentas;
-import subscuentas.IFachadaSubsCuentas;
+import subscuentas.model.FachadaSubsCuentas;
+import subscuentas.model.IFachadaSubsCuentas;
 
 /**
  * GUI del alta de cuentas

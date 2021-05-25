@@ -16,8 +16,8 @@ import common.exception.GUIException;
 import common.exception.UserException;
 import dominio.Tarjeta;
 import dominio.TipoTarjeta;
-import substarjetas.FachadaSubsTarjetas;
-import substarjetas.IFachadaSubsTarjetas;
+import substarjetas.model.FachadaSubsTarjetas;
+import substarjetas.model.IFachadaSubsTarjetas;
 
 /**
  * GUI de modificación de tarjetas

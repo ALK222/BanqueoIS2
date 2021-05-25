@@ -5,49 +5,48 @@ package common.exception;
  */
 public class GUIException extends Exception {
     /**
-     * Void constructor
+     * Constructor vacío
      */
     public GUIException() {
-        super();
     }
 
     /**
-     * Constructor with a message
+     * Contructor con un mensaje
      * 
-     * @param message message string
+     * @param message String con el mensaje
      */
     public GUIException(String message) {
         super(message);
     }
 
     /**
-     * Constructor with a message and a cause for the exception
+     * Constructor con una causa
      * 
-     * @param message message of the exception
-     * @param cause   cause of the exception
-     */
-    public GUIException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
-    /**
-     * Constructor with a cause for the exception
-     * 
-     * @param cause cause of the exception
+     * @param cause Causa de la excepción
      */
     public GUIException(Throwable cause) {
         super(cause);
     }
 
     /**
-     * Constructor with a message and a cause for the exception
+     * Constructor con un mensaje y una causa
      * 
-     * @param message            message of the exception
-     * @param cause              cause of the exception
-     * @param enableSuppresion   whether or not supresion is enable
-     * @param writableStackTrace whether or not the stack trace should be writable
+     * @param message Mensaje de la excepción
+     * @param cause   Causa de la excepcion
      */
-    GUIException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    public GUIException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    /**
+     * Constructor con un mensaje, una causa y dos flags
+     * 
+     * @param message            Mensaje de la excepción
+     * @param cause              Causa de la excepción
+     * @param enableSuppresion   Activar o no la supresión
+     * @param writableStackTrace Escribir o no en la pila
+     */
+    public GUIException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 }

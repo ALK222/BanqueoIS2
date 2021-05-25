@@ -26,6 +26,12 @@ import javax.swing.border.TitledBorder;
 import common.exception.GUIException;
 import dominio.Prestamo;
 
+/**
+ * Panel para escoger el préstamo a modificar
+ * 
+ * @see JPanel
+ */
+
 public class PrestListPanel extends JPanel {
 
     private static final long serialVersionUID = 1L;
@@ -37,6 +43,14 @@ public class PrestListPanel extends JPanel {
     private JLabel numPrestamoAModificar;
     private JTextField numPrest;
 
+    /**
+     * Constructor de PrestamoListPanel
+     * 
+     * @param listaFiltrada una lista ya filtrada o null si se quiere buscar toda la
+     *                      lista
+     * @throws FileNotFoundException Si no se puede contactar con la base de datos
+     *                               en caso de que no se le de una lista filtrada
+     */
     public PrestListPanel(List<Prestamo> listaFiltrada) throws FileNotFoundException {
 
         // construct components
@@ -95,6 +109,14 @@ public class PrestListPanel extends JPanel {
 
     }
 
+    /**
+     * Crea un panel con un componente y un titulo
+     * 
+     * @param c     Componente a poner en el panel
+     * @param title Título del panel
+     * @return el panel ya formado
+     * @see JPanel
+     */
     private JPanel createViewPanel(JComponent c, String title) {
         JPanel p = new JPanel(new BorderLayout());
         Border b = BorderFactory.createLineBorder(Color.black, 2);
@@ -105,6 +127,9 @@ public class PrestListPanel extends JPanel {
         return p;
     }
 
+    /**
+     * Comportamiento de la ventana al cerrarse
+     */
     private void quit() {
         JDialog frame = (JDialog) SwingUtilities.getWindowAncestor(this);
         frame.dispose();

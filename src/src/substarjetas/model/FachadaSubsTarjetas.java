@@ -1,4 +1,4 @@
-package substarjetas;
+package substarjetas.model;
 
 import java.util.List;
 

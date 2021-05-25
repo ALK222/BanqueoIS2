@@ -1,4 +1,4 @@
-package subsprestamos;
+package subsprestamos.model;
 
 import java.util.List;
 

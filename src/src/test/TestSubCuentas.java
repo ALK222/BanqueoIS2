@@ -16,8 +16,8 @@ import org.junit.runner.RunWith;
 
 import cuentadao.control.CuentasJSON;
 import dominio.Cuenta;
-import subscuentas.FachadaSubsCuentas;
-import subscuentas.IFachadaSubsCuentas;
+import subscuentas.model.FachadaSubsCuentas;
+import subscuentas.model.IFachadaSubsCuentas;
 
 @RunWith(JUnitPlatform.class)
 class TestSubCuentas {

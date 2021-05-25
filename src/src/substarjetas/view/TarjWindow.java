@@ -20,8 +20,8 @@ import common.exception.UserException;
 import common.misc.Pair;
 import dominio.Persona;
 import dominio.Tarjeta;
-import substarjetas.FachadaSubsTarjetas;
-import substarjetas.IFachadaSubsTarjetas;
+import substarjetas.model.FachadaSubsTarjetas;
+import substarjetas.model.IFachadaSubsTarjetas;
 
 /**
  * Ventana principal para la GUI de gestión de tarjetas
@@ -37,7 +37,6 @@ public class TarjWindow extends JDialog {
     private static Dimension tamanoBoton = new Dimension(200, 50);
 
     public static String DNI = "";
-    public static String TIPOFILTRADO = "";
     public static String NUMTARJETA = "";
 
     /**
@@ -80,11 +79,10 @@ public class TarjWindow extends JDialog {
         createListaButton(botonesListaModificar);
         this.add(botonesListaModificar, BorderLayout.WEST);
 
-        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.pack();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
-        this.setResizable(true);
+        this.setResizable(false);
         this.addWindowListener(new WindowListener() {
 
             @Override
@@ -142,6 +140,7 @@ public class TarjWindow extends JDialog {
                 JDialog frame = new JDialog();
                 frame.setTitle("Alta tarjeta");
                 frame.setModal(true);
+                frame.setResizable(false);
                 frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                 frame.getContentPane().add(new AltaGUI());
                 frame.pack();
@@ -168,6 +167,7 @@ public class TarjWindow extends JDialog {
                 JDialog frame1 = new JDialog();
                 frame1.setTitle("Lista Tarjetas");
                 frame1.setModal(true);
+                frame1.setResizable(false);
                 try {
                     frame1.getContentPane().add(new TarjListPanel(null));
                     frame1.pack();
@@ -190,34 +190,37 @@ public class TarjWindow extends JDialog {
 
                     @Override
                     public void windowClosed(WindowEvent e) {
-                        IFachadaSubsTarjetas subsTarjetas = new FachadaSubsTarjetas();
-                        Pair<Integer, Tarjeta> aux = subsTarjetas.buscaTarjeta(Integer.parseInt(NUMTARJETA));
-                        int decision = JOptionPane.showConfirmDialog(null,
-                                "¿Dar de baja al tarjeta " + NUMTARJETA + "?", "Baja usuario",
-                                JOptionPane.YES_NO_CANCEL_OPTION);
-                        int resultado = 1;
-                        try {
-                            if (decision == 0) {
-                                resultado = subsTarjetas.bajaTarjeta(aux.getSecond().getNum_tarjeta());
+                        if (!NUMTARJETA.equals("")) {
+                            IFachadaSubsTarjetas subsTarjetas = new FachadaSubsTarjetas();
+                            Pair<Integer, Tarjeta> aux = subsTarjetas.buscaTarjeta(Integer.parseInt(NUMTARJETA));
+                            int decision = JOptionPane.showConfirmDialog(null,
+                                    "¿Dar de baja al tarjeta " + NUMTARJETA + "?", "Baja usuario",
+                                    JOptionPane.YES_NO_CANCEL_OPTION);
+                            int resultado = 1;
+                            try {
+                                if (decision == 0) {
+                                    resultado = subsTarjetas.bajaTarjeta(aux.getSecond().getNum_tarjeta());
 
-                                switch (resultado) {
-                                    case 0:
-                                        JOptionPane.showMessageDialog(null, "Tarjeta eliminada correctamente");
-                                        quit();
-                                        break;
-                                    case 1:
-                                        throw new UserException(
-                                                "Fallo al eliminar la tarjeta. Compruebe que no exista ya");
-                                    case 10:
-                                        throw new GUIException(
-                                                "Fallo al encontrar el archivo de tarjetas. Contacte con el soporte.");
-                                    default:
-                                        throw new GUIException("Error inesperado. Contacte con el soporte");
+                                    switch (resultado) {
+                                        case 0:
+                                            JOptionPane.showMessageDialog(null, "Tarjeta eliminada correctamente");
+                                            quit();
+                                            break;
+                                        case 1:
+                                            throw new UserException(
+                                                    "Fallo al eliminar la tarjeta. Compruebe que no exista ya");
+                                        case 10:
+                                            throw new GUIException(
+                                                    "Fallo al encontrar el archivo de tarjetas. Contacte con el soporte.");
+                                        default:
+                                            throw new GUIException("Error inesperado. Contacte con el soporte");
+                                    }
                                 }
-                            }
 
-                        } catch (Exception e1) {
-                            JOptionPane.showMessageDialog(null, e1.getMessage());
+                            } catch (Exception e1) {
+                                JOptionPane.showMessageDialog(null, e1.getMessage());
+                            }
+                            NUMTARJETA = "";
                         }
                     }
 
@@ -279,6 +282,7 @@ public class TarjWindow extends JDialog {
         JDialog frame1 = new JDialog();
         frame1.setTitle("Lista Tarjetas");
         frame1.setModal(true);
+        frame1.setResizable(false);
         try {
             frame1.getContentPane().add(new TarjListPanel(null));
             frame1.pack();
@@ -304,6 +308,7 @@ public class TarjWindow extends JDialog {
                     JDialog frame = new JDialog();
                     frame.setTitle("Modicifación Tarjeta");
                     frame.setModal(true);
+                    frame.setResizable(false);
                     frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                     IFachadaSubsTarjetas subsTarjetas = new FachadaSubsTarjetas();
                     Pair<Integer, Tarjeta> aux = subsTarjetas.buscaTarjeta(Integer.parseInt(NUMTARJETA));
@@ -341,6 +346,7 @@ public class TarjWindow extends JDialog {
         JDialog frame1 = new JDialog();
         frame1.setTitle("Lista Tarjetas");
         frame1.setModal(true);
+        frame1.setResizable(false);
         try {
             IFachadaSubsTarjetas subsTarjetas = new FachadaSubsTarjetas();
             Pair<List<Tarjeta>, Integer> aux1 = subsTarjetas.consultarListaTarjetas(_user.getDni());
@@ -380,6 +386,7 @@ public class TarjWindow extends JDialog {
                     JDialog frame = new JDialog();
                     frame.setTitle("Modicifación Tarjeta");
                     frame.setModal(true);
+                    frame.setResizable(false);
                     frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                     IFachadaSubsTarjetas subsTarjetas = new FachadaSubsTarjetas();
                     Pair<Integer, Tarjeta> aux = subsTarjetas.buscaTarjeta(Integer.parseInt(NUMTARJETA));
@@ -441,6 +448,7 @@ public class TarjWindow extends JDialog {
         JDialog frame = new JDialog();
         frame.setTitle("Opciones de Filtrado");
         frame.setModal(true);
+        frame.setResizable(false);
         frame.getContentPane().add(new FiltrarGUI());
         frame.pack();
         frame.setVisible(true);
@@ -476,6 +484,7 @@ public class TarjWindow extends JDialog {
                         JDialog frame1 = new JDialog();
                         frame1.setTitle("Lista Tarjetas");
                         frame1.setModal(true);
+                        frame1.setResizable(false);
                         frame1.getContentPane().add(new TarjListPanel(listaFiltrada.getFirst()));
                         frame1.pack();
                         frame1.setVisible(true);
@@ -554,6 +563,7 @@ public class TarjWindow extends JDialog {
                     JDialog frame1 = new JDialog();
                     frame1.setTitle("Lista Tarjetas");
                     frame1.setModal(true);
+                    frame1.setResizable(false);
                     frame1.getContentPane().add(new TarjListPanel(listaFiltrada.getFirst()));
                     frame1.pack();
                     frame1.setVisible(true);
