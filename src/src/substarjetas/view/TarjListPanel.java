@@ -3,6 +3,7 @@ package substarjetas.view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
@@ -46,25 +47,27 @@ public class TarjListPanel extends JPanel {
         } else {
         	tablaTarjetas = createViewPanel(new JTable(new TarjTableModel(listaFiltrada)), "Lista de tarjetas");
         }
-        numTarjetaAModificar = new JLabel("NUM TARJETA");
-        numTarj = new JTextField(5);
+        numTarjetaAModificar = new JLabel("NUM TARJETA: ");
+        numTarj = new JTextField();
+        Dimension dimensionLabel = new Dimension (200,25);
+        numTarj.setPreferredSize(dimensionLabel);
         // adjust size and set layout
-        setPreferredSize(new Dimension(397, 574));
-        setLayout(null);
-
-        // add components
-        add(modButton);
-        add(cancelButton);
-        add(tablaTarjetas);
-        add(numTarjetaAModificar);
-        add(numTarj);
-
-        // set component bounds (only needed by Absolute Positioning)
-        modButton.setBounds(85, 15, 100, 35);
-        cancelButton.setBounds(210, 15, 100, 35);
-        tablaTarjetas.setBounds(25, 120, 350, 259);
-        numTarjetaAModificar.setBounds(25, 380, 100, 25);
-        numTarj.setBounds(25, 405, 170, 35);
+        setPreferredSize(new Dimension(500, 530));
+        
+        JPanel panel = new JPanel(new BorderLayout());
+        JPanel panelAux = new JPanel(new FlowLayout());
+        JPanel panelAux2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        
+        panel.add(tablaTarjetas, BorderLayout.NORTH);
+        panelAux2.add(numTarjetaAModificar);
+        panelAux2.add(numTarj);
+        panel.add(panelAux2, BorderLayout.CENTER);
+        panelAux.add(modButton);
+        panelAux.add(cancelButton);
+        panel.add(panelAux, BorderLayout.SOUTH);
+        
+        add(panel);
+        
 
         modButton.addActionListener(new ActionListener() {
             @Override
@@ -114,5 +117,6 @@ public class TarjListPanel extends JPanel {
         frame.getContentPane().add(new TarjListPanel(null));
         frame.pack();
         frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
     }
 }

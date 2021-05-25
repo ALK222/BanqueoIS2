@@ -3,6 +3,7 @@ package subscuentas.view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
@@ -47,7 +48,7 @@ public class CuentaListPanel extends JPanel {
      * Constructor de CuentaListPanel
      * 
      * @param listaFiltrada una lista ya filtrada o null si se quiere buscar toda la
-     *                      losta
+     *                      lista
      * @throws FileNotFoundException Si no se puede contactar con la base de datos
      *                               en caso de que no se le de una lista filtrada
      */
@@ -65,13 +66,17 @@ public class CuentaListPanel extends JPanel {
             tablaCuentas = createViewPanel(new JTable(new CuentaTableModel(this.listaFiltrada)), "Lista de cuentas");
         }
 
-        numRefText = new JLabel("Número de referencia");
-        numRef = new JTextField(5);
+        numRefText = new JLabel("NÚM REFERENCIA: ");
+        numRef = new JTextField();
+        Dimension dimensionLabel = new Dimension (200,25);
+        numRef.setPreferredSize(dimensionLabel);
         titularAModificar = new JLabel("Titular");
-        titularText = new JTextField(5);
+        titularText = new JTextField();
+        dimensionLabel = new Dimension (200,25);
+        titularText.setPreferredSize(dimensionLabel);
         // adjust size and set layout
-        setPreferredSize(new Dimension(397, 574));
-        setLayout(null);
+        setPreferredSize(new Dimension(500, 530));
+        /*setLayout(null);
 
         // add components
         add(modButton);
@@ -87,7 +92,22 @@ public class CuentaListPanel extends JPanel {
         cancelButton.setBounds(210, 15, 100, 35);
         tablaCuentas.setBounds(25, 120, 350, 259);
         numRefText.setBounds(25, 380, 300, 25);
-        numRef.setBounds(25, 405, 170, 35);
+        numRef.setBounds(25, 405, 170, 35);*/
+        
+        JPanel panel = new JPanel(new BorderLayout());
+        JPanel panelAux = new JPanel(new FlowLayout());
+        JPanel panelAux2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        
+        panel.add(tablaCuentas, BorderLayout.NORTH);
+        panelAux2.add(numRefText);
+        panelAux2.add(numRef);
+        panel.add(panelAux2, BorderLayout.CENTER);
+        panelAux.add(modButton);
+        panelAux.add(cancelButton);
+        panel.add(panelAux, BorderLayout.SOUTH);
+        
+        add(panel);
+        
 
         modButton.addActionListener(new ActionListener() {
             @Override

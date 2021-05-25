@@ -3,6 +3,7 @@ package subsprestamos.view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
@@ -46,30 +47,33 @@ public class PrestListPanel extends JPanel {
         modButton = new JButton("ACEPTAR");
         cancelButton = new JButton("CANCELAR");
         if (listaFiltrada == null) {
-        	tablaPrestamos = createViewPanel(new JTable(new PrestTableModel()), "Lista de prestamos");
+        	tablaPrestamos = createViewPanel(new JTable(new PrestTableModel()), "Lista de préstamos");
         } else {
-        	tablaPrestamos = createViewPanel(new JTable(new PrestTableModel(listaFiltrada)), "Lista de prestamos");
+        	tablaPrestamos = createViewPanel(new JTable(new PrestTableModel(listaFiltrada)), "Lista de préstamos");
         }
-        numPrestamoAModificar = new JLabel("NUM PRESTAMO");
-        numPrest = new JTextField(5);
+        numPrestamoAModificar = new JLabel("NÚM PRÉSTAMO: ");
+        numPrest = new JTextField();
+        Dimension dimensionLabel = new Dimension (100,25);
+        numPrest.setPreferredSize(dimensionLabel);
         // adjust size and set layout
-        setPreferredSize(new Dimension(397, 574));
-        setLayout(null);
+        setPreferredSize(new Dimension(500, 530));
 
-        // add components
-        add(modButton);
-        add(cancelButton);
-        add(tablaPrestamos);
-        add(numPrestamoAModificar);
-        add(numPrest);
 
-        // set component bounds (only needed by Absolute Positioning)
-        modButton.setBounds(85, 15, 100, 35);
-        cancelButton.setBounds(210, 15, 100, 35);
-        tablaPrestamos.setBounds(25, 120, 350, 259);
-        numPrestamoAModificar.setBounds(25, 380, 100, 25);
-        numPrest.setBounds(25, 405, 170, 35);
-
+        JPanel panel = new JPanel(new BorderLayout());
+        JPanel panelAux = new JPanel(new FlowLayout());
+        JPanel panelAux2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        
+        panel.add(tablaPrestamos, BorderLayout.NORTH);
+        panelAux2.add(numPrestamoAModificar);
+        panelAux2.add(numPrest);
+        panel.add(panelAux2, BorderLayout.CENTER);
+        panelAux.add(modButton);
+        panelAux.add(cancelButton);
+        panel.add(panelAux, BorderLayout.SOUTH);
+        
+        add(panel);
+        
+        
         modButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -116,9 +120,10 @@ public class PrestListPanel extends JPanel {
     public static void main(String[] args) throws FileNotFoundException {
         JFrame frame = new JFrame("MyPanel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add(new TarjListPanel(null));
+        frame.getContentPane().add(new PrestListPanel(null));
         frame.pack();
         frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
     }
 }
 

@@ -3,6 +3,7 @@ package subsusuarios.view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
@@ -56,25 +57,42 @@ public class UserListPanel extends JPanel {
         } else {
             tablaUsuarios = createViewPanel(new JTable(new UserTableModel(listaFiltrada)), "Lista de usuarios");
         }
-        dniAModificar = new JLabel("DNI");
-        dniLabel = new JTextField(5);
+        dniAModificar = new JLabel("DNI: ");
+        dniLabel = new JTextField();
+        Dimension dimensionLabel = new Dimension (100,25);
+        dniLabel.setPreferredSize(dimensionLabel);
+        
         // adjust size and set layout
-        setPreferredSize(new Dimension(397, 574));
-        setLayout(null);
+        setPreferredSize(new Dimension(500, 530));
+        //setLayout(null);
 
-        // add components
+        /*// add components
         add(tablaUsuarios);
         add(dniAModificar);
         add(dniLabel);
         add(modButton);
-        add(cancelButton);
+        add(cancelButton);*/
+        
+        JPanel panel = new JPanel(new BorderLayout());
+        JPanel panelAux = new JPanel(new FlowLayout());
+        JPanel panelAux2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        
+        panel.add(tablaUsuarios, BorderLayout.NORTH);
+        panelAux2.add(dniAModificar);
+        panelAux2.add(dniLabel);
+        panel.add(panelAux2, BorderLayout.CENTER);
+        panelAux.add(modButton);
+        panelAux.add(cancelButton);
+        panel.add(panelAux, BorderLayout.SOUTH);
+        
+        add(panel);
 
-        // set component bounds (only needed by Absolute Positioning)
+        /*// set component bounds (only needed by Absolute Positioning)
         modButton.setBounds(85, 15, 100, 35);
         cancelButton.setBounds(210, 15, 100, 35);
         tablaUsuarios.setBounds(25, 120, 350, 259);
         dniAModificar.setBounds(25, 380, 100, 25);
-        dniLabel.setBounds(25, 405, 170, 35);
+        dniLabel.setBounds(25, 405, 170, 35);*/
 
         modButton.addActionListener(new ActionListener() {
             @Override
