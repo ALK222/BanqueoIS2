@@ -59,6 +59,7 @@ public class TarjWindow extends JDialog {
      */
     private void initGUI() {
 
+        setModal(true);
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
         this.setContentPane(mainPanel);
