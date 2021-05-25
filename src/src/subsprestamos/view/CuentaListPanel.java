@@ -12,7 +12,7 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -32,7 +32,7 @@ import dominio.Cuenta;
  * @see JPanel
  */
 public class CuentaListPanel extends JPanel {
-	
+
     private List<Cuenta> listaFiltrada;
 
     private JButton modButton;
@@ -145,13 +145,13 @@ public class CuentaListPanel extends JPanel {
      * Comportamiento de la ventana al cerrarse
      */
     private void quit() {
-        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        JDialog frame = (JDialog) SwingUtilities.getWindowAncestor(this);
         frame.dispose();
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        JFrame frame = new JFrame("MyPanel");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JDialog frame = new JDialog();
+        frame.setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
         frame.getContentPane().add(new CuentaListPanel(null));
         frame.pack();
         frame.setVisible(true);

@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -22,7 +22,7 @@ import subsprestamos.IFachadaSubsPrestamos;
 public class ModGUI extends JPanel {
     private static final long serialVersionUID = 1L;
 
-	protected JLabel cantidadLabel;
+    protected JLabel cantidadLabel;
     protected JTextField cantidad;
     protected JLabel plazo_debLabel;
     protected JTextField plazo_deb;
@@ -38,13 +38,13 @@ public class ModGUI extends JPanel {
     protected JTextField numReferencia;
     protected JLabel numeroCuentaLabel;
     protected JTextField numeroCuenta;
-    
+
     protected JButton altaButton;
     protected JButton cancelButton;
 
     public ModGUI(Prestamo p) {
         String estadoAux = "SOLICITADO";
-        String firma ="NO FIRMADO";
+        String firma = "NO FIRMADO";
         initGUI();
         cantidad.setText(String.valueOf(p.getCantidadSolicitada()));
         plazo_deb.setText(p.getPlazoDevolucion());
@@ -52,67 +52,66 @@ public class ModGUI extends JPanel {
         profesion.setText(p.getProfesion());
         if (p.getEstadoPrestamo().equals("SOLICITADO"))
             estadoAux = "SOLICITADO";
-        else if(p.getEstadoPrestamo().equals("DENEGADO"))
-        	estadoAux = "DENEGADO";
-        else if(p.getEstadoPrestamo().equals("ACEPTADO"))
-        	estadoAux = "ACEPTADO";
+        else if (p.getEstadoPrestamo().equals("DENEGADO"))
+            estadoAux = "DENEGADO";
+        else if (p.getEstadoPrestamo().equals("ACEPTADO"))
+            estadoAux = "ACEPTADO";
         estado.setText(estadoAux);
-        
-        if (p.isFirmaSeguroDefuncion()==true)
-        	firma = "FIRMADO";
-        
+
+        if (p.isFirmaSeguroDefuncion() == true)
+            firma = "FIRMADO";
+
         firma_seguro_funcion.setText(firma);
         numReferencia.setText(String.valueOf(p.getNumReferencia()));
         numeroCuenta.setText(String.valueOf(p.getCuentaAsociada()));
-        
+
         numReferencia.setEnabled(false);
         numeroCuenta.setEnabled(false);
     }
 
     public void initGUI() {
         // construct components
-    	cantidadLabel = new JLabel("Cantidad");
-    	cantidad = new JTextField(5);
-    	plazo_debLabel = new JLabel("Plazo devolución");
-    	plazo_deb = new JTextField(5);
-    	avalLabel = new JLabel("Aval");
-    	aval = new JTextField(5);
-    	profesionLabel = new JLabel("Profesión");
-    	profesion = new JTextField(5);
-    	firma_seguro_funcionLabel = new JLabel("Firma seguro función");
-    	firma_seguro_funcion = new JTextField(5);
-    	estadoLabel = new JLabel("Estado");
-    	estado = new JTextField(5);
-    	numeroCuentaLabel=new JLabel("Numero de Cuenta");
-    	numeroCuenta=new JTextField(5);
-    	numReferenciaLabel = new JLabel("Numero de referencia");
-    	numReferencia = new JTextField(5);
+        cantidadLabel = new JLabel("Cantidad");
+        cantidad = new JTextField(5);
+        plazo_debLabel = new JLabel("Plazo devolución");
+        plazo_deb = new JTextField(5);
+        avalLabel = new JLabel("Aval");
+        aval = new JTextField(5);
+        profesionLabel = new JLabel("Profesión");
+        profesion = new JTextField(5);
+        firma_seguro_funcionLabel = new JLabel("Firma seguro función");
+        firma_seguro_funcion = new JTextField(5);
+        estadoLabel = new JLabel("Estado");
+        estado = new JTextField(5);
+        numeroCuentaLabel = new JLabel("Numero de Cuenta");
+        numeroCuenta = new JTextField(5);
+        numReferenciaLabel = new JLabel("Numero de referencia");
+        numReferencia = new JTextField(5);
         altaButton = new JButton("ACEPTAR");
         cancelButton = new JButton("CANCELAR");
-        
 
         // Set button actions
         altaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-	            	if (firma_seguro_funcion.getText().equals("") || cantidad.getText().equals("")){
-	                    throw new GUIException("Alguno de los valores obligatorios esta vacio");
-	                }
+                    if (firma_seguro_funcion.getText().equals("") || cantidad.getText().equals("")) {
+                        throw new GUIException("Alguno de los valores obligatorios esta vacio");
+                    }
                     IFachadaSubsPrestamos subsPrestamos = new FachadaSubsPrestamos();
                     int resultado = 1;
                     boolean firma;
-             
-                    if(firma_seguro_funcion.getText().equals("FIRMADO")) {
-                    	firma=true;
+
+                    if (firma_seguro_funcion.getText().equals("FIRMADO")) {
+                        firma = true;
+                    } else {
+                        firma = false;
                     }
-                    else {
-                    	firma=false;
-                    }
-                    
-                    resultado = subsPrestamos.modificarPrestamo(new Prestamo(Integer.parseInt(numReferencia.getText()),Double.parseDouble(cantidad.getText()),
-                            plazo_deb.getText(), Integer.parseInt(aval.getText()), profesion.getText(),
-                            firma, EstadoPrestamo.parse(estado.getText()), Integer.parseInt(numeroCuenta.getText())));
+
+                    resultado = subsPrestamos.modificarPrestamo(new Prestamo(Integer.parseInt(numReferencia.getText()),
+                            Double.parseDouble(cantidad.getText()), plazo_deb.getText(),
+                            Integer.parseInt(aval.getText()), profesion.getText(), firma,
+                            EstadoPrestamo.parse(estado.getText()), Integer.parseInt(numeroCuenta.getText())));
 
                     switch (resultado) {
                         case 0:
@@ -197,8 +196,7 @@ public class ModGUI extends JPanel {
     }
 
     private void quit() {
-        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        JDialog frame = (JDialog) SwingUtilities.getWindowAncestor(this);
         frame.dispose();
     }
 }
-

@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -182,13 +182,13 @@ public class AltaGUI extends JPanel {
     }
 
     private void quit() {
-        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        JDialog frame = (JDialog) SwingUtilities.getWindowAncestor(this);
         frame.dispose();
     }
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Modo de alta");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JDialog frame = new JDialog();
+        frame.setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
         frame.getContentPane().add(new AltaGUI());
         frame.pack();
         frame.setVisible(true);
