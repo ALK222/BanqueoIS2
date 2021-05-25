@@ -1,0 +1,143 @@
+\section{Módulo préstamo}
+
+\subsection{Crear préstamo}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{|>{\bfseries}X|X|}
+        \hline
+        Nombre de la función                             & altaPrestamo                                                                                \\
+        \hline
+        Precondición                                     & 1.- El gestor inició sesión. \newline 2.- El préstamo no debe existir previamente a su alta \\
+        \hline
+        Postcondición                                    & Los datos del préstamo estarán en la base de datos.                                         \\
+        \hline
+        Flujo principal                                  &
+        1.- La función cumple con la precondición.\newline
+        2.- Los datos de entrada son los datos del nuevo préstamo.\newline
+        3.- La salida muestra una pantalla diciendo que el préstamo se ha creado satisfactoriamente.\newline
+        4.- La función cumple con la postcondición.\newline
+        \\
+        \hline
+        Flujo alternativo 1 \newline (Datos incorrectos) &
+        1.- La función cumple no con la precondición.\newline
+        2.- Los datos de entrada son los datos del nuevo préstamo.\newline
+        3.- La salida muestra una pantalla diciendo que el préstamo ya existe.\newline
+        4.- La función cumple con la postcondición.\newline                                                                                            \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+\subsection{Cancelar préstamo}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{|>{\bfseries}X|X|}
+        \hline
+        Nombre de la función                              & bajaPrestamo                                                                             \\
+        \hline
+        Precondición                                      & 1.- El gestor inició sesión. \newline 2.- El préstamo debe existir previamente a su alta \\
+        \hline
+        Postcondición                                     & Los datos del préstamo se cancela en la base de datos.                                   \\
+        \hline
+        Flujo principal                                   &
+        1.- La función cumple con la precondición.\newline
+        2.- Los datos de entrada son los datos del préstamo a cancelar.\newline
+        3.- La salida muestra una pantalla diciendo que el préstamo se ha cancelado satisfactoriamente.\newline
+        4.- La función cumple con la postcondición.\newline
+        \\
+        \hline
+        Flujo alternativo 1 \newline (prestamo no existe) &
+        1.- La función cumple no con la precondición.\newline
+        2.- Los datos de entrada son los datos del préstamo a cancelar.\newline
+        3.- La salida muestra una pantalla diciendo que el préstamo no existe.\newline
+        4.- La función cumple con la postcondición.\newline                                                                                          \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+\subsection{Consultar la lista de préstamos}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{|>{\bfseries}X|X|}
+        \hline
+        Nombre de la función                                              & consultarListaPrestamos                                                                   \\
+        \hline
+        Precondición                                                      & 1.- El gestor inició sesión. \newline 2.- Los parámetros de búsqueda deben ser correctos. \\
+        \hline
+        Postcondición                                                     & Se muestran los préstamo que pasan por el filtro.                                         \\
+        \hline
+        Flujo principal                                                   &
+        1.- La función cumple con la precondición.\newline
+        2.- El dato de entrada es la cuenta asociada al préstamo\newline
+        3.- La salida muestra una lista con los préstamo que pasan el filtro.\newline
+        4.- La función cumple la postcondición.\newline
+        \\
+        \hline
+        Flujo alternativo 1 \newline (Parámetros de búsqueda incorrectos) &
+        1.- La función cumple no con la precondición.\newline
+        2.- 2.- El dato de entrada es la cuenta asociada al préstamo.\newline
+        3.- La salida muestra una pantalla de error.\newline
+        4.- La función no cumple la postcondición.\newline                                                                                                            \\
+        \hline
+        Flujo alternativo 2 \newline (Ningún préstamo pasa el filtro)     &
+        1.- La función cumple no con la precondición.\newline
+        2.- El dato de entrada es la cuenta asociada al préstamo.\newline
+        3.- La salida muestra una lista vacía, ya que ningún préstamo pasa el filtro.\newline
+        4.- La función no cumple la postcondición.\newline                                                                                                            \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+\subsection{Buscar préstamo}
+
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{|>{\bfseries}X|X|}
+        \hline
+        Nombre de la función                                                                         & buscarPrestamo                                                                            \\
+        \hline
+        Precondición                                                                                 & 1.- El gestor inició sesión. \newline 2.- El préstamo debe existir previamente a su alta. \\
+        \hline
+        Postcondición                                                                                & Se mostrarán los datos de dicho préstamo.                                                 \\
+        \hline
+        Flujo principal                                                                              &
+        1.- La función cumple con la precondición.\newline
+        2.- El dato de entrada es el número de referencia del préstamo a buscar.\newline
+        3.- La salida muestra los datos del préstamo.\newline
+        4.- La función cumple con la postcondición.\newline
+        \\
+        \hline
+        Flujo alternativo 1 \newline (El número de referencia no se corresponde con ningún préstamo) &
+        1.- La función cumple no con la precondición.\newline
+        2.- Los datos de entrada son los datos del préstamo a buscar.\newline
+        3.- La salida muestra una pantalla diciendo que el préstamo no existe.\newline
+        4.- La función no cumple con la postcondición.\newline                                                                                                                                   \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+\subsection{Modificar préstamo}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{|>{\bfseries}X|X|}
+        \hline
+        Nombre de la función                                     & modificarPrestamo                                                                         \\
+        \hline
+        Precondición                                             & 1.- El gestor inició sesión. \newline 2.- El préstamo debe existir previamente a su alta. \\
+        \hline
+        Postcondición                                            & Se modifican los datos del préstamo en la base de datos.                                  \\
+        \hline
+        Flujo principal                                          &
+        1.- La función cumple con la precondición.\newline
+        2.- El dato de entrada es el préstamo modificado.\newline
+        3.- La salida muestra una ventana que indica que la operación se ha realizado correctamente.\newline
+        4.- La función cumple con la postcondición.\newline
+        \\
+        \hline
+        Flujo alternativo 1 \newline (No se guardan los cambios) &
+        1.- La función cumple no con la precondición.\newline
+        2.- El dato de entrada es el préstamo modificado.\newline
+        3.- La salida muestra una pantalla de error.\newline
+        4.- La función no cumple con la postcondición.\newline                                                                                               \\
+        \hline
+    \end{tabularx}
+\end{table}

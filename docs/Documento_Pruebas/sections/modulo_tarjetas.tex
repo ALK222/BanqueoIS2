@@ -1,0 +1,142 @@
+\section{Módulo tarjetas}
+\subsection{Crear tarjeta}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{|>{\bfseries}X|X|}
+        \hline
+        Nombre de la función                             & altaTarjeta                                                                                \\
+        \hline
+        Precondición                                     & 1.- El gestor inició sesión. \newline 2.- La tarjeta no debe existir previamente a su alta \\
+        \hline
+        Postcondición                                    & Los datos de la tarjeta estarán en la base de datos.                                       \\
+        \hline
+        Flujo principal                                  &
+        1.- La función cumple con la precondición.\newline
+        2.- Los datos de entrada son los datos de la nueva tarjeta.\newline
+        3.- La salida muestra una pantalla diciendo que el tarjeta se ha creado satisfactoriamente.\newline
+        4.- La función cumple con la postcondición.\newline
+        \\
+        \hline
+        Flujo alternativo 1 \newline (Datos incorrectos) &
+        1.- La función cumple no con la precondición.\newline
+        2.- Los datos de entrada son los datos de la nueva tarjeta.\newline
+        3.- La salida muestra una pantalla diciendo que la tarjeta ya existe.\newline
+        4.- La función cumple con la postcondición.\newline                                                                                           \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+\subsection{Eliminar tarjeta}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{|>{\bfseries}X|X|}
+        \hline
+        Nombre de la función                             & bajaTarjeta                                                                             \\
+        \hline
+        Precondición                                     & 1.- El gestor inició sesión. \newline 2.- El tarjeta debe existir previamente a su alta \\
+        \hline
+        Postcondición                                    & Los datos de la tarjeta no estarán en la base de datos.                                 \\
+        \hline
+        Flujo principal                                  &
+        1.- La función cumple con la precondición.\newline
+        2.- Los datos de entrada son los datos de la tarjeta a dar de baja.\newline
+        3.- La salida muestra una pantalla diciendo que la tarjeta se ha eliminado satisfactoriamente.\newline
+        4.- La función cumple con la postcondición.\newline
+        \\
+        \hline
+        Flujo alternativo 1 \newline (tarjeta no existe) &
+        1.- La función cumple no con la precondición.\newline
+        2.- Los datos de entrada son los datos de la tarjeta a dar de baja.\newline
+        3.- La salida muestra una pantalla diciendo que la tarjeta no existe.\newline
+        4.- La función cumple con la postcondición.\newline                                                                                        \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+\subsection{Consultar la lista de tarjetas}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{|>{\bfseries}X|X|}
+        \hline
+        Nombre de la función                                              & consultarListaTarjetas                                                                    \\
+        \hline
+        Precondición                                                      & 1.- El gestor inició sesión. \newline 2.- Los parámetros de búsqueda deben ser correctos. \\
+        \hline
+        Postcondición                                                     & Se muestran los tarjetas que pasan por el filtro.                                         \\
+        \hline
+        Flujo principal                                                   &
+        1.- La función cumple con la precondición.\newline
+        2.- El dato de entrada es el DNI del titular.\newline
+        3.- La salida muestra una lista con los tarjetas que pasan el filtro.\newline
+        4.- La función cumple la postcondición.\newline
+        \\
+        \hline
+        Flujo alternativo 1 \newline (Parámetros de búsqueda incorrectos) &
+        1.- La función cumple no con la precondición.\newline
+        2.- El dato de entrada es el DNI del titular.\newline
+        3.- La salida muestra una pantalla de error.\newline
+        4.- La función no cumple la postcondición.\newline                                                                                                            \\
+        \hline
+        Flujo alternativo 2 \newline (Ningún tarjeta pasa el filtro)      &
+        1.- La función cumple no con la precondición.\newline
+        2.- El dato de entrada es el DNI del titular.\newline
+        3.- La salida muestra una lista vacía, ya que ningún tarjeta pasa el filtro.\newline
+        4.- La función no cumple la postcondición.\newline                                                                                                            \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+\subsection{Buscar tarjeta}
+
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{|>{\bfseries}X|X|}
+        \hline
+        Nombre de la función                                                                        & buscarTarjeta                                                                            \\
+        \hline
+        Precondición                                                                                & 1.- El gestor inició sesión. \newline 2.- El tarjeta debe existir previamente a su alta. \\
+        \hline
+        Postcondición                                                                               & Se mostrarán los datos de dicha tarjeta.                                                 \\
+        \hline
+        Flujo principal                                                                             &
+        1.- La función cumple con la precondición.\newline
+        2.- El dato de entrada es el número de referencia de la tarjeta a buscar.\newline
+        3.- La salida muestra los datos de la tarjeta.\newline
+        4.- La función cumple con la postcondición.\newline
+        \\
+        \hline
+        Flujo alternativo 1 \newline (El número de referencia no se corresponde con ningún tarjeta) &
+        1.- La función cumple no con la precondición.\newline
+        2.- Los datos de entrada son los datos de la tarjeta a buscar.\newline
+        3.- La salida muestra una pantalla diciendo que el tarjeta no existe.\newline
+        4.- La función no cumple con la postcondición.\newline                                                                                                                                 \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+\subsection{Modificar tarjetas}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{|>{\bfseries}X|X|}
+        \hline
+        Nombre de la función                                     & modificarTarjeta                                                                         \\
+        \hline
+        Precondición                                             & 1.- El gestor inició sesión. \newline 2.- El tarjeta debe existir previamente a su alta. \\
+        \hline
+        Postcondición                                            & Se modifican los datos de la tarjeta en la base de datos.                                \\
+        \hline
+        Flujo principal                                          &
+        1.- La función cumple con la precondición.\newline
+        2.- El dato de entrada es la tarjeta modificada.\newline
+        3.- La salida muestra una ventana que indica que la operación se ha realizado correctamente.\newline
+        4.- La función cumple con la postcondición.\newline
+        \\
+        \hline
+        Flujo alternativo 1 \newline (No se guardan los cambios) &
+        1.- La función cumple no con la precondición.\newline
+        2.- El dato de entrada es la tarjeta modificada.\newline
+        3.- La salida muestra una pantalla de error.\newline
+        4.- La función no cumple con la postcondición.\newline                                                                                              \\
+        \hline
+    \end{tabularx}
+\end{table}
