@@ -19,71 +19,84 @@ import dominio.TipoTarjeta;
 import substarjetas.FachadaSubsTarjetas;
 import substarjetas.IFachadaSubsTarjetas;
 
+/**
+ * GUI de alta de tarjetas
+ * 
+ * @see JPanel
+ */
 public class AltaGUI extends JPanel {
-	
-	private static final long serialVersionUID = 1L;
-	
-	protected JLabel titularLabel;
-	protected JTextField titular;
-	protected JLabel numTarjetaLabel;
-	protected JTextField numTarjeta;
-	protected JLabel pinLabel;
-	protected JTextField pin;
-	protected JLabel estadoLabel;
-	protected JTextField estado;
-	protected JLabel tipoLabel;
-	protected JTextField tipo;
-	protected JLabel fechaLabel;
-	protected JTextField fecha;
-	protected JLabel dniLabel;
-	protected JTextField dni;
-	protected JButton altaButton;
+
+    private static final long serialVersionUID = 1L;
+
+    protected JLabel titularLabel;
+    protected JTextField titular;
+    protected JLabel numTarjetaLabel;
+    protected JTextField numTarjeta;
+    protected JLabel pinLabel;
+    protected JTextField pin;
+    protected JLabel estadoLabel;
+    protected JTextField estado;
+    protected JLabel tipoLabel;
+    protected JTextField tipo;
+    protected JLabel fechaLabel;
+    protected JTextField fecha;
+    protected JLabel dniLabel;
+    protected JTextField dni;
+    protected JButton altaButton;
     protected JButton cancelButton;
-	
+
+    /**
+     * Constructor de la GUI
+     */
     public AltaGUI() {
         initGUI();
     }
 
+    /**
+     * Constructor del panel de la GUI
+     */
     public void initGUI() {
-    	
+
         // construct components
-    	titularLabel = new JLabel("Titular");
-    	titular = new JTextField(5);
-    	numTarjetaLabel = new JLabel("Número Tarjeta");
-    	numTarjeta = new JTextField(5);
-    	pinLabel = new JLabel("Pin");
-    	pin = new JTextField(5);
-    	estadoLabel = new JLabel("Estado: ON/OFF");
-    	estado = new JTextField(5);
-    	tipoLabel = new JLabel("Tipo");
-    	tipo = new JTextField(5);
-    	fechaLabel = new JLabel("Fecha");
-    	fecha = new JTextField(5);
-    	dniLabel = new JLabel("DNI");
-    	dni = new JTextField(5);
+        titularLabel = new JLabel("Titular");
+        titular = new JTextField(5);
+        numTarjetaLabel = new JLabel("Número Tarjeta");
+        numTarjeta = new JTextField(5);
+        pinLabel = new JLabel("Pin");
+        pin = new JTextField(5);
+        estadoLabel = new JLabel("Estado: ON/OFF");
+        estado = new JTextField(5);
+        tipoLabel = new JLabel("Tipo");
+        tipo = new JTextField(5);
+        fechaLabel = new JLabel("Fecha");
+        fecha = new JTextField(5);
+        dniLabel = new JLabel("DNI");
+        dni = new JTextField(5);
         altaButton = new JButton("ACEPTAR");
         cancelButton = new JButton("CANCELAR");
-    	
 
         // Set button actions
         altaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    if (titular.getText().equals("") || pin.getText().equals("")
-                            || fecha.getText().equals("") || tipo.getText().equals("")|| dni.getText().equals("")) {
+                    if (titular.getText().equals("") || pin.getText().equals("") || fecha.getText().equals("")
+                            || tipo.getText().equals("") || dni.getText().equals("")) {
                         throw new GUIException("Alguno de los valores obligatorios esta vacio");
                     }
                     IFachadaSubsTarjetas subsTarjetas = new FachadaSubsTarjetas();
                     int resultado = 1;
                     boolean estadoAux;
-                    
-                    if(estado.getText()=="ON") estadoAux=true;
-                    else estadoAux=false;
-                    
+
+                    if (estado.getText() == "ON")
+                        estadoAux = true;
+                    else
+                        estadoAux = false;
+
                     resultado = subsTarjetas.altaTarjeta(new Tarjeta(titular.getText(), Integer.parseInt(pin.getText()),
-                               estadoAux, Integer.parseInt(numTarjeta.getText()), fecha.getText(), TipoTarjeta.parse(tipo.getText()),dni.getText()));
-                    
+                            estadoAux, Integer.parseInt(numTarjeta.getText()), fecha.getText(),
+                            TipoTarjeta.parse(tipo.getText()), dni.getText()));
+
                     switch (resultado) {
                         case 0:
                             JOptionPane.showMessageDialog(null, "Tarjeta añadida correctamente");
@@ -120,8 +133,7 @@ public class AltaGUI extends JPanel {
         estadoLabel.setToolTipText("Estado de la tarjeta");
         tipoLabel.setToolTipText("Tipo de la tarjeta a dar de alta");
         fechaLabel.setToolTipText("Fecha de caducidad de la tarjeta a dar de alta");
-        
-        
+
         // adjust size and set layout
         setPreferredSize(new Dimension(944, 574));
         setLayout(null);
@@ -162,9 +174,12 @@ public class AltaGUI extends JPanel {
         fecha.setBounds(518, 275, 100, 35);
         altaButton.setBounds(705, 505, 100, 35);
         cancelButton.setBounds(815, 505, 100, 35);
-        
+
     }
 
+    /**
+     * Comportamiento al cerrar la ventana
+     */
     private void quit() {
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         frame.dispose();

@@ -1,4 +1,4 @@
-package subscuentas.view; 
+package subscuentas.view;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -27,13 +27,13 @@ import subscuentas.IFachadaSubsCuentas;
  */
 public class AltaGUI extends JPanel {
 
-    protected JLabel movimientos; 
-    protected JLabel titular; 
-    protected JLabel firma_digital; 
-    protected JLabel dni; 
-    protected JLabel num_cuenta; 
-    protected JLabel saldo; 
-    protected JTextField saldoText; 
+    protected JLabel movimientos;
+    protected JLabel titular;
+    protected JLabel firma_digital;
+    protected JLabel dni;
+    protected JLabel num_cuenta;
+    protected JLabel saldo;
+    protected JTextField saldoText;
     protected JTextField num_cuentaText;
     protected JTextField dniText;
     protected JTextField firma_digitalText;
@@ -41,7 +41,6 @@ public class AltaGUI extends JPanel {
     protected JTextField movimientosText;
     protected JButton alta;
     protected JButton volver;
-
 
     /**
      * Constructor de la GUI
@@ -51,7 +50,7 @@ public class AltaGUI extends JPanel {
     }
 
     /**
-     * Constructor delpanel de la GUI
+     * Constructor del panel de la GUI
      */
     public void initGUI() {
         // construct components
