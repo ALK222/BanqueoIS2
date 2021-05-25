@@ -12,7 +12,7 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -27,10 +27,10 @@ import common.exception.GUIException;
 import dominio.Prestamo;
 
 public class PrestListPanel extends JPanel {
-	
-	private static final long serialVersionUID = 1L;
-	
-	private JButton modButton;
+
+    private static final long serialVersionUID = 1L;
+
+    private JButton modButton;
     private JButton cancelButton;
     JPanel tablaPrestamos;
 
@@ -43,22 +43,21 @@ public class PrestListPanel extends JPanel {
         modButton = new JButton("ACEPTAR");
         cancelButton = new JButton("CANCELAR");
         if (listaFiltrada == null) {
-        	tablaPrestamos = createViewPanel(new JTable(new PrestTableModel()), "Lista de préstamos");
+            tablaPrestamos = createViewPanel(new JTable(new PrestTableModel()), "Lista de préstamos");
         } else {
-        	tablaPrestamos = createViewPanel(new JTable(new PrestTableModel(listaFiltrada)), "Lista de préstamos");
+            tablaPrestamos = createViewPanel(new JTable(new PrestTableModel(listaFiltrada)), "Lista de préstamos");
         }
         numPrestamoAModificar = new JLabel("NÚM PRÉSTAMO: ");
         numPrest = new JTextField();
-        Dimension dimensionLabel = new Dimension (100,25);
+        Dimension dimensionLabel = new Dimension(100, 25);
         numPrest.setPreferredSize(dimensionLabel);
         // adjust size and set layout
         setPreferredSize(new Dimension(500, 530));
 
-
         JPanel panel = new JPanel(new BorderLayout());
         JPanel panelAux = new JPanel(new FlowLayout());
         JPanel panelAux2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        
+
         panel.add(tablaPrestamos, BorderLayout.NORTH);
         panelAux2.add(numPrestamoAModificar);
         panelAux2.add(numPrest);
@@ -66,10 +65,9 @@ public class PrestListPanel extends JPanel {
         panelAux.add(modButton);
         panelAux.add(cancelButton);
         panel.add(panelAux, BorderLayout.SOUTH);
-        
+
         add(panel);
-        
-        
+
         modButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -108,14 +106,13 @@ public class PrestListPanel extends JPanel {
     }
 
     private void quit() {
-        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        JDialog frame = (JDialog) SwingUtilities.getWindowAncestor(this);
         frame.dispose();
     }
-    
 
     public static void main(String[] args) throws FileNotFoundException {
-        JFrame frame = new JFrame("MyPanel");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JDialog frame = new JDialog();
+        frame.setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
         frame.getContentPane().add(new PrestListPanel(null));
         frame.pack();
         frame.setVisible(true);

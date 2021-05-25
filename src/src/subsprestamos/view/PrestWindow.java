@@ -10,7 +10,7 @@ import java.io.FileNotFoundException;
 import java.util.List;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
@@ -28,7 +28,7 @@ import subscuentas.IFachadaSubsCuentas;
 import subsprestamos.FachadaSubsPrestamos;
 import subsprestamos.IFachadaSubsPrestamos;
 
-public class PrestWindow extends JFrame {
+public class PrestWindow extends JDialog {
 
     private static final long serialVersionUID = 1L;
 
@@ -118,8 +118,10 @@ public class PrestWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                JFrame frame = new JFrame("Solicitar prestamo");
-                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                JDialog frame = new JDialog();
+                frame.setTitle("Solicitar prestamo");
+                frame.setModal(true);
+                frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                 frame.getContentPane().add(new AltaGUI());
                 frame.pack();
                 frame.setVisible(true);
@@ -137,7 +139,9 @@ public class PrestWindow extends JFrame {
         bajaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame1 = new JFrame("Lista Prestamos");
+                JDialog frame1 = new JDialog();
+                frame1.setTitle("Lista Prestamos");
+                frame1.setModal(true);
                 frame1.addWindowListener(new WindowListener() {
 
                     @Override
@@ -151,54 +155,62 @@ public class PrestWindow extends JFrame {
 
                     @Override
                     public void windowClosed(WindowEvent e) {
-                        try {
-                            IFachadaSubsPrestamos subsPrestamos = new FachadaSubsPrestamos();
-                            Pair<Prestamo, Integer> aux = subsPrestamos.buscarPrestamo(Integer.parseInt(NUMREFERENCIA));
-                            int resultado = aux.getSecond();
-                            switch (resultado) {
-                                case 0:
-                                    JOptionPane.showMessageDialog(null, "El préstamo no existe.");
-                                    quit();
-                                    break;
-                                case 1:
-                                    throw new UserException(
-                                            "Fallo al eliminar el préstamo. Compruebe que no exista ya");
-                                case 10:
-                                    throw new GUIException(
-                                            "Fallo al encontrar el archivo de préstamos. Contacte con el soporte.");
-                                default:
-                                    throw new GUIException("Error inesperado. Contacte con el soporte");
-                            }
-                            UIManager.put("OptionPane.noButtonText", "Baja");
-                            UIManager.put("OptionPane.yesButtonText", "Alta");
-                            int decision = JOptionPane.showConfirmDialog(null,
-                                    "¿Cancelar prestamo " + NUMREFERENCIA + "?", "Cancelar Prestamo",
-                                    JOptionPane.YES_NO_CANCEL_OPTION);
+                        if (!NUMREFERENCIA.equals("")) {
+                            try {
+                                IFachadaSubsPrestamos subsPrestamos = new FachadaSubsPrestamos();
+                                Pair<Prestamo, Integer> aux = subsPrestamos
+                                        .buscarPrestamo(Integer.parseInt(NUMREFERENCIA));
+                                int resultado = aux.getSecond();
+                                switch (resultado) {
+                                    case 0:
+                                        JOptionPane.showMessageDialog(null, "El préstamo no existe.");
+                                        quit();
+                                        break;
+                                    case 1:
+                                        throw new UserException(
+                                                "Fallo al eliminar el préstamo. Compruebe que no exista ya");
+                                    case 10:
+                                        throw new GUIException(
+                                                "Fallo al encontrar el archivo de préstamos. Contacte con el soporte.");
+                                    default:
+                                        throw new GUIException("Error inesperado. Contacte con el soporte");
+                                }
+                                UIManager.put("OptionPane.noButtonText", "Baja");
+                                UIManager.put("OptionPane.yesButtonText", "Alta");
+                                int decision = JOptionPane.showConfirmDialog(null,
+                                        "¿Cancelar prestamo " + NUMREFERENCIA + "?", "Cancelar Prestamo",
+                                        JOptionPane.YES_NO_CANCEL_OPTION);
+                                if (decision != 2) {
+                                    String operacion = "";
+                                    if (decision == 1) {
+                                        resultado = subsPrestamos.cancelarSolicitud(Integer.parseInt(NUMREFERENCIA));
+                                        operacion = "cancelado";
+                                    } else if (decision == 0) {
+                                        operacion = "aceptado";
+                                        resultado = subsPrestamos.aceptarSolicitud(Integer.parseInt(NUMREFERENCIA));
+                                    }
 
-                            if (decision == 1) {
-                                resultado = subsPrestamos.cancelarSolicitud(Integer.parseInt(NUMREFERENCIA));
-                            } else if (decision == 0) {
-                                resultado = subsPrestamos.aceptarSolicitud(Integer.parseInt(NUMREFERENCIA));
+                                    switch (resultado) {
+                                        case 0:
+                                            JOptionPane.showMessageDialog(null,
+                                                    "Prestamo " + operacion + " correctamente");
+                                            quit();
+                                            break;
+                                        case 1:
+                                            throw new UserException(
+                                                    "Fallo al eliminar el préstamo. Compruebe que no exista ya");
+                                        case 10:
+                                            throw new GUIException(
+                                                    "Fallo al encontrar el archivo de préstamos. Contacte con el soporte.");
+                                        default:
+                                            throw new GUIException("Error inesperado. Contacte con el soporte");
+                                    }
+                                }
+                            } catch (Exception e1) {
+                                JOptionPane.showMessageDialog(null, e1.getMessage());
                             }
-
-                            switch (resultado) {
-                                case 0:
-                                    JOptionPane.showMessageDialog(null, "Prestamo cancelado correctamente");
-                                    quit();
-                                    break;
-                                case 1:
-                                    throw new UserException(
-                                            "Fallo al eliminar el préstamo. Compruebe que no exista ya");
-                                case 10:
-                                    throw new GUIException(
-                                            "Fallo al encontrar el archivo de préstamos. Contacte con el soporte.");
-                                default:
-                                    throw new GUIException("Error inesperado. Contacte con el soporte");
-                            }
-
-                        } catch (Exception e1) {
-                            JOptionPane.showMessageDialog(null, e1.getMessage());
                         }
+
                     }
 
                     @Override
@@ -249,7 +261,9 @@ public class PrestWindow extends JFrame {
     }
 
     private void createGestorModFrame() {
-        JFrame frame1 = new JFrame("Lista Prestamos");
+        JDialog frame1 = new JDialog();
+        frame1.setTitle("Lista Prestamos");
+        frame1.setModal(true);
         try {
             frame1.getContentPane().add(new PrestListPanel(null));
             frame1.pack();
@@ -271,15 +285,20 @@ public class PrestWindow extends JFrame {
 
             @Override
             public void windowClosed(WindowEvent e) {
-                JFrame frame = new JFrame("Modicifacion Prestamo");
-                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                IFachadaSubsPrestamos subsPrestamos = new FachadaSubsPrestamos();
-                Pair<Prestamo, Integer> aux = subsPrestamos.buscarPrestamo(Integer.parseInt(NUMREFERENCIA));
-                frame.getContentPane().add(new ModGUI(aux.getFirst()));
+                if (!NUMREFERENCIA.equals("")) {
+                    JDialog frame = new JDialog();
+                    frame.setTitle("Modicifacion Prestamo");
+                    frame.setModal(true);
+                    frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                    IFachadaSubsPrestamos subsPrestamos = new FachadaSubsPrestamos();
+                    Pair<Prestamo, Integer> aux = subsPrestamos.buscarPrestamo(Integer.parseInt(NUMREFERENCIA));
+                    frame.getContentPane().add(new ModGUI(aux.getFirst()));
 
-                frame.pack();
-                frame.setVisible(true);
-                frame.setLocationRelativeTo(null);
+                    frame.pack();
+                    frame.setVisible(true);
+                    frame.setLocationRelativeTo(null);
+                }
+
             }
 
             @Override
@@ -322,7 +341,9 @@ public class PrestWindow extends JFrame {
     }
 
     private void createGestorListView() {
-        JFrame frame1 = new JFrame("Lista Prestamos");
+        JDialog frame1 = new JDialog();
+        frame1.setTitle("Lista Prestamos");
+        frame1.setModal(true);
         try {
             frame1.getContentPane().add(new PrestListPanel(null));
             frame1.pack();
@@ -349,7 +370,9 @@ public class PrestWindow extends JFrame {
                 default:
                     throw new GUIException("Error inesperado. Contacte con el soporte");
             }
-            JFrame frame1 = new JFrame("Lista Cuentas");
+            JDialog frame1 = new JDialog();
+            frame1.setTitle("Lista Cuentas");
+            frame1.setModal(true);
             frame1.getContentPane().add(new CuentaListPanel(aux2.getFirst()));
             frame1.pack();
             frame1.setVisible(true);
@@ -387,7 +410,9 @@ public class PrestWindow extends JFrame {
                                     throw new CuentaException(
                                             "No se pudo contactar con la base de datos. Contacte con el soporte.");
                                 }
-                                JFrame frame2 = new JFrame("Lista prestamos");
+                                JDialog frame2 = new JDialog();
+                                frame2.setTitle("Lista prestamos");
+                                frame2.setModal(true);
                                 frame2.getContentPane().add(new PrestListPanel(listaFiltrada.getFirst()));
                                 frame2.pack();
                                 frame2.setVisible(true);

@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -94,17 +94,16 @@ public class FiltrarGUI extends JPanel {
      * Comportamiento al cerrar la ventana
      */
     private void quit() {
-        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        JDialog frame = (JDialog) SwingUtilities.getWindowAncestor(this);
         frame.dispose();
     }
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Modo de filtrado");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JDialog frame = new JDialog();
+        frame.setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
         frame.getContentPane().add(new FiltrarGUI());
         frame.pack();
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
     }
 }
-
