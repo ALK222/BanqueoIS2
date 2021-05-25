@@ -111,7 +111,7 @@ Alejandro Barrachina Argudo}
 \tableofcontents
 \newpage
 
-\section*{Introducción} %INTRODUCCION
+\section{Introducción} %INTRODUCCION
 En este documento se muestran los diagramas de secuencia y los diagramas de clase de las interfaces gráficas de la aplicación "Banqueo".
 
 \section{Interfaces Gráficas} %INTERFACES GRAFICAS
@@ -120,58 +120,62 @@ En esta sección se muestran los diagramas de clases de las interfaces gráficas
 \subsection{Interfaz Gráfica Cuentas}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/InterfazGraficaCuentas1.png}
+    \includegraphics[width=0.8\textwidth]{images/InterfazGraficaCuentasFinal.png}
 \end{figure}
 
 \subsection{Interfaz Gráfica Tarjetas}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/IntefazGraficaTarjetas1.png}
+    \includegraphics[width=0.8\textwidth]{images/InterfazGraficaTarjetasFinal.png}
 \end{figure}
 
 \subsection{Interfaz Gráfica Prestamos}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/InterfazGraficaPrestamos_1.png}
+    \includegraphics[width=0.8\textwidth]{images/InterfazGraficaPrestamosFinal.png}
 \end{figure}
 
 \subsection{Interfaz Gráfica Usuarios}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/InterfazGraficaUsuarios1.png}
+    \includegraphics[width=0.8\textwidth]{images/InterfazGraficaUsuariosFinal.png}
 \end{figure}
 
 \newpage
 \section{Diagramas de secuencia} %DIAGRAMAS DE SECUENCIA
 En esta sección se muestran los diagramas de secuencia de los 4 subsistemas que existen en la aplicación: Usuarios, Cuentas, Préstamos y Tarjetas.
 \subsection{Iniciar sesión}
+Diagrama para la funcionalidad de iniciar sesión, que comprueba si los datos son correctos para poder acceder a la aplicación, y de serlo, en qué modo hacerlo.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/iniciar_sesion.png}
+    \includegraphics[width=0.8\textwidth]{images/1-iniciarSesionFinal.png}
 \end{figure}
 \subsection{Cerrar sesión}
+Diagrama para la funcionalidad de cerrar sesión.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\textwidth]{images/2-Cerrar_sesion.png}
+    \includegraphics[width=0.4\textwidth]{images/2-CerrarSesionFinal.png}
 \end{figure}
-\subsection{Gestor crea cuenta cliente}
+\subsection{Añadir cuenta}
+Diagrama para la funcionalidad de crear cuenta, que accede a la base de datos para guardarla.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/crear_cuenta.png}
+    \includegraphics[width=0.8\textwidth]{images/3-crear_cuenta.png}
 \end{figure}
-\subsection{Gestor elimina cuenta cliente}
+\subsection{Eliminar cuenta}
+Diagrama para la funcionalidad de eliminar cuenta, previamente comprobando si existe en la base de datos.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{images/eliminar_cuenta.png}
 \end{figure}
-
-\subsection{Gestor selecciona cliente}
+\subsection{Consultar cliente}
+Diagrama para la funcionalidad de buscar cliente en la base de datos.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{images/gestor_selecciona_cliente_consultar_5.png}
 \end{figure}
+\subsection{Añade préstamo}
 
-\subsection{Cliente solicita préstamo}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{images/ClienteSolicitaPrestamo2.png}
@@ -179,17 +183,17 @@ En esta sección se muestran los diagramas de secuencia de los 4 subsistemas que
 \subsection{Modificar tarjeta}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/7-Gestor_modifica_tarjeta.png}
+    \includegraphics[width=0.8\textwidth]{images/7-Gestor_modifica_tarjeta1.png}
 \end{figure}
 \subsection{Modificar cuenta}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/8-Gestor_modifica_cuenta.png}
+    \includegraphics[width=0.8\textwidth]{images/8-Gestor_modifica_cuenta3.png}
 \end{figure}
 \subsection{Modificar préstamo}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/9._GestorModificaPrestamo.png}
+    \includegraphics[width=0.8\textwidth]{images/9-GestorModificaPrestamoFinal.png}
 \end{figure}
 \subsection{Modificar usuario}
 \begin{figure}[H]
@@ -211,14 +215,39 @@ En esta sección se muestran los diagramas de secuencia de los 4 subsistemas que
     \centering
     \includegraphics[width=0.8\textwidth]{images/consultarTarjeta.png}
 \end{figure}
-\subsection{Gestor crea tarjeta}
+\subsection{Crear tarjeta}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{images/14-Gestor_crea_tarjeta.png}
 \end{figure}
-\subsection{Gestor elimina tarjeta}
+\subsection{Eliminar tarjeta}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{images/15-Gestor_elimina_tarjeta.png}
+\end{figure}
+\subsection{Consultar lista de cuentas}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/16-cuentaconsultartodos.png}
+\end{figure}
+\subsection{Consultar lista de tarjetas}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/consultarListaTarjetas.png}
+\end{figure}
+\subsection{Eliminar préstamo}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/18-eliminarprestamos.png}
+\end{figure}
+\subsection{Consultar lista de préstamos}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/19_consultar_prestamos.png}
+\end{figure}
+\subsection{Consultar lista de usuarios}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/20-consultarlistausuarios.png}
 \end{figure}
 \end{document}
