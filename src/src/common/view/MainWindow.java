@@ -1,8 +1,10 @@
 package common.view;
 
 import java.awt.BorderLayout;
+import java.io.IOException;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import common.Controller;
@@ -27,7 +29,11 @@ public class MainWindow extends JFrame {
         _controller = c;
         this.setContentPane(mainPanel);
         mainPanel.add(new ControlPanel(_controller), BorderLayout.PAGE_START);
-        mainPanel.add(new ImagePanel(), BorderLayout.PAGE_END);
+        try {
+            mainPanel.add(new ImagePanel(), BorderLayout.PAGE_END);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "No se pudo cargar la imagen de Banqueo");
+        }
 
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.pack();

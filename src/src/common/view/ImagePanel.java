@@ -20,8 +20,10 @@ public class ImagePanel extends JPanel {
 
     /**
      * Constructor del panel
+     * 
+     * @throws IOException
      */
-    public ImagePanel() {
+    public ImagePanel() throws IOException {
         File testFile;
         try {
             testFile = new File(System.getProperty("user.dir") + "/resources/banqueo.png");
@@ -39,7 +41,7 @@ public class ImagePanel extends JPanel {
                     try {
                         image = ImageIO.read(testFile);
                     } catch (IOException e1) {
-                        e1.printStackTrace();
+                        throw e1;
                     }
                 }
             }
