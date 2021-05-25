@@ -27,7 +27,6 @@ import subscuentas.model.FachadaSubsCuentas;
 import subscuentas.model.IFachadaSubsCuentas;
 import subsprestamos.model.FachadaSubsPrestamos;
 import subsprestamos.model.IFachadaSubsPrestamos;
-
 /**
  * Ventana principal de la GUI de gestión de préstamos
  * 
