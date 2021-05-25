@@ -2,19 +2,36 @@ package substarjetas.view;
 
 import java.io.FileNotFoundException;
 import java.util.List;
+
 import javax.swing.table.AbstractTableModel;
+
 import dominio.Tarjeta;
 import tarjetasdao.control.TarjetasJSON;
 
+/**
+ * Tabla para los datos de tarjetas
+ * 
+ * @see AbstractTableModel
+ */
 public class TarjTableModel extends AbstractTableModel {
     private static final long serialVersionUID = 1L;
     private List<Tarjeta> _tarjetas;
     private String[] labels = { "DNI", "Numero Tarjeta" };
 
+    /**
+     * Constructor vacío para que busque la lista de tarjetas entera
+     * 
+     * @throws FileNotFoundException Si no puede contactar con la base de datos
+     */
     public TarjTableModel() throws FileNotFoundException {
-    	_tarjetas = TarjetasJSON.leerListaTarjetas();
+        _tarjetas = TarjetasJSON.leerListaTarjetas();
     }
 
+    /**
+     * Constructor con una lista ya dada
+     * 
+     * @param listaFiltrada lista a la que se le ha aplicado un filtro
+     */
     public TarjTableModel(List<Tarjeta> listaFiltrada) {
         _tarjetas = listaFiltrada;
     }
@@ -55,4 +72,3 @@ public class TarjTableModel extends AbstractTableModel {
     }
 
 }
-

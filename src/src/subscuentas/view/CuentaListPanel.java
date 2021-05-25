@@ -141,7 +141,7 @@ public class CuentaListPanel extends JPanel {
     }
 
     /**
-     * Comportamiento al cerrar la ventana
+     * Comportamiento de la ventana al cerrarse
      */
     private void quit() {
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);

@@ -26,17 +26,30 @@ import javax.swing.border.TitledBorder;
 import common.exception.GUIException;
 import dominio.Tarjeta;
 
+/**
+ * Panel para escoger la tarjeta a modificar
+ * 
+ * @see JPanel
+ */
 public class TarjListPanel extends JPanel {
-	
-	private static final long serialVersionUID = 1L;
-	
-	private JButton modButton;
+
+    private static final long serialVersionUID = 1L;
+
+    private JButton modButton;
     private JButton cancelButton;
     JPanel tablaTarjetas;
 
     private JLabel numTarjetaAModificar;
     private JTextField numTarj;
 
+    /**
+     * Constructor de TarjListPanel
+     * 
+     * @param listaFiltrada una lista ya filtrada o null si se quiere buscar toda la
+     *                      lista
+     * @throws FileNotFoundException Si no se puede contactar con la base de datos
+     *                               en caso de que no se le de una lista filtrada
+     */
     public TarjListPanel(List<Tarjeta> listaFiltrada) throws FileNotFoundException {
 
         // construct components
@@ -45,19 +58,19 @@ public class TarjListPanel extends JPanel {
         if (listaFiltrada == null) {
             tablaTarjetas = createViewPanel(new JTable(new TarjTableModel()), "Lista de tarjetas");
         } else {
-        	tablaTarjetas = createViewPanel(new JTable(new TarjTableModel(listaFiltrada)), "Lista de tarjetas");
+            tablaTarjetas = createViewPanel(new JTable(new TarjTableModel(listaFiltrada)), "Lista de tarjetas");
         }
         numTarjetaAModificar = new JLabel("NUM TARJETA: ");
         numTarj = new JTextField();
-        Dimension dimensionLabel = new Dimension (200,25);
+        Dimension dimensionLabel = new Dimension(200, 25);
         numTarj.setPreferredSize(dimensionLabel);
         // adjust size and set layout
         setPreferredSize(new Dimension(500, 530));
-        
+
         JPanel panel = new JPanel(new BorderLayout());
         JPanel panelAux = new JPanel(new FlowLayout());
         JPanel panelAux2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        
+
         panel.add(tablaTarjetas, BorderLayout.NORTH);
         panelAux2.add(numTarjetaAModificar);
         panelAux2.add(numTarj);
@@ -65,9 +78,8 @@ public class TarjListPanel extends JPanel {
         panelAux.add(modButton);
         panelAux.add(cancelButton);
         panel.add(panelAux, BorderLayout.SOUTH);
-        
+
         add(panel);
-        
 
         modButton.addActionListener(new ActionListener() {
             @Override
@@ -96,6 +108,14 @@ public class TarjListPanel extends JPanel {
 
     }
 
+    /**
+     * Crea un panel con un componente y un titulo
+     * 
+     * @param c     Componente a poner en el panel
+     * @param title Título del panel
+     * @return el panel ya formado
+     * @see JPanel
+     */
     private JPanel createViewPanel(JComponent c, String title) {
         JPanel p = new JPanel(new BorderLayout());
         Border b = BorderFactory.createLineBorder(Color.black, 2);
@@ -106,6 +126,9 @@ public class TarjListPanel extends JPanel {
         return p;
     }
 
+    /**
+     * Comportamiento de la ventana al cerrarse
+     */
     private void quit() {
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         frame.dispose();

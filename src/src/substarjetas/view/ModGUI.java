@@ -19,6 +19,11 @@ import dominio.TipoTarjeta;
 import substarjetas.FachadaSubsTarjetas;
 import substarjetas.IFachadaSubsTarjetas;
 
+/**
+ * GUI de modificación de tarjetas
+ * 
+ * @see JPanel
+ */
 public class ModGUI extends JPanel {
     private static final long serialVersionUID = 1L;
 
@@ -39,6 +44,12 @@ public class ModGUI extends JPanel {
     protected JButton altaButton;
     protected JButton cancelButton;
 
+    /**
+     * Constructor de la GUI
+     * 
+     * @param t              Tarjeta a modificar
+     * @param permisosGestor Activa o no los permisos de gestor
+     */
     public ModGUI(Tarjeta t, boolean permisosGestor) {
         String estadoAux = "ON";
         initGUI();
@@ -59,6 +70,9 @@ public class ModGUI extends JPanel {
 
     }
 
+    /**
+     * Constructor del panel de la GUI
+     */
     public void initGUI() {
         // construct components
         titularLabel = new JLabel("Titular");
@@ -179,6 +193,9 @@ public class ModGUI extends JPanel {
         cancelButton.setBounds(815, 505, 100, 35);
     }
 
+    /**
+     * Comportamiento al cerrar la ventana
+     */
     private void quit() {
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         frame.dispose();

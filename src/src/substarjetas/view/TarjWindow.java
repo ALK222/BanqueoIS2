@@ -245,8 +245,8 @@ public class TarjWindow extends JFrame {
      * @param aux barra a la que añadir el botón
      */
     private void createModificarButton(JToolBar aux) {
-        JButton modificacionButton = new JButton("ModificaciÃ³n tarjeta");
-        modificacionButton.setToolTipText("ModificaciÃ³n de tarjeta, solo disponible para gestores");
+        JButton modificacionButton = new JButton("Modificación tarjeta");
+        modificacionButton.setToolTipText("Modificación de tarjeta, solo disponible para gestores");
         modificacionButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -291,7 +291,7 @@ public class TarjWindow extends JFrame {
 
             @Override
             public void windowClosed(WindowEvent e) {
-                JFrame frame = new JFrame("Modicifacion Tarjeta");
+                JFrame frame = new JFrame("Modicifación Tarjeta");
                 frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 IFachadaSubsTarjetas subsTarjetas = new FachadaSubsTarjetas();
                 Pair<Integer, Tarjeta> aux = subsTarjetas.buscaTarjeta(Integer.parseInt(NUMTARJETA));
@@ -361,7 +361,7 @@ public class TarjWindow extends JFrame {
             @Override
             public void windowClosed(WindowEvent e) {
                 if (!NUMTARJETA.equals("")) {
-                    JFrame frame = new JFrame("Modicifacion Tarjeta");
+                    JFrame frame = new JFrame("Modicifación Tarjeta");
                     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     IFachadaSubsTarjetas subsTarjetas = new FachadaSubsTarjetas();
                     Pair<Integer, Tarjeta> aux = subsTarjetas.buscaTarjeta(Integer.parseInt(NUMTARJETA));
@@ -535,7 +535,7 @@ public class TarjWindow extends JFrame {
             frame1.setVisible(true);
             frame1.setLocationRelativeTo(null);
         } catch (Exception e) {
-            // TODO: handle exception
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
 
     }

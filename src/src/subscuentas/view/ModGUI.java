@@ -45,7 +45,7 @@ public class ModGUI extends JPanel {
     /**
      * Constructor de la GUI
      * 
-     * @param p Cuenta a modificar
+     * @param c Cuenta a modificar
      */
     public ModGUI(Cuenta c) {
         initGUI();
