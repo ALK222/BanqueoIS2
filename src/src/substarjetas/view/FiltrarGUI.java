@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -88,12 +89,13 @@ public class FiltrarGUI extends JPanel {
     }
 
     private void quit() {
-        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        frame.dispose();
+    	 JDialog frame = (JDialog) SwingUtilities.getWindowAncestor(this);
+         frame.dispose();
     }
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("MyPanel");
+        JDialog frame = new JDialog();
+        frame.setTitle("Filtrado");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(new FiltrarGUI());
         frame.pack();
