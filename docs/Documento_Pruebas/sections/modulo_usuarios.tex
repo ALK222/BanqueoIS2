@@ -1,0 +1,207 @@
+\section{Módulo usuarios}
+\subsection{Iniciar sesión}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{|>{\bfseries}X|X|}
+        \hline
+        Nombre de la función                                        & iniciarSesion                                                        \\
+        \hline
+        Precondición                                                & El usuario, cliente o gestor, debe estar dado de alta en el sistema. \\
+        \hline
+        Postcondición                                               & Los datos deben ser correctos                                        \\
+        \hline
+        Flujo principal                                             &
+        1.- La función cumple con la precondición.
+        2.- Los datos de entrada son el DNI y la contraseña.
+        3.- La salida indica que se inicia sesión de forma satisfactoria.
+        4.- La función cumple con la postcondición.
+        \\
+        \hline
+        \makecell{Flujo alternativo 1 \newline (Datos incorrectos)} &
+        1.- La función cumple con la precondición.\newline
+        2.- Los datos de entrada son el DNI y la contraseña.\newline
+        3.- La salida muestra en pantalla una ventana de error.\newline
+        4.- La función no cumple con la postcondición.\newline                                                                             \\
+        \hline
+        Flujo alternativo 2 \newline (Usuario no existe)            &
+        1.- La función no cumple con la precondición.\newline
+        2.- Los datos de entrada son el DNI y la contraseña.\newline
+        3.- La salida muestra en pantalla una ventana de error.\newline
+        4.- La función no cumple con la postcondición.\newline                                                                             \\
+        \hline
+    \end{tabularx}
+\end{table}
+\subsection{Cerrar sesión}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{|>{\bfseries}X|X|}
+        \hline
+        Nombre de la función                             & cerrarSesion                                              \\
+        \hline
+        Precondición                                     & El usuario, cliente o gestor, debe haber iniciado sesión. \\
+        \hline
+        Postcondición                                    & Inexistente.                                              \\
+        \hline
+        Flujo principal                                  &
+        1.- La función cumple con la precondición.
+        2.- No hay datos de entrada.
+        3.- No hay salida.
+        4.- No hay postcondición.
+        \\
+        \hline
+        Flujo alternativo 1 \newline (Datos incorrectos) &
+        1.- La función no cumple con la precondición.\newline
+        2.- No hay datos de entrada.\newline
+        3.- La salida muestra en pantalla una ventana de error.\newline
+        4.- No hay postcondición.  \newline                                                                          \\
+        \hline
+        Flujo alternativo 2 \newline (Usuario no existe) &
+        1.- La función cumple con la precondición.\newline
+        2.- No hay datos de entrada.\newline
+        3.- No se hay ninguna salida por la interrupción del programa.\newline
+        4.- No hay postcondición.   \newline                                                                         \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+\subsection{Crear usuario}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{|>{\bfseries}X|X|}
+        \hline
+        Nombre de la función                             & altaUsuario                                                                                \\
+        \hline
+        Precondición                                     & 1.- El gestor inició sesión. \newline 2.- El usuario no debe existir previamente a su alta \\
+        \hline
+        Postcondición                                    & Los datos del usuario estarán en la base de datos.                                         \\
+        \hline
+        Flujo principal                                  &
+        1.- La función cumple con la precondición.\newline
+        2.- Los datos de entrada son los datos del nuevo usuario.\newline
+        3.- La salida muestra una pantalla diciendo que el usuario se ha creado satisfactoriamente.\newline
+        4.- La función cumple con la postcondición.\newline
+        \\
+        \hline
+        Flujo alternativo 1 \newline (Datos incorrectos) &
+        1.- La función cumple no con la precondición.\newline
+        2.- Los datos de entrada son los datos del nuevo usuario.\newline
+        3.- La salida muestra una pantalla diciendo que el usuario ya existe.\newline
+        4.- La función cumple con la postcondición.\newline                                                                                           \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+\subsection{Eliminar usuario}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{|>{\bfseries}X|X|}
+        \hline
+        Nombre de la función                             & bajaUsuario                                                                             \\
+        \hline
+        Precondición                                     & 1.- El gestor inició sesión. \newline 2.- El usuario debe existir previamente a su alta \\
+        \hline
+        Postcondición                                    & Los datos del usuario no estarán en la base de datos.                                   \\
+        \hline
+        Flujo principal                                  &
+        1.- La función cumple con la precondición.\newline
+        2.- Los datos de entrada son los datos del usuario a dar de baja.\newline
+        3.- La salida muestra una pantalla diciendo que el usuario se ha eliminado satisfactoriamente.\newline
+        4.- La función cumple con la postcondición.\newline
+        \\
+        \hline
+        Flujo alternativo 1 \newline (Usuario no existe) &
+        1.- La función cumple no con la precondición.\newline
+        2.- Los datos de entrada son los datos del usuario a dar de baja.\newline
+        3.- La salida muestra una pantalla diciendo que el usuario no existe.\newline
+        4.- La función cumple con la postcondición.\newline                                                                                        \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+\subsection{Consultar la lista de usuarios}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{|>{\bfseries}X|X|}
+        \hline
+        Nombre de la función                                              & consultarListaUsuarios                                                                    \\
+        \hline
+        Precondición                                                      & 1.- El gestor inició sesión. \newline 2.- Los parámetros de búsqueda deben ser correctos. \\
+        \hline
+        Postcondición                                                     & Se muestran los usuarios que pasan por el filtro.                                         \\
+        \hline
+        Flujo principal                                                   &
+        1.- La función cumple con la precondición.\newline
+        2.- Los datos de entrada son dos string: uno con la “clave” y el otro con el modo de filtraje.\newline
+        3.- La salida muestra una lista con los usuarios que pasan el filtro.\newline
+        4.- La función cumple la postcondición.\newline
+        \\
+        \hline
+        Flujo alternativo 1 \newline (Parámetros de búsqueda incorrectos) &
+        1.- La función cumple no con la precondición.\newline
+        2.- Los datos de entrada son un string “clave” y el modo de filtraje.\newline
+        3.- La salida muestra una pantalla de error.\newline
+        4.- La función no cumple la postcondición.\newline                                                                                                            \\
+        \hline
+        Flujo alternativo 2 \newline (Ningún usuario pasa el filtro)      &
+        1.- La función cumple no con la precondición.\newline
+        2.- Los datos de entrada son un string “clave” y el modo de filtraje.\newline
+        3.- La salida muestra una lista vacía, ya que ningún usuario pasa el filtro.\newline
+        4.- La función no cumple la postcondición.\newline                                                                                                            \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+\subsection{Buscar usuario}
+
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{|>{\bfseries}X|X|}
+        \hline
+        Nombre de la función                                                       & buscarUsuario                                                                            \\
+        \hline
+        Precondición                                                               & 1.- El gestor inició sesión. \newline 2.- El usuario debe existir previamente a su alta. \\
+        \hline
+        Postcondición                                                              & Se mostrarán los datos de dicho usuario.                                                 \\
+        \hline
+        Flujo principal                                                            &
+        1.- La función cumple con la precondición.\newline
+        2.- El dato de entrada es el DNI del usuario a buscar.\newline
+        3.- La salida muestra los datos del usuario.\newline
+        4.- La función cumple con la postcondición.\newline
+        \\
+        \hline
+        Flujo alternativo 1 \newline (El DNI no se corresponde con ningún usuario) &
+        1.- La función cumple no con la precondición.\newline
+        2.- Los datos de entrada son los datos del usuario a buscar.\newline
+        3.- La salida muestra una pantalla diciendo que el usuario no existe.\newline
+        4.- La función no cumple con la postcondición.\newline                                                                                                                \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+\subsection{Modificar Usuarios}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{|>{\bfseries}X|X|}
+        \hline
+        Nombre de la función                                     & modificarUsuario                                                                         \\
+        \hline
+        Precondición                                             & 1.- El gestor inició sesión. \newline 2.- El usuario debe existir previamente a su alta. \\
+        \hline
+        Postcondición                                            & Se modifican los datos del usuario en la base de datos.                                  \\
+        \hline
+        Flujo principal                                          &
+        1.- La función cumple con la precondición.\newline
+        2.- El dato de entrada es el usuario modificado.\newline
+        3.- La salida muestra una ventana que indica que la operación se ha realizado correctamente.\newline
+        4.- La función cumple con la postcondición.\newline
+        \\
+        \hline
+        Flujo alternativo 1 \newline (No se guardan los cambios) &
+        1.- La función cumple no con la precondición.\newline
+        2.- El dato de entrada es el usuario modificado.\newline
+        3.- La salida muestra una pantalla de error.\newline
+        4.- La función no cumple con la postcondición.\newline                                                                                              \\
+        \hline
+    \end{tabularx}
+\end{table}
