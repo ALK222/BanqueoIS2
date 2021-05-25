@@ -125,7 +125,7 @@ public class PrestWindow extends JFrame {
                 frame.setLocationRelativeTo(null);
             }
         });
-        altaButton.setEnabled(_permisosGestor);
+        altaButton.setEnabled(true);
         altaButton.setPreferredSize(tamanoBoton);
         aux.add(altaButton, BorderLayout.NORTH);
     }
@@ -160,25 +160,24 @@ public class PrestWindow extends JFrame {
                         try {
                             if (decision == 0) {
                                 resultado = subsPrestamos.cancelarSolicitud(aux.getSecond());
-                            } else if (decision == 1){
-                                resultado = subsPrestamos.aceptarSolicitud(aux.getSecond()); 
+                            } else if (decision == 1) {
+                                resultado = subsPrestamos.aceptarSolicitud(aux.getSecond());
                             }
 
-                                switch (resultado) {
-                                    case 0:
-                                        JOptionPane.showMessageDialog(null, "Prestamo cancelado correctamente");
-                                        quit();
-                                        break;
-                                    case 1:
-                                        throw new UserException(
-                                                "Fallo al eliminar el préstamo. Compruebe que no exista ya");
-                                    case 10:
-                                        throw new GUIException(
-                                                "Fallo al encontrar el archivo de préstamos. Contacte con el soporte.");
-                                    default:
-                                        throw new GUIException("Error inesperado. Contacte con el soporte");
-                                }
-                            
+                            switch (resultado) {
+                                case 0:
+                                    JOptionPane.showMessageDialog(null, "Prestamo cancelado correctamente");
+                                    quit();
+                                    break;
+                                case 1:
+                                    throw new UserException(
+                                            "Fallo al eliminar el préstamo. Compruebe que no exista ya");
+                                case 10:
+                                    throw new GUIException(
+                                            "Fallo al encontrar el archivo de préstamos. Contacte con el soporte.");
+                                default:
+                                    throw new GUIException("Error inesperado. Contacte con el soporte");
+                            }
 
                         } catch (Exception e1) {
                             JOptionPane.showMessageDialog(null, e1.getMessage());

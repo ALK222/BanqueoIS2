@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
+import common.exception.CuentaException;
 import common.exception.GUIException;
 import common.exception.UserException;
 import common.misc.Pair;
@@ -104,9 +105,13 @@ public class AltaGUI extends JPanel {
                                     throw new GUIException("Error inesperado. Contacte con el soporte");
                             }
                             break;
-
+                        case 1:
+                            throw new CuentaException("La cuenta asociada no fue encotrada");
+                        case 10:
+                            throw new GUIException(
+                                    "Fallo al encontrar el archivo de préstamos. Contacte con el soporte.");
                         default:
-                            break;
+                            throw new GUIException("Error inesperado. Contacte con el soporte");
                     }
 
                 } catch (Exception e1) {
