@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JToolBar;
+import javax.swing.UIManager;
 
 import common.exception.GUIException;
 import common.exception.UserException;
@@ -160,6 +161,8 @@ public class UserWindow extends JFrame {
                 // LANZAR LA BAJA DE USUARIO
                 IFachadaSubsUsuarios subsUsuarios = new FachadaSubsUsuarios();
                 Persona aux = subsUsuarios.buscarUsuario(DNI).getFirst();
+                UIManager.put("OptionPane.noButtonText", "Si");
+                UIManager.put("OptionPane.yesButtonText", "No");
                 int decision = JOptionPane.showConfirmDialog(null, "¿Dar de baja al usuario " + DNI + "?",
                         "Baja usuario", JOptionPane.YES_NO_CANCEL_OPTION);
                 int resultado = 1;

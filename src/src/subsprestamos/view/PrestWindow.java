@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
+import javax.swing.UIManager;
 
 import common.exception.GUIException;
 import common.exception.UserException;
@@ -21,7 +22,6 @@ import common.misc.Pair;
 import dominio.Cuenta;
 import dominio.Persona;
 import dominio.Prestamo;
-import dominio.Tarjeta;
 import subscuentas.FachadaSubsCuentas;
 import subscuentas.IFachadaSubsCuentas;
 import subsprestamos.FachadaSubsPrestamos;
@@ -39,8 +39,9 @@ public class PrestWindow extends JFrame {
     public static String TIPOFILTRADO = "";
     public static String NUMREFERENCIA = "";
 
-    public PrestWindow(boolean permisosGestor) {
+    public PrestWindow(boolean permisosGestor, Persona p) {
         _permisosGestor = permisosGestor;
+        _user = p;
         initGUI();
     }
 
@@ -130,7 +131,7 @@ public class PrestWindow extends JFrame {
     }
 
     private void createBajaButton(JToolBar aux) {
-        JButton bajaButton = new JButton("Cancelar prestamo");
+        JButton bajaButton = new JButton("Aceptar/Cancelar prestamo");
         bajaButton.setToolTipText("Cancelar el prestamo, solo disponible para gestores");
         bajaButton.addActionListener(new ActionListener() {
             @Override
@@ -150,10 +151,11 @@ public class PrestWindow extends JFrame {
                     @Override
                     public void windowClosed(WindowEvent e) {
                         IFachadaSubsPrestamos subsPrestamos = new FachadaSubsPrestamos();
-                        Pair<Prestamo, Integer>aux = subsPrestamos.buscarPrestamo(Integer.parseInt(NUMREFERENCIA));
-                        int decision = JOptionPane.showConfirmDialog(null,
-                                "¿Cancelar prestamo " + NUMREFERENCIA + "?", "Cancelar Prestamo",
-                                JOptionPane.YES_NO_CANCEL_OPTION);
+                        Pair<Prestamo, Integer> aux = subsPrestamos.buscarPrestamo(Integer.parseInt(NUMREFERENCIA));
+                        UIManager.put("OptionPane.noButtonText", "Baja");
+                        UIManager.put("OptionPane.yesButtonText", "Alta");
+                        int decision = JOptionPane.showConfirmDialog(null, "¿Cancelar prestamo " + NUMREFERENCIA + "?",
+                                "Cancelar Prestamo", JOptionPane.YES_NO_CANCEL_OPTION);
                         int resultado = 1;
                         try {
                             if (decision == 0) {
@@ -197,20 +199,20 @@ public class PrestWindow extends JFrame {
                     }
 
                 });
-		        try {
-		            frame1.getContentPane().add(new PrestListPanel(null));
-		            frame1.pack();
-		            frame1.setVisible(true);
-		            frame1.setLocationRelativeTo(null);
-		        } catch (FileNotFoundException e1) {
-		            JOptionPane.showMessageDialog(null,
-		                    "No se pudo abrir el archivo de tarjetas. Contacte con el soporte.");
-		        }
+                try {
+                    frame1.getContentPane().add(new PrestListPanel(null));
+                    frame1.pack();
+                    frame1.setVisible(true);
+                    frame1.setLocationRelativeTo(null);
+                } catch (FileNotFoundException e1) {
+                    JOptionPane.showMessageDialog(null,
+                            "No se pudo abrir el archivo de tarjetas. Contacte con el soporte.");
+                }
             }
         });
-		bajaButton.setEnabled(_permisosGestor);
-		bajaButton.setPreferredSize(tamanoBoton);
-		aux.add(bajaButton, BorderLayout.SOUTH);
+        bajaButton.setEnabled(_permisosGestor);
+        bajaButton.setPreferredSize(tamanoBoton);
+        aux.add(bajaButton, BorderLayout.SOUTH);
     }
 
     private void createModificarButton(JToolBar aux) {
@@ -373,7 +375,8 @@ public class PrestWindow extends JFrame {
                             IFachadaSubsPrestamos subsPrestamos = new FachadaSubsPrestamos();
                             IFachadaSubsCuentas subsCuentas = new FachadaSubsCuentas();
                             Pair<Cuenta, Integer> aux2 = subsCuentas.buscaCuenta(Integer.parseInt(NUMREFERENCIA));
-                            Pair<List<Prestamo>, Integer> listaFiltrada = subsPrestamos.consultarListaPrestamos(aux2.getFirst());
+                            Pair<List<Prestamo>, Integer> listaFiltrada = subsPrestamos
+                                    .consultarListaPrestamos(aux2.getFirst());
                             int resultado = listaFiltrada.getSecond();
                             switch (resultado) {
                                 case 0:
@@ -447,7 +450,7 @@ public class PrestWindow extends JFrame {
 
                 });
                 // frame.getContentPane().add(new FiltrarGUI());
-               // frame.getContentPane().add(new FiltrarGUI());
+                // frame.getContentPane().add(new FiltrarGUI());
                 frame.pack();
                 frame.setVisible(true);
                 frame.setLocationRelativeTo(null);
