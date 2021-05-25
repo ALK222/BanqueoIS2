@@ -12,6 +12,7 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -130,12 +131,13 @@ public class TarjListPanel extends JPanel {
      * Comportamiento de la ventana al cerrarse
      */
     private void quit() {
-        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+    	JDialog frame = (JDialog) SwingUtilities.getWindowAncestor(this);
         frame.dispose();
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        JFrame frame = new JFrame("MyPanel");
+    	JDialog frame = new JDialog();
+    	frame.setTitle("List");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(new TarjListPanel(null));
         frame.pack();

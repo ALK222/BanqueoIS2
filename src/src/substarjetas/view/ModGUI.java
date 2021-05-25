@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -197,7 +198,7 @@ public class ModGUI extends JPanel {
      * Comportamiento al cerrar la ventana
      */
     private void quit() {
-        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        frame.dispose();
+    	 JDialog frame = (JDialog) SwingUtilities.getWindowAncestor(this);
+         frame.dispose();
     }
 }
