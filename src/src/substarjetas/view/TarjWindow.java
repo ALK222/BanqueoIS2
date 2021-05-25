@@ -10,7 +10,7 @@ import java.io.FileNotFoundException;
 import java.util.List;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
@@ -26,9 +26,9 @@ import substarjetas.IFachadaSubsTarjetas;
 /**
  * Ventana principal para la GUI de gestión de tarjetas
  * 
- * @see JFrame
+ * @see JDialog
  */
-public class TarjWindow extends JFrame {
+public class TarjWindow extends JDialog {
 
     private static final long serialVersionUID = 1L;
 
@@ -47,7 +47,8 @@ public class TarjWindow extends JFrame {
      * @param p              Usuario actual del programa
      */
     public TarjWindow(boolean permisosGestor, Persona p) {
-        super("Tarjeta");
+        super();
+        this.setTitle("Tarjetas");
         _permisosGestor = permisosGestor;
         _user = p;
         initGUI();
@@ -136,8 +137,10 @@ public class TarjWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                JFrame frame = new JFrame("Alta tarjeta");
-                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                JDialog frame = new JDialog();
+                frame.setTitle("Alta tarjeta");
+                frame.setModal(true);
+                frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                 frame.getContentPane().add(new AltaGUI());
                 frame.pack();
                 frame.setVisible(true);
@@ -160,7 +163,9 @@ public class TarjWindow extends JFrame {
         bajaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame1 = new JFrame("Lista Tarjetas");
+                JDialog frame1 = new JDialog();
+                frame1.setTitle("Lista Tarjetas");
+                frame1.setModal(true);
                 try {
                     frame1.getContentPane().add(new TarjListPanel(null));
                     frame1.pack();
@@ -269,14 +274,16 @@ public class TarjWindow extends JFrame {
      * Creador de la ventana de modificación para gestores
      */
     private void createGestorModFrame() {
-        JFrame frame1 = new JFrame("Lista Tarjetas");
+        JDialog frame1 = new JDialog();
+        frame1.setTitle("Lista Tarjetas");
+        frame1.setModal(true);
         try {
             frame1.getContentPane().add(new TarjListPanel(null));
             frame1.pack();
             frame1.setVisible(true);
             frame1.setLocationRelativeTo(null);
         } catch (FileNotFoundException e1) {
-            JOptionPane.showMessageDialog(null, "No se pudo abrir el archivo de usuarios. Contacte con el soporte.");
+            JOptionPane.showMessageDialog(null, e1.getMessage());
         }
         frame1.addWindowListener(new WindowListener() {
 
@@ -291,14 +298,18 @@ public class TarjWindow extends JFrame {
 
             @Override
             public void windowClosed(WindowEvent e) {
-                JFrame frame = new JFrame("Modicifación Tarjeta");
-                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                IFachadaSubsTarjetas subsTarjetas = new FachadaSubsTarjetas();
-                Pair<Integer, Tarjeta> aux = subsTarjetas.buscaTarjeta(Integer.parseInt(NUMTARJETA));
-                frame.getContentPane().add(new ModGUI(aux.getSecond(), true));
-                frame.pack();
-                frame.setVisible(true);
-                frame.setLocationRelativeTo(null);
+                if (!NUMTARJETA.equals("")) {
+                    JDialog frame = new JDialog();
+                    frame.setTitle("Modicifación Tarjeta");
+                    frame.setModal(true);
+                    frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                    IFachadaSubsTarjetas subsTarjetas = new FachadaSubsTarjetas();
+                    Pair<Integer, Tarjeta> aux = subsTarjetas.buscaTarjeta(Integer.parseInt(NUMTARJETA));
+                    frame.getContentPane().add(new ModGUI(aux.getSecond(), true));
+                    frame.pack();
+                    frame.setVisible(true);
+                    frame.setLocationRelativeTo(null);
+                }
             }
 
             @Override
@@ -324,7 +335,9 @@ public class TarjWindow extends JFrame {
      * Creador de la ventana de modificación de tarjetas para usuarios
      */
     private void createUserModFrame() {
-        JFrame frame1 = new JFrame("Lista Tarjetas");
+        JDialog frame1 = new JDialog();
+        frame1.setTitle("Lista Tarjetas");
+        frame1.setModal(true);
         try {
             IFachadaSubsTarjetas subsTarjetas = new FachadaSubsTarjetas();
             Pair<List<Tarjeta>, Integer> aux1 = subsTarjetas.consultarListaTarjetas(_user.getDni());
@@ -361,8 +374,10 @@ public class TarjWindow extends JFrame {
             @Override
             public void windowClosed(WindowEvent e) {
                 if (!NUMTARJETA.equals("")) {
-                    JFrame frame = new JFrame("Modicifación Tarjeta");
-                    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    JDialog frame = new JDialog();
+                    frame.setTitle("Modicifación Tarjeta");
+                    frame.setModal(true);
+                    frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                     IFachadaSubsTarjetas subsTarjetas = new FachadaSubsTarjetas();
                     Pair<Integer, Tarjeta> aux = subsTarjetas.buscaTarjeta(Integer.parseInt(NUMTARJETA));
                     frame.getContentPane().add(new ModGUI(aux.getSecond(), false));
@@ -419,7 +434,9 @@ public class TarjWindow extends JFrame {
      * Comportamiento para la lista de tarjetas cuando la usa un gestor
      */
     private void createGestorListFrame() {
-        JFrame frame = new JFrame("Opciones de Filtrado");
+        JDialog frame = new JDialog();
+        frame.setTitle("Opciones de Filtrado");
+        frame.setModal(true);
         frame.getContentPane().add(new FiltrarGUI());
         frame.pack();
         frame.setVisible(true);
@@ -452,7 +469,9 @@ public class TarjWindow extends JFrame {
                             default:
                                 throw new GUIException("Error inesperado. Contacte con el soporte");
                         }
-                        JFrame frame1 = new JFrame("Lista Tarjetas");
+                        JDialog frame1 = new JDialog();
+                        frame1.setTitle("Lista Tarjetas");
+                        frame1.setModal(true);
                         frame1.getContentPane().add(new TarjListPanel(listaFiltrada.getFirst()));
                         frame1.pack();
                         frame1.setVisible(true);
@@ -527,7 +546,9 @@ public class TarjWindow extends JFrame {
             int resultado = listaFiltrada.getSecond();
             switch (resultado) {
                 case 0:
-                    JFrame frame1 = new JFrame("Lista Tarjetas");
+                    JDialog frame1 = new JDialog();
+                    frame1.setTitle("Lista Tarjetas");
+                    frame1.setModal(true);
                     frame1.getContentPane().add(new TarjListPanel(listaFiltrada.getFirst()));
                     frame1.pack();
                     frame1.setVisible(true);
