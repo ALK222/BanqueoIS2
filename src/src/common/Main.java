@@ -163,19 +163,7 @@ public class Main {
         checkUsuarioFile();
     }
 
-    /**
-     * Lanzador del programa
-     * 
-     * @param args argumentos de la linea de comandos
-     */
-    public static void main(String[] args) {
-        try {
-            checkfiles();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Controller c = new Controller();
-
+    public static void inicioSesionGui(Controller c) {
         JFrame frame = new JFrame("Iniciar Sesión");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(new InicioSesionGUI(c));
@@ -214,6 +202,21 @@ public class Main {
             }
 
         });
+    }
+
+    /**
+     * Lanzador del programa
+     * 
+     * @param args argumentos de la linea de comandos
+     */
+    public static void main(String[] args) {
+        try {
+            checkfiles();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Controller c = new Controller();
+        inicioSesionGui(c);
     }
 
 }

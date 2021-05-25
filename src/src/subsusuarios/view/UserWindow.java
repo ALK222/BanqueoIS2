@@ -168,16 +168,16 @@ public class UserWindow extends JFrame {
                         resultado = subsUsuarios.bajaUsuario(aux);
                         switch (resultado) {
                             case 0:
-                                JOptionPane.showMessageDialog(null, "Usuario eliminado correctamente");
+                                JOptionPane.showMessageDialog(null, "Usuario eliminado correctamente.");
                                 quit();
                                 break;
                             case 1:
-                                throw new UserException("Fallo al eliminar el usuario. Compruebe que no exista ya");
+                                throw new UserException("Fallo al eliminar el usuario. Compruebe que no exista ya.");
                             case 10:
                                 throw new GUIException(
                                         "Fallo al encontrar el archivo de usuarios. Contacte con el soporte.");
                             default:
-                                throw new GUIException("Error inesperado. Contacte con el soporte");
+                                throw new GUIException("Error inesperado. Contacte con el soporte.");
                         }
                     }
                 } catch (Exception e1) {
@@ -257,15 +257,18 @@ public class UserWindow extends JFrame {
 
             @Override
             public void windowClosed(WindowEvent e) {
-                JFrame frame = new JFrame("Modicifacion Usuario");
-                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                IFachadaSubsUsuarios subsUsuarios = new FachadaSubsUsuarios();
-                Persona aux = subsUsuarios.buscarUsuario(DNI).getFirst();
-                frame.getContentPane().add(new ModGUI(aux));
+                if (!DNI.equals("")) {
+                    JFrame frame = new JFrame("Modicifacion Usuario");
+                    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    IFachadaSubsUsuarios subsUsuarios = new FachadaSubsUsuarios();
+                    Persona aux = subsUsuarios.buscarUsuario(DNI).getFirst();
+                    frame.getContentPane().add(new ModGUI(aux));
+                    frame.pack();
+                    frame.setVisible(true);
+                    frame.setLocationRelativeTo(null);
+                    DNI = "";
+                }
 
-                frame.pack();
-                frame.setVisible(true);
-                frame.setLocationRelativeTo(null);
             }
 
             @Override
