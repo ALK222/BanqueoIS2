@@ -107,5 +107,6 @@ public class FiltrarGUI extends JPanel {
         frame.getContentPane().add(new FiltrarGUI());
         frame.pack();
         frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
     }
 }

@@ -114,5 +114,6 @@ public class InicioSesionGUI extends JPanel {
         frame.getContentPane().add(new InicioSesionGUI(null));
         frame.pack();
         frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
     }
 }

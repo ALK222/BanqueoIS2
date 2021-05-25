@@ -68,6 +68,7 @@ public class PrestWindow extends JFrame {
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.pack();
         this.setVisible(true);
+        this.setLocationRelativeTo(null);
         this.setResizable(true);
         this.addWindowListener(new WindowListener() {
 
@@ -120,6 +121,7 @@ public class PrestWindow extends JFrame {
                 frame.getContentPane().add(new AltaGUI());
                 frame.pack();
                 frame.setVisible(true);
+                frame.setLocationRelativeTo(null);
             }
         });
         altaButton.setEnabled(_permisosGestor);
@@ -199,6 +201,7 @@ public class PrestWindow extends JFrame {
 		            frame1.getContentPane().add(new PrestListPanel(null));
 		            frame1.pack();
 		            frame1.setVisible(true);
+		            frame1.setLocationRelativeTo(null);
 		        } catch (FileNotFoundException e1) {
 		            JOptionPane.showMessageDialog(null,
 		                    "No se pudo abrir el archivo de tarjetas. Contacte con el soporte.");
@@ -240,6 +243,7 @@ public class PrestWindow extends JFrame {
 
                             frame.pack();
                             frame.setVisible(true);
+                            frame.setLocationRelativeTo(null);
                         }
 
                         @Override
@@ -263,6 +267,7 @@ public class PrestWindow extends JFrame {
                         frame1.getContentPane().add(new PrestListPanel(null));
                         frame1.pack();
                         frame1.setVisible(true);
+                        frame1.setLocationRelativeTo(null);
                     } catch (FileNotFoundException e1) {
                         JOptionPane.showMessageDialog(null,
                                 "No se pudo abrir el archivo de usuarios. Contacte con el soporte.");
@@ -289,6 +294,7 @@ public class PrestWindow extends JFrame {
 
                             frame.pack();
                             frame.setVisible(true);
+                            frame.setLocationRelativeTo(null);
                         }
 
                         @Override
@@ -317,6 +323,7 @@ public class PrestWindow extends JFrame {
                                 frame1.getContentPane().add(new PrestListPanel(aux1.getFirst()));
                                 frame1.pack();
                                 frame1.setVisible(true);
+                                frame1.setLocationRelativeTo(null);
                                 break;
                             case 1:
                                 throw new GUIException("El usuario no tiene prestamos a su nombre");
@@ -415,6 +422,7 @@ public class PrestWindow extends JFrame {
                             frame1.getContentPane().add(new PrestListPanel(listaFiltrada.getFirst()));
                             frame1.pack();
                             frame1.setVisible(true);
+                            frame1.setLocationRelativeTo(null);
                         } catch (Exception e1) {
                             JOptionPane.showMessageDialog(null,
                                     "No se pudo abrir el archivo de tarjetas. Contacte con el soporte.");
@@ -442,6 +450,7 @@ public class PrestWindow extends JFrame {
                // frame.getContentPane().add(new FiltrarGUI());
                 frame.pack();
                 frame.setVisible(true);
+                frame.setLocationRelativeTo(null);
             }
         });
         listaButton.setEnabled(_permisosGestor);
