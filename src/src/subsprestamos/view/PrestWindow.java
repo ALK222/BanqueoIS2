@@ -60,7 +60,6 @@ public class PrestWindow extends JDialog {
      * Creador de la ventana principal de la GUI de cuentas
      */
     private void initGUI() {
-        setModal(true);
 
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setTitle("Control de préstamos");
@@ -83,10 +82,12 @@ public class PrestWindow extends JDialog {
         createListaButton(botonesListaModificar);
         this.add(botonesListaModificar, BorderLayout.WEST);
 
+        this.setModal(true);
         this.pack();
-        this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.setVisible(true);
+
         this.addWindowListener(new WindowListener() {
 
             @Override
@@ -147,9 +148,9 @@ public class PrestWindow extends JDialog {
                 frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                 frame.getContentPane().add(new AltaGUI());
                 frame.pack();
-                frame.setVisible(true);
-                frame.setResizable(false);
                 frame.setLocationRelativeTo(null);
+                frame.setResizable(false);
+                frame.setVisible(true);
             }
         });
         altaButton.setEnabled(true);
@@ -171,7 +172,6 @@ public class PrestWindow extends JDialog {
                 JDialog frame1 = new JDialog();
                 frame1.setTitle("Lista Prestamos");
                 frame1.setModal(true);
-                frame1.setResizable(false);
                 frame1.addWindowListener(new WindowListener() {
 
                     @Override
@@ -263,8 +263,9 @@ public class PrestWindow extends JDialog {
                 try {
                     frame1.getContentPane().add(new PrestListPanel(null));
                     frame1.pack();
-                    frame1.setVisible(true);
                     frame1.setLocationRelativeTo(null);
+                    frame1.setResizable(false);
+                    frame1.setVisible(true);
                 } catch (FileNotFoundException e1) {
                     JOptionPane.showMessageDialog(null,
                             "No se pudo abrir el archivo de prestamos. Contacte con el soporte.");
@@ -302,12 +303,12 @@ public class PrestWindow extends JDialog {
         JDialog frame1 = new JDialog();
         frame1.setTitle("Lista Prestamos");
         frame1.setModal(true);
-        frame1.setResizable(false);
         try {
             frame1.getContentPane().add(new PrestListPanel(null));
             frame1.pack();
-            frame1.setVisible(true);
             frame1.setLocationRelativeTo(null);
+            frame1.setResizable(false);
+            frame1.setVisible(true);
         } catch (FileNotFoundException e1) {
             JOptionPane.showMessageDialog(null, "No se pudo abrir el archivo de prestamos. Contacte con el soporte.");
         }
@@ -328,15 +329,15 @@ public class PrestWindow extends JDialog {
                     JDialog frame = new JDialog();
                     frame.setTitle("Modicifacion Prestamo");
                     frame.setModal(true);
-                    frame.setResizable(false);
                     frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                     IFachadaSubsPrestamos subsPrestamos = new FachadaSubsPrestamos();
                     Pair<Prestamo, Integer> aux = subsPrestamos.buscarPrestamo(Integer.parseInt(NUMREFERENCIA));
                     frame.getContentPane().add(new ModGUI(aux.getFirst()));
 
                     frame.pack();
-                    frame.setVisible(true);
                     frame.setLocationRelativeTo(null);
+                    frame.setResizable(false);
+                    frame.setVisible(true);
                     NUMREFERENCIA = "";
                 }
 
@@ -393,12 +394,12 @@ public class PrestWindow extends JDialog {
         JDialog frame1 = new JDialog();
         frame1.setTitle("Lista Prestamos");
         frame1.setModal(true);
-        frame1.setResizable(false);
         try {
             frame1.getContentPane().add(new PrestListPanel(null));
             frame1.pack();
-            frame1.setVisible(true);
             frame1.setLocationRelativeTo(null);
+            frame1.setResizable(false);
+            frame1.setVisible(true);
         } catch (FileNotFoundException e1) {
             JOptionPane.showMessageDialog(null, "No se pudo abrir el archivo de prestamos. Contacte con el soporte.");
         }
@@ -426,11 +427,11 @@ public class PrestWindow extends JDialog {
             JDialog frame1 = new JDialog();
             frame1.setTitle("Lista Cuentas");
             frame1.setModal(true);
-            frame1.setResizable(false);
             frame1.getContentPane().add(new CuentaListPanel(aux2.getFirst()));
             frame1.pack();
-            frame1.setVisible(true);
             frame1.setLocationRelativeTo(null);
+            frame1.setResizable(false);
+            frame1.setVisible(true);
             frame1.addWindowListener(new WindowListener() {
 
                 @Override
@@ -469,11 +470,12 @@ public class PrestWindow extends JDialog {
                                     JDialog frame2 = new JDialog();
                                     frame2.setTitle("Lista prestamos");
                                     frame2.setModal(true);
-                                    frame2.setResizable(false);
                                     frame2.getContentPane().add(new PrestListPanel(listaFiltrada.getFirst()));
                                     frame2.pack();
-                                    frame2.setVisible(true);
                                     frame2.setLocationRelativeTo(null);
+                                    frame2.setResizable(false);
+                                    frame2.setVisible(true);
+
                                     frame2.addWindowListener(new WindowListener() {
                                         @Override
                                         public void windowOpened(WindowEvent e) {

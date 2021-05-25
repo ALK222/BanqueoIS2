@@ -55,7 +55,6 @@ public class CuentaWindow extends JDialog {
      * Creador de la ventana principal de la GUI de cuentas
      */
     private void initGUI() {
-        setModal(true);
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
         this.setContentPane(mainPanel);
@@ -75,11 +74,12 @@ public class CuentaWindow extends JDialog {
         createListaButton(botonesListaModificar);
         this.add(botonesListaModificar, BorderLayout.WEST);
 
+        this.setModal(true);
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         this.pack();
-        this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.setVisible(true);
 
     }
 
@@ -105,12 +105,13 @@ public class CuentaWindow extends JDialog {
                 JDialog frame = new JDialog();
                 frame.setTitle("Alta cuenta");
                 frame.setModal(true);
-                frame.setResizable(false);
                 frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                 frame.getContentPane().add(new AltaGUI());
                 frame.pack();
-                frame.setVisible(true);
                 frame.setLocationRelativeTo(null);
+                frame.setResizable(false);
+                frame.setVisible(true);
+                
             }
         });
         altaButton.setEnabled(_permisosGestor);
@@ -129,15 +130,15 @@ public class CuentaWindow extends JDialog {
         bajaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JDialog frame1 = new JDialog();
-                frame1.setTitle("Lista Cuentas");
-                frame1.setModal(true);
-                frame1.setResizable(false);
+            	JDialog frame1 = new JDialog();
                 try {
+                    frame1.setTitle("Lista Cuentas");
+                    frame1.setModal(true);
                     frame1.getContentPane().add(new CuentaListPanel(null));
                     frame1.pack();
-                    frame1.setVisible(true);
                     frame1.setLocationRelativeTo(null);
+                    frame1.setResizable(false);
+                    frame1.setVisible(true);
                 } catch (FileNotFoundException e1) {
                     JOptionPane.showMessageDialog(null,
                             "No se pudo abrir el archivo de cuentas. Contacte con el soporte.");
@@ -246,14 +247,14 @@ public class CuentaWindow extends JDialog {
      */
     private void createGestorModFrame() {
         JDialog frame1 = new JDialog();
-        frame1.setTitle("Lista Cuentas");
-        frame1.setModal(true);
-        frame1.setResizable(false);
         try {
+            frame1.setTitle("Lista Cuentas");
+            frame1.setModal(true);
             frame1.getContentPane().add(new CuentaListPanel(null));
             frame1.pack();
-            frame1.setVisible(true);
             frame1.setLocationRelativeTo(null);
+            frame1.setResizable(false);
+            frame1.setVisible(true);
         } catch (FileNotFoundException e1) {
             JOptionPane.showMessageDialog(null, "No se pudo abrir el archivo de cuentas. Contacte con el soporte.");
         }
@@ -274,15 +275,14 @@ public class CuentaWindow extends JDialog {
                     JDialog frame = new JDialog();
                     frame.setTitle("Modicifacion Cuenta");
                     frame.setModal(true);
-                    frame.setResizable(false);
                     frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                     IFachadaSubsCuentas subsCuentas = new FachadaSubsCuentas();
                     Cuenta aux = subsCuentas.buscaCuenta(Integer.parseInt(NUM_CUENTA)).getFirst();
                     frame.getContentPane().add(new ModGUI(aux));
-
                     frame.pack();
-                    frame.setVisible(true);
                     frame.setLocationRelativeTo(null);
+                    frame.setResizable(false);
+                    frame.setVisible(true);
                     NUM_CUENTA = "";
                 }
             }
@@ -313,7 +313,6 @@ public class CuentaWindow extends JDialog {
         JDialog frame1 = new JDialog();
         frame1.setTitle("Lista Cuentas");
         frame1.setModal(true);
-        frame1.setResizable(false);
         try {
             IFachadaSubsCuentas subsCuentas = new FachadaSubsCuentas();
             Pair<List<Cuenta>, Integer> listaFiltrada = subsCuentas.consultarListaCuentas(_currentUser.getNombre(),
@@ -322,8 +321,9 @@ public class CuentaWindow extends JDialog {
                 case 0:
                     frame1.getContentPane().add(new CuentaListPanel(listaFiltrada.getFirst()));
                     frame1.pack();
-                    frame1.setVisible(true);
                     frame1.setLocationRelativeTo(null);
+                    frame1.setResizable(false);
+                    frame1.setVisible(true);
                     break;
                 case 1:
                     throw new CuentaException("No se encuentra ninguna cuenta para el usuario actual.");
@@ -353,15 +353,15 @@ public class CuentaWindow extends JDialog {
                     JDialog frame = new JDialog();
                     frame.setTitle("Modificacion Cuenta");
                     frame.setModal(true);
-                    frame.setResizable(true);
                     frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                     IFachadaSubsCuentas subsCuentas = new FachadaSubsCuentas();
                     Cuenta aux = subsCuentas.buscaCuenta(Integer.parseInt(NUM_CUENTA)).getFirst();
                     frame.getContentPane().add(new ModGUI(aux));
 
                     frame.pack();
-                    frame.setVisible(true);
                     frame.setLocationRelativeTo(null);
+                    frame.setResizable(true);
+                    frame.setVisible(true);
                     NUM_CUENTA = "";
                 }
 
@@ -417,11 +417,11 @@ public class CuentaWindow extends JDialog {
         JDialog frame = new JDialog();
         frame.setTitle("Opciones de filtrado");
         frame.setModal(true);
-        frame.setResizable(false);
         frame.getContentPane().add(new FiltrarGUI());
         frame.pack();
-        frame.setVisible(true);
         frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
+        frame.setVisible(true);
         frame.addWindowListener(new WindowListener() {
 
             @Override
@@ -445,11 +445,11 @@ public class CuentaWindow extends JDialog {
                                 JDialog frame1 = new JDialog();
                                 frame1.setTitle("Lista cuentas");
                                 frame1.setModal(true);
-                                frame1.setResizable(false);
                                 frame1.getContentPane().add(new CuentaListPanel(listaFiltrada.getFirst()));
                                 frame1.pack();
+                                frame1.setLocationRelativeTo(null);
+                                frame1.setResizable(false);
                                 frame1.setVisible(true);
-                                frame.setLocationRelativeTo(null);
                                 frame1.addWindowListener(new WindowListener() {
                                     @Override
                                     public void windowOpened(WindowEvent e) {
@@ -533,11 +533,11 @@ public class CuentaWindow extends JDialog {
                     JDialog frame1 = new JDialog();
                     frame1.setTitle("Lista cuentas");
                     frame1.setModal(true);
-                    frame1.setResizable(false);
                     frame1.getContentPane().add(new CuentaListPanel(listaFiltrada.getFirst()));
                     frame1.pack();
-                    frame1.setVisible(true);
                     frame1.setLocationRelativeTo(null);
+                    frame1.setResizable(false);
+                    frame1.setVisible(true);
                     break;
                 case 1:
                     throw new CuentaException("Fallo al modificar la cuenta. Compruebe que no exista ya");

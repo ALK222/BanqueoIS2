@@ -60,7 +60,6 @@ public class UserWindow extends JDialog {
      * Constructor de la parte gráfica de la ventana
      */
     private void initGUI() {
-        setModal(true);
         setTitle("Control de usuarios");
         // Buttons
         JToolBar botonesAltaBaja = new JToolBar();
@@ -77,10 +76,12 @@ public class UserWindow extends JDialog {
         createModificarButton(botonesListaModificar);
         createListaButton(botonesListaModificar);
         this.add(botonesListaModificar, BorderLayout.WEST);
+        
+        this.setModal(true);
         this.pack();
+        this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setVisible(true);
-        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -108,13 +109,13 @@ public class UserWindow extends JDialog {
     private void createAltaFrame() {
         JDialog frame = new JDialog();
         frame.setModal(true);
-        frame.setResizable(false);
         frame.setTitle("Alta usuario");
         frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         frame.getContentPane().add(new AltaGUI());
         frame.pack();
-        frame.setVisible(true);
         frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
+        frame.setVisible(true);
     }
 
     /**
@@ -142,13 +143,13 @@ public class UserWindow extends JDialog {
     private void createBajaFrame() {
         JDialog frame1 = new JDialog();
         frame1.setModal(true);
-        frame1.setResizable(false);
         frame1.setTitle("Lista Usuarios");
         try {
             frame1.getContentPane().add(new UserListPanel(null));
             frame1.pack();
-            frame1.setVisible(true);
             frame1.setLocationRelativeTo(null);
+            frame1.setResizable(false);
+            frame1.setVisible(true);
         } catch (FileNotFoundException e1) {
             JOptionPane.showMessageDialog(null, "No se pudo abrir el archivo de usuarios. Contacte con el soporte.");
         }
@@ -252,13 +253,13 @@ public class UserWindow extends JDialog {
     private void createGestorModFrame() {
         JDialog frame1 = new JDialog();
         frame1.setModal(true);
-        frame1.setResizable(false);
         frame1.setTitle("Lista Usuarios");
         try {
             frame1.getContentPane().add(new UserListPanel(null));
             frame1.pack();
-            frame1.setVisible(true);
             frame1.setLocationRelativeTo(null);
+            frame1.setResizable(false);
+            frame1.setVisible(true);
         } catch (FileNotFoundException e1) {
             JOptionPane.showMessageDialog(null, "No se pudo abrir el archivo de usuarios. Contacte con el soporte.");
         }
@@ -279,14 +280,14 @@ public class UserWindow extends JDialog {
                     JDialog frame = new JDialog();
                     frame.setModal(true);
                     frame.setTitle("Modicifacion Usuario");
-                    frame.setResizable(false);
                     frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                     IFachadaSubsUsuarios subsUsuarios = new FachadaSubsUsuarios();
                     Persona aux = subsUsuarios.buscarUsuario(DNI).getFirst();
                     frame.getContentPane().add(new ModGUI(aux));
                     frame.pack();
-                    frame.setVisible(true);
                     frame.setLocationRelativeTo(null);
+                    frame.setResizable(false);
+                    frame.setVisible(true);
                     DNI = "";
                 }
 
@@ -318,13 +319,12 @@ public class UserWindow extends JDialog {
         JDialog frame = new JDialog();
         frame.setModal(true);
         frame.setTitle("Modicifación Usuario");
-        frame.setResizable(false);
         frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         frame.getContentPane().add(new ModGUI(_user));
-
         frame.pack();
-        frame.setVisible(true);
         frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
+        frame.setVisible(true);
     }
 
     /**
@@ -341,12 +341,12 @@ public class UserWindow extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 JDialog frame = new JDialog();
                 frame.setModal(true);
-                frame.setResizable(false);
                 frame.setTitle("Opciones de Filtrado");
                 frame.getContentPane().add(new FiltrarGUI());
                 frame.pack();
-                frame.setVisible(true);
                 frame.setLocationRelativeTo(null);
+                frame.setResizable(false);
+                frame.setVisible(true);
                 frame.addWindowListener(new WindowListener() {
 
                     @Override
@@ -380,11 +380,11 @@ public class UserWindow extends JDialog {
                                 JDialog frame1 = new JDialog();
                                 frame1.setModal(true);
                                 frame1.setTitle("Lista Usuarios");
-                                frame1.setResizable(false);
                                 frame1.getContentPane().add(new UserListPanel(listaFiltrada.getFirst()));
                                 frame1.pack();
-                                frame1.setVisible(true);
                                 frame.setLocationRelativeTo(null);
+                                frame1.setResizable(false);
+                                frame1.setVisible(true);
                                 frame1.addWindowListener(new WindowListener() {
                                     @Override
                                     public void windowOpened(WindowEvent e) {
