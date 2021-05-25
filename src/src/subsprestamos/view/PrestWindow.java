@@ -210,7 +210,7 @@ public class PrestWindow extends JDialog {
                                 JOptionPane.showMessageDialog(null, e1.getMessage());
                             }
                         }
-
+                        NUMREFERENCIA = "";
                     }
 
                     @Override
@@ -297,6 +297,7 @@ public class PrestWindow extends JDialog {
                     frame.pack();
                     frame.setVisible(true);
                     frame.setLocationRelativeTo(null);
+                    NUMREFERENCIA = "";
                 }
 
             }

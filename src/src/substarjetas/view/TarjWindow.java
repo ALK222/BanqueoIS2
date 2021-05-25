@@ -309,6 +309,7 @@ public class TarjWindow extends JDialog {
                     frame.pack();
                     frame.setVisible(true);
                     frame.setLocationRelativeTo(null);
+                    NUMTARJETA = "";
                 }
             }
 
@@ -385,6 +386,7 @@ public class TarjWindow extends JDialog {
                     frame.pack();
                     frame.setVisible(true);
                     frame.setLocationRelativeTo(null);
+                    NUMTARJETA = "";
                 }
             }
 
@@ -512,6 +514,7 @@ public class TarjWindow extends JDialog {
                         JOptionPane.showMessageDialog(null,
                                 "No se pudo abrir el archivo de tarjetas. Contacte con el soporte.");
                     }
+                    DNI.equals("");
                 }
 
             }

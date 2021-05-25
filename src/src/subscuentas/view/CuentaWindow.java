@@ -35,8 +35,8 @@ public class CuentaWindow extends JFrame {
     private static Dimension tamanoBoton = new Dimension(200, 50);
 
     public static String DNI = "";
-    public static int NUM_CUENTA;
-    public static String TITULAR_CUENTA;
+    public static String NUM_CUENTA = "";
+    public static String TITULAR_CUENTA = "";
 
     /**
      * Constructor para la GUI de cuentas
@@ -182,7 +182,7 @@ public class CuentaWindow extends JFrame {
                     @Override
                     public void windowClosed(WindowEvent e) {
                         IFachadaSubsCuentas subsCuentas = new FachadaSubsCuentas();
-                        Cuenta aux = subsCuentas.buscaCuenta(NUM_CUENTA).getFirst();
+                        Cuenta aux = subsCuentas.buscaCuenta(Integer.parseInt(NUM_CUENTA)).getFirst();
                         int decision = JOptionPane.showConfirmDialog(null,
                                 "¿Dar de baja a la cuenta " + NUM_CUENTA + "?", "Baja cuenta",
                                 JOptionPane.YES_NO_CANCEL_OPTION);
@@ -283,15 +283,18 @@ public class CuentaWindow extends JFrame {
 
             @Override
             public void windowClosed(WindowEvent e) {
-                JFrame frame = new JFrame("Modificación Cuenta");
-                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                IFachadaSubsCuentas subsCuentas = new FachadaSubsCuentas();
-                Cuenta aux = subsCuentas.buscaCuenta(NUM_CUENTA).getFirst();
-                frame.getContentPane().add(new ModGUI(aux));
+                if (!NUM_CUENTA.equals("")) {
+                    JFrame frame = new JFrame("Modificación Cuenta");
+                    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    IFachadaSubsCuentas subsCuentas = new FachadaSubsCuentas();
+                    Cuenta aux = subsCuentas.buscaCuenta(Integer.parseInt(NUM_CUENTA)).getFirst();
+                    frame.getContentPane().add(new ModGUI(aux));
 
-                frame.pack();
-                frame.setVisible(true);
-                frame.setLocationRelativeTo(null);
+                    frame.pack();
+                    frame.setVisible(true);
+                    frame.setLocationRelativeTo(null);
+                    NUM_CUENTA = "";
+                }
             }
 
             @Override
@@ -353,15 +356,19 @@ public class CuentaWindow extends JFrame {
 
             @Override
             public void windowClosed(WindowEvent e) {
-                JFrame frame = new JFrame("Modificación Cuenta");
-                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                IFachadaSubsCuentas subsCuentas = new FachadaSubsCuentas();
-                Cuenta aux = subsCuentas.buscaCuenta(NUM_CUENTA).getFirst();
-                frame.getContentPane().add(new ModGUI(aux));
+                if (!NUM_CUENTA.equals("")) {
+                    JFrame frame = new JFrame("Modificación Cuenta");
+                    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    IFachadaSubsCuentas subsCuentas = new FachadaSubsCuentas();
+                    Cuenta aux = subsCuentas.buscaCuenta(Integer.parseInt(NUM_CUENTA)).getFirst();
+                    frame.getContentPane().add(new ModGUI(aux));
 
-                frame.pack();
-                frame.setVisible(true);
-                frame.setLocationRelativeTo(null);
+                    frame.pack();
+                    frame.setVisible(true);
+                    frame.setLocationRelativeTo(null);
+                    NUM_CUENTA = "";
+                }
+
             }
 
             @Override
@@ -428,62 +435,66 @@ public class CuentaWindow extends JFrame {
 
             @Override
             public void windowClosed(WindowEvent e) {
+                if (!TITULAR_CUENTA.equals("") && !DNI.equals("")) {
+                    try {
+                        IFachadaSubsCuentas subsCuentas = new FachadaSubsCuentas();
+                        Pair<List<Cuenta>, Integer> listaFiltrada = subsCuentas.consultarListaCuentas(TITULAR_CUENTA,
+                                DNI);
+                        int resultado = listaFiltrada.getSecond();
+                        switch (resultado) {
+                            case 0:
+                                JFrame frame1 = new JFrame("Lista Cuentas");
+                                frame1.getContentPane().add(new CuentaListPanel(listaFiltrada.getFirst()));
+                                frame1.pack();
+                                frame1.setVisible(true);
+                                frame.setLocationRelativeTo(null);
+                                frame1.addWindowListener(new WindowListener() {
+                                    @Override
+                                    public void windowOpened(WindowEvent e) {
+                                    }
 
-                try {
-                    IFachadaSubsCuentas subsCuentas = new FachadaSubsCuentas();
-                    Pair<List<Cuenta>, Integer> listaFiltrada = subsCuentas.consultarListaCuentas(TITULAR_CUENTA, DNI);
-                    int resultado = listaFiltrada.getSecond();
-                    switch (resultado) {
-                        case 0:
-                            break;
-                        case 1:
-                            throw new CuentaException("Fallo al modificar la cuenta. Compruebe que no exista ya");
-                        case 10:
-                            throw new GUIException(
-                                    "Fallo al encontrar el archivo de cuentas. Contacte con el soporte.");
-                        default:
-                            throw new GUIException("Error inesperado. Contacte con el soporte");
+                                    @Override
+                                    public void windowClosing(WindowEvent e) {
+                                    }
+
+                                    @Override
+                                    public void windowClosed(WindowEvent e) {
+
+                                    }
+
+                                    @Override
+                                    public void windowIconified(WindowEvent e) {
+                                    }
+
+                                    @Override
+                                    public void windowDeiconified(WindowEvent e) {
+                                    }
+
+                                    @Override
+                                    public void windowActivated(WindowEvent e) {
+                                    }
+
+                                    @Override
+                                    public void windowDeactivated(WindowEvent e) {
+                                    }
+
+                                });
+                                break;
+                            case 1:
+                                throw new CuentaException("Fallo al modificar la cuenta. Compruebe que no exista ya");
+                            case 10:
+                                throw new GUIException(
+                                        "Fallo al encontrar el archivo de cuentas. Contacte con el soporte.");
+                            default:
+                                throw new GUIException("Error inesperado. Contacte con el soporte");
+                        }
+
+                    } catch (Exception e1) {
+                        JOptionPane.showMessageDialog(null,
+                                "No se pudo abrir el archivo de cuentas. Contacte con el soporte.");
                     }
-                    JFrame frame1 = new JFrame("Lista Cuentas");
-                    frame1.getContentPane().add(new CuentaListPanel(listaFiltrada.getFirst()));
-                    frame1.pack();
-                    frame1.setVisible(true);
-                    frame.setLocationRelativeTo(null);
-                    frame1.addWindowListener(new WindowListener() {
-                        @Override
-                        public void windowOpened(WindowEvent e) {
-                        }
-
-                        @Override
-                        public void windowClosing(WindowEvent e) {
-                        }
-
-                        @Override
-                        public void windowClosed(WindowEvent e) {
-
-                        }
-
-                        @Override
-                        public void windowIconified(WindowEvent e) {
-                        }
-
-                        @Override
-                        public void windowDeiconified(WindowEvent e) {
-                        }
-
-                        @Override
-                        public void windowActivated(WindowEvent e) {
-                        }
-
-                        @Override
-                        public void windowDeactivated(WindowEvent e) {
-                        }
-
-                    });
-
-                } catch (Exception e1) {
-                    JOptionPane.showMessageDialog(null,
-                            "No se pudo abrir el archivo de cuentas. Contacte con el soporte.");
+                    TITULAR_CUENTA = "";
+                    DNI = "";
                 }
             }
 
@@ -517,6 +528,11 @@ public class CuentaWindow extends JFrame {
             int resultado = listaFiltrada.getSecond();
             switch (resultado) {
                 case 0:
+                    JFrame frame1 = new JFrame("Lista Cuentas");
+                    frame1.getContentPane().add(new CuentaListPanel(listaFiltrada.getFirst()));
+                    frame1.pack();
+                    frame1.setVisible(true);
+                    frame1.setLocationRelativeTo(null);
                     break;
                 case 1:
                     throw new CuentaException("Fallo al modificar la cuenta. Compruebe que no exista ya");
@@ -525,11 +541,6 @@ public class CuentaWindow extends JFrame {
                 default:
                     throw new GUIException("Error inesperado. Contacte con el soporte");
             }
-            JFrame frame1 = new JFrame("Lista Cuentas");
-            frame1.getContentPane().add(new CuentaListPanel(listaFiltrada.getFirst()));
-            frame1.pack();
-            frame1.setVisible(true);
-            frame1.setLocationRelativeTo(null);
         } catch (Exception e1) {
             JOptionPane.showMessageDialog(null, "No se pudo abrir el archivo de cuentas. Contacte con el soporte.");
         }

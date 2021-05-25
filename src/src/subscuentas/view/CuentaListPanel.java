@@ -70,17 +70,6 @@ public class CuentaListPanel extends JPanel {
         dimensionLabel = new Dimension(200, 25);
         // adjust size and set layout
         setPreferredSize(new Dimension(500, 530));
-        /*
-         * setLayout(null);
-         * 
-         * // add components add(modButton); add(cancelButton); add(tablaCuentas);
-         * add(numRefText); add(numRef); add(titularAModificar); add(titularText);
-         * 
-         * // set component bounds (only needed by Absolute Positioning)
-         * modButton.setBounds(85, 15, 100, 35); cancelButton.setBounds(210, 15, 100,
-         * 35); tablaCuentas.setBounds(25, 120, 350, 259); numRefText.setBounds(25, 380,
-         * 300, 25); numRef.setBounds(25, 405, 170, 35);
-         */
 
         JPanel panel = new JPanel(new BorderLayout());
         JPanel panelAux = new JPanel(new FlowLayout());
@@ -101,7 +90,7 @@ public class CuentaListPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     if (!numRef.getText().equals("")) {
-                        CuentaWindow.NUM_CUENTA = Integer.parseInt(numRef.getText());
+                        CuentaWindow.NUM_CUENTA = numRef.getText();
                         quit();
                     } else {
                         throw new GUIException("Número de referencia vacío, introduzca un valor.");

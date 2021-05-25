@@ -192,7 +192,7 @@ public class UserWindow extends JDialog {
                     } catch (Exception e1) {
                         JOptionPane.showMessageDialog(null, e1.getMessage());
                     }
-
+                    DNI = "";
                 }
 
             }
