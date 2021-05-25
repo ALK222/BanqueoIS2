@@ -158,10 +158,10 @@ public class PrestWindow extends JFrame {
                                 "Cancelar Prestamo", JOptionPane.YES_NO_CANCEL_OPTION);
                         int resultado = 1;
                         try {
-                            if (decision == 0) {
-                                resultado = subsPrestamos.cancelarSolicitud(aux.getSecond());
-                            } else if (decision == 1){
-                                resultado = subsPrestamos.aceptarSolicitud(aux.getSecond()); 
+                            if (decision == 1) {
+                                resultado = subsPrestamos.cancelarSolicitud(Integer.parseInt(NUMREFERENCIA));
+                            } else if (decision == 0){
+                                resultado = subsPrestamos.aceptarSolicitud(Integer.parseInt(NUMREFERENCIA)); 
                             }
 
                                 switch (resultado) {
