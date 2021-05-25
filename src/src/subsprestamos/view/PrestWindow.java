@@ -307,100 +307,16 @@ public class PrestWindow extends JFrame {
     }
 
     private void createGestorListView() {
-        JFrame frame = new JFrame("Opciones de Filtrado");
-        frame.pack();
-        frame.setVisible(true);
-        frame.setLocationRelativeTo(null);
-        frame.addWindowListener(new WindowListener() {
+        JFrame frame1 = new JFrame("Lista Prestamos");
+        try {
+            frame1.getContentPane().add(new PrestListPanel(null));
+            frame1.pack();
+            frame1.setVisible(true);
+            frame1.setLocationRelativeTo(null);
+        } catch (FileNotFoundException e1) {
+            JOptionPane.showMessageDialog(null, "No se pudo abrir el archivo de prestamos. Contacte con el soporte.");
+        }
 
-            @Override
-            public void windowOpened(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosed(WindowEvent e) {
-
-                try {
-                    IFachadaSubsPrestamos subsPrestamos = new FachadaSubsPrestamos();
-                    IFachadaSubsCuentas subsCuentas = new FachadaSubsCuentas();
-                    Pair<Cuenta, Integer> aux2 = subsCuentas.buscaCuenta(Integer.parseInt(NUMREFERENCIA));
-                    Pair<List<Prestamo>, Integer> listaFiltrada = subsPrestamos
-                            .consultarListaPrestamos(aux2.getFirst());
-                    int resultado = listaFiltrada.getSecond();
-                    switch (resultado) {
-                        case 0:
-                            break;
-                        case 1:
-                            throw new UserException("Fallo al modificar el prestamo. Compruebe que no exista ya");
-                        case 10:
-                            throw new GUIException(
-                                    "Fallo al encontrar el archivo de prestamos. Contacte con el soporte.");
-                        default:
-                            throw new GUIException("Error inesperado. Contacte con el soporte");
-                    }
-                    JFrame frame1 = new JFrame("Lista prestamos");
-                    frame1.getContentPane().add(new PrestListPanel(listaFiltrada.getFirst()));
-                    frame1.pack();
-                    frame1.setVisible(true);
-                    frame1.setLocationRelativeTo(null);
-                    frame1.addWindowListener(new WindowListener() {
-                        @Override
-                        public void windowOpened(WindowEvent e) {
-                        }
-
-                        @Override
-                        public void windowClosing(WindowEvent e) {
-                        }
-
-                        @Override
-                        public void windowClosed(WindowEvent e) {
-
-                        }
-
-                        @Override
-                        public void windowIconified(WindowEvent e) {
-                        }
-
-                        @Override
-                        public void windowDeiconified(WindowEvent e) {
-                        }
-
-                        @Override
-                        public void windowActivated(WindowEvent e) {
-                        }
-
-                        @Override
-                        public void windowDeactivated(WindowEvent e) {
-                        }
-
-                    });
-
-                } catch (Exception e1) {
-                    JOptionPane.showMessageDialog(null,
-                            "No se pudo abrir el archivo de prestamos. Contacte con el soporte.");
-                }
-            }
-
-            @Override
-            public void windowIconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeiconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowActivated(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeactivated(WindowEvent e) {
-            }
-        });
     }
 
     private void createUserListView() {
