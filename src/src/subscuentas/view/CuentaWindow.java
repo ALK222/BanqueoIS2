@@ -11,7 +11,6 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
@@ -27,7 +26,7 @@ import subscuentas.IFachadaSubsCuentas;
 /**
  * Ventana principal de la GUI de gestión de usuarios
  * 
- * @see JFrame
+ * @see JDialog
  */
 public class CuentaWindow extends JDialog {
 
@@ -46,7 +45,7 @@ public class CuentaWindow extends JDialog {
      * @param p              Usuario actual del programa
      */
     public CuentaWindow(boolean permisosGestor, Persona p) {
-        //super("Cuenta");
+        // super("Cuenta");
         _permisosGestor = permisosGestor;
         _currentUser = p;
         initGUI();
@@ -56,11 +55,12 @@ public class CuentaWindow extends JDialog {
      * Creador de la ventana principal de la GUI de cuentas
      */
     private void initGUI() {
-
+        setModal(true);
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
         this.setContentPane(mainPanel);
-
+        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        setTitle("Control de cuentas");
         // Buttons
         JToolBar botonesAltaBaja = new JToolBar();
         botonesAltaBaja.setLayout(new BorderLayout());
@@ -135,10 +135,10 @@ public class CuentaWindow extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-            	JDialog frame = new JDialog();
+                JDialog frame = new JDialog();
                 frame.setTitle("Alta cuenta");
                 frame.setModal(true);
-                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                 frame.getContentPane().add(new AltaGUI());
                 frame.pack();
                 frame.setVisible(true);
@@ -161,7 +161,9 @@ public class CuentaWindow extends JDialog {
         bajaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame1 = new JFrame("Lista Cuentas");
+                JDialog frame1 = new JDialog();
+                frame1.setTitle("Lista Cuentas");
+                frame1.setModal(true);
                 try {
                     frame1.getContentPane().add(new CuentaListPanel(null));
                     frame1.pack();
@@ -264,7 +266,7 @@ public class CuentaWindow extends JDialog {
     }
 
     private void createGestorModFrame() {
-    	JDialog frame1 = new JDialog();
+        JDialog frame1 = new JDialog();
         frame1.setTitle("Lista Cuentas");
         frame1.setModal(true);
         try {
@@ -289,10 +291,10 @@ public class CuentaWindow extends JDialog {
             @Override
             public void windowClosed(WindowEvent e) {
                 if (!NUM_CUENTA.equals("")) {
-                	JDialog frame = new JDialog();
+                    JDialog frame = new JDialog();
                     frame.setTitle("Modicifacion Cuenta");
                     frame.setModal(true);
-                    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                     IFachadaSubsCuentas subsCuentas = new FachadaSubsCuentas();
                     Cuenta aux = subsCuentas.buscaCuenta(Integer.parseInt(NUM_CUENTA)).getFirst();
                     frame.getContentPane().add(new ModGUI(aux));
@@ -327,7 +329,7 @@ public class CuentaWindow extends JDialog {
      * Creador de la ventana de modificación para clientes
      */
     private void createUserModFrame() {
-    	JDialog frame1 = new JDialog();
+        JDialog frame1 = new JDialog();
         frame1.setTitle("Lista Cuentas");
         frame1.setModal(true);
         try {
@@ -366,10 +368,10 @@ public class CuentaWindow extends JDialog {
             @Override
             public void windowClosed(WindowEvent e) {
                 if (!NUM_CUENTA.equals("")) {
-                	JDialog frame = new JDialog();
+                    JDialog frame = new JDialog();
                     frame.setTitle("Modificacion Cuenta");
                     frame.setModal(true);
-                    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                     IFachadaSubsCuentas subsCuentas = new FachadaSubsCuentas();
                     Cuenta aux = subsCuentas.buscaCuenta(Integer.parseInt(NUM_CUENTA)).getFirst();
                     frame.getContentPane().add(new ModGUI(aux));
@@ -456,7 +458,7 @@ public class CuentaWindow extends JDialog {
                         int resultado = listaFiltrada.getSecond();
                         switch (resultado) {
                             case 0:
-                            	JDialog frame1 = new JDialog();
+                                JDialog frame1 = new JDialog();
                                 frame1.setTitle("Lista cuentas");
                                 frame1.setModal(true);
                                 frame1.getContentPane().add(new CuentaListPanel(listaFiltrada.getFirst()));
@@ -543,7 +545,7 @@ public class CuentaWindow extends JDialog {
             int resultado = listaFiltrada.getSecond();
             switch (resultado) {
                 case 0:
-                	JDialog frame1 = new JDialog();
+                    JDialog frame1 = new JDialog();
                     frame1.setTitle("Lista cuentas");
                     frame1.setModal(true);
                     frame1.getContentPane().add(new CuentaListPanel(listaFiltrada.getFirst()));

@@ -61,6 +61,7 @@ public class UserWindow extends JDialog {
      */
     private void initGUI() {
         setModal(true);
+        setTitle("Control de usuarios");
         // Buttons
         JToolBar botonesAltaBaja = new JToolBar();
         botonesAltaBaja.setLayout(new BorderLayout());
@@ -68,6 +69,7 @@ public class UserWindow extends JDialog {
         createAltaButton(botonesAltaBaja);
         createBajaButton(botonesAltaBaja);
         this.add(botonesAltaBaja, BorderLayout.EAST);
+        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
         JToolBar botonesListaModificar = new JToolBar();
         botonesListaModificar.setLayout(new BorderLayout());

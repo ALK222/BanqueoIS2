@@ -58,8 +58,9 @@ public class TarjWindow extends JDialog {
      * Creador de la ventana principal de la GUI de tarjetas
      */
     private void initGUI() {
-
+        setTitle("Control de tarjetas");
         setModal(true);
+        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
         this.setContentPane(mainPanel);

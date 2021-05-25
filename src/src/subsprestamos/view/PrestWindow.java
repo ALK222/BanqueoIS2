@@ -49,6 +49,9 @@ public class PrestWindow extends JDialog {
 
     private void initGUI() {
         setModal(true);
+
+        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        setTitle("Control de préstamos");
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
         this.setContentPane(mainPanel);

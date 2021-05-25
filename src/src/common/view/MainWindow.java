@@ -19,7 +19,7 @@ public class MainWindow extends JFrame {
      * @param c controller del programa
      */
     public MainWindow(Controller c) {
-
+        setTitle("Banqueo");
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
         _controller = c;
