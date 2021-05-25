@@ -152,14 +152,30 @@ public class PrestWindow extends JFrame {
 
                     @Override
                     public void windowClosed(WindowEvent e) {
-                        IFachadaSubsPrestamos subsPrestamos = new FachadaSubsPrestamos();
-                        Pair<Prestamo, Integer> aux = subsPrestamos.buscarPrestamo(Integer.parseInt(NUMREFERENCIA));
-                        UIManager.put("OptionPane.noButtonText", "Baja");
-                        UIManager.put("OptionPane.yesButtonText", "Alta");
-                        int decision = JOptionPane.showConfirmDialog(null, "¿Cancelar prestamo " + NUMREFERENCIA + "?",
-                                "Cancelar Prestamo", JOptionPane.YES_NO_CANCEL_OPTION);
-                        int resultado = 1;
                         try {
+                            IFachadaSubsPrestamos subsPrestamos = new FachadaSubsPrestamos();
+                            Pair<Prestamo, Integer> aux = subsPrestamos.buscarPrestamo(Integer.parseInt(NUMREFERENCIA));
+                            int resultado = aux.getSecond();
+                            switch (resultado) {
+                                case 0:
+                                    JOptionPane.showMessageDialog(null, "El préstamo no existe.");
+                                    quit();
+                                    break;
+                                case 1:
+                                    throw new UserException(
+                                            "Fallo al eliminar el préstamo. Compruebe que no exista ya");
+                                case 10:
+                                    throw new GUIException(
+                                            "Fallo al encontrar el archivo de préstamos. Contacte con el soporte.");
+                                default:
+                                    throw new GUIException("Error inesperado. Contacte con el soporte");
+                            }
+                            UIManager.put("OptionPane.noButtonText", "Baja");
+                            UIManager.put("OptionPane.yesButtonText", "Alta");
+                            int decision = JOptionPane.showConfirmDialog(null,
+                                    "¿Cancelar prestamo " + NUMREFERENCIA + "?", "Cancelar Prestamo",
+                                    JOptionPane.YES_NO_CANCEL_OPTION);
+
                             if (decision == 1) {
                                 resultado = subsPrestamos.cancelarSolicitud(Integer.parseInt(NUMREFERENCIA));
                             } else if (decision == 0) {
