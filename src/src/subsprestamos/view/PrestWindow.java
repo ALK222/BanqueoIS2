@@ -35,7 +35,7 @@ public class PrestWindow extends JFrame {
     private Persona _user;
     private static Dimension tamanoBoton = new Dimension(200, 50);
 
-    public static String DNI = "";
+    public static String CUENTAASOCIADA = "";
     public static String TIPOFILTRADO = "";
     public static String NUMREFERENCIA = "";
 
@@ -160,6 +160,9 @@ public class PrestWindow extends JFrame {
                         try {
                             if (decision == 0) {
                                 resultado = subsPrestamos.cancelarSolicitud(aux.getSecond());
+                            } else if (decision == 1){
+                                resultado = subsPrestamos.aceptarSolicitud(aux.getSecond()); 
+                            }
 
                                 switch (resultado) {
                                     case 0:
@@ -175,7 +178,7 @@ public class PrestWindow extends JFrame {
                                     default:
                                         throw new GUIException("Error inesperado. Contacte con el soporte");
                                 }
-                            }
+                            
 
                         } catch (Exception e1) {
                             JOptionPane.showMessageDialog(null, e1.getMessage());
@@ -206,7 +209,7 @@ public class PrestWindow extends JFrame {
                     frame1.setLocationRelativeTo(null);
                 } catch (FileNotFoundException e1) {
                     JOptionPane.showMessageDialog(null,
-                            "No se pudo abrir el archivo de tarjetas. Contacte con el soporte.");
+                            "No se pudo abrir el archivo de prestamos. Contacte con el soporte.");
                 }
             }
         });
@@ -216,14 +219,14 @@ public class PrestWindow extends JFrame {
     }
 
     private void createModificarButton(JToolBar aux) {
-        JButton modificacionButton = new JButton("Modificación tarjeta");
-        modificacionButton.setToolTipText("Modificación de tarjeta, solo disponible para gestores");
+        JButton modificacionButton = new JButton("Modificación préstamo");
+        modificacionButton.setToolTipText("Modificación de préstamo, solo disponible para gestores");
         modificacionButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
                 if (_permisosGestor) {
-                    JFrame frame1 = new JFrame("Lista Tarjetas");
+                    JFrame frame1 = new JFrame("Lista Prestamos");
                     frame1.addWindowListener(new WindowListener() {
 
                         @Override
@@ -237,7 +240,7 @@ public class PrestWindow extends JFrame {
 
                         @Override
                         public void windowClosed(WindowEvent e) {
-                            JFrame frame = new JFrame("Modicifacion Tarjeta");
+                            JFrame frame = new JFrame("Modicifacion Prestamo");
                             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                             IFachadaSubsPrestamos subsPrestamos = new FachadaSubsPrestamos();
                             Pair<Prestamo, Integer> aux = subsPrestamos.buscarPrestamo(Integer.parseInt(NUMREFERENCIA));
@@ -272,10 +275,10 @@ public class PrestWindow extends JFrame {
                         frame1.setLocationRelativeTo(null);
                     } catch (FileNotFoundException e1) {
                         JOptionPane.showMessageDialog(null,
-                                "No se pudo abrir el archivo de usuarios. Contacte con el soporte.");
+                                "No se pudo abrir el archivo de prestamos. Contacte con el soporte.");
                     }
                 } else {
-                    JFrame frame1 = new JFrame("Lista Tarjetas");
+                    JFrame frame1 = new JFrame("Lista Prestamos");
                     frame1.addWindowListener(new WindowListener() {
                         @Override
                         public void windowOpened(WindowEvent e) {
@@ -288,7 +291,7 @@ public class PrestWindow extends JFrame {
 
                         @Override
                         public void windowClosed(WindowEvent e) {
-                            JFrame frame = new JFrame("Modicifacion Tarjeta");
+                            JFrame frame = new JFrame("Modicifacion Prestamos");
                             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                             IFachadaSubsPrestamos subsPrestamos = new FachadaSubsPrestamos();
                             Pair<Prestamo, Integer> aux = subsPrestamos.buscarPrestamo(Integer.parseInt(NUMREFERENCIA));
@@ -353,7 +356,7 @@ public class PrestWindow extends JFrame {
 
     private void createListaButton(JToolBar aux) {
         JButton listaButton = new JButton("Lista de prestamos");
-        listaButton.setToolTipText("Lista de tarjetas, solo disponible para gestores");
+        listaButton.setToolTipText("Lista de prestamos, solo disponible para gestores");
         listaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -428,7 +431,7 @@ public class PrestWindow extends JFrame {
                             frame1.setLocationRelativeTo(null);
                         } catch (Exception e1) {
                             JOptionPane.showMessageDialog(null,
-                                    "No se pudo abrir el archivo de tarjetas. Contacte con el soporte.");
+                                    "No se pudo abrir el archivo de prestamos. Contacte con el soporte.");
                         }
                     }
 
