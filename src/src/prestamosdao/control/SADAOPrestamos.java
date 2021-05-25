@@ -95,6 +95,7 @@ public class SADAOPrestamos implements ISADAOPrestamos {
         if (encontrado) {
             listaPrestamos.remove(i);
             listaPrestamos.add(p);
+            PrestamoJSON.guardarListaPrestamos(listaPrestamos);
         }
         return encontrado;
     }

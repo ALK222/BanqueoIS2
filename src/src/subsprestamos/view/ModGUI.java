@@ -62,6 +62,11 @@ public class ModGUI extends JPanel {
         	firma = "FIRMADO";
         
         firma_seguro_funcion.setText(firma);
+        numReferencia.setText(String.valueOf(p.getNumReferencia()));
+        numeroCuenta.setText(String.valueOf(p.getCuentaAsociada()));
+        
+        numReferencia.setEnabled(false);
+        numeroCuenta.setEnabled(false);
     }
 
     public void initGUI() {
